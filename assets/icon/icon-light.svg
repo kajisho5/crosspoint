@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- SW CROSSPOINT app icon — light appearance (flattened, opaque, square; the OS applies the rounded mask).
+       Concept: a 3×3 crosspoint grid. The lit row (bus) and lit column (source) cross at the selected crosspoint, which carries the PGM tally red.
+       HIG: filled shapes only, no text, no custom highlights/shadows, no pre-masked corners, content centered. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1C1C22"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect x="138" y="138" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.14"/>
+  <rect x="402" y="138" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.14"/>
+  <rect x="666" y="138" width="220" height="220" rx="52" fill="#F0F0F0" fill-opacity="0.78"/>
+  <rect x="138" y="402" width="220" height="220" rx="52" fill="#F0F0F0" fill-opacity="0.78"/>
+  <rect x="402" y="402" width="220" height="220" rx="52" fill="#F0F0F0" fill-opacity="0.78"/>
+  <rect x="666" y="402" width="220" height="220" rx="52" fill="#FF3B30"/>
+  <rect x="138" y="666" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.14"/>
+  <rect x="402" y="666" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.14"/>
+  <rect x="666" y="666" width="220" height="220" rx="52" fill="#F0F0F0" fill-opacity="0.78"/>
+</svg>

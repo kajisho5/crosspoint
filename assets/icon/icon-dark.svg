@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Dark appearance: foreground only on a transparent background (Apple: "Provide your dark app icon with a transparent background so the system-provided background can show through"). -->
+  <rect x="138" y="138" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.16"/>
+  <rect x="402" y="138" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.16"/>
+  <rect x="666" y="138" width="220" height="220" rx="52" fill="#E6E6EA" fill-opacity="0.80"/>
+  <rect x="138" y="402" width="220" height="220" rx="52" fill="#E6E6EA" fill-opacity="0.80"/>
+  <rect x="402" y="402" width="220" height="220" rx="52" fill="#E6E6EA" fill-opacity="0.80"/>
+  <rect x="666" y="402" width="220" height="220" rx="52" fill="#FF453A"/>
+  <rect x="138" y="666" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.16"/>
+  <rect x="402" y="666" width="220" height="220" rx="52" fill="#FFFFFF" fill-opacity="0.16"/>
+  <rect x="666" y="666" width="220" height="220" rx="52" fill="#E6E6EA" fill-opacity="0.80"/>
+</svg>

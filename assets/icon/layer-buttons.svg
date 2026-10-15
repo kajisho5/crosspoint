@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Icon Composer secondary layer: the unselected crosspoint buttons. Opaque; set opacity (~15%) in Icon Composer. -->
+  <rect x="138" y="138" width="220" height="220" rx="52" fill="#FFFFFF"/>
+  <rect x="402" y="138" width="220" height="220" rx="52" fill="#FFFFFF"/>
+  <rect x="666" y="138" width="220" height="220" rx="52" fill="none"/>
+  <rect x="138" y="402" width="220" height="220" rx="52" fill="none"/>
+  <rect x="402" y="402" width="220" height="220" rx="52" fill="none"/>
+  <rect x="666" y="402" width="220" height="220" rx="52" fill="none"/>
+  <rect x="138" y="666" width="220" height="220" rx="52" fill="#FFFFFF"/>
+  <rect x="402" y="666" width="220" height="220" rx="52" fill="#FFFFFF"/>
+  <rect x="666" y="666" width="220" height="220" rx="52" fill="none"/>
+</svg>
