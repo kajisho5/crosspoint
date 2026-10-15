@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { controller } from '@/core/controller/DeviceController';
+import { useFeature } from '@/lib/features';
 import { haptic } from '@/lib/haptics';
 import { useVisibleTab } from '@/lib/visibleTab';
 import { useConnectionStore } from '@/stores/connection';
@@ -24,6 +25,7 @@ import { color } from '@/theme/tokens';
 export default function SwitcherScreen() {
   useVisibleTab('switcher');
   const profile = useLayoutProfile();
+  const cutAutoRoute = useFeature('cutAuto', profile);
   const deviceName = useConnectionStore((s) => s.deviceName);
   const version = useConnectionStore((s) => s.version);
   const pgmMode = useSettingsStore((s) => s.pgmValueMode);
@@ -79,10 +81,10 @@ export default function SwitcherScreen() {
 
         <View className="mt-5 flex-row px-4" style={{ gap: 12 }}>
           <View style={{ flex: 172, gap: 10 }}>
-            {profile.capabilities.cutAuto ? (
+            {cutAutoRoute ? (
               <>
-                <CutButton profile={profile} />
-                <AutoButton profile={profile} />
+                <CutButton profile={profile} route={cutAutoRoute} />
+                <AutoButton profile={profile} route={cutAutoRoute} />
               </>
             ) : (
               <CutAutoUnavailable />

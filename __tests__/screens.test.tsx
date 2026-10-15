@@ -25,6 +25,8 @@ import QuickScreen from '@/app/(tabs)/more/quick';
 import AuxScreen from '@/app/(tabs)/more/aux';
 import MacroScreen from '@/app/(tabs)/more/macro';
 import { useLogStore } from '@/stores/log';
+import { useSimpleStore } from '@/stores/simple';
+import { v80hd as v80hdProfile } from '@/core/profiles/v80hd';
 import { Alert } from 'react-native';
 import { addr } from '@/core/codec/value';
 import { getCatalog, paramAddr } from '@/core/params';
@@ -108,12 +110,24 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     });
   });
 
-  test('CUT/AUTO を置かず、4 列・バンク 1–8', async () => {
+  test('CUT/AUTO は簡易制御コマンド（CUT; / ATO;）で動く、4 列・バンク 1–8', async () => {
     await render(<SwitcherScreen />);
-    expect(screen.queryByText('CUT')).toBeNull();
-    expect(screen.queryByText('AUTO')).toBeNull();
-    expect(screen.getByText('CUT / AUTO')).toBeTruthy();
+    expect(screen.getByText('CUT')).toBeTruthy();
+    expect(screen.getByText('タップで切替')).toBeTruthy();
     expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(8);
+    const pgm = useParamStore.getState().values[v80hdProfile.addrs.pgm];
+    const pst = useParamStore.getState().values[v80hdProfile.addrs.pst];
+    await act(async () => {
+      fireEvent(screen.getByLabelText('カット'), 'pressIn');
+      fireEvent(screen.getByLabelText('カット'), 'pressOut');
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    const tx = useLogStore.getState().lines.filter((l) => l.dir === 'tx').map((l) => l.text);
+    expect(tx).toContain('CUT;');
+    expect(useParamStore.getState().values[v80hdProfile.addrs.pgm]).toBe(pst);
+    expect(useParamStore.getState().values[v80hdProfile.addrs.pst]).toBe(pgm);
   });
 
   test('キーは PinP 2・DSK 1', async () => {
@@ -332,8 +346,8 @@ describe('F15 AUX モード', () => {
   });
 });
 
-describe('F16 マクロ・シーケンサー', () => {
-  test('V-160HD：マクロ 7 をタップすると 50 05 04 に 06 が送られ、シーケンサー NEXT は押下 01・解放 00', async () => {
+describe('F16 マクロ・シーケンサー（デモ＝LAN 相当なので簡易制御コマンド経路）', () => {
+  test('V-160HD：マクロ 7 → MCREX:MACRO7;、シーケンサー NEXT → SEQNX;、SEQ ON → SEQSW:ON; と QSEQSW; で状態が ON', async () => {
     await act(async () => {
       await controller.connectDemo('V-160HD');
     });
@@ -342,24 +356,29 @@ describe('F16 マクロ・シーケンサー', () => {
     await act(async () => {
       fireEvent.press(screen.getByLabelText('マクロ 7 を実行'));
     });
-    expect(tx()).toContain('DTH:500504,06;');
+    expect(tx()).toContain('MCREX:MACRO7;');
     expect(screen.getByText('最後に実行：マクロ 7')).toBeTruthy();
     await act(async () => {
-      fireEvent(screen.getByLabelText('シーケンサー NEXT'), 'pressIn');
+      fireEvent.press(screen.getByLabelText('シーケンサー NEXT'));
+    });
+    expect(tx()).toContain('SEQNX;');
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('シーケンサー ON/OFF'));
     });
     await act(async () => {
-      fireEvent(screen.getByLabelText('シーケンサー NEXT'), 'pressOut');
+      await new Promise((r) => setTimeout(r, 60));
     });
-    expect(tx().filter((t) => t.startsWith('DTH:0B0052,'))).toEqual(['DTH:0B0052,01;', 'DTH:0B0052,00;']);
+    expect(tx()).toContain('SEQSW:ON;');
+    expect(useSimpleStore.getState().seqOn).toBe(true);
+    expect(screen.getByText('SEQ OFF')).toBeTruthy();
   });
 
-  test('V-80HD：アドレス不明なので画面は説明だけ', async () => {
+  test('V-80HD：LAN（デモ）ではマクロ 1–100 が出る', async () => {
     await act(async () => {
       await controller.connectDemo('V-80HD');
     });
     await render(<MacroScreen />);
-    expect(screen.getByText(/マクロ実行・シーケンサーのアドレスは公開資料に無い/)).toBeTruthy();
-    expect(screen.queryByLabelText('マクロ 1 を実行')).toBeNull();
+    expect(screen.getByLabelText('マクロ 100 を実行')).toBeTruthy();
   });
 });
 

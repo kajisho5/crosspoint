@@ -1,5 +1,6 @@
 import * as net from 'net';
 import { buildDemoState, writeTally, type ByteMap } from '../../core/transport/demoState';
+import { simulateSimpleCommand } from '../../core/transport/simpleCommandSim';
 import { addr, addrOffset, addrToHex, decodeTime, type Addr } from '../../core/codec/value';
 import { getProfile } from '../../core/profiles';
 import type { DeviceProfile, ModelId } from '../../core/profiles/types';
@@ -53,6 +54,7 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
   const log = options.log ?? (() => {});
   const mem = buildDemoState(profile);
   const pressed = new Set<Addr>();
+  const seqState = { on: false, auto: false };
   const subscribers = new Set<net.Socket>();
   const clients = new Map<net.Socket, { authed: boolean; buf: string }>();
   const maxPgmValue = model === 'V-160HD' ? 0x33 : model === 'VR-120HD' ? 0x24 : 0x38;
@@ -176,7 +178,19 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
       send(sock, handleWrite(sock, a, v));
       return;
     }
-    send(sock, 'ERR:0;');
+    // 簡易制御コマンド（LAN/RS-232 簡易制御コマンド Ver.02）。応答は `;` 区切り＋LF
+    const reply = simulateSimpleCommand(line, {
+      swap: () => swapPgmPst(),
+      autoMs: () => decodeTime([mem.get(profile.addrs.transTime) ?? 10]) * 1000,
+      later: (fn, ms) => void setTimeout(fn, ms),
+      loadMemory: (n) => setBytes(profile.addrs.memCurrent, [n - 1]),
+      tally: () => {
+        writeTally(mem, profile);
+        return readBytes(profile.addrs.tallyBlock, profile.addrs.tallyBlockSize);
+      },
+      seq: { get: () => seqState, set: (v) => { if (v.on != null) seqState.on = v.on; if (v.auto != null) seqState.auto = v.auto; } },
+    });
+    send(sock, `${reply.join(';')};\n`);
   };
 
   const server = net.createServer((sock: net.Socket) => {

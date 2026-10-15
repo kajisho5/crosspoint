@@ -4,6 +4,7 @@ import Animated, { cancelAnimation, Easing, useAnimatedProps, useSharedValue, wi
 import { scheduleOnRN } from 'react-native-worklets';
 import Svg, { Circle } from 'react-native-svg';
 import type { DeviceProfile } from '@/core/profiles/types';
+import { CMD_AUTO, CMD_CUT } from '@/core/codec/simpleCommands';
 import { controller } from '@/core/controller/DeviceController';
 import { haptic } from '@/lib/haptics';
 import { useTransTime } from '@/stores/selectors';
@@ -12,25 +13,29 @@ import { AppText } from '../ui/AppText';
 
 const BIG_H = 118;
 
-/** CUT：押している間だけ ON（touchDown で 01、touchUp/Cancel で 00。SPEC §9-2） */
-export function CutButton({ profile }: { profile: DeviceProfile }) {
+/**
+ * CUT：route='sysex' は押している間だけ ON（touchDown で 01、touchUp/Cancel で 00。SPEC §9-2）。
+ * route='text' は簡易制御コマンド `CUT;` をタップで送る（V-80HD / VR-120HD の LAN）
+ */
+export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile; route?: 'sysex' | 'text' }) {
   const a = profile.addrs.cut;
   const [down, setDown] = useState(false);
-  if (a == null) return null;
+  if (route === 'sysex' && a == null) return null;
   return (
     <Pressable
       onPressIn={() => {
         setDown(true);
         haptic.impact();
-        controller.press(a);
+        if (route === 'text') controller.sendText(CMD_CUT);
+        else if (a != null) controller.press(a);
       }}
       onPressOut={() => {
         setDown(false);
-        controller.release(a);
+        if (route === 'sysex' && a != null) controller.release(a);
       }}
       accessibilityRole="button"
       accessibilityLabel="カット"
-      accessibilityHint="押している間、CUT スイッチを押下します"
+      accessibilityHint={route === 'text' ? 'CUT で切り替えます' : '押している間、CUT スイッチを押下します'}
     >
       <View
         style={{
@@ -46,7 +51,7 @@ export function CutButton({ profile }: { profile: DeviceProfile }) {
           CUT
         </AppText>
         <AppText variant="caption2" tone="label2" className="mt-1.5" maxFontSizeMultiplier={1.2}>
-          押している間 ON
+          {route === 'text' ? 'タップで切替' : '押している間 ON'}
         </AppText>
       </View>
     </Pressable>
@@ -58,7 +63,7 @@ const RING_R = 10;
 const RING_LEN = 2 * Math.PI * RING_R;
 
 /** AUTO：タップで AUTO SW（01 → 150ms 後 00）。遷移中は TIME から算出したリング進捗 */
-export function AutoButton({ profile }: { profile: DeviceProfile }) {
+export function AutoButton({ profile, route = 'sysex' }: { profile: DeviceProfile; route?: 'sysex' | 'text' }) {
   const a = profile.addrs.auto;
   const time = useTransTime(profile);
   const progress = useSharedValue(0);
@@ -68,11 +73,12 @@ export function AutoButton({ profile }: { profile: DeviceProfile }) {
 
   const ringProps = useAnimatedProps(() => ({ strokeDashoffset: RING_LEN * (1 - progress.value) }));
 
-  if (a == null) return null;
+  if (route === 'sysex' && a == null) return null;
 
   const start = () => {
     haptic.impact();
-    controller.tap(a);
+    if (route === 'text') controller.sendText(CMD_AUTO);
+    else if (a != null) controller.tap(a);
     const ms = Math.max(100, (time ?? 1) * 1000);
     cancelAnimation(progress);
     progress.value = 0;
@@ -122,7 +128,7 @@ export function AutoButton({ profile }: { profile: DeviceProfile }) {
   );
 }
 
-/** V-80HD：CUT/AUTO はボタンを置かず、Tバーでの代替を案内（SPEC §9-5） */
+/** CUT/AUTO の経路が無い接続（V-80HD / VR-120HD の USB/BLE、または簡易制御コマンド非対応 FW）：Tバーでの代替を案内（SPEC §9-5） */
 export function CutAutoUnavailable() {
   return (
     <View style={{ height: BIG_H * 2 + 10, borderRadius: radius.big, backgroundColor: color.group, padding: 16, justifyContent: 'center' }}>

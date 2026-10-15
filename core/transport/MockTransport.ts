@@ -2,6 +2,7 @@ import { addrOffset, addrToHex, decodeTime, type Addr } from '../codec/value';
 import { getProfile } from '../profiles';
 import type { DeviceProfile, ModelId } from '../profiles/types';
 import { buildDemoState, writeTally, type ByteMap } from './demoState';
+import { simulateSimpleCommand } from './simpleCommandSim';
 import type {
   ConnectResult,
   ConnectTarget,
@@ -33,6 +34,9 @@ export class MockTransport implements Transport {
   private paramCbs = new Set<ParamCb>();
   private stateCbs = new Set<StateCb>();
   private logCbs = new Set<LogCb>();
+  private textCbs = new Set<(text: string) => void>();
+  private seqOn = false;
+  private seqAuto = false;
   private connected = false;
   private timers = new Set<ReturnType<typeof setTimeout>>();
   private pressed = new Set<Addr>();
@@ -86,16 +90,40 @@ export class MockTransport implements Transport {
   on(ev: 'log', cb: LogCb): Unsub;
   on(ev: 'err', cb: (code: number) => void): Unsub;
   on(ev: 'rtt', cb: (ms: number) => void): Unsub;
-  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt', cb: ParamCb | StateCb | LogCb | ((n: number) => void)): Unsub {
+  on(ev: 'text', cb: (text: string) => void): Unsub;
+  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt' | 'text', cb: ParamCb | StateCb | LogCb | ((n: number) => void) | ((t: string) => void)): Unsub {
     if (ev === 'err' || ev === 'rtt') {
       // モックは ERR を返さず、往復時間も計測しない
       return () => {};
     }
-    const set = (ev === 'param' ? this.paramCbs : ev === 'state' ? this.stateCbs : this.logCbs) as Set<typeof cb>;
+    const set = (ev === 'param' ? this.paramCbs : ev === 'state' ? this.stateCbs : ev === 'text' ? this.textCbs : this.logCbs) as Set<typeof cb>;
     set.add(cb);
     return () => {
       set.delete(cb);
     };
+  }
+
+  /** 簡易制御コマンド（LAN/RS-232 簡易制御コマンド Ver.02）を模擬：CUT / ATO / MEM / MCREX / SEQ 系 / TLY / Q 系 */
+  sendText(text: string): void {
+    if (!this.connected) return;
+    this.log('tx', text);
+    const reply = simulateSimpleCommand(text, {
+      swap: () => this.swapPgmPst(),
+      autoMs: () => decodeTime([this.mem.get(this.profile.addrs.transTime) ?? 10]) * 1000,
+      later: (fn, ms) => this.later(fn, ms),
+      loadMemory: (n) => this.setBytes(this.profile.addrs.memCurrent, [n - 1]),
+      tally: () => {
+        const p = this.profile;
+        return Array.from({ length: p.addrs.tallyBlockSize }, (_, i) => this.mem.get(addrOffset(p.addrs.tallyBlock, i)) ?? 0);
+      },
+      seq: { get: () => ({ on: this.seqOn, auto: this.seqAuto }), set: (v) => { if (v.on != null) this.seqOn = v.on; if (v.auto != null) this.seqAuto = v.auto; } },
+    });
+    this.later(() => {
+      for (const line of reply) {
+        this.log('rx', line);
+        if (line !== 'ACK') for (const cb of this.textCbs) cb(line);
+      }
+    });
   }
 
   /** 接続直後の全状態（SyncEngine 相当の初期同期をモックでは一括で渡す） */

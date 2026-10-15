@@ -49,7 +49,7 @@ Roland V-160HD / V-80HD を iPhone から LAN（Wi-Fi）・USB・Bluetooth の3�
 | F13 | **メニュー（全パラメータ）**（v1.2）：Remote Control Guide の Parameter Address Map 全項目。`tools/guide/parse_guide.py` → `normalize.py` で `core/params/*.params.json` を生成し、`components/params/ParamRow` が種別（bool/enum/int/level/text/exec）ごとの UI を出す。CAMERA CONTROL は PTZ パッド（押下で方向、離すと STOP）。表示中グループは `SyncEngine.setExtraPoll` で追加ポーリング |
 | F14 | **クイック操作**（v1.2）：①HDMI OUT 3 の出力割当を PROGRAM / PREVIEW / MULTI-VIEW の 3 ボタンで切替（VIDEO ASSIGN `00 00 0C`、V-80HD は `00 00 12`）②一括設定「HDMI/SDI 入力音声を −16.8 dB・LR MIX に」（AUDIO INPUT の HDMI IN / SDI IN 全系統：DIGITAL GAIN `01 xx 01` = 7EH 58H、MONO `01 xx 0A` = 03H）③一括設定「SDI OUT をすべて LEVEL-A に」（VIDEO OUTPUT (SDI) `00 xx 00` = 00H）。一括設定は確認ダイアログ後に CommandQueue 経由で順次書込み。定義は `core/params/quick.ts` がカタログから組み立て、該当パラメータが無い機種では出さない（§9-5） |
 | F15 | **AUX**（v1.2）：AUX バスのソースをクロスポイント風ボタンで切替（VIDEO ASSIGN の AUX SOURCE `00 00 11`。V-80HD は Aux 1/2 `00 00 18/19` を Segmented で切替）。HDMI / SDI / STILL / INPUT / その他に分けて 4 列、8 文字ラベルがあれば併記。そのバスを出している出力割当（OUTPUT ASSIGN が AUX のもの）をフッターに表示。`core/params/quick.ts` の `auxBuses()` がカタログから組み立てる |
-| F16 | **マクロ・シーケンサー**（v1.2）：マクロ 1–100 をタップで実行（`addrs.macroTrigger` = `50 05 04` に番号−1 を書く。**ガイド未記載**。根拠は Companion roland-v160hd の `run_macro`【事実：公開 OSS】→ §13 で実機確認）。シーケンサー ON/AUTO/PREV/NEXT は §9-2 のパネルスイッチ `0B004F–52`（モーメンタリ）。マクロ名の取得アドレスは無いので番号のみ。V-80HD は両方【不明】のため capabilities.macro/sequencer = false で画面を出さない |
+| F16 | **マクロ・シーケンサー**（v1.2）：マクロ 1–100 をタップで実行、シーケンサー ON/OFF・Auto Sequence・先頭へ・PREV・NEXT。経路は `lib/features.ts`：LAN（対応 FW）は簡易制御コマンド `MCREX` / `SEQ*`（§3-8、3 機種共通）、V-160HD の USB/BLE は `addrs.macroTrigger` = `50 05 04`（番号−1。**ガイド未記載**、Companion roland-v160hd の `run_macro`【事実：公開 OSS】→ §13）と §9-2 のパネルスイッチ `0B004F–52`（モーメンタリ）。V-80HD / VR-120HD の USB/BLE では出さない。マクロ名の取得手段は公開資料に無いので番号のみ |
 
 ### v1 非対象
 映像モニター（USB UVC）、マクロ／シーケンサーの**編集**（アドレスが無い。実行は F16）、RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。PTZ と全設定メニューは v1.2 で F13 として対象に入れた。
@@ -151,6 +151,22 @@ App                          V-160HD
 ### 3-7. 切断・再接続
 - TCP `close/error` → `reconnecting`。バックオフ 1→2→4→8→15s（上限15s、手動接続で即リセット）。
 - 無通信 10s → `VER;` をキープアライブ送信、5s 応答なしで切断扱い。
+
+### 3-8. 簡易制御コマンド【事実：Roland「LAN/RS-232 簡易制御コマンド」Ver.02（2025）】（v1.2）
+- 対象：**V-160HD Ver.3.5 以降 / V-80HD Ver.1.3 以降 / VR-120HD Ver.2.2 以降**（VR-6HD 2.2 / V-1-4K 1.0 は本アプリ未対応機種）。**LAN / RS-232 のみ**（MIDI SysEx には無い）。通常の DTH/RQH と併用できる。
+- 形式：`CMD:param,param;`（ASCII、stx 省略可）。応答は `ACK;` または `XXX:…;ACK;`、末尾 LF。既存の LanParser は `;` 区切りで切り出すので、`ACK` トークンと未知テキスト（`SQS:ON` など）に分かれる。未知テキストは `transport.on('text')` で通知し、`core/codec/simpleCommands.ts#parseSimpleReply` が `SQS` / `SQA` / `MCRST` / `TLY` を解釈する。
+- 本アプリが使うコマンド（`core/codec/simpleCommands.ts`）：
+
+| 目的 | 送信 | 応答 | 備考 |
+|---|---|---|---|
+| CUT / AUTO | `CUT;` / `ATO;` | `ACK;` | SPLIT OFF のとき有効。V-80HD / VR-120HD の CUT/AUTO はこれで実装（0B 領域が不明なため） |
+| マクロ実行 | `MCREX:MACROn;`（1–100） | `ACK;` | 実行中確認 `QMCRST:MACROn;` → `MCRST:MACROn,ON/OFF;ACK;` |
+| シーケンサー | `SEQSW:ON/OFF;` `SEQAS:ON/OFF;` `SEQPV;` `SEQPV:1;`（先頭へ） `SEQNX;` `SEQJP:START/SEQn;` | `ACK;` | 状態 `QSEQSW;` → `SQS:ON/OFF;ACK;`、`QSEQAS;` → `SQA:…` |
+| シーンメモリー | `MEM:MEMORYn;` | `ACK;` | 既存の 0A 00 00 と等価。v1.2 では未使用 |
+| タリー | `TLY;` | `TLY:a0,a1,…;ACK;`（0 OFF / 1 PGM / 2 PST / 3 両方） | 0C 領域のポーリングと等価。v1.2 では未使用 |
+
+- 経路の決定は `lib/features.ts#featureRoute(feature, profile, transport, version)`：`'sysex'`（プロファイルのアドレス）/ `'text'`（簡易制御コマンド。LAN・デモで、本体 FW が対応版以上のとき）/ `null`（出さない）。VER 応答の版で判定し、版が取れなければ使ってみる。
+- モック（`MockTransport` / `tools/mock-v160hd`）は `core/transport/simpleCommandSim.ts` で CUT / ATO / MEM / MCREX / SEQ 系 / TLY を模擬する。
 - 切断・アプリ非アクティブ時は**押下中モーメンタリスイッチすべてに `00` を送ってから**切断（送れなければ再接続直後に送る）。
 
 ---
@@ -435,17 +451,38 @@ AUDIO INPUT の x（00–14）割当：AUDIO IN 1, 2, 3/4, USB IN, Bluetooth IN,
 | audio.main.level / mute | 012100–02 / 012103 | 3 / 1 | 同上 | |
 | panelSwitch（0B 領域） | — | — | **【不明】Guide に記載なし** | V-80HD では CUT/AUTO ボタンを**表示しない**（§9-5） |
 
+### 9-4b. VR-120HD 差分【事実：VR-120HD リモート・コントロール・ガイド 日本語版 04（MIDI インプリメンテーション Ver.2.00、2024-09-04）】（v1.2）
+| id | addr | size | 値 | 備考 |
+|---|---|---|---|---|
+| model | — | — | VER 名 `VR-120HD`、SysEx modelId `00 00 00 00 25`（5 バイト） | ガイド p.2 |
+| lan | — | — | TCP 8023、ネットワーク・パスワード **4 桁**、ack は **06H**（制御コード）、DTH/RQH/VER は V-160HD と同形式 | ガイド p.42–44。認証プロンプト文字列は【推測：V-160HD と同じ】→ §13 |
+| pgm / pst | 001B00 / 001B01 | 1 | Hdmi In 1–6 = 00–05、Sdi In 1–6 = 06–0B、Still 1–16 = 0C–1B、Video Player/SRT In = 1C、**Input 1–8 = 1D–24** | `encodeInput(n) = 0x1C + n` |
+| fader | 001B02 | 2 | 0–2047 | |
+| transType / transTime | 001400 / 001402 | 1 / 1 | Mix, Wipe, Split 1, Split 2 / 0.0–4.0s | |
+| inputAssign(n) | 00 00 (n−1) | 1 | HDMI In 1–6 (00–05), SDI In 1–6 (06–0B), Still 1–16 (0C–1B), VP/SRT (1C), Stream/Record Status 1/2 (1D/1E), Date&time (1F) | |
+| label | 02 xx 00 | 8 | xx = 20H–45H：HDMI In 1–6, SDI In 1–6, Still 1–16, Program, Sub Program, Preview, AUX 1–3, DSK 1-2 Source, SRT In | Preview Label |
+| pinp(n) | 00 (14+n) xx | — | Time 00 / Pgm Sw 01 / Pvw Sw 02 / Source 03 | PinP&Key 1–4 = 15H–18H |
+| dsk(n) | 00 (18+n) xx | — | Time 00 / Pgm 01 / Pvw 02 / Mode 03 / Key Source 04 / Fill Source 05 / Type 06 | DSK 1–2 = 19H–1AH |
+| split(n) | 001408 / 001412 | 1 | Split 1 Sw / Split 2 Sw | |
+| audio.in{x} | 01 xx 03–05 / 06 | 3 / 1 | xx = 01H–18H：Audio In 1–6, 7/8, 9/10, Usb, Bluetooth, Audio Player, HDMI In 1–6, SDI In 1–6, Video Player/SRT In（24ch） | DIGITAL GAIN 01 xx 01、MONO 01 xx 0A は V-160HD と同じ |
+| audio.main | 012100–02 / 012103 | 3 / 1 | Level / Mute | |
+| memLoad / memCurrent / memName | 0A0000 / 0A0003 / 60 (n−1) 00 | 1 / 1 / 8 | Memory 1–32 | Save 0A0001、Initialize 0A0002 |
+| tally | 0C0000 | 37 | 1 バイトずつ Off/PGM/PST：HDMI In 1–6, SDI In 1–6, Still 1–16, VP/SRT, **Input 1–8 = 1DH–24H** | 購読（0C0100）は未記載【不明】 |
+| panelSwitch（0B） | — | — | **【不明】ガイド未記載** | CUT/AUTO は LAN の簡易制御コマンドで代替（§3-8） |
+| videoAssign | 000008–10 / 000011・24・25 | 1 | HDMI Out 1–3 / SDI Out 1–3 / USB / Stream&Record / LCD の割当（Program, Sub Program, Preview, AUX 1–3, DSK 1-2 Source, Multi-View, …）/ AUX 1–3 Source | F14 / F15 |
+| sdiOut | 00 (11–13) 00 | 1 | 3G-SDI Mapping Level-A/B（SDI OUT 1–3 = 11H–13H） | F14 |
+
 ### 9-5. 機種ごとの機能有無（プロファイルの `capabilities`）
-| 機能 | V-160HD | V-80HD |
-|---|---|---|
-| クロスポイント | INPUT 1–20、1 バンク 10（5列×2段） | INPUT 1–16、1 バンク 8（4列×2段。キーサイズは 5 列版と同じ高さ、横幅のみ拡張） |
-| CUT / AUTO | `0B001E` / `0B001F` | **非表示**（§13 で 0B 領域を確認するまで。Tバーで代替できる旨を空状態テキストで案内） |
-| タリー購読 | あり（0C0100） | なし（ポーリング） |
-| PinP&KEY / DSK / SPLIT | 4 / 2 / 2 | 2 / 1 / 2 |
-| メモリー | 30（「メモリー」） | 32（画面表記は「シーン」） |
-| USB / BLE | 有効 | §13 の確認まで**無効**（S0 で「LAN のみ対応」と表示） |
-| AUX（F15） | 1 本（`000011`） | 2 本（`000018/19`） |
-| マクロ実行 / シーケンサー（F16） | `500504`【Companion】/ `0B004F–52` | **非表示**（両方【不明】） |
+| 機能 | V-160HD | V-80HD | VR-120HD（v1.2） |
+|---|---|---|---|
+| クロスポイント | INPUT 1–20、1 バンク 10（5列×2段） | INPUT 1–16、1 バンク 8（4列×2段。キーサイズは 5 列版と同じ高さ、横幅のみ拡張） | INPUT 1–8、1 バンク 8（4列×2段） |
+| CUT / AUTO | `0B001E` / `0B001F`（全接続） | LAN：簡易制御コマンド `CUT;` / `ATO;`（FW 1.3+、§3-8）。USB/BLE：**非表示**（0B 領域【不明】、Tバーで代替を案内） | LAN：`CUT;` / `ATO;`（FW 2.2+）。USB/BLE：非表示 |
+| タリー購読 | あり（0C0100） | なし（ポーリング） | なし（ポーリング。0C 領域 37B） |
+| PinP&KEY / DSK / SPLIT | 4 / 2 / 2 | 2 / 1 / 2 | 4 / 2 / 2 |
+| メモリー | 30（「メモリー」） | 32（画面表記は「シーン」） | 32（「シーン」） |
+| USB / BLE | 有効 | §13 の確認まで**無効**（S0 で「LAN のみ対応」と表示） | 同左（Model ID `00 00 00 00 25` はプロファイル済み） |
+| AUX（F15） | 1 本（`000011`） | 2 本（`000018/19`） | 3 本（`000011` / `000024` / `000025`） |
+| マクロ実行 / シーケンサー（F16） | LAN：`MCREX` / `SEQ*`（FW 3.5+）。USB/BLE：`500504`【Companion】/ `0B004F–52` | LAN：`MCREX` / `SEQ*`（FW 1.3+）。USB/BLE：非表示 | LAN：`MCREX` / `SEQ*`（FW 2.2+）。USB/BLE：非表示 |
 
 - 使えない機能はボタンを置かない（disabled で並べない）。タブ自体は隠さず、内容で理由を説明する（HIG：タブを隠さない・無効にしない）。
 
@@ -527,6 +564,13 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - [ ] AUTO SW がタップ（01→150ms→00）で正しく動くか
 - [ ] **マクロ実行 `DTH:500504,nn;`**（nn = 番号−1）で本体のマクロが走るか（Companion 由来・ガイド未記載）。`RQH:500504,000001` の応答も記録
 - [ ] シーケンサー `0B004F–52` の押下/解放で本体が反応するか
+- [ ] **簡易制御コマンド（§3-8）**：`CUT;` → `ACK;`＋LF、`MCREX:MACRO1;`、`QSEQSW;` → `SQS:…;ACK;` の実際の応答（LF の有無・ACK の形式）。FW が対応版未満のときの応答（`ERR:0;` か無応答か）
+**VR-120HD（LAN）**
+- [ ] 認証：`Enter password:` / `Welcome to VR-120HD.` か、ack が 06H か
+- [ ] INPUT n = `0x1C+n` の確認（INPUT 3 選択時に `RQH:001B00,000002` が `1F..` か）
+- [ ] タリー `RQH:0C0000,000025` の応答長（37）と Input 1–8 の位置（1DH–24H）
+- [ ] Preview Label `02 20 00`〜の 8 文字と文字コード、AUDIO INPUT xx=01–18 の対応
+- [ ] USB / BLE：端点が見えるか、RQ1（Model ID 00 00 00 00 25）で版が返るか
 - [ ] F14 一括設定：無信号／モノの HDMI/SDI 入力で MONO=LR MIX が ERR:4 になるか
 **V-80HD（先に実機確認できる。M3.5 で実施）**
 - [ ] LAN：認証文字列（`Enter password:` / `Welcome to V-80HD.` か）、PW 8 文字の送り方、`ACK;` の実体（stx 付き文字列か）
@@ -571,7 +615,8 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 ## 17. 出典
 - Roland V-160HD Remote Control Guide（SysEx・LAN/RS-232 コマンド・アドレスマップ）: https://shop.ccisolutions.com/StoreFront/jsp/pdf/RND-V-160HD_remoteControlGuide.pdf ／ 最新版 Version 1.12（Roland 公式サーバー）: https://static.roland.com/assets/media/pdf/V-160HD_Control_eng02_W.pdf
 - Roland V-80HD Remote Control Guide Version 1.03（§9-4 の根拠）: https://static.roland.com/assets/media/pdf/V-80HD_Control_eng01_W.pdf
-- Roland VR-120HD Remote Control Guide Version 1.08（将来対応の参考）: https://static.roland.com/assets/media/pdf/VR-120HD_Control_eng02_W.pdf
+- Roland VR-120HD リモート・コントロール・ガイド 日本語版 04（MIDI インプリメンテーション Ver.2.00、2024-09-04。§9-4b の根拠。オーナー添付の `VR-120HD_Control_jpn04_W.pdf`、proav.roland.com の製品サポートページから入手可）
+- Roland「LAN/RS-232 簡易制御コマンド」Ver.02（2025。V-160HD 3.5+ / V-80HD 1.3+ / VR-120HD 2.2+ / VR-6HD / V-1-4K。§3-8 の根拠。オーナー添付の `LAN_RS-232_Basic_Control_Commands_jpn02_W.pdf`）
 - Roland Support「Professional A/V: LAN and RS-232 Control Tips and Documentation」（全リストはサポートへ）: https://support.roland.com/hc/en-us/articles/360025923832
 - Roland V-160HD Remote Connection Guide（USB/Bluetooth/LAN 手順）: https://shop.ccisolutions.com/StoreFront/jsp/pdf/RND-V-160HD_remoteConnectionGuide.pdf
 - Roland Support「V-160HD LAN and RS-232 Control Tips」（CUT、パスワード、LF 終端）: https://support.roland.com/hc/en-us/articles/7816887053083-V-160HD-LAN-and-RS-232-Control-Tips

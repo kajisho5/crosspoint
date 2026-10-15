@@ -9,6 +9,8 @@ import { LINK_ERROR_MESSAGE, toLinkError, type ConnectTarget, type Transport, ty
 import type { Addr } from '../codec/value';
 import { mergeRanges, SyncEngine, type ReadRange, type VisibleTab } from './SyncEngine';
 import { useConnectionStore } from '@/stores/connection';
+import { useSimpleStore } from '@/stores/simple';
+import { parseSimpleReply } from '../codec/simpleCommands';
 import { useLogStore } from '@/stores/log';
 import { useParamStore } from '@/stores/param';
 import { useSettingsStore, type PgmValueMode } from '@/stores/settings';
@@ -79,6 +81,7 @@ export class DeviceController {
     useConnectionStore.getState().setSession({ transport: 'mock', deviceName: name, model, demo: true });
     const res = await t.connect({ name, model });
     useParamStore.getState().clear();
+    useSimpleStore.getState().clear();
     useParamStore.getState().applyMap(t.snapshot());
     useConnectionStore.getState().setDevice(res.model, res.version);
     return { ok: true };
@@ -157,6 +160,7 @@ export class DeviceController {
     this.unsubs = [];
     this.transport = null;
     useParamStore.getState().clear();
+    useSimpleStore.getState().clear();
     useConnectionStore.getState().reset();
   }
 
@@ -176,6 +180,22 @@ export class DeviceController {
   readRanges(ranges: ReadRange[]): void {
     if (!this.transport || !this.online) return;
     for (const r of mergeRanges(ranges)) this.transport.readParam(r.addr, r.size);
+  }
+
+  /** 簡易制御コマンド（LAN/RS-232 のみ。`CUT;` `MCREX:MACRO1;` など）。送れない接続では false */
+  sendText(text: string): boolean {
+    if (!this.transport || !this.online || !this.transport.sendText) return false;
+    this.transport.sendText(text);
+    return true;
+  }
+
+  private onText(text: string): void {
+    const r = parseSimpleReply(text);
+    if (!r) return;
+    const s = useSimpleStore.getState();
+    if (r.kind === 'seqSw') s.setSeq({ on: r.on });
+    else if (r.kind === 'seqAuto') s.setSeq({ auto: r.on });
+    else if (r.kind === 'macroState') s.setMacroRunning(r.n, r.on);
   }
 
   /** パラメータ書込み（楽観更新） */
@@ -247,6 +267,7 @@ export class DeviceController {
       t.on('log', (e) => useLogStore.getState().push(e)),
       t.on('err', (code) => this.sync?.onDeviceError(code)),
       t.on('rtt', (ms) => useConnectionStore.getState().setRtt(ms)),
+      t.on('text', (text) => this.onText(text)),
     );
   }
 

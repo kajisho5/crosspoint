@@ -56,6 +56,10 @@ export interface Transport {
   on(ev: 'err', cb: (code: number) => void): Unsub;
   /** 往復時間（VER の応答などから計測） */
   on(ev: 'rtt', cb: (ms: number) => void): Unsub;
+  /** DTH/ERR/VER 以外の受信テキスト（簡易制御コマンドの応答 `TLY:…` `SQS:ON` など）。LAN/mock のみ */
+  on(ev: 'text', cb: (text: string) => void): Unsub;
+  /** LAN/RS-232 簡易制御コマンド（`CUT;` `MCREX:MACRO1;` など）を送る。MIDI では未定義 */
+  sendText?(text: string): void;
 }
 
 /** LinkError を code に持つ Error（transport.connect の reject 用） */

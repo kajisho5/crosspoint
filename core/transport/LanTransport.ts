@@ -80,6 +80,7 @@ export class LanTransport implements Transport {
   private logCbs = new Set<(e: LogEntry) => void>();
   private errCbs = new Set<(code: number) => void>();
   private rttCbs = new Set<(ms: number) => void>();
+  private textCbs = new Set<(text: string) => void>();
   private state: LinkState = 'idle';
 
   constructor(
@@ -142,14 +143,21 @@ export class LanTransport implements Transport {
     this.write(text);
   }
 
+  /** 簡易制御コマンド（`CUT;` など。終端 `;` 付き）。キューを通さず即送信 */
+  sendText(text: string): void {
+    if (!this.up) return;
+    this.write(text);
+  }
+
   on(ev: 'param', cb: (a: Addr, bytes: number[]) => void): Unsub;
   on(ev: 'state', cb: (s: LinkState, err?: LinkError) => void): Unsub;
   on(ev: 'log', cb: (e: LogEntry) => void): Unsub;
   on(ev: 'err', cb: (code: number) => void): Unsub;
   on(ev: 'rtt', cb: (ms: number) => void): Unsub;
-  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt', cb: (...args: never[]) => void): Unsub {
+  on(ev: 'text', cb: (text: string) => void): Unsub;
+  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt' | 'text', cb: (...args: never[]) => void): Unsub {
     const set = (
-      ev === 'param' ? this.paramCbs : ev === 'state' ? this.stateCbs : ev === 'log' ? this.logCbs : ev === 'err' ? this.errCbs : this.rttCbs
+      ev === 'param' ? this.paramCbs : ev === 'state' ? this.stateCbs : ev === 'log' ? this.logCbs : ev === 'err' ? this.errCbs : ev === 'text' ? this.textCbs : this.rttCbs
     ) as Set<(...args: never[]) => void>;
     set.add(cb);
     return () => {
@@ -356,7 +364,8 @@ export class LanTransport implements Transport {
           this.log('rx', 'ACK');
           break;
         default:
-          this.log('rx', `? ${msg.raw}`);
+          this.log('rx', msg.raw);
+          for (const cb of this.textCbs) cb(msg.raw);
           break;
       }
     }

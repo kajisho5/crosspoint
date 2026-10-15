@@ -189,6 +189,15 @@ describe('LAN 結合（VR-120HD モック：--model vr120hd）', () => {
     t.readParam(p.tallyBlock, p.tallyBlockSize);
     await until(() => c.params.get(p.tallyBlock + 0x1c + 5) === 2); // Input 5 = PST
     expect(c.params.get(p.tallyBlock + 0x1c + 1)).toBe(1); // Input 1 = PGM
+
+    // 簡易制御コマンド：CUT; で PGM/PST が入れ替わり、QSEQSW; の応答 SQS:OFF が text で届く
+    const texts: string[] = [];
+    t.on('text', (x) => texts.push(x));
+    t.sendText('CUT;');
+    await until(() => server.mem.get(p.pgm) === 0x21);
+    t.sendText('QSEQSW;');
+    await until(() => texts.includes('SQS:OFF'));
+    expect(logs).toContain('rx ACK');
     await t.disconnect();
   });
 });

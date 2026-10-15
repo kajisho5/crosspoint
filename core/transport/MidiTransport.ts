@@ -121,8 +121,9 @@ export class MidiTransport implements Transport {
   on(ev: 'log', cb: (e: LogEntry) => void): Unsub;
   on(ev: 'err', cb: (code: number) => void): Unsub;
   on(ev: 'rtt', cb: (ms: number) => void): Unsub;
-  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt', cb: (...args: never[]) => void): Unsub {
-    if (ev === 'err' || ev === 'rtt') return () => {}; // MIDI は ERR 応答が無い（無応答）。RTT は版読出しで計測しない
+  on(ev: 'text', cb: (text: string) => void): Unsub;
+  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt' | 'text', cb: (...args: never[]) => void): Unsub {
+    if (ev === 'err' || ev === 'rtt' || ev === 'text') return () => {}; // MIDI は ERR 応答が無い（無応答）。RTT は版読出しで計測しない。簡易制御コマンドも無い
     const set = (ev === 'param' ? this.paramCbs : ev === 'state' ? this.stateCbs : this.logCbs) as Set<(...args: never[]) => void>;
     set.add(cb);
     return () => {

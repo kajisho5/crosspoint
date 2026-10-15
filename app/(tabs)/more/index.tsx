@@ -59,9 +59,7 @@ export default function MoreScreen() {
 
         <GroupCard title="本体設定" footer="AUX：AUX バスのソースをボタンで切替。マクロ：1–100 をタップで実行、シーケンサーの ON/AUTO/PREV/NEXT。クイック操作：HDMI OUT 3 の出力切替、HDMI/SDI 入力音声の一括設定、SDI OUT の LEVEL-A 一括設定。メニュー：Remote Control Guide に載っている全パラメータ。">
           <ListRow title="AUX" icon="arrow.triangle.branch" chevron onPress={() => router.push('/more/aux')} />
-          {profile == null || profile.capabilities.macro || profile.capabilities.sequencer ? (
-            <ListRow title="マクロ・シーケンサー" icon="play.square.stack" chevron onPress={() => router.push('/more/macro')} />
-          ) : null}
+          <ListRow title="マクロ・シーケンサー" icon="play.square.stack" chevron onPress={() => router.push('/more/macro')} />
           <ListRow title="クイック操作" icon="bolt.fill" iconTint="warn" chevron onPress={() => router.push('/more/quick')} />
           <ListRow title="メニュー（全パラメータ）" icon="slider.horizontal.3" chevron onPress={() => router.push('/more/menu')} />
         </GroupCard>
