@@ -195,12 +195,11 @@ export class SyncEngine {
     this.rollbackTimer = null;
   }
 
-  /** ERR:4/5 受信：最も古い pending を戻す */
+  /** ERR:4/5 受信：最も古い pending を戻す（ポーリング応答が先に届いて pending が無くても通知はする） */
   onDeviceError(code: number): void {
     if (code !== 4 && code !== 5) return;
     const oldest = [...this.store.pendingEntries()].sort((x, y) => x.ts - y.ts)[0];
-    if (!oldest) return;
-    this.store.rollback(oldest.addr);
+    if (oldest) this.store.rollback(oldest.addr);
     this.opts.onNotice?.(code === 5 ? '値が範囲外のため本体に反映されませんでした' : '他の設定で無効化されているため反映されませんでした');
   }
 
