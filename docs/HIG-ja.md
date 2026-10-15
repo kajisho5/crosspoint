@@ -180,7 +180,7 @@ Apple の HIG（https://developer.apple.com/design/human-interface-guidelines �
 - ポイントは抽象単位。@1x＝1pt:1px、@2x＝2:1、@3x＝3:1。
 - **対応する全デバイス向けに、すべてのビットマップ画像の高解像度アセットを提供する。** ファイル名に「@1x」「@2x」「@3x」を付けてアセットカタログに登録。
 - **一般に最低解像度でデザインし、拡大して高解像度アセットを作る。** ベクター形状の制御点は整数値に置き、1x でグリッドに揃える（2x/3x は 1x の倍数）。
-- 形式：
+- 形式：ビットマップは PNG（24bit 不要なら 8bit パレット）、写真は JPEG/HEIC、アイコン等のスケーリングが必要なものは PDF/SVG。
 - **各画像にカラープロファイルを含める。**
 - 出典：https://developer.apple.com/design/human-interface-guidelines/images
 
@@ -216,8 +216,8 @@ Apple の HIG（https://developer.apple.com/design/human-interface-guidelines �
 
 ### Materials（マテリアル）
 - マテリアル＝前景（文字・コントロール）と背景（内容）の深度・階層を作る視覚効果。Liquid Glass（コントロール/ナビゲーション層）と標準マテリアル（コンテンツ層内の区別）の 2 種。
-- Liquid Glass
-- 標準マテリアル
+- Liquid Glass：**コンテンツ層に使わない**（内容と操作要素の区別が崩れる。例外はスライダー・トグルなど操作中の要素）。**効果は控えめに**（標準部品は自動適用。カスタムに多用すると内容から注意を逸らす）。**clear 変種は写真/動画など視覚的に豊かな背景上の部品だけ**（背景が明るければ 35% 不透明の暗いディミング層を検討）。regular は文字の多いアラート/サイドバー/ポップオーバー向け。
+- 標準マテリアル：**意味と推奨用途で選び、見た目の色で選ばない。** **マテリアル上では vibrant 色で可読性を確保する。** 厚いほど細い文字のコントラストが良く、薄いほど背景の文脈が残る。
 - iOS/iPadOS：標準マテリアルは ultra-thin / thin / regular（デフォルト）/ thick の 4 種。vibrancy はラベル（label / secondaryLabel / tertiaryLabel / quaternaryLabel）、塗り（fill / secondaryFill / tertiaryFill）、区切り線（separator、1 段階）。**quaternary は thin / ultraThin の上で使わない**（コントラスト不足）。
 - 出典：https://developer.apple.com/design/human-interface-guidelines/materials
 
