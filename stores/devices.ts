@@ -18,6 +18,9 @@ export interface SavedDevice {
   host?: string;
   port?: number;
   midiEndpointName?: string;
+  /** CoreMIDI の UniqueID（Destination / Source）。次回はまず UniqueID、無ければ名前の部分一致で再選択（SPEC §5-2） */
+  midiUniqueId?: number;
+  midiSrcUniqueId?: number;
   /** パスワードが SecureStore に保存されているか */
   hasPassword: boolean;
 }

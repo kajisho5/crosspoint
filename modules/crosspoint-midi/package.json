@@ -1,0 +1,9 @@
+{
+  "name": "crosspoint-midi",
+  "version": "0.1.0",
+  "description": "SW CROSSPOINT — CoreMIDI (USB / Bluetooth MIDI) bridge for Expo (iOS only)",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "author": "SEVENTHWELL",
+  "private": true
+}

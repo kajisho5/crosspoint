@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, TextInput, View } from 'react-native';
 import { router, Stack } from 'expo-router';
 import { controller } from '@/core/controller/DeviceController';
+import { rankEndpoints } from '@/core/transport/MidiTransport';
 import { LINK_ERROR_MESSAGE } from '@/core/transport/Transport';
+import type { MidiEndpointInfo } from '@/modules/crosspoint-midi/src';
 import { startDemo } from '@/lib/demo';
 import { haptic } from '@/lib/haptics';
 import { useConnectionStore } from '@/stores/connection';
@@ -46,22 +48,51 @@ export default function ConnectScreen() {
     (password.length === 4 || password.length === 8) &&
     /^[\x20-\x7e]+$/.test(password);
 
-  const connectSaved = async (d: SavedDevice) => {
-    if (d.transport !== 'lan') {
-      setNotice('USB / Bluetooth 接続は開発中です（M4 で実装）。');
-      return;
-    }
-    setWorking(true);
-    const pw = d.hasPassword ? await loadPassword(d.id) : null;
-    const res = await controller.connect('lan', { name: d.name, model: d.model, host: d.host, port: d.port, password: pw ?? undefined });
-    useDevicesStore.getState().setLastUsed(d.id);
+  const finish = (ok: boolean, message?: string) => {
     setWorking(false);
-    if (res.ok) {
+    if (ok) {
       haptic.success();
       router.back();
-    } else {
-      setNotice(res.message);
+    } else if (message) {
+      setNotice(message);
     }
+  };
+
+  const connectSaved = async (d: SavedDevice) => {
+    setWorking(true);
+    setNotice(null);
+    if (d.transport === 'lan') {
+      const pw = d.hasPassword ? await loadPassword(d.id) : null;
+      const res = await controller.connect('lan', { name: d.name, model: d.model, host: d.host, port: d.port, password: pw ?? undefined });
+      useDevicesStore.getState().setLastUsed(d.id);
+      finish(res.ok, res.ok ? undefined : res.message);
+      return;
+    }
+    // USB / BLE：UniqueID で再選択、無ければ名前の部分一致（SPEC §5-2）
+    const list = await controller.listMidiEndpoints();
+    if (!list.ok) return finish(false, list.message);
+    const byId = list.endpoints.find((e) => e.uniqueId === d.midiUniqueId && e.online);
+    const byName = d.midiEndpointName ? list.endpoints.find((e) => e.online && e.name.includes(d.midiEndpointName!)) : undefined;
+    const ep = byId ?? byName;
+    if (!ep) return finish(false, d.transport === 'usb' ? 'USB 端点が見つかりません。ケーブル接続を確認して「再検索」してください。' : 'Bluetooth 端点が見つかりません。「Bluetooth MIDI デバイスを追加」から再接続してください。');
+    const res = await controller.connect(d.transport, { name: d.name, model: d.model, midiDestUniqueId: ep.uniqueId, midiSrcUniqueId: ep.sourceUniqueId });
+    useDevicesStore.getState().setLastUsed(d.id);
+    finish(res.ok, res.ok ? undefined : res.message);
+  };
+
+  const connectEndpoint = async (kind: 'usb' | 'ble', ep: MidiEndpointInfo) => {
+    setWorking(true);
+    setNotice(null);
+    const existing = saved.find((d) => d.transport === kind && (d.midiUniqueId === ep.uniqueId || d.midiEndpointName === ep.name));
+    const d: SavedDevice = existing
+      ? { ...existing, midiUniqueId: ep.uniqueId, midiSrcUniqueId: ep.sourceUniqueId, midiEndpointName: ep.name }
+      : { id: newDeviceId(), name: ep.deviceName || ep.name, transport: kind, midiEndpointName: ep.name, midiUniqueId: ep.uniqueId, midiSrcUniqueId: ep.sourceUniqueId, hasPassword: false };
+    const res = await controller.connect(kind, { name: d.name, model: d.model, midiDestUniqueId: ep.uniqueId, midiSrcUniqueId: ep.sourceUniqueId });
+    if (res.ok) {
+      useDevicesStore.getState().upsert(d);
+      useDevicesStore.getState().setLastUsed(d.id);
+    }
+    finish(res.ok, res.ok ? undefined : res.message);
   };
 
   const connectNew = async () => {
@@ -161,18 +192,17 @@ export default function ConnectScreen() {
               </GroupCard>
             </>
           ) : (
-            <GroupCard title={route === 1 ? 'USB' : 'Bluetooth'}>
-              <View className="px-4 py-3" style={{ gap: 6 }}>
-                <AppText variant="footnote">
-                  {route === 1
-                    ? 'USB-C ケーブルで本体の USB STREAM 端子と接続します。端点の一覧と再検索は M4 で実装します。'
-                    : '本体の Bluetooth を有効にし、「Bluetooth MIDI デバイスを追加」から接続します。M4 で実装します。'}
-                </AppText>
-                <AppText variant="footnote" tone="warn">
-                  V-80HD は現在 LAN のみ対応です。
-                </AppText>
-              </View>
-            </GroupCard>
+            <MidiRouteSection
+              kind={route === 1 ? 'usb' : 'ble'}
+              saved={saved.filter((d) => d.transport === (route === 1 ? 'usb' : 'ble'))}
+              lastUsedId={lastUsedId}
+              online={link === 'online' && !demo}
+              working={working}
+              onConnectSaved={(d) => void connectSaved(d)}
+              onRemoveSaved={removeSaved}
+              onConnectEndpoint={(ep) => void connectEndpoint(route === 1 ? 'usb' : 'ble', ep)}
+              onNotice={setNotice}
+            />
           )}
 
           {busy || working ? (
@@ -225,6 +255,136 @@ export default function ConnectScreen() {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+    </>
+  );
+}
+
+/** USB / Bluetooth：CoreMIDI 端点の一覧と再検索、BLE ピッカー（SPEC §11 S0） */
+function MidiRouteSection({
+  kind,
+  saved,
+  lastUsedId,
+  online,
+  working,
+  onConnectSaved,
+  onRemoveSaved,
+  onConnectEndpoint,
+  onNotice,
+}: {
+  kind: 'usb' | 'ble';
+  saved: SavedDevice[];
+  lastUsedId: string | null;
+  online: boolean;
+  working: boolean;
+  onConnectSaved: (d: SavedDevice) => void;
+  onRemoveSaved: (d: SavedDevice) => void;
+  onConnectEndpoint: (ep: MidiEndpointInfo) => void;
+  onNotice: (m: string | null) => void;
+}) {
+  const [endpoints, setEndpoints] = useState<MidiEndpointInfo[] | null>(null);
+  const [unavailable, setUnavailable] = useState<string | null>(null);
+  const [scanning, setScanning] = useState(false);
+
+  const rescan = useCallback(async () => {
+    setScanning(true);
+    const r = await controller.listMidiEndpoints();
+    setScanning(false);
+    if (r.ok) {
+      setUnavailable(null);
+      setEndpoints(rankEndpoints(r.endpoints, kind));
+    } else {
+      setUnavailable(r.message);
+      setEndpoints([]);
+    }
+  }, [kind]);
+
+  useEffect(() => {
+    void rescan();
+  }, [rescan]);
+
+  const openPicker = async () => {
+    const r = await controller.presentBluetoothPicker();
+    if (r.ok) {
+      setUnavailable(null);
+      setEndpoints(rankEndpoints(r.endpoints, 'ble'));
+    } else {
+      onNotice(r.message);
+    }
+  };
+
+  const visible = (endpoints ?? []).filter((e) => (kind === 'usb' ? e.transport !== 'ble' : e.transport !== 'usb'));
+  const title = kind === 'usb' ? 'USB' : 'Bluetooth';
+
+  return (
+    <>
+      <GroupCard title={`保存済みデバイス（${title}）`} footer={saved.length > 0 ? '長押しで削除できます。' : undefined}>
+        {saved.length === 0 ? (
+          <View className="px-4 py-3">
+            <AppText variant="footnote" tone="label2">
+              保存済みの機器はありません。下の一覧から接続すると保存されます。
+            </AppText>
+          </View>
+        ) : (
+          saved.map((d) => (
+            <ListRow
+              key={d.id}
+              icon={kind === 'usb' ? 'cable.connector' : 'antenna.radiowaves.left.and.right'}
+              iconTint={d.id === lastUsedId ? 'accent' : 'gray'}
+              title={d.name}
+              subtitle={d.midiEndpointName ?? title}
+              subtitleMono
+              checked={d.id === lastUsedId && online}
+              chevron={!(d.id === lastUsedId && online)}
+              disabled={working}
+              onPress={() => onConnectSaved(d)}
+              onLongPress={() => onRemoveSaved(d)}
+              accessibilityHint="タップで接続、長押しで削除"
+            />
+          ))
+        )}
+      </GroupCard>
+
+      <GroupCard
+        title={kind === 'usb' ? '検出された端点' : 'ペアリング済みの端点'}
+        footer={
+          kind === 'usb'
+            ? 'USB-C ケーブル（Lightning 機は USB カメラアダプタ）で本体の USB STREAM 端子と接続してください。V-80HD は現在 LAN のみ対応です。'
+            : '本体 MENU → SYSTEM → Bluetooth → REC CONTROL を ON。iOS の「設定」の Bluetooth 一覧からはペアリングせず、ここから追加してください。V-80HD は現在 LAN のみ対応です。'
+        }
+      >
+        {unavailable ? (
+          <View className="px-4 py-3">
+            <AppText variant="footnote" tone="warn">
+              {unavailable}
+            </AppText>
+          </View>
+        ) : null}
+        {!unavailable && endpoints && visible.length === 0 ? (
+          <View className="px-4 py-3">
+            <AppText variant="footnote" tone="label2">
+              {kind === 'usb' ? 'USB 端点が見つかりません。ケーブルを確認して再検索してください。' : 'Bluetooth MIDI 端点がありません。「Bluetooth MIDI デバイスを追加」からペアリングしてください。'}
+            </AppText>
+          </View>
+        ) : null}
+        {visible.map((e) => (
+          <ListRow
+            key={`${e.uniqueId}`}
+            icon={e.transport === 'ble' ? 'antenna.radiowaves.left.and.right' : e.transport === 'usb' ? 'cable.connector' : 'questionmark.circle'}
+            iconTint={e.online ? 'accent' : 'gray'}
+            title={e.name}
+            subtitle={`${e.deviceName} · ${e.transport.toUpperCase()}${e.online ? '' : ' · オフライン'}`}
+            subtitleMono
+            chevron
+            disabled={working || !e.online}
+            onPress={() => onConnectEndpoint(e)}
+            accessibilityHint="タップで接続"
+          />
+        ))}
+        {kind === 'ble' ? (
+          <ListRow icon="plus.circle" title="Bluetooth MIDI デバイスを追加" chevron disabled={working || !!unavailable} onPress={() => void openPicker()} />
+        ) : null}
+        <ListRow icon="arrow.clockwise" title={scanning ? '検索中…' : '再検索'} disabled={scanning || working || !!unavailable} onPress={() => void rescan()} />
+      </GroupCard>
     </>
   );
 }

@@ -23,7 +23,7 @@ async function until(cond: () => boolean, timeoutMs = 4000): Promise<void> {
 describe('DeviceController × LanTransport × モック（接続〜同期〜online〜楽観更新）', () => {
   let server: MockServer;
   const notices: string[] = [];
-  const controller = new DeviceController({ lanSocketFactory: async () => nodeSocketFactory, notify: (m) => notices.push(m) });
+  const controller = new DeviceController({ lanSocketFactory: async () => nodeSocketFactory, midiModule: () => null, notify: (m) => notices.push(m) });
 
   beforeAll(async () => {
     server = await startMockServer({ model: 'V-160HD', port: 0, password: '1234', jitter: true });

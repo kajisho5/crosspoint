@@ -17,8 +17,8 @@ yarn-error.*
 *.tsbuildinfo
 
 # --- Native (expo prebuild で生成) ---
-ios/
-android/
+/ios/
+/android/
 *.jks
 *.p8
 *.p12

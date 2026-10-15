@@ -1,6 +1,6 @@
 # CLAUDE.md — SW CROSSPOINT
 
-Roland V-160HD / V-80HD を iPhone から LAN / USB / Bluetooth で操作する React Native（Expo）アプリ。仕様は SPEC v1.1（変更点は `docs/CHANGES-v1.1.md`）。
+Roland V-160HD / V-80HD を iPhone から LAN / USB / Bluetooth で操作する React Native（Expo）アプリ。仕様は SPEC v1.2（v1.1 の変更点は `docs/CHANGES-v1.1.md`）。進捗メモ：`docs/M1.md` `docs/M2-M3.md` `docs/M4.md`。
 
 ## 最初に読むもの（この順）
 1. `docs/SPEC.md` — 実装仕様（唯一の正。通信・アドレス・受け入れ条件・マイルストーン）
@@ -21,7 +21,8 @@ Roland V-160HD / V-80HD を iPhone から LAN / USB / Bluetooth で操作する 
 - 実機 V-160HD が無い間は `npm run mock`（TCP 8023 モック）と MockTransport で開発。V-80HD 形式は `npm run mock -- --model v80hd`
 - 実機確認は V-80HD（LAN）が先（M3.5）。結果は `docs/VERIFY.md` に記録してプロファイルへ反映
 
-## コマンド（M1 で整備すること）
-- `npm run ios` — 実機/シミュレータ（Development Build）
-- `npm run mock` — V-160HD モックサーバー
-- `npm test` — jest
+## コマンド
+- `npm run ios` — 実機/シミュレータ（Development Build。`npx expo prebuild` 後）
+- `npm run mock` — V-160HD モックサーバー（`-- --model v80hd --port 8023 --password 0000 --jitter --split`）
+- `npm test` / `npm run typecheck` / `npm run doctor`
+- Linux/CI では Swift（`modules/crosspoint-midi/ios`）はコンパイルできない。Mac での確認手順は `docs/M4.md`

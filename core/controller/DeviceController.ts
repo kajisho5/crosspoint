@@ -2,7 +2,9 @@ import { getProfile } from '../profiles';
 import type { DeviceProfile, ModelId } from '../profiles/types';
 import { MockTransport } from '../transport/MockTransport';
 import { LanTransport } from '../transport/LanTransport';
+import { MidiTransport } from '../transport/MidiTransport';
 import type { SocketFactory } from '../transport/socket';
+import { getCrosspointMidi, type CrosspointMidi, type MidiEndpointInfo } from '@/modules/crosspoint-midi/src';
 import { LINK_ERROR_MESSAGE, toLinkError, type ConnectTarget, type Transport, type TransportKind, type Unsub } from '../transport/Transport';
 import type { Addr } from '../codec/value';
 import { SyncEngine, type VisibleTab } from './SyncEngine';
@@ -21,17 +23,23 @@ import { useSettingsStore, type PgmValueMode } from '@/stores/settings';
 export const AUTO_TAP_RELEASE_MS = 150;
 
 export type ConnectOutcome = { ok: true } | { ok: false; message: string };
+export type MidiEndpointList = { ok: true; endpoints: MidiEndpointInfo[] } | { ok: false; message: string };
 
 export interface DeviceControllerDeps {
   /** LAN 用ソケット実装（既定は実機用 rnSocket。テストでは Node 版を差し込む） */
   lanSocketFactory: () => Promise<SocketFactory>;
+  /** MIDI ネイティブモジュール（無ければ null = USB/BLE 非対応環境） */
+  midiModule: () => CrosspointMidi | null;
   /** 利用者向けの短い通知（Toast）。未設定ならログのみ */
   notify?: (message: string) => void;
 }
 
 const defaultDeps: DeviceControllerDeps = {
   lanSocketFactory: async () => (await import('../transport/rnSocket')).rnSocketFactory,
+  midiModule: () => getCrosspointMidi(),
 };
+
+export const MIDI_UNAVAILABLE_MESSAGE = 'この環境では USB / Bluetooth MIDI を使えません（Development Build の iPhone で使えます）。';
 
 export class DeviceController {
   private transport: Transport | null = null;
@@ -75,19 +83,31 @@ export class DeviceController {
     return { ok: true };
   }
 
-  /** 実機接続（LAN は M3 で実装済み。USB/BLE は M4） */
+  /** 実機接続（LAN：M3、USB/BLE：M4） */
   async connect(kind: Exclude<TransportKind, 'mock'>, target: ConnectTarget): Promise<ConnectOutcome> {
-    if (kind !== 'lan') {
-      this.info(`${kind.toUpperCase()} 接続は未実装（M4）：${target.name}`);
-      return { ok: false, message: 'この接続方式は開発中です（M4 で実装）。デモモードで画面を確認できます。' };
-    }
     await this.disconnect();
-    const factory = await this.deps.lanSocketFactory();
-    const t = new LanTransport(factory);
+    let t: Transport;
+    if (kind === 'lan') {
+      const factory = await this.deps.lanSocketFactory();
+      t = new LanTransport(factory);
+    } else {
+      const midi = this.deps.midiModule();
+      if (!midi) {
+        this.info(`${kind.toUpperCase()}：ネイティブモジュール無し`);
+        return { ok: false, message: MIDI_UNAVAILABLE_MESSAGE };
+      }
+      t = new MidiTransport(midi, kind);
+    }
     this.attach(t);
-    useConnectionStore.getState().setSession({ transport: 'lan', deviceName: target.name, model: target.model ?? null, demo: false });
+    useConnectionStore.getState().setSession({ transport: kind, deviceName: target.name, model: target.model ?? null, demo: false });
     try {
       const res = await t.connect(target);
+      const profile = getProfile(res.model);
+      if (kind !== 'lan' && !profile.capabilities[kind]) {
+        // SPEC §9-5：V-80HD の USB/BLE は §13 の確認まで無効
+        await this.disconnect(`${profile.model} は ${kind.toUpperCase()} 未確認`);
+        return { ok: false, message: `${profile.model} は現在 LAN のみ対応です（${kind.toUpperCase()} は実機確認後に有効化）。` };
+      }
       useConnectionStore.getState().setDevice(res.model, res.version);
       await this.runInitialSync();
       return { ok: true };
@@ -96,6 +116,29 @@ export class DeviceController {
       await this.disconnect();
       useConnectionStore.getState().setLink('error', code);
       return { ok: false, message: LINK_ERROR_MESSAGE[code] };
+    }
+  }
+
+  /** Bluetooth MIDI ピッカー（CABTMIDICentralViewController）。閉じたら端点一覧を返す */
+  async presentBluetoothPicker(): Promise<MidiEndpointList> {
+    const midi = this.deps.midiModule();
+    if (!midi) return { ok: false, message: MIDI_UNAVAILABLE_MESSAGE };
+    try {
+      await midi.presentBluetoothPicker();
+      return { ok: true, endpoints: await midi.listEndpoints() };
+    } catch (e) {
+      return { ok: false, message: String((e as Error)?.message ?? e) };
+    }
+  }
+
+  /** CoreMIDI の端点一覧（USB / BLE タブの再検索） */
+  async listMidiEndpoints(): Promise<MidiEndpointList> {
+    const midi = this.deps.midiModule();
+    if (!midi) return { ok: false, message: MIDI_UNAVAILABLE_MESSAGE };
+    try {
+      return { ok: true, endpoints: await midi.listEndpoints() };
+    } catch (e) {
+      return { ok: false, message: String((e as Error)?.message ?? e) };
     }
   }
 
