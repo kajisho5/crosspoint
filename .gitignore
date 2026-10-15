@@ -36,9 +36,7 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# --- fastlane ---
-fastlane/report.xml
-fastlane/README.md
+# --- build outputs ---
 build/
 *.ipa
 *.dSYM.zip
