@@ -1,4 +1,7 @@
-import { act, render, screen } from '@testing-library/react-native';
+import { act, fireEvent, render, screen } from '@testing-library/react-native';
+import { decodeAscii8 } from '@/core/codec/value';
+import { v160hd } from '@/core/profiles/v160hd';
+import { useParamStore } from '@/stores/param';
 import { controller } from '@/core/controller/DeviceController';
 import SwitcherScreen from '@/app/(tabs)/switcher';
 import KeysScreen from '@/app/(tabs)/keys';
@@ -114,5 +117,48 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     expect(screen.getByText('シーン')).toBeTruthy();
     expect(screen.getByText('SCENE 07')).toBeTruthy();
     expect(screen.getByText('32')).toBeTruthy();
+  });
+});
+
+describe('F12 INPUT 設定シート（長押し → 割当・ラベル編集）', () => {
+  test('長押しでシートが開き、ラベルと割当を本体（デモ）に書き込める', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-160HD');
+    });
+    await render(<SwitcherScreen />);
+    await act(async () => {
+      fireEvent(screen.getByLabelText('プログラム 2、CAM 2'), 'longPress');
+    });
+    expect(screen.getByText('INPUT 2 の設定')).toBeTruthy();
+    expect(screen.getByLabelText('ラベル').props.value).toBe('CAM 2');
+
+    await act(async () => {
+      fireEvent.changeText(screen.getByLabelText('ラベル'), 'STAGE L');
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByText('本体に書き込む'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 50));
+    });
+    const v = useParamStore.getState().values;
+    const hdmi2 = v160hd.sources.find((s) => s.code === 1)!;
+    expect(decodeAscii8(Array.from({ length: 8 }, (_, i) => v[hdmi2.labelAddr! + i] ?? 0x20))).toBe('STAGE L');
+    expect(screen.getAllByText('STAGE L')).toHaveLength(2);
+
+    // 割当変更：INPUT 2 を STILL 1（code 16）へ
+    await act(async () => {
+      fireEvent(screen.getByLabelText('プログラム 2、STAGE L'), 'longPress');
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('ソース STILL 1'));
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByText('本体に書き込む'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 50));
+    });
+    expect(useParamStore.getState().values[v160hd.addrs.inputAssign(2)]).toBe(16);
   });
 });

@@ -14,12 +14,14 @@ export interface CrosspointButtonProps {
   /** 全体タリー（他バスで選ばれていれば 2pt 枠） */
   tally: TallyState;
   onPress: (n: number) => void;
+  /** 長押し：INPUT の設定シート（F12） */
+  onLongPress?: (n: number) => void;
 }
 
 const BUS_NAME: Record<Bus, string> = { pgm: 'プログラム', pst: 'プリセット' };
 
 /** クロスポイント（ボード 66×58pt・r12）。選択＝塗り、他バスのタリー＝2pt 枠 */
-export const CrosspointButton = memo(function CrosspointButton({ n, label, bus, selected, tally, onPress }: CrosspointButtonProps) {
+export const CrosspointButton = memo(function CrosspointButton({ n, label, bus, selected, tally, onPress, onLongPress }: CrosspointButtonProps) {
   const other: Bus = bus === 'pgm' ? 'pst' : 'pgm';
   const otherOn = tally === other || tally === 'both';
   const fill = selected ? color[bus] : color.fill;
@@ -28,7 +30,10 @@ export const CrosspointButton = memo(function CrosspointButton({ n, label, bus, 
   return (
     <Pressable
       onPress={() => onPress(n)}
+      onLongPress={onLongPress ? () => onLongPress(n) : undefined}
+      delayLongPress={400}
       accessibilityRole="button"
+      accessibilityHint={onLongPress ? '長押しで割当とラベルを設定' : undefined}
       accessibilityLabel={`${BUS_NAME[bus]} ${n}、${label}${states ? `、${states}` : ''}`}
       accessibilityState={{ selected }}
       style={({ pressed }) => ({ flex: 1, opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}

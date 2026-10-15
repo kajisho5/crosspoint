@@ -21,6 +21,8 @@ export interface ListRowProps {
   onPress?: () => void;
   onLongPress?: () => void;
   accessibilityHint?: string;
+  /** 既定は title・subtitle・value の連結 */
+  accessibilityLabel?: string;
 }
 
 /** 設定・一覧の 1 行（最小 44pt） */
@@ -40,6 +42,7 @@ export function ListRow({
   onPress,
   onLongPress,
   accessibilityHint,
+  accessibilityLabel,
 }: ListRowProps) {
   const body = (
     <View className="flex-row items-center px-4" style={{ minHeight: subtitle ? 60 : MIN_TAP, opacity: disabled ? 0.4 : 1 }}>
@@ -76,7 +79,7 @@ export function ListRow({
       delayLongPress={500}
       disabled={disabled}
       accessibilityRole="button"
-      accessibilityLabel={[title, subtitle, value].filter(Boolean).join('、')}
+      accessibilityLabel={accessibilityLabel ?? [title, subtitle, value].filter(Boolean).join('、')}
       accessibilityHint={accessibilityHint}
       accessibilityState={{ disabled: !!disabled, selected: !!checked }}
       style={({ pressed }) => ({ backgroundColor: pressed ? color.fill2 : 'transparent' })}

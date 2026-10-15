@@ -13,10 +13,11 @@ export interface CrosspointGridProps {
   labels: string[];
   tallies: TallyState[];
   onSelect: (bus: Bus, n: number) => void;
+  onSetup?: (n: number) => void;
 }
 
 /** 1 バンク分（V-160HD 5 列×2 段 / V-80HD 4 列×2 段、SPEC §9-5） */
-export function CrosspointGrid({ profile, bus, bank, selected, labels, tallies, onSelect }: CrosspointGridProps) {
+export function CrosspointGrid({ profile, bus, bank, selected, labels, tallies, onSelect, onSetup }: CrosspointGridProps) {
   const first = bank * profile.bankSize + 1;
   const rows: number[][] = [];
   for (let i = 0; i < profile.bankSize; i += profile.columns) {
@@ -37,6 +38,7 @@ export function CrosspointGrid({ profile, bus, bank, selected, labels, tallies, 
               selected={selected === n}
               tally={tallies[n - 1] ?? 'off'}
               onPress={handle}
+              onLongPress={onSetup}
             />
           ))}
         </View>

@@ -13,6 +13,7 @@ import { Segmented } from '@/components/ui/Segmented';
 import { OfflineBanner } from '@/components/status/OfflineBanner';
 import { ScreenHeader } from '@/components/status/ScreenHeader';
 import { CrosspointGrid } from '@/components/switcher/CrosspointGrid';
+import { InputSetupSheet } from '@/components/switcher/InputSetupSheet';
 import type { Bus } from '@/components/switcher/CrosspointButton';
 import { TBar } from '@/components/switcher/TBar';
 import { AutoButton, CutAutoUnavailable, CutButton } from '@/components/switcher/TransitionButtons';
@@ -31,6 +32,8 @@ export default function SwitcherScreen() {
   const pgm = useBusInput(profile, 'pgm');
   const pst = useBusInput(profile, 'pst');
   const [bank, setBank] = useState(0);
+  const [setupN, setSetupN] = useState<number | null>(null);
+  const online = useConnectionStore((s) => s.link === 'online');
 
   const banks = Math.ceil(profile.inputCount / profile.bankSize);
   const bankLabels = Array.from({ length: banks }, (_, i) => `${i * profile.bankSize + 1}–${Math.min(profile.inputCount, (i + 1) * profile.bankSize)}`);
@@ -44,8 +47,18 @@ export default function SwitcherScreen() {
     [profile, pgmMode],
   );
 
+  const onSetup = useCallback(
+    (n: number) => {
+      if (!online) return;
+      haptic.select();
+      setSetupN(n);
+    },
+    [online],
+  );
+
   return (
     <Screen>
+      <InputSetupSheet profile={profile} n={setupN} onClose={() => setSetupN(null)} />
       <ScreenHeader subtitle={deviceName ?? '未接続'} title={profile.model} trailing={version ? `FW ${version}` : undefined} />
       <OfflineBanner />
       <Gate>
@@ -57,12 +70,12 @@ export default function SwitcherScreen() {
             <Segmented values={bankLabels} index={safeBank} onChange={setBank} style={{ width: 132, height: 28 }} accessibilityLabel="バンク" />
           ) : null}
         </View>
-        <CrosspointGrid profile={profile} bus="pgm" bank={safeBank} selected={pgm} labels={labels} tallies={tallies} onSelect={onSelect} />
+        <CrosspointGrid profile={profile} bus="pgm" bank={safeBank} selected={pgm} labels={labels} tallies={tallies} onSelect={onSelect} onSetup={onSetup} />
 
         <View className="mt-4 px-4" style={{ marginBottom: 8 }}>
           <BusLabel bus="pst" />
         </View>
-        <CrosspointGrid profile={profile} bus="pst" bank={safeBank} selected={pst} labels={labels} tallies={tallies} onSelect={onSelect} />
+        <CrosspointGrid profile={profile} bus="pst" bank={safeBank} selected={pst} labels={labels} tallies={tallies} onSelect={onSelect} onSetup={onSetup} />
 
         <View className="mt-5 flex-row px-4" style={{ gap: 12 }}>
           <View style={{ flex: 172, gap: 10 }}>
