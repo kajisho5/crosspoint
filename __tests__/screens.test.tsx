@@ -362,3 +362,46 @@ describe('F16 マクロ・シーケンサー', () => {
     expect(screen.queryByLabelText('マクロ 1 を実行')).toBeNull();
   });
 });
+
+describe('デモ VR-120HD（8 入力・AUX 3 本）', () => {
+  beforeEach(async () => {
+    await act(async () => {
+      await controller.connectDemo('VR-120HD');
+    });
+  });
+
+  test('スイッチャー：INPUT 1–8（4 列）、CUT/AUTO なし、ラベルは Preview Label から', async () => {
+    await render(<SwitcherScreen />);
+    expect(screen.getByText('VR-120HD')).toBeTruthy();
+    expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(8);
+    expect(screen.queryByText('CUT')).toBeNull();
+    expect(screen.getAllByText('CAM 1').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByLabelText('プログラム 1、CAM 1、選択中')).toBeTruthy();
+  });
+
+  test('キー：PinP 4・DSK 2。シーン 32 件', async () => {
+    await render(<KeysScreen />);
+    expect(screen.getByText('PinP & KEY 4')).toBeTruthy();
+    expect(screen.getByText('DSK 2')).toBeTruthy();
+    await render(<MemoryScreen />);
+    expect(screen.getByText('32')).toBeTruthy();
+  });
+
+  test('AUX 画面：AUX 1 / AUX 2 / AUX 3 を切り替えて AUX 3（00 00 25）に書ける', async () => {
+    await render(<AuxScreen />);
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    await act(async () => {
+      fireEvent(screen.getByLabelText('AUX バス'), 'change', { nativeEvent: { selectedSegmentIndex: 2 } });
+    });
+    expect(screen.getByText('AUX 3 ソース')).toBeTruthy();
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText(/^AUX 3 SDI In 6/));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x25)]).toBe(11);
+  });
+});

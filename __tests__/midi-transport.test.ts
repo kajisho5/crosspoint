@@ -103,8 +103,8 @@ describe('MidiTransport（SPEC §4）', () => {
     const res = await t.connect({ name: 'X', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
     expect(res).toEqual({ model: 'V-160HD', version: '3.60' });
     expect(states).toEqual(['connecting', 'authenticating', 'syncing']);
-    // 接続確認では全対応機種分の RQ1 を送る（V-160HD ＋ V-80HD）
-    expect(fake.sent.length).toBe(2);
+    // 接続確認では全対応機種分の RQ1 を送る（V-160HD ＋ V-80HD ＋ VR-120HD）
+    expect(fake.sent.length).toBe(3);
     expect(toHex(fake.sent[0]!)).toBe('F0 41 10 00 00 00 00 02 11 02 00 00 00 00 06 78 F7');
     await t.disconnect();
   });
@@ -149,7 +149,7 @@ describe('MidiTransport（SPEC §4）', () => {
   });
 
   test('無応答（modelId 違いの機器）は NO_RESPONSE', async () => {
-    const fake = new FakeMidi({ ...v160hd, sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x25] });
+    const fake = new FakeMidi({ ...v160hd, sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x7e] }); // 対応外の Model ID
     const t = new MidiTransport(fake, 'ble', { verTimeoutMs: 100 });
     await expect(t.connect({ name: 'X', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 })).rejects.toMatchObject({ code: 'NO_RESPONSE' });
   });

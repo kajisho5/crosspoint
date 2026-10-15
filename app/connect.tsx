@@ -184,7 +184,7 @@ export default function ConnectScreen() {
                 )}
               </GroupCard>
 
-              <GroupCard title="新規（LAN）" footer="本体 MENU → LAN CONTROL で IP アドレスと NETWORK PASSWORD を確認してください（V-160HD は 4 文字、V-80HD は 8 文字）。">
+              <GroupCard title="新規（LAN）" footer="本体 MENU → LAN CONTROL で IP アドレスと NETWORK PASSWORD を確認してください（V-160HD・VR-120HD は 4 文字、V-80HD は 8 文字）。">
                 <FormField label="名前" value={name} onChange={setName} placeholder="DEMO-SW-C" />
                 <FormField label="IP アドレス" value={host} onChange={setHost} placeholder="192.168.0.51" mono keyboard="decimal-pad" />
                 <FormField label="ポート" value={port} onChange={setPort} placeholder="8023" mono keyboard="number-pad" />
@@ -348,8 +348,8 @@ function MidiRouteSection({
         title={kind === 'usb' ? '検出された端点' : 'ペアリング済みの端点'}
         footer={
           kind === 'usb'
-            ? 'USB-C ケーブル（Lightning 機は USB カメラアダプタ）で本体の USB STREAM 端子と接続してください。V-80HD は現在 LAN のみ対応です。'
-            : '本体 MENU → SYSTEM → Bluetooth → REC CONTROL を ON。iOS の「設定」の Bluetooth 一覧からはペアリングせず、ここから追加してください。V-80HD は現在 LAN のみ対応です。'
+            ? 'USB-C ケーブル（Lightning 機は USB カメラアダプタ）で本体の USB STREAM 端子と接続してください。V-80HD・VR-120HD は現在 LAN のみ対応です。'
+            : '本体 MENU → SYSTEM → Bluetooth → REC CONTROL を ON。iOS の「設定」の Bluetooth 一覧からはペアリングせず、ここから追加してください。V-80HD・VR-120HD は現在 LAN のみ対応です。'
         }
       >
         {unavailable ? (

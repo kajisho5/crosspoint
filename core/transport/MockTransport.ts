@@ -22,7 +22,7 @@ type ParamCb = (a: Addr, bytes: number[]) => void;
 type StateCb = (s: LinkState, err?: LinkError) => void;
 type LogCb = (e: LogEntry) => void;
 
-const DEMO_VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30' };
+const DEMO_VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00' };
 const LATENCY_MS = 12;
 
 export class MockTransport implements Transport {

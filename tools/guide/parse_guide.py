@@ -8,9 +8,14 @@ import pdfplumber
 
 ADDR = re.compile(r'^([0-9A-Fx]{2}H) ([0-9A-Fx]{2}H) ([0-9A-Fx]{2}H)$')
 BYTE = re.compile(r'^[0-9A-F]{2}H$')
+KERN = re.compile(r'\b([0-9A-F]) ([0-9A-F]H)\b')
 
 def norm(s):
-    return s.replace('–', '-').replace('’', "'").replace('‐', '-').strip()
+    # 英語版の記号に揃える。日本語版（*_jpn*.pdf）は ～ 、 ： （ ） と ※ を使う
+    s = s.replace('–', '-').replace('’', "'").replace('‐', '-')
+    s = s.replace('～', '-').replace('〜', '-').replace('、', ', ').replace('：', ': ').replace('（', ' (').replace('）', ') ').replace('　', ' ')
+    s = s.replace('※', '*')
+    return ' '.join(s.split()).strip()
 
 def lines_of(page):
     words = page.extract_words(x_tolerance=1.5, y_tolerance=2, extra_attrs=['fontname', 'size'])
@@ -31,6 +36,13 @@ def font_kind(ws):
     if not ws: return 'glyph'
     names = {w['fontname'].split('+')[-1] for w in ws}
     sizes = {round(w['size']) for w in ws}
+    if any('UDShinGo' in n for n in names):  # 日本語版：● セクション / ○ サブセクション / 見出し行は Medium 5.5pt / 本文は Light 5.5pt
+        first = ws[0]['text']
+        if first.startswith('●'): return 'section'
+        if first.startswith('○'): return 'sub'
+        if any(w['text'] == 'Address' for w in ws) and all('Medium' in n for n in names): return 'header'
+        if sizes <= {5, 6}: return 'body'
+        return 'other'
     if any('Cond' in n for n in names) and sizes & {19, 20}: return 'section'
     if all('Semibold' in n for n in names) and sizes == {10}: return 'sub'
     if all('Semibold' in n for n in names) and sizes <= {6, 7} and any(w['text'] == 'Address' for w in ws): return 'header'
@@ -70,16 +82,16 @@ def parse(path):
                 k = kinds[j]
                 t = text(ln['words'])
                 if k == 'section':
-                    section = t.lstrip('\u00c1 ').strip(); continue
+                    section = t.lstrip('\u00c1● ').strip(); continue
                 if k == 'sub':
-                    sub = t.lstrip('\u00c0 ').strip(); notes = []; continue
+                    sub = t.lstrip('\u00c0○ ').strip(); notes = []; continue
                 if k != 'body': continue
                 if t.startswith('*') or t.startswith('(*'):
                     notes.append(t)
                     for r in page_recs:
                         if r['sub'] == sub: r['notes'] = list(notes)
                     continue
-                head = text(ln['words'], -1, c_name)
+                head = KERN.sub(r'\1\2', text(ln['words'], -1, c_name))  # 日本語版は '0' '0H' に割れることがある
                 if ADDR.match(head):
                     r = {'page': pno + 1, 'section': section, 'sub': sub, 'addr': [b[:2] for b in head.split()], 'size': 1,
                          'lines': [j], 'notes': list(notes)}

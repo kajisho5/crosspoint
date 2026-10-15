@@ -2,6 +2,7 @@ import { addr, addrOffset, decodeAscii8, decodeLevel, encodeLevel, type Addr } f
 import type { ModelId } from '../profiles/types';
 import v160hdJson from './v160hd.params.json';
 import v80hdJson from './v80hd.params.json';
+import vr120hdJson from './vr120hd.params.json';
 import type { EnumParam, IntParam, ParamCatalog, ParamDef, ParamGroup, ParamInstance } from './types';
 
 export * from './types';
@@ -9,6 +10,7 @@ export * from './types';
 const CATALOGS: Record<ModelId, ParamCatalog> = {
   'V-160HD': v160hdJson as unknown as ParamCatalog,
   'V-80HD': v80hdJson as unknown as ParamCatalog,
+  'VR-120HD': vr120hdJson as unknown as ParamCatalog,
 };
 
 export function getCatalog(model: ModelId): ParamCatalog {

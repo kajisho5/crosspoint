@@ -84,3 +84,33 @@ describe('AUX バス（F15）', () => {
     expect(sec.find((s) => s.title === 'その他')!.items.map((i) => i.label)).toEqual(['Video Player/SRT In']);
   });
 });
+
+describe('VR-120HD：クイック操作と AUX（カタログ由来）', () => {
+  test('HDMI In 1–6 ＋ SDI In 1–6（xx 0CH–17H）の DIGITAL GAIN / MONO、SDI OUT 1–3 LEVEL-A、HDMI Out 3 Assign 00 00 0A', () => {
+    const a = embeddedAudioPreset('VR-120HD')!;
+    expect(a.writes).toHaveLength(12 * 2);
+    expect(a.writes[0]).toMatchObject({ addr: addr(0x01, 0x0c, 0x01), bytes: [0x7e, 0x58] });
+    expect(a.writes[23]).toMatchObject({ addr: addr(0x01, 0x17, 0x0a), bytes: [0x03] });
+    const s = sdiLevelAPreset('VR-120HD')!;
+    expect(s.writes.map((w) => w.addr)).toEqual([addr(0x00, 0x11, 0x00), addr(0x00, 0x12, 0x00), addr(0x00, 0x13, 0x00)]);
+    const h = hdmiOut3Assign('VR-120HD')!;
+    expect(h.addr).toBe(addr(0x00, 0x00, 0x0a));
+    expect(h.choices).toEqual([
+      { label: 'PROGRAM', index: 0 },
+      { label: 'PREVIEW', index: 2 },
+      { label: 'MULTI-VIEW', index: 7 },
+    ]);
+  });
+  test('AUX 1/2/3（00 00 11 / 24 / 25）、出力割当の AUX n は index 3/4/5', () => {
+    const b = auxBuses('VR-120HD');
+    expect(b.map((x) => [x.name, x.addr])).toEqual([
+      ['AUX 1', addr(0x00, 0x00, 0x11)],
+      ['AUX 2', addr(0x00, 0x00, 0x24)],
+      ['AUX 3', addr(0x00, 0x00, 0x25)],
+    ]);
+    expect(b[0]!.outputs.every((o) => o.auxIndex === 3)).toBe(true);
+    expect(b[2]!.outputs.every((o) => o.auxIndex === 5)).toBe(true);
+    expect(b[2]!.outputs.map((o) => o.name)).toEqual(['HDMI OUT 1', 'HDMI OUT 2', 'HDMI OUT 3', 'SDI OUT 1', 'SDI OUT 2', 'SDI OUT 3', 'USB OUT', 'STREAM/RECORD', 'LCD MONITOR']);
+    expect(b[0]!.param.labels).toHaveLength(37); // HDMI 6, SDI 6, Still 16, VP/SRT, Input 1-8
+  });
+});

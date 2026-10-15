@@ -5,7 +5,7 @@ import { getProfile } from '../../core/profiles';
 import type { DeviceProfile, ModelId } from '../../core/profiles/types';
 
 /**
- * V-160HD / V-80HD の LAN モックサーバー（SPEC §12-1）。`npm run mock [-- --model v80hd --port 8023 --password 0000 --jitter --split]`
+ * V-160HD / V-80HD / VR-120HD の LAN モックサーバー（SPEC §12-1）。`npm run mock [-- --model v80hd|vr120hd --port 8023 --password 0000 --jitter --split]`
  * - 接続直後 `Enter password:`、正しい PW で `Welcome to {機種}.`、誤りは切断
  * - `VER;` → `VER:{機種},{版}\n`
  * - `RQH` → 疎メモリから連結 hex で `DTH:…;`
@@ -39,7 +39,7 @@ export interface MockServer {
   close: () => Promise<void>;
 }
 
-const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30' };
+const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00' };
 const TALLY_SUBSCRIBE = addr(0x0c, 0x01, 0x00);
 
 function hex2(b: number): string {
@@ -55,7 +55,7 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
   const pressed = new Set<Addr>();
   const subscribers = new Set<net.Socket>();
   const clients = new Map<net.Socket, { authed: boolean; buf: string }>();
-  const maxPgmValue = model === 'V-160HD' ? 0x33 : 0x38;
+  const maxPgmValue = model === 'V-160HD' ? 0x33 : model === 'VR-120HD' ? 0x24 : 0x38;
 
   const send = (sock: net.Socket, text: string) => {
     if (sock.destroyed) return;
@@ -243,7 +243,7 @@ function parseArgs(argv: string[]): MockServerOptions {
     const k = argv[i];
     const v = argv[i + 1];
     if (k === '--model' && v) {
-      o.model = v.toLowerCase() === 'v80hd' ? 'V-80HD' : 'V-160HD';
+      o.model = v.toLowerCase() === 'v80hd' ? 'V-80HD' : v.toLowerCase() === 'vr120hd' ? 'VR-120HD' : 'V-160HD';
       i += 1;
     } else if (k === '--port' && v) {
       o.port = Number(v);

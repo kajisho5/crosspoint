@@ -41,6 +41,20 @@ function demoAssignments(p: DeviceProfile): { n: number; code: number; label: st
     ];
     return base.map((b, i) => ({ n: i + 1, ...b }));
   }
+  if (p.model === 'VR-120HD') {
+    // HDMI In 1-6 = 00–05、SDI In 1-6 = 06–0B、Still = 0C–、VP/SRT = 1C
+    const base = [
+      { code: 0, label: 'CAM 1' },
+      { code: 1, label: 'CAM 2' },
+      { code: 6, label: 'CAM 3' },
+      { code: 7, label: 'CAM 4' },
+      { code: 2, label: 'PC 1' },
+      { code: 3, label: 'PC 2' },
+      { code: 0x1c, label: 'VP/SRT' },
+      { code: 12, label: 'STILL 1' },
+    ];
+    return base.map((b, i) => ({ n: i + 1, ...b }));
+  }
   const base = [
     { code: 4, label: 'CAM 1' },
     { code: 5, label: 'CAM 2' },
@@ -90,7 +104,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
     const s = pinpSeed[n - 1];
     if (!s) continue;
     const k = p.addrs.pinp(n);
-    const srcCode = p.model === 'V-160HD' ? s.src : Math.min(s.src, 7);
+    const srcCode = p.model === 'V-160HD' ? s.src : Math.min(s.src, p.model === 'VR-120HD' ? 11 : 7);
     put(m, k.pgm, [s.pgm]);
     put(m, k.pvw, [s.pvw]);
     put(m, k.source, [srcCode]);
@@ -106,7 +120,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
     const k = p.addrs.dsk(n);
     put(m, k.pgm, [s.pgm]);
     put(m, k.pvw, [s.pvw]);
-    put(m, k.source, [p.model === 'V-160HD' ? s.src : 9]);
+    put(m, k.source, [p.model === 'V-160HD' ? s.src : p.model === 'VR-120HD' ? 12 : 9]);
     if (k.type != null) put(m, k.type, [s.type]);
     put(m, k.time, encodeTime(s.t));
   }

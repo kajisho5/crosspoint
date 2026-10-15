@@ -1,6 +1,6 @@
 import type { Addr } from '../codec/value';
 
-export type ModelId = 'V-160HD' | 'V-80HD';
+export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD';
 
 export type TallyState = 'off' | 'pgm' | 'pst' | 'both';
 

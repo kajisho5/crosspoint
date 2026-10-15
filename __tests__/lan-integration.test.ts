@@ -7,6 +7,7 @@ import { nodeSocketFactory } from '@/core/transport/nodeSocket';
 import type { LinkError, LinkState } from '@/core/transport/Transport';
 import { v160hd } from '@/core/profiles/v160hd';
 import { v80hd } from '@/core/profiles/v80hd';
+import { vr120hd } from '@/core/profiles/vr120hd';
 import { startMockServer, type MockServer } from '../tools/mock-v160hd/server';
 
 /** SPEC §12-4 結合テスト：モックサーバーに対し 接続→認証→同期→PGM 変更→自発通知→CUT→切断→自動再接続 */
@@ -160,6 +161,34 @@ describe('LAN 結合（V-80HD モック：--model v80hd）', () => {
     expect(c.params.get(p.pgm)).toBeUndefined();
     t.readParam(p.pgm, 2);
     await until(() => c.params.get(p.pgm) === v80hd.encodeInput(2));
+    await t.disconnect();
+  });
+});
+
+describe('LAN 結合（VR-120HD モック：--model vr120hd）', () => {
+  let server: MockServer;
+  beforeAll(async () => {
+    server = await startMockServer({ model: 'VR-120HD', port: 0, ack: 'byte06', jitter: true });
+  });
+  afterAll(async () => {
+    await server.close();
+  });
+
+  test('4 桁 PW、VER:VR-120HD,2.00、PGM 1DH+n、タリー 37 バイト', async () => {
+    const t = new LanTransport(nodeSocketFactory);
+    const c = collect(t);
+    const logs: string[] = [];
+    t.on('log', (e) => logs.push(`${e.dir} ${e.text}`));
+    const res = await t.connect({ name: 'DEMO-SW-C', host: '127.0.0.1', port: server.port, password: '0000' });
+    expect(res).toEqual({ model: 'VR-120HD', version: '2.00' });
+    expect(logs).toContain('rx Welcome to VR-120HD.');
+
+    const p = vr120hd.addrs;
+    t.writeParam(p.pst, [vr120hd.encodeInput(5)]);
+    await until(() => server.mem.get(p.pst) === 0x21);
+    t.readParam(p.tallyBlock, p.tallyBlockSize);
+    await until(() => c.params.get(p.tallyBlock + 0x1c + 5) === 2); // Input 5 = PST
+    expect(c.params.get(p.tallyBlock + 0x1c + 1)).toBe(1); // Input 1 = PGM
     await t.disconnect();
   });
 });

@@ -3,7 +3,7 @@ import { controller } from '@/core/controller/DeviceController';
 import type { ModelId } from '@/core/profiles/types';
 import { haptic } from './haptics';
 
-const MODELS: ModelId[] = ['V-160HD', 'V-80HD'];
+const MODELS: ModelId[] = ['V-160HD', 'V-80HD', 'VR-120HD'];
 
 /** F11 デモモードの機種を選んで開始（キャンセル時は false） */
 export function startDemo(): Promise<boolean> {

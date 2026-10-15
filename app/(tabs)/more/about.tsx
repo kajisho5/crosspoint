@@ -18,9 +18,10 @@ export default function AboutScreen() {
           {`バージョン ${version}`}
         </AppText>
       </View>
-      <GroupCard title="対応機種" footer="V-80HD は現在 LAN 接続のみ対応しています。">
+      <GroupCard title="対応機種" footer="V-80HD・VR-120HD は現在 LAN 接続のみ対応しています（USB / Bluetooth は実機確認後に有効化）。">
         <ListRow title="V-160HD" subtitle="LAN / USB / Bluetooth" />
         <ListRow title="V-80HD" subtitle="LAN" />
+        <ListRow title="VR-120HD" subtitle="LAN" />
       </GroupCard>
       <GroupCard>
         <ListRow
@@ -38,7 +39,7 @@ export default function AboutScreen() {
             本アプリは非公式アプリです。Roland Corporation が提供・承認・保証するものではありません。
           </AppText>
           <AppText variant="footnote" tone="label2">
-            Roland、V-160HD、V-80HD は Roland Corporation の日本およびその他の国における登録商標または商標です。その他の社名・製品名は各社の商標または登録商標です。
+            Roland、V-160HD、V-80HD、VR-120HD は Roland Corporation の日本およびその他の国における登録商標または商標です。その他の社名・製品名は各社の商標または登録商標です。
           </AppText>
           <AppText variant="footnote" tone="label2">
             本アプリは各機種の公開 Remote Control Guide に記載された制御仕様に基づいて動作します。本番運用の前に必ずリハーサルで動作を確認してください。

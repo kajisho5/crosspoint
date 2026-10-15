@@ -1,10 +1,12 @@
 import { v160hd } from './v160hd';
 import { v80hd } from './v80hd';
+import { vr120hd } from './vr120hd';
 import type { DeviceProfile, ModelId } from './types';
 
 export const PROFILES: Record<ModelId, DeviceProfile> = {
   'V-160HD': v160hd,
   'V-80HD': v80hd,
+  'VR-120HD': vr120hd,
 };
 
 export function getProfile(model: ModelId): DeviceProfile {
