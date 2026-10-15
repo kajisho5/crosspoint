@@ -1,0 +1,33 @@
+# --- 公式アプリ / RCS 関連の持ち込み禁止（SPEC §0 ルール8, §14）---
+*.dmg
+*.pkg
+*.app/
+*rcs*.zip
+**/rcs-analysis/
+**/rcs_analysis/
+
+# --- Node / Expo ---
+node_modules/
+.expo/
+dist/
+web-build/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.tsbuildinfo
+
+# --- Native (expo prebuild で生成) ---
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# --- 環境 / OS ---
+.env
+.env*.local
+.DS_Store
+*.pem
