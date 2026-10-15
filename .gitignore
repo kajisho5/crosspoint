@@ -35,3 +35,10 @@ yarn-error.*
 .env*.local
 .DS_Store
 *.pem
+
+# --- fastlane ---
+fastlane/report.xml
+fastlane/README.md
+build/
+*.ipa
+*.dSYM.zip
