@@ -16,8 +16,12 @@ yarn-debug.*
 yarn-error.*
 *.tsbuildinfo
 
-# --- Native (expo prebuild で生成) ---
-/ios/
+# --- Native ---
+# ios/ は Xcode Cloud がプロジェクトを検出できるようコミットする（生成物の Pods/build は ios/.gitignore で除外）。
+# app.config.ts やネイティブ依存を変えたら `npx expo prebuild --platform ios --clean --no-install` を再実行してコミット（CI が差分を検出する）
+/ios/Pods/
+/ios/build/
+/ios/.xcode.env.local
 /android/
 *.jks
 *.p8

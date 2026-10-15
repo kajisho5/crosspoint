@@ -44,25 +44,29 @@ jobs:
           node --version
           pod --version
       - run: npm ci
-      - name: expo prebuild (ios)
-        run: npx expo prebuild --platform ios --clean --no-install
+      - name: expo prebuild (ios) — コミット済み ios/ との差分検出
+        run: |
+          npx expo prebuild --platform ios --no-install
+          # pbxproj の UUID（24 桁 hex）は生成ごとに変わるので正規化して比較
+          git diff --name-only -- ios | grep -v 'project.pbxproj' > /tmp/drift.txt || true
+          if ! diff <(git show HEAD:ios/SWCROSSPOINT.xcodeproj/project.pbxproj | sed -E 's/[0-9A-F]{24}/UUID/g') \
+                    <(sed -E 's/[0-9A-F]{24}/UUID/g' ios/SWCROSSPOINT.xcodeproj/project.pbxproj) > /tmp/pbx.diff; then
+            echo "project.pbxproj" >> /tmp/drift.txt
+          fi
+          if [ -s /tmp/drift.txt ]; then
+            echo "::error::コミット済みの ios/ が app.config.ts / 依存と一致しません。ローカルで 'npx expo prebuild --platform ios --clean --no-install' を実行してコミットしてください（Xcode Cloud はコミット済み ios/ をビルドします）"
+            cat /tmp/drift.txt; head -40 /tmp/pbx.diff; exit 1
+          fi
+          echo "ios/ は最新"
       - name: pod install
         working-directory: ios
         run: pod install
-      - name: Resolve workspace / scheme
-        id: ws
-        run: |
-          WS=$(ls -d ios/*.xcworkspace | head -n 1)
-          SCHEME=$(basename "$WS" .xcworkspace)
-          echo "workspace=$WS" >> "$GITHUB_OUTPUT"
-          echo "scheme=$SCHEME" >> "$GITHUB_OUTPUT"
-          echo "workspace=$WS scheme=$SCHEME"
-      - name: xcodebuild (Debug, iphonesimulator, no signing)
+      - name: xcodebuild (Debug, iphonesimulator, no signing) — Xcode Cloud と同じルートの workspace
         run: |
           set -o pipefail
           xcodebuild \
-            -workspace "${{ steps.ws.outputs.workspace }}" \
-            -scheme "${{ steps.ws.outputs.scheme }}" \
+            -workspace SWCROSSPOINT.xcworkspace \
+            -scheme SWCROSSPOINT \
             -configuration Debug \
             -sdk iphonesimulator \
             -destination 'generic/platform=iOS Simulator' \
