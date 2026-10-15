@@ -129,6 +129,12 @@ jobs:
       - name: pod install
         working-directory: ios
         run: pod install
+      - name: Set build number (CFBundleVersion = run number)
+        # Expo prebuild は CFBundleVersion を文字列 "1" で書くため、CURRENT_PROJECT_VERSION では上書きされない。Info.plist を直接書き換える
+        run: |
+          plist=ios/SWCROSSPOINT/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" "$plist"
+          echo "CFBundleVersion=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$plist") CFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$plist")"
       - name: Archive (automatic signing with the API key)
         run: |
           set -o pipefail

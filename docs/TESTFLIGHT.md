@@ -29,7 +29,7 @@ Xcode Cloud（`docs/XCODE-CLOUD.md`）は初回ワークフロー作成に Xcode
 ## 実行
 - https://github.com/kajisho5/crosspoint/actions/workflows/testflight.yml → **Run workflow**（main）
 - またはタグ：`git tag v0.1.0 && git push origin v0.1.0`
-- ビルド番号 = GitHub Actions の実行回数（`github.run_number`）。バージョンは `app.config.ts` の `version`
+- ビルド番号 = GitHub Actions の実行回数（`github.run_number`）。Archive 前に `ios/SWCROSSPOINT/Info.plist` の `CFBundleVersion` を直接書き換える（Expo prebuild が "1" を直書きするため `CURRENT_PROJECT_VERSION` では効かない）。バージョンは `app.config.ts` の `version`
 - 所要 25〜35 分。TestFlight タブに出るまで処理に数分〜
 
 ## 流れ
