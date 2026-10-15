@@ -132,14 +132,14 @@ final class DismissWatcher: NSObject, UIAdaptivePresentationControllerDelegate {
   }
 }
 
-final class MidiOpenException: GenericException<String> {
+final class MidiOpenException: GenericException<String>, @unchecked Sendable {
   override var reason: String { "MIDI_OPEN_FAILED: \(param)" }
 }
 
-final class MidiSendException: GenericException<String> {
+final class MidiSendException: GenericException<String>, @unchecked Sendable {
   override var reason: String { "MIDI_SEND_FAILED: \(param)" }
 }
 
-final class MidiPickerException: GenericException<String> {
+final class MidiPickerException: GenericException<String>, @unchecked Sendable {
   override var reason: String { "MIDI_PICKER_FAILED: \(param)" }
 }
