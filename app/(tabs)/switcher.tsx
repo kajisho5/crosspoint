@@ -104,7 +104,7 @@ function BusLabel({ bus }: { bus: Bus }) {
     <View className="flex-row items-center" accessibilityRole="header">
       <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: color[bus], marginRight: 6 }} />
       <AppText variant="section" tone={bus}>
-        {bus === 'pgm' ? 'PROGRAM' : 'PRESET'}
+        {bus === 'pgm' ? 'PGM' : 'PST'}
       </AppText>
     </View>
   );

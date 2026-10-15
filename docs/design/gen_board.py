@@ -155,7 +155,7 @@ def screen_switcher():
     o.append(t(344, y + 23, "−", 20, 500, C["acc"], "middle"))
     o.append(t(366, y + 23, "+", 20, 500, C["acc"], "middle"))
     # PGM
-    o.append(section_label(16, 180, "PROGRAM", C["pgm"], C["pgm"]))
+    o.append(section_label(16, 180, "PGM", C["pgm"], C["pgm"]))
     # バンク切替 1–10 / 11–20（INPUT 11–20 は 0x2A–0x33）
     o.append(r(255, 164, 122, 24, 7, C["g1"]))
     o.append(r(257, 166, 58, 20, 5, C["g3"]))
@@ -163,7 +163,7 @@ def screen_switcher():
     o.append(t(346, 180, "11–20", 11, 600, C["lab2"], "middle", 0.6, mono=True))
     o.append(crosspoint_grid(190, "pgm", 0))
     # PST
-    o.append(section_label(16, 346, "PRESET", C["pst"], C["pst"]))
+    o.append(section_label(16, 346, "PST", C["pst"], C["pst"]))
     o.append(crosspoint_grid(356, "pst", 2))
     # CUT / AUTO
     by = 506

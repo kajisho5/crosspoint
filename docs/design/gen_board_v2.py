@@ -299,7 +299,7 @@ def screen_switcher_vr120():
     o.append(t(292, y + 23, "1.0s", 16, 600, anchor="middle", mono=True))
     labels = ["CAM 1", "CAM 2", "CAM 3", "CAM 4", "PC 1", "PC 2", "VP/SRT", "STILL 1"]
     bw, bh = (361 - 24) / 4, 58
-    for bus, y0, sel, title, col in (("pgm", 190, 0, "PROGRAM", C["pgm"]), ("pst", 346, 2, "PRESET", C["pst"])):
+    for bus, y0, sel, title, col in (("pgm", 190, 0, "PGM", C["pgm"]), ("pst", 346, 2, "PST", C["pst"])):
         o.append(f'<circle cx="20" cy="{y0-14}" r="4" fill="{col}"/>')
         o.append(t(30, y0 - 10, title, 13, 600, col, ls=0.6))
         for i in range(8):
