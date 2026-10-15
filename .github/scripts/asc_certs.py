@@ -7,7 +7,7 @@ Usage:
   asc_certs.py list
   asc_certs.py create <DEVELOPMENT|DISTRIBUTION> <csr.pem> <out.cer>
   asc_certs.py revoke <id>[,<id>...]
-  asc_certs.py revoke-all            # revokes every DEVELOPMENT / DISTRIBUTION certificate (CI-created ones)
+  asc_certs.py revoke-all            # revokes the DEVELOPMENT / DISTRIBUTION certificates created via API (displayName 'Created via API')
 Environment: ASC_KEY_ID, ASC_ISSUER_ID, RUNNER_TEMP (the key is $RUNNER_TEMP/keys/AuthKey_<id>.p8).
 """
 
@@ -35,7 +35,7 @@ def token():
                       KEY, algorithm="ES256", headers={"kid": KEY_ID, "typ": "JWT"})
 
 
-def api(method, path, body=None, ok=(200, 201, 204)):
+def api(method, path, body=None, tolerate=False):
     data = None if body is None else json.dumps(body).encode()
     req = urllib.request.Request(API + path, data=data, method=method,
                                  headers={"Authorization": f"Bearer {token()}", "Content-Type": "application/json"})
@@ -45,7 +45,9 @@ def api(method, path, body=None, ok=(200, 201, 204)):
             return json.loads(raw) if raw else {}
     except urllib.error.HTTPError as e:
         print(f"{method} {path} -> HTTP {e.code}")
-        print(e.read().decode(errors="replace")[:4000])
+        print(e.read().decode(errors="replace")[:2000])
+        if tolerate:
+            return None
         sys.exit(1)
 
 
@@ -80,12 +82,16 @@ def cmd_create(cert_type, csr_path, out_path):
 
 def cmd_revoke(ids):
     for cid in ids:
-        api("DELETE", f"/v1/certificates/{cid}")
-        print(f"revoked {cid}")
+        if api("DELETE", f"/v1/certificates/{cid}", tolerate=True) is None:
+            print(f"::warning::could not revoke {cid} (Xcode-created certificates can only be revoked in the developer portal or by Apple support)")
+        else:
+            print(f"revoked {cid}")
 
 
 def cmd_revoke_all():
-    targets = [c for c in list_certs() if c["attributes"].get("certificateType") in MANAGED_TYPES]
+    # CI（API）で作ったものだけ：displayName が "Created via API"。Xcode が作ったもの（人名）は API では失効できない
+    targets = [c for c in list_certs()
+               if c["attributes"].get("certificateType") in MANAGED_TYPES and (c["attributes"].get("displayName") or "") == "Created via API"]
     if not targets:
         print("nothing to revoke")
         return
