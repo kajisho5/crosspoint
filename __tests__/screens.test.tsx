@@ -10,13 +10,18 @@ import MemoryScreen from '@/app/(tabs)/memory';
 import MoreScreen from '@/app/(tabs)/more/index';
 import ConnectScreen from '@/app/connect';
 
+let mockSearchParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), back: jest.fn(), navigate: jest.fn() },
   Stack: { Screen: () => null },
   useFocusEffect: (cb: () => void) => {
     cb();
   },
+  useLocalSearchParams: () => mockSearchParams,
 }));
+import MenuScreen from '@/app/(tabs)/more/menu/index';
+import MenuGroupScreen from '@/app/(tabs)/more/menu/[group]';
+import { getCatalog, paramAddr } from '@/core/params';
 
 afterEach(async () => {
   await act(async () => {
@@ -160,5 +165,63 @@ describe('F12 INPUT 設定シート（長押し → 割当・ラベル編集）'
       await new Promise((r) => setTimeout(r, 50));
     });
     expect(useParamStore.getState().values[v160hd.addrs.inputAssign(2)]).toBe(16);
+  });
+});
+
+describe('F13 設定メニュー（全パラメータ）', () => {
+  beforeEach(async () => {
+    await act(async () => {
+      await controller.connectDemo('V-160HD');
+    });
+  });
+
+  test('メニューにガイドのグループが並ぶ', async () => {
+    await render(<MenuScreen />);
+    expect(screen.getByText('MIX/WIPE')).toBeTruthy();
+    expect(screen.getByText('CAMERA CONTROL')).toBeTruthy();
+    expect(screen.getByText('AUDIO INPUT')).toBeTruthy();
+  });
+
+  test('MIX/WIPE：値が本体（デモ）から読めて、列挙を変えると書き込まれる', async () => {
+    const g = getCatalog('V-160HD').groups.find((x) => x.title === 'MIX/WIPE')!;
+    mockSearchParams = { group: g.id };
+    await render(<MenuGroupScreen />);
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(screen.getByText('TRANSITION TYPE')).toBeTruthy();
+    expect(screen.getAllByText('MIX').length).toBeGreaterThanOrEqual(1); // デモの初期値（MIX TYPE の値も MIX）
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('TRANSITION TYPE、MIX'));
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('選択肢 WIPE'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[v160hd.addrs.transType]).toBe(1);
+  });
+
+  test('CAMERA CONTROL：PTZ パッドが出て、押下で LEFT・解放で STOP を書く', async () => {
+    const g = getCatalog('V-160HD').groups.find((x) => x.title === 'CAMERA CONTROL')!;
+    mockSearchParams = { group: g.id };
+    await render(<MenuGroupScreen />);
+    const pan = g.params.find((p) => p.id === 'pan')!;
+    const a = paramAddr(pan, g.instances![0]!);
+    await act(async () => {
+      fireEvent(screen.getByLabelText('パン 左'), 'pressIn');
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 40));
+    });
+    expect(useParamStore.getState().values[a]).toBe(0x7f);
+    await act(async () => {
+      fireEvent(screen.getByLabelText('パン 左'), 'pressOut');
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 40));
+    });
+    expect(useParamStore.getState().values[a]).toBe(0);
   });
 });

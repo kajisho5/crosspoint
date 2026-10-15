@@ -57,6 +57,10 @@ export default function MoreScreen() {
           {link !== 'idle' ? <ListRow title="切断" destructive onPress={confirmDisconnect} /> : null}
         </GroupCard>
 
+        <GroupCard title="本体設定" footer="Remote Control Guide に載っている全パラメータ（ビデオ・オーディオ・システム・カメラ制御・メモリー）を操作できます。">
+          <ListRow title="メニュー（全パラメータ）" icon="slider.horizontal.3" chevron onPress={() => router.push('/more/menu')} />
+        </GroupCard>
+
         <GroupCard title="操作" footer="操作ロックの解除スライダーは M5 で実装します。">
           <ListRow title="操作ロック" icon="lock.fill" iconTint="gray" right={<Switch value={s.lockEnabled} onValueChange={(v) => s.set('lockEnabled', v)} />} />
           <ListRow title="ハプティクス" icon="hand.tap" iconTint="gray" right={<Switch value={s.haptics} onValueChange={(v) => s.set('haptics', v)} />} />

@@ -7,7 +7,7 @@ import type { SocketFactory } from '../transport/socket';
 import { getCrosspointMidi, type CrosspointMidi, type MidiEndpointInfo } from '@/modules/crosspoint-midi/src';
 import { LINK_ERROR_MESSAGE, toLinkError, type ConnectTarget, type Transport, type TransportKind, type Unsub } from '../transport/Transport';
 import type { Addr } from '../codec/value';
-import { SyncEngine, type VisibleTab } from './SyncEngine';
+import { mergeRanges, SyncEngine, type ReadRange, type VisibleTab } from './SyncEngine';
 import { useConnectionStore } from '@/stores/connection';
 import { useLogStore } from '@/stores/log';
 import { useParamStore } from '@/stores/param';
@@ -48,6 +48,7 @@ export class DeviceController {
   private tapTimers = new Set<ReturnType<typeof setTimeout>>();
   private sync: SyncEngine | null = null;
   private visibleTab: VisibleTab = 'switcher';
+  private extraPoll: ReadRange[] | null = null;
   private syncGeneration = 0;
 
   constructor(private deps: DeviceControllerDeps = defaultDeps) {}
@@ -165,6 +166,18 @@ export class DeviceController {
     this.sync?.setVisibleTab(tab);
   }
 
+  /** 設定メニューなど、画面が開いている間だけ追加で監視する範囲 */
+  setExtraPoll(ranges: ReadRange[] | null): void {
+    this.extraPoll = ranges;
+    this.sync?.setExtraPoll(ranges);
+  }
+
+  /** 任意範囲を今すぐ読む（デモは即時応答、実機はキュー経由） */
+  readRanges(ranges: ReadRange[]): void {
+    if (!this.transport || !this.online) return;
+    for (const r of mergeRanges(ranges)) this.transport.readParam(r.addr, r.size);
+  }
+
   /** パラメータ書込み（楽観更新） */
   write(a: Addr, bytes: number[]): void {
     if (!this.transport || !this.online) return;
@@ -259,6 +272,7 @@ export class DeviceController {
       },
     );
     sync.setVisibleTab(this.visibleTab);
+    sync.setExtraPoll(this.extraPoll);
     this.sync = sync;
     const { missing } = await sync.initialSync();
     if (gen !== this.syncGeneration || this.transport !== t) return;

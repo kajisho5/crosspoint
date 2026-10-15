@@ -131,6 +131,8 @@ export function pollRanges(p: DeviceProfile, visible: VisibleTab): { light: Read
 
 export class SyncEngine {
   private visible: VisibleTab = 'switcher';
+  /** 画面が追加で監視したい範囲（設定メニューの表示中グループなど）。毎周期読む */
+  private extra: ReadRange[] = [];
   private pollTimer: ReturnType<typeof setTimeout> | null = null;
   private rollbackTimer: ReturnType<typeof setInterval> | null = null;
   private cycle = 0;
@@ -148,6 +150,15 @@ export class SyncEngine {
 
   setVisibleTab(tab: VisibleTab): void {
     this.visible = tab;
+  }
+
+  setExtraPoll(ranges: ReadRange[] | null): void {
+    this.extra = ranges ? mergeRanges(ranges) : [];
+  }
+
+  /** 任意範囲の即時読出し（画面を開いた直後など） */
+  readNow(ranges: ReadRange[]): void {
+    for (const r of mergeRanges(ranges)) this.transport.readParam(r.addr, r.size);
   }
 
   /** §10-1：読出しを発行し、全範囲が揃うかタイムアウトまで待つ。戻り値は未受信の範囲 */
@@ -197,6 +208,7 @@ export class SyncEngine {
   pollOnce(): void {
     const { light, heavy } = pollRanges(this.profile, this.visible);
     for (const r of light) this.transport.readParam(r.addr, r.size);
+    for (const r of this.extra) this.transport.readParam(r.addr, r.size);
     if (this.cycle % HEAVY_EVERY_N_CYCLES === 0) for (const r of heavy) this.transport.readParam(r.addr, r.size);
     this.cycle += 1;
   }
