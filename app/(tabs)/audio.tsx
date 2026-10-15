@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import type { AudioChannelDef, DeviceProfile } from '@/core/profiles/types';
+import { useVisibleTab } from '@/lib/visibleTab';
 import { useChannel, useDeviceSubtitle, useLayoutProfile, useMaster } from '@/stores/selectors';
 import { AppText } from '@/components/ui/AppText';
 import { Gate } from '@/components/ui/Gate';
@@ -16,6 +17,7 @@ const PAGE_W = PER_PAGE * (STRIP_W + GAP);
 
 /** S3 オーディオ（ボード S3）：横スクロールの入力ストリップ＋固定 MASTER */
 export default function AudioScreen() {
+  useVisibleTab('audio');
   const profile = useLayoutProfile();
   const subtitle = useDeviceSubtitle();
   const [page, setPage] = useState(0);

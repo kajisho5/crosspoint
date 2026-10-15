@@ -10,6 +10,9 @@ import ConnectScreen from '@/app/connect';
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), back: jest.fn(), navigate: jest.fn() },
   Stack: { Screen: () => null },
+  useFocusEffect: (cb: () => void) => {
+    cb();
+  },
 }));
 
 afterEach(async () => {

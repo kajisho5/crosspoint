@@ -18,7 +18,7 @@ function parseAddr(text: string): Addr | null {
   }
 }
 
-/** F10 任意書込み（DTH/DT1）とアドレス読取り（RQH/RQ1）。生テキストの送信は LanTransport（M3）で追加 */
+/** F10 任意書込み（DTH/DT1）とアドレス読取り（RQH/RQ1）。書込みは楽観更新しない（trigger） */
 export default function ConsoleScreen() {
   const online = useOnline();
   const [wAddr, setWAddr] = useState('');
@@ -33,7 +33,7 @@ export default function ConsoleScreen() {
     const bytes = parseHexBytes(wData);
     if (a == null) return setMsg('アドレスは 6 桁の 16 進（各バイト 00–7F）で入力してください。');
     if (bytes == null) return setMsg('データは 16 進のバイト列（各 00–7F）で入力してください。');
-    controller.write(a, bytes);
+    controller.trigger(a, bytes);
     setMsg(`書込み ${addrToHex(a)} ← ${bytes.length} byte`);
   };
 

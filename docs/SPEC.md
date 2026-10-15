@@ -1,5 +1,7 @@
-# SW CROSSPOINT 実装仕様書（実装担当 Claude Code 向け）v1.1
+# SW CROSSPOINT 実装仕様書（実装担当 Claude Code 向け）v1.2
 
+> **v1.2 変更点（2026-10-15）**：①§0 ルール8 を改訂 — 公式 iPad アプリのパッケージ内平文リソース（Info.plist・nib・Localizable.strings）に基づく **UI 構成の参考**をオーナー判断で可とした（`docs/ANALYSIS-official-app.md`）。通信仕様の根拠は従来どおり公開資料のみ（バイナリは FairPlay 暗号化で読めない）②§14 に v2 候補への参照を追加③M2〜M4 の実装に合わせ §8-2 のファイル名を実態に揃えた（`core/codec/lanParser.ts` / `ump.ts`、`core/transport/socket.ts`）。
+>
 > **v1.1 変更点（2026-10-15）**：①V-80HD プロファイル追加（公式 Remote Control Guide v1.03 で裏付け、LAN 先行で実機確認）②公式アプリ／RCS のバイナリ解析に由来する根拠を全削除し、公開資料と OSS 実装に置換（§0 ルール8, §14）③タブバーはシステム標準（Native Tabs）・色は semantic system color 参照（§11）④App Review 用の利用者向けデモモード（F11）⑤技術スタックのバージョンを npm で再確認（§8-1）。差分の一覧は `docs/CHANGES-v1.1.md`。
 
 > **この文書が実装の唯一の正**。`docs/DESIGN.md`（設計の経緯）と矛盾する場合は本書を優先する。
@@ -17,7 +19,7 @@
 5. 本書に無い仕様変更をしない。迷ったら §14 の「未決事項」に追記して実装は保守的な側（何も送らない側）に倒す。
 6. 1マイルストーンごとに `npm test` と `npx tsc --noEmit` と `npx expo-doctor` が通る状態でコミット。
 7. Roland のロゴ・RCS／公式アプリの画像素材を一切使わない。
-8. **公式アプリ・RCS のバイナリ解析（strings 抽出・逆アセンブル・逆コンパイル・通信の傍受解析を含む）を行わない／その結果を根拠に使わない。** Roland のソフトウェア使用許諾がリバースエンジニアリング等を禁じているため。根拠は §17 の公開資料・公開 OSS・実機での観測（自分の機器に自分のアプリから送受信した結果）に限る。
+8. **通信仕様（コマンド・アドレス・認証・パケット形式）の根拠は §17 の公開資料・公開 OSS・実機での観測（自分の機器に自分のアプリから送受信した結果）に限る。** 公式アプリ・RCS の復号・逆アセンブル・逆コンパイル・通信の傍受解析は行わない。公式 iPad アプリのパッケージ内**平文リソース**（Info.plist・nib・Localizable.strings）から読み取った**画面構成・用語**は、オーナー判断（2026-10-15、v1.2）により UI 設計の参考として使ってよい。内容は `docs/ANALYSIS-official-app.md` に要約済み。IPA 本体・抽出物はリポジトリに入れない。
 
 ---
 
@@ -309,8 +311,8 @@ sw-crosspoint/
 │     more/index.tsx, more/diagnostics.tsx, more/console.tsx, more/about.tsx
 ├─ components/   status/ switcher/ keys/ audio/ memory/ diagnostics/ ui/   （DESIGN.md §4 の一覧どおり）
 ├─ core/
-│  ├─ transport/ Transport.ts LanTransport.ts MidiTransport.ts MockTransport.ts
-│  ├─ codec/     TextCodec.ts SysExCodec.ts value.ts lanParser.ts
+│  ├─ transport/ Transport.ts socket.ts(ソケット抽象) rnSocket.ts(react-native-tcp-socket) LanTransport.ts MidiTransport.ts MockTransport.ts demoState.ts
+│  ├─ codec/     TextCodec.ts lanParser.ts SysExCodec.ts ump.ts value.ts
 │  ├─ controller/DeviceController.ts CommandQueue.ts SyncEngine.ts
 │  └─ profiles/  v160hd.ts v80hd.ts types.ts index.ts
 ├─ stores/       connection.ts param.ts devices.ts settings.ts log.ts
@@ -530,7 +532,8 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - iPhone の USB 映像モニターは不明のため対象外。
 - LAN の機器探索（ブロードキャスト）は公式未公開。v1 は IP 手入力（任意で 1–254 の 8023 ポートスキャン機能を v1.1 で検討）。
 - 販売時の商標表記：アプリ名に Roland/V-160HD を含めない（App Store Review Guidelines 4.1(c)：他の開発者のブランド名・製品名をアプリ名やアイコンに使わない）。説明文の「対応機種」表記と「本アプリは Roland Corporation の公式製品ではありません」の明記で運用。キーワード欄への商標詰め込みはしない（同 2.3.7）。最終判断は法務確認。
-- **使用許諾**：Roland のソフトウェア使用許諾はリバースエンジニアリング・逆コンパイル・逆アセンブルを禁じている。v1.0 にあった Mac 版 RCS バイナリ由来の記述は v1.1 で全削除した。解析物（dmg・抽出文字列・メモ）はリポジトリに入れない。公開リポジトリにする場合は過去コミットにも残っていないことを確認する。
+- **使用許諾**：Roland のソフトウェア使用許諾はリバースエンジニアリング・逆コンパイル・逆アセンブルを禁じている。v1.0 にあった Mac 版 RCS バイナリ由来の記述は v1.1 で全削除した。v1.2 で公式 iPad アプリの平文リソースに基づく UI 構成の参考を可としたが（ルール8）、許諾上のリスク評価はオーナーの責任で行う。解析物（ipa・dmg・抽出文字列）はリポジトリに入れない。公開リポジトリにする場合は過去コミットにも残っていないことを確認する。
+- **v2 候補**：公式アプリの機能ブロック（AUX、OUTPUT FADE、INPUT ASSIGN 編集、オーディオ EQ/Comp、メモリー保存、MACRO、SEQUENCER、GPO、PTZ、USB MONITOR）は `docs/ANALYSIS-official-app.md` §6-2 に整理。v1 のスコープは変えない。
 - **0B 領域（パネルスイッチ）の正式リスト**：Roland サポートは「一部ボタンはガイド未記載、全リストはサポートへ問い合わせ」としている。V-80HD 分はオーナーから Roland Backstage 経由で請求する（入手経緯を docs に記録）。
 - App Review：審査員は実機を持たないため、審査メモに「起動画面の『デモモードで試す』で全機能を確認できる」と記載する（F11）。
 - Bundle ID は仮 `com.seventhwell.crosspoint`（オーナー確認後に確定）。
@@ -567,3 +570,4 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - App Store Review Guidelines（4.1(c), 2.3.7）: https://developer.apple.com/app-store/review/guidelines/
 - Expo Router Native Tabs: https://docs.expo.dev/router/advanced/native-tabs/
 - （v1.0 にあった「Mac 版 RCS の解析」は使用許諾上の理由で出典から削除）
+- 公式 iPad アプリ「V-160HD Remote」3.4.0 の平文リソース調査（UI 構成の参考のみ。通信仕様の根拠にはしない）: `docs/ANALYSIS-official-app.md`

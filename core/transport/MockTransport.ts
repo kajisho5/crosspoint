@@ -84,7 +84,13 @@ export class MockTransport implements Transport {
   on(ev: 'param', cb: ParamCb): Unsub;
   on(ev: 'state', cb: StateCb): Unsub;
   on(ev: 'log', cb: LogCb): Unsub;
-  on(ev: 'param' | 'state' | 'log', cb: ParamCb | StateCb | LogCb): Unsub {
+  on(ev: 'err', cb: (code: number) => void): Unsub;
+  on(ev: 'rtt', cb: (ms: number) => void): Unsub;
+  on(ev: 'param' | 'state' | 'log' | 'err' | 'rtt', cb: ParamCb | StateCb | LogCb | ((n: number) => void)): Unsub {
+    if (ev === 'err' || ev === 'rtt') {
+      // モックは ERR を返さず、往復時間も計測しない
+      return () => {};
+    }
     const set = (ev === 'param' ? this.paramCbs : ev === 'state' ? this.stateCbs : this.logCbs) as Set<typeof cb>;
     set.add(cb);
     return () => {

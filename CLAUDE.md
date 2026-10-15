@@ -13,7 +13,7 @@ Roland V-160HD / V-80HD を iPhone から LAN / USB / Bluetooth で操作する 
 - 省略コード禁止（`// ...` を残さない）。指示外の仕様変更禁止
 - サンプル/テスト/モックに実在の社名・人名・会場名を使わない（`DEMO-SW-A` 等）
 - Roland ロゴ・公式アプリ/RCS の画像素材は使わない
-- 公式アプリ・RCS のバイナリ解析（strings 抽出・逆アセンブル・逆コンパイル・通信傍受）をしない。その結果を根拠に使わない（SPEC §0 ルール8）
+- 通信仕様の根拠は公開資料・公開 OSS・実機観測のみ。公式アプリ・RCS の復号・逆アセンブル・逆コンパイル・通信傍受はしない。公式 iPad アプリの画面構成は `docs/ANALYSIS-official-app.md` の範囲で UI の参考にしてよい（SPEC §0 ルール8、v1.2）
 - 色は `PlatformColor` の semantic system color、タブは expo-router Native Tabs（SPEC §11）。hex 直書き・自前タブバー禁止
 - 機種差は `core/profiles/` の capabilities で出し分け。使えない機能はボタンを置かない（SPEC §9-5）
 - SPEC の【推測】【不明】は実機で確かめられるよう、診断画面とログを必ず残す

@@ -2,6 +2,7 @@ import { ActionSheetIOS, Alert, Platform, Switch, View } from 'react-native';
 import { router } from 'expo-router';
 import { controller } from '@/core/controller/DeviceController';
 import { startDemo } from '@/lib/demo';
+import { useVisibleTab } from '@/lib/visibleTab';
 import { useConnectionStore } from '@/stores/connection';
 import { useDeviceSubtitle, useProfile } from '@/stores/selectors';
 import { POLL_OPTIONS_MS, useSettingsStore, type PgmValueMode, type PollMs } from '@/stores/settings';
@@ -25,6 +26,7 @@ function pick<T extends string | number>(title: string, options: readonly T[], l
 
 /** S5 その他 */
 export default function MoreScreen() {
+  useVisibleTab('more');
   const subtitle = useDeviceSubtitle();
   const link = useConnectionStore((s) => s.link);
   const deviceName = useConnectionStore((s) => s.deviceName);

@@ -52,6 +52,26 @@ export interface Transport {
   on(ev: 'param', cb: (a: Addr, bytes: number[]) => void): Unsub;
   on(ev: 'state', cb: (s: LinkState, err?: LinkError) => void): Unsub;
   on(ev: 'log', cb: (e: LogEntry) => void): Unsub;
+  /** 本体からのエラー応答（LAN の ERR:n。MIDI は無応答なので発生しない） */
+  on(ev: 'err', cb: (code: number) => void): Unsub;
+  /** 往復時間（VER の応答などから計測） */
+  on(ev: 'rtt', cb: (ms: number) => void): Unsub;
+}
+
+/** LinkError を code に持つ Error（transport.connect の reject 用） */
+export class LinkFailure extends Error {
+  constructor(
+    readonly code: LinkError,
+    detail?: string,
+  ) {
+    super(detail ? `${code}: ${detail}` : code);
+    this.name = 'LinkFailure';
+  }
+}
+
+export function toLinkError(e: unknown): LinkError {
+  if (e instanceof LinkFailure) return e.code;
+  return 'NO_RESPONSE';
 }
 
 /** LinkError ごとの日本語メッセージ（SPEC §11 S0） */

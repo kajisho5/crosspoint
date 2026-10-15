@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import type { DeviceProfile, KeyKind } from '@/core/profiles/types';
 import { controller } from '@/core/controller/DeviceController';
 import { haptic } from '@/lib/haptics';
+import { useVisibleTab } from '@/lib/visibleTab';
 import { labelOfSource, useDeviceSubtitle, useInputLabels, useKey, useLayoutProfile, useSplit } from '@/stores/selectors';
 import { useParamStore } from '@/stores/param';
 import { GroupCard } from '@/components/ui/GroupCard';
@@ -16,6 +17,7 @@ const DSK_TYPE = ['LUM-WHITE', 'LUM-BLACK', 'CHROMA'] as const;
 
 /** S2 キー（ボード S2） */
 export default function KeysScreen() {
+  useVisibleTab('keys');
   const profile = useLayoutProfile();
   const subtitle = useDeviceSubtitle();
   const range = (n: number) => Array.from({ length: n }, (_, i) => i + 1);

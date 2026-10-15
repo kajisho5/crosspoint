@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { controller } from '@/core/controller/DeviceController';
+import { useVisibleTab } from '@/lib/visibleTab';
 import { useDeviceSubtitle, useLayoutProfile, useMemCurrent, useMemNames } from '@/stores/selectors';
 import { AppText } from '@/components/ui/AppText';
 import { Gate } from '@/components/ui/Gate';
@@ -16,6 +17,7 @@ const SIDE = 16;
 
 /** S4 メモリー（V-80HD は「シーン」、SPEC §9-5） */
 export default function MemoryScreen() {
+  useVisibleTab('memory');
   const profile = useLayoutProfile();
   const subtitle = useDeviceSubtitle();
   const current = useMemCurrent(profile);
@@ -25,7 +27,7 @@ export default function MemoryScreen() {
   const cell = Math.floor((Math.min(width, 430) - SIDE * 2 - GAP * (COLS - 1)) / COLS);
   const short = profile.memoryNoun === 'シーン' ? 'SCENE' : 'MEM';
 
-  const commit = useCallback((n: number) => controller.write(profile.addrs.memLoad, [n - 1]), [profile]);
+  const commit = useCallback((n: number) => controller.trigger(profile.addrs.memLoad, [n - 1]), [profile]);
 
   const rows: number[][] = [];
   for (let i = 1; i <= profile.memoryCount; i += COLS) {

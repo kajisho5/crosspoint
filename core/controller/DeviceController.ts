@@ -1,28 +1,53 @@
 import { getProfile } from '../profiles';
 import type { DeviceProfile, ModelId } from '../profiles/types';
 import { MockTransport } from '../transport/MockTransport';
-import type { ConnectTarget, Transport, TransportKind, Unsub } from '../transport/Transport';
+import { LanTransport } from '../transport/LanTransport';
+import type { SocketFactory } from '../transport/socket';
+import { LINK_ERROR_MESSAGE, toLinkError, type ConnectTarget, type Transport, type TransportKind, type Unsub } from '../transport/Transport';
 import type { Addr } from '../codec/value';
+import { SyncEngine, type VisibleTab } from './SyncEngine';
 import { useConnectionStore } from '@/stores/connection';
 import { useLogStore } from '@/stores/log';
 import { useParamStore } from '@/stores/param';
-import type { PgmValueMode } from '@/stores/settings';
+import { useSettingsStore, type PgmValueMode } from '@/stores/settings';
 
 /**
  * 画面と Transport の仲介（SPEC §8-2）。
- * - 書込みは楽観更新してから Transport へ（SPEC §10-2）。ロールバックは M2 の SyncEngine で実装
+ * - 書込みは楽観更新してから Transport へ（SPEC §10-2）。ロールバックは SyncEngine
  * - モーメンタリ（CUT）は押下中のアドレスを記録し、切断・非アクティブ時に必ず 00 を送る（SPEC §9-2）
+ * - 実機 transport は 'syncing' を出したら SyncEngine で初期同期し、完了後に 'online' にする
  */
 
 export const AUTO_TAP_RELEASE_MS = 150;
 
 export type ConnectOutcome = { ok: true } | { ok: false; message: string };
 
+export interface DeviceControllerDeps {
+  /** LAN 用ソケット実装（既定は実機用 rnSocket。テストでは Node 版を差し込む） */
+  lanSocketFactory: () => Promise<SocketFactory>;
+  /** 利用者向けの短い通知（Toast）。未設定ならログのみ */
+  notify?: (message: string) => void;
+}
+
+const defaultDeps: DeviceControllerDeps = {
+  lanSocketFactory: async () => (await import('../transport/rnSocket')).rnSocketFactory,
+};
+
 export class DeviceController {
   private transport: Transport | null = null;
   private unsubs: Unsub[] = [];
   private pressed = new Set<Addr>();
   private tapTimers = new Set<ReturnType<typeof setTimeout>>();
+  private sync: SyncEngine | null = null;
+  private visibleTab: VisibleTab = 'switcher';
+  private syncGeneration = 0;
+
+  constructor(private deps: DeviceControllerDeps = defaultDeps) {}
+
+  /** テスト・開発用に依存を差し替える */
+  configure(deps: Partial<DeviceControllerDeps>): void {
+    this.deps = { ...this.deps, ...deps };
+  }
 
   get profile(): DeviceProfile | null {
     const model = useConnectionStore.getState().model;
@@ -31,6 +56,10 @@ export class DeviceController {
 
   get online(): boolean {
     return useConnectionStore.getState().link === 'online';
+  }
+
+  get currentTransport(): Transport | null {
+    return this.transport;
   }
 
   /** F11 デモモード：実機への接続処理は一切行わない */
@@ -46,11 +75,28 @@ export class DeviceController {
     return { ok: true };
   }
 
-  /** 実機接続（LAN は M3、USB/BLE は M4 で実装） */
+  /** 実機接続（LAN は M3 で実装済み。USB/BLE は M4） */
   async connect(kind: Exclude<TransportKind, 'mock'>, target: ConnectTarget): Promise<ConnectOutcome> {
-    const when = kind === 'lan' ? 'M3' : 'M4';
-    useLogStore.getState().push({ ts: Date.now(), dir: 'info', text: `${kind.toUpperCase()} 接続は未実装（${when}）：${target.name}` });
-    return { ok: false, message: `この接続方式は開発中です（${when} で実装）。デモモードで画面を確認できます。` };
+    if (kind !== 'lan') {
+      this.info(`${kind.toUpperCase()} 接続は未実装（M4）：${target.name}`);
+      return { ok: false, message: 'この接続方式は開発中です（M4 で実装）。デモモードで画面を確認できます。' };
+    }
+    await this.disconnect();
+    const factory = await this.deps.lanSocketFactory();
+    const t = new LanTransport(factory);
+    this.attach(t);
+    useConnectionStore.getState().setSession({ transport: 'lan', deviceName: target.name, model: target.model ?? null, demo: false });
+    try {
+      const res = await t.connect(target);
+      useConnectionStore.getState().setDevice(res.model, res.version);
+      await this.runInitialSync();
+      return { ok: true };
+    } catch (e) {
+      const code = toLinkError(e);
+      await this.disconnect();
+      useConnectionStore.getState().setLink('error', code);
+      return { ok: false, message: LINK_ERROR_MESSAGE[code] };
+    }
   }
 
   async disconnect(reason?: string): Promise<void> {
@@ -59,6 +105,9 @@ export class DeviceController {
     this.releaseAll();
     for (const timer of this.tapTimers) clearTimeout(timer);
     this.tapTimers.clear();
+    this.sync?.stop();
+    this.sync = null;
+    this.syncGeneration += 1;
     await t.disconnect(reason);
     for (const u of this.unsubs) u();
     this.unsubs = [];
@@ -67,10 +116,22 @@ export class DeviceController {
     useConnectionStore.getState().reset();
   }
 
+  /** 表示中タブ（ポーリング対象の切替。SPEC §10-2） */
+  setVisibleTab(tab: VisibleTab): void {
+    this.visibleTab = tab;
+    this.sync?.setVisibleTab(tab);
+  }
+
   /** パラメータ書込み（楽観更新） */
   write(a: Addr, bytes: number[]): void {
     if (!this.transport || !this.online) return;
     useParamStore.getState().optimistic(a, bytes);
+    this.transport.writeParam(a, bytes);
+  }
+
+  /** 書込み専用トリガ（メモリー呼出し・任意コマンド）：楽観更新しない */
+  trigger(a: Addr, bytes: number[]): void {
+    if (!this.transport || !this.online) return;
     this.transport.writeParam(a, bytes);
   }
 
@@ -119,9 +180,57 @@ export class DeviceController {
     this.transport = t;
     this.unsubs.push(
       t.on('param', (a, bytes) => useParamStore.getState().apply(a, bytes)),
-      t.on('state', (s, err) => useConnectionStore.getState().setLink(s, err)),
+      t.on('state', (s, err) => {
+        useConnectionStore.getState().setLink(s, err);
+        if (s === 'syncing' && t.kind !== 'mock' && this.sync) {
+          // 再接続後の再同期（初回は connect() 内で行う）
+          void this.runInitialSync();
+        }
+        if (s === 'reconnecting' || s === 'idle' || s === 'error') this.releaseAll();
+      }),
       t.on('log', (e) => useLogStore.getState().push(e)),
+      t.on('err', (code) => this.sync?.onDeviceError(code)),
+      t.on('rtt', (ms) => useConnectionStore.getState().setRtt(ms)),
     );
+  }
+
+  private async runInitialSync(): Promise<void> {
+    const t = this.transport;
+    const profile = this.profile;
+    if (!t || !profile || t.kind === 'mock') return;
+    const gen = ++this.syncGeneration;
+    this.sync?.stop();
+    const sync = new SyncEngine(
+      t,
+      profile,
+      {
+        getValue: (a) => useParamStore.getState().values[a],
+        pendingEntries: () => Object.entries(useParamStore.getState().pending).map(([k, v]) => ({ addr: Number(k), ts: v.ts })),
+        rollback: (a) => useParamStore.getState().rollback(a),
+      },
+      {
+        link: t.kind === 'lan' ? 'lan' : 'midi',
+        pollMs: () => useSettingsStore.getState().pollMs,
+        onNotice: (m) => this.notify(m),
+        log: (m) => this.info(m),
+      },
+    );
+    sync.setVisibleTab(this.visibleTab);
+    this.sync = sync;
+    const { missing } = await sync.initialSync();
+    if (gen !== this.syncGeneration || this.transport !== t) return;
+    if (missing.length > 0) this.notify(`一部の値が読み取れませんでした（${missing.length} 件）`);
+    useConnectionStore.getState().setLink('online');
+    sync.start();
+  }
+
+  private notify(message: string): void {
+    this.info(message);
+    this.deps.notify?.(message);
+  }
+
+  private info(text: string): void {
+    useLogStore.getState().push({ ts: Date.now(), dir: 'info', text });
   }
 }
 

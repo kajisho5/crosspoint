@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { controller } from '@/core/controller/DeviceController';
 import { haptic } from '@/lib/haptics';
+import { useVisibleTab } from '@/lib/visibleTab';
 import { useConnectionStore } from '@/stores/connection';
 import { useBusInput, useInputLabels, useLayoutProfile, useTallies } from '@/stores/selectors';
 import { useSettingsStore } from '@/stores/settings';
@@ -20,6 +21,7 @@ import { color } from '@/theme/tokens';
 
 /** S1 スイッチャー（ボード S1） */
 export default function SwitcherScreen() {
+  useVisibleTab('switcher');
   const profile = useLayoutProfile();
   const deviceName = useConnectionStore((s) => s.deviceName);
   const version = useConnectionStore((s) => s.version);
