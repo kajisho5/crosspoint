@@ -1,0 +1,14 @@
+import { Stack } from 'expo-router';
+import { DemoBadge } from '@/components/status/ScreenHeader';
+import { color } from '@/theme/tokens';
+
+export default function MoreLayout() {
+  return (
+    <Stack screenOptions={{ contentStyle: { backgroundColor: color.bg }, headerRight: () => <DemoBadge /> }}>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="diagnostics" options={{ title: '送受信ログ' }} />
+      <Stack.Screen name="console" options={{ title: 'コマンド送信' }} />
+      <Stack.Screen name="about" options={{ title: 'このアプリについて' }} />
+    </Stack>
+  );
+}

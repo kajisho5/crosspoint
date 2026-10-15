@@ -1,0 +1,50 @@
+import Constants from 'expo-constants';
+import { ScrollView, View } from 'react-native';
+import { startDemo } from '@/lib/demo';
+import { router } from 'expo-router';
+import { AppText } from '@/components/ui/AppText';
+import { GroupCard } from '@/components/ui/GroupCard';
+import { ListRow } from '@/components/ui/ListRow';
+import { color } from '@/theme/tokens';
+
+/** About：非公式アプリである旨と商標表記（SPEC §11 S5）、デモモード起動（F11） */
+export default function AboutScreen() {
+  const version = Constants.expoConfig?.version ?? '—';
+  return (
+    <ScrollView style={{ flex: 1, backgroundColor: color.bg }} contentInsetAdjustmentBehavior="automatic" contentContainerStyle={{ padding: 16 }}>
+      <View className="mb-6 items-center">
+        <AppText variant="title">SW CROSSPOINT</AppText>
+        <AppText variant="footnote" tone="label2" mono className="mt-1">
+          {`バージョン ${version}`}
+        </AppText>
+      </View>
+      <GroupCard title="対応機種" footer="V-80HD は現在 LAN 接続のみ対応しています。">
+        <ListRow title="V-160HD" subtitle="LAN / USB / Bluetooth" />
+        <ListRow title="V-80HD" subtitle="LAN" />
+      </GroupCard>
+      <GroupCard>
+        <ListRow
+          title="デモモードで試す"
+          icon="play.rectangle"
+          chevron
+          onPress={async () => {
+            if (await startDemo()) router.navigate('/switcher');
+          }}
+        />
+      </GroupCard>
+      <GroupCard title="ご注意">
+        <View className="px-4 py-3" style={{ gap: 8 }}>
+          <AppText variant="footnote">
+            本アプリは非公式アプリです。Roland Corporation が提供・承認・保証するものではありません。
+          </AppText>
+          <AppText variant="footnote" tone="label2">
+            Roland、V-160HD、V-80HD は Roland Corporation の日本およびその他の国における登録商標または商標です。その他の社名・製品名は各社の商標または登録商標です。
+          </AppText>
+          <AppText variant="footnote" tone="label2">
+            本アプリは各機種の公開 Remote Control Guide に記載された制御仕様に基づいて動作します。本番運用の前に必ずリハーサルで動作を確認してください。
+          </AppText>
+        </View>
+      </GroupCard>
+    </ScrollView>
+  );
+}
