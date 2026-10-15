@@ -18,27 +18,40 @@
 |---|---|
 | App Store Connect（アプリ一覧・新規登録） | https://appstoreconnect.apple.com/apps |
 | Bundle ID（Identifiers）の登録・確認 | https://developer.apple.com/account/resources/identifiers/list |
-| Xcode Cloud（アプリ登録後、アプリページの「Xcode Cloud」タブ） | https://appstoreconnect.apple.com/apps → 対象アプリ → Xcode Cloud |
+| Xcode Cloud（ワークフロー編集・ビルド確認。最初の作成は Xcode から） | https://appstoreconnect.apple.com/apps → 対象アプリ → Xcode Cloud |
 | TestFlight（テスター・グループ） | https://appstoreconnect.apple.com/apps → 対象アプリ → TestFlight |
 | 接続する GitHub リポジトリ | https://github.com/kajisho5/crosspoint |
 | Xcode Cloud の利用枠・料金（Developer Program に月 25 時間付帯） | https://developer.apple.com/xcode-cloud/ |
+| Apple 公式：最初のワークフローの作り方 | https://developer.apple.com/documentation/xcode/configuring-your-first-xcode-cloud-workflow |
 
-### 手順
-1. **Bundle ID 登録**：Identifiers → `+` → App IDs → App → Description 任意、Bundle ID = Explicit `com.seventhwell.crosspoint`。Capabilities は無しでよい
-2. **アプリ登録**：App Store Connect → Apps → `+` → 新規 App → プラットフォーム iOS、名前（仮でよい。後で変更可）、プライマリ言語 日本語、Bundle ID = 上記、SKU 任意（例 `crosspoint`）
-3. **Xcode Cloud 開始**：アプリページ → Xcode Cloud タブ → Get Started
-   - ソース管理：GitHub を選び、GitHub 側で App Store Connect の連携を承認（Apple の GitHub App をインストール）→ `kajisho5/crosspoint` を選択
-   - Product：**SWCROSSPOINT**（リポジトリ直下の `SWCROSSPOINT.xcworkspace` が検出される）
-   - 最初のワークフロー（Default）はそのまま作成してよい。作成後に下記へ編集
-4. **ワークフロー編集**（Xcode Cloud タブ → Manage Workflows → Default）
-   - General：Xcode Version = Latest Release、macOS Version = Latest
-   - Environment：Clean = 任意（最初はオン）
-   - Start Conditions：Branch Changes → `main`（Files and Folders は「Any」）
-   - Actions：**Archive – iOS**、Deployment Preparation = **TestFlight (Internal Testing Only)**
-     - 外部テスターにも配るなら TestFlight and App Store にする（審査あり）
-   - Post-Actions：**TestFlight Internal Testing** → グループを選択（先に TestFlight タブで Internal グループを 1 つ作り、自分の Apple ID を追加）
-5. **署名**：Xcode Cloud が自動管理（証明書・プロファイルの登録作業は不要）
-6. **実行**：main に push するか、Xcode Cloud タブの Start Build。初回は `ci_post_clone.sh` で Node 取得と `npm ci`・`pod install` が走る
+### 手順（最初のワークフローは Xcode で作る。Apple 公式：App Store Connect の Web で作れるのは 2 本目以降）
+
+**0. Mac の準備（1 回）**
+```bash
+brew install node@22 cocoapods      # 未導入なら
+git clone https://github.com/kajisho5/crosspoint && cd crosspoint
+npm ci
+(cd ios && pod install)
+open SWCROSSPOINT.xcworkspace        # リポジトリ直下のワークスペースを開く
+```
+Xcode → Settings → Accounts に Apple Developer Program の Apple ID が入っていること。
+
+**1. Xcode で最初のワークフローを作る**
+1. Xcode 左のナビゲータ最後尾「Report navigator」（⌘9）→ 上の **雲アイコン（Cloud）** タブ → **Get Started**
+2. Select a Product：**SWCROSSPOINT** → Next（複数チームに入っている場合はチーム選択）
+3. Review Workflow：既定のまま Next（後で直す）
+4. Grant Access to Your Source Code：**Grant Access** → ブラウザで GitHub にログイン → Apple の GitHub App を `kajisho5/crosspoint` に許可 → Xcode に戻って Next
+5. App Store Connect にアプリ記録が無ければ、ここで作成シートが出る：名前（仮でよい）、Bundle ID `com.seventhwell.crosspoint`、SKU 任意 → 作成（Bundle ID の登録も同時に行われる）
+6. Complete → **Start Build**（ブランチ main）。初回は `ci_scripts/ci_post_clone.sh` が Node 取得・`npm ci`・`pod install` を実行する
+
+**2. TestFlight 配布を足す（App Store Connect の Web でよい）**
+https://appstoreconnect.apple.com/apps → 対象アプリ → **Xcode Cloud** タブ → Manage Workflows → Default
+- Start Conditions：Branch Changes = `main`
+- Actions：Archive – iOS → Deployment Preparation = **TestFlight (Internal Testing Only)**
+- Post-Actions：**TestFlight Internal Testing** → グループを選択（先に TestFlight タブ → Internal Testing → `+` でグループを作り自分の Apple ID を追加）
+- 保存。以後 main への push ごとに TestFlight へ届く
+
+**3. 署名**：Xcode Cloud が自動管理。証明書・プロファイルの作業は不要
 
 ## ビルド番号・バージョン
 - `CFBundleVersion`（ビルド番号）は Xcode Cloud が `CI_BUILD_NUMBER` で自動採番する【推測：Apple の既定動作。初回ビルドの TestFlight 表示で確認】
