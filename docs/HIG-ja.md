@@ -897,7 +897,7 @@ Apple の HIG（https://developer.apple.com/design/human-interface-guidelines �
 
 ### Game controls（ゲームコントロール）
 - 物理コントローラー対応でも既定入力（タッチ等）を併用する（持たない人がいる／慣れた方法を好む）。
-- タッチコントロール（TouchController）：
+- タッチコントロール：仮想ボタンは届きやすい位置に（セーフエリア内、ホームインジケーター・Dynamic Island と重ねない）。頻出コントロールは最小 44x44 pt、メニュー等は最小 28x28 pt。押下状態を視覚＋触覚で示し、動作を伝えるシンボルを使う（A / X / R1 の名称は不可）。移動＝左、カメラ＝右。
 - 物理コントローラー：**既定入力方式へのフォールバックを用意。** **必須ならそれを伝える**（tvOS/visionOS で必須指定可、未接続時は接続を促す）。**ペアリングを自動検出。** **接続中コントローラーのラベル・色に合わせる。** **UI 操作の割当：A＝起動、B＝キャンセル／戻る、L/R ショルダー＝左右のセクション移動、スティック／十字＝選択移動、Home＝システム予約、Menu＝設定／ポーズ。** **複数接続に対応し、要素参照はテキストでなく SF Symbols で。**
 - キーボード：**単キーを優先**（I＝Inventory、Space＝主アクション）。**Apple キーボードで快適さをテスト**（Control → Command 再割当を検討）。**キーの近接を考慮**（WASD 周辺、数字キー）。**キーバインドはカスタマイズ可能に。**
 - 出典: https://developer.apple.com/design/human-interface-guidelines/game-controls
