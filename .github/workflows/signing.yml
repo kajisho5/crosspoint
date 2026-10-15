@@ -1,0 +1,102 @@
+name: signing
+
+# 署名用の証明書を 1 度だけ作り、秘密鍵を暗号化してこのリポジトリに置く（docs/TESTFLIGHT.md「証明書」）。
+# 背景：GitHub の macOS ランナーは毎回まっさらなので、自動署名が毎回新しい証明書を作り、
+# Apple の上限（"maximum number of certificates"）に当たって archive が失敗する。
+# ここで作った鍵と証明書を testflight.yml が取り込めば、Xcode は既存の証明書を使い回す。
+#
+# 必要な Secrets：APPSTORE_KEY_ID / APPSTORE_ISSUER_ID / APPSTORE_P8 / APPLE_TEAM_ID（既存）＋ SIGNING_KEY_PASSWORD（鍵の暗号化パスフレーズ。任意の長い文字列）
+
+on:
+  workflow_dispatch:
+    inputs:
+      revoke:
+        description: '先に失効させる証明書 ID（カンマ区切り）。"ALL" で DEVELOPMENT / DISTRIBUTION をすべて失効（CI が作ったものしか無い前提）。空なら一覧だけ出して作成を試みる'
+        required: false
+        default: ''
+      rotate:
+        description: 'ci/signing が既にあっても作り直す'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: signing
+  cancel-in-progress: false
+
+jobs:
+  certs:
+    runs-on: ubuntu-latest
+    env:
+      ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+      SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check secrets
+        env:
+          P8: ${{ secrets.APPSTORE_P8 }}
+        run: |
+          missing=""
+          [ -n "$ASC_KEY_ID" ] || missing="$missing APPSTORE_KEY_ID"
+          [ -n "$ASC_ISSUER_ID" ] || missing="$missing APPSTORE_ISSUER_ID"
+          [ -n "$P8" ] || missing="$missing APPSTORE_P8"
+          [ -n "$SIGNING_KEY_PASSWORD" ] || missing="$missing SIGNING_KEY_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error::Repository secrets not set:$missing (see docs/TESTFLIGHT.md)"
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/keys"
+          printf '%s\n' "$P8" > "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+          chmod 600 "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --quiet pyjwt cryptography
+      - name: List certificates
+        run: '"$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_certs.py list'
+      - name: Revoke (if requested)
+        if: ${{ github.event.inputs.revoke != '' }}
+        run: |
+          if [ "${{ github.event.inputs.revoke }}" = "ALL" ]; then
+            "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_certs.py revoke-all
+          else
+            "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_certs.py revoke "${{ github.event.inputs.revoke }}"
+          fi
+      - name: Create key and certificates
+        run: |
+          if [ -f ci/signing/ios.key.enc ] && [ "${{ github.event.inputs.rotate }}" != "true" ]; then
+            echo "ci/signing already exists; set rotate=true to replace it"
+            echo "skip=1" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          set -euo pipefail
+          mkdir -p ci/signing "$RUNNER_TEMP/sign"
+          openssl genrsa -out "$RUNNER_TEMP/sign/ios.key" 2048
+          openssl req -new -key "$RUNNER_TEMP/sign/ios.key" -subj "/CN=SW CROSSPOINT CI/O=GitHub Actions" -out "$RUNNER_TEMP/sign/ios.csr"
+          "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_certs.py create DEVELOPMENT "$RUNNER_TEMP/sign/ios.csr" ci/signing/development.cer
+          "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_certs.py create DISTRIBUTION "$RUNNER_TEMP/sign/ios.csr" ci/signing/distribution.cer
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$RUNNER_TEMP/sign/ios.key" -out ci/signing/ios.key.enc -pass env:SIGNING_KEY_PASSWORD
+          rm -f "$RUNNER_TEMP/sign/ios.key"
+          for f in development distribution; do
+            openssl x509 -inform DER -in "ci/signing/$f.cer" -noout -subject -enddate
+          done
+          cat > ci/signing/README.md <<'EOF'
+          # ci/signing
+
+          `signing.yml` が作った iOS 署名用の鍵と証明書。
+
+          - `ios.key.enc` — RSA 秘密鍵（AES-256-CBC、PBKDF2。パスフレーズは GitHub Secret `SIGNING_KEY_PASSWORD`）。平文の鍵はどこにも保存していない
+          - `development.cer` / `distribution.cer` — App Store Connect API で発行した Apple Development / Apple Distribution 証明書（DER）
+          - `testflight.yml` が復号して一時キーチェーンに取り込み、Xcode の自動署名がこの証明書を使い回す（毎回の新規発行を防ぐ）
+
+          期限が切れたら、または漏えいが疑われるときは `signing.yml` を `rotate=true`（必要なら `revoke=ALL`）で実行して作り直す。
+          EOF
+      - name: Commit
+        if: ${{ env.skip != '1' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ci/signing
+          git commit -m "ci(signing): 署名用の鍵（暗号化）と証明書を更新（signing.yml）" || { echo "nothing to commit"; exit 0; }
+          git push

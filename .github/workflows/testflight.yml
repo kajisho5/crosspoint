@@ -129,6 +129,40 @@ jobs:
       - name: pod install
         working-directory: ios
         run: pod install
+      - name: Import signing identity (ci/signing, created by signing.yml)
+        # 毎回新しい証明書を作らせない：暗号化済みの秘密鍵と証明書を一時キーチェーンに入れておくと、自動署名はそれを使う
+        env:
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          if [ ! -f ci/signing/ios.key.enc ]; then
+            echo "::warning::ci/signing が無いので自動署名に任せます（証明書の上限に当たったら signing.yml を実行してください。docs/TESTFLIGHT.md）"
+            exit 0
+          fi
+          if [ -z "$SIGNING_KEY_PASSWORD" ]; then
+            echo "::error::SIGNING_KEY_PASSWORD secret is not set (needed to decrypt ci/signing/ios.key.enc)"
+            exit 1
+          fi
+          set -euo pipefail
+          dir="$RUNNER_TEMP/sign"; mkdir -p "$dir"
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in ci/signing/ios.key.enc -out "$dir/ios.key" -pass env:SIGNING_KEY_PASSWORD
+          kc="$RUNNER_TEMP/build.keychain-db"; kcpass="$(uuidgen)"
+          security create-keychain -p "$kcpass" "$kc"
+          security set-keychain-settings -lut 21600 "$kc"
+          security unlock-keychain -p "$kcpass" "$kc"
+          for f in development distribution; do
+            openssl x509 -inform DER -in "ci/signing/$f.cer" -out "$dir/$f.pem"
+            openssl pkcs12 -export -inkey "$dir/ios.key" -in "$dir/$f.pem" -name "$f" -out "$dir/$f.p12" -passout "pass:$kcpass"
+            security import "$dir/$f.p12" -k "$kc" -P "$kcpass" -T /usr/bin/codesign -T /usr/bin/security -T /usr/bin/productbuild
+          done
+          # Apple WWDR 中間証明書（信頼チェーン）。無いと identity が "valid" にならない
+          curl -fsSL -o "$dir/AppleWWDRCAG3.cer" https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer
+          security import "$dir/AppleWWDRCAG3.cer" -k "$kc" -T /usr/bin/codesign || true
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$kcpass" "$kc" > /dev/null
+          security list-keychains -d user -s "$kc" $(security list-keychains -d user | tr -d '"')
+          security default-keychain -s "$kc"
+          rm -f "$dir/ios.key"
+          echo "識別子（valid identities）:"
+          security find-identity -v -p codesigning "$kc" | sed 's/[0-9A-F]\{40\}/<sha1>/'
       - name: Set build number (CFBundleVersion = run number)
         # Expo prebuild は CFBundleVersion を文字列 "1" で書くため、CURRENT_PROJECT_VERSION では上書きされない。Info.plist を直接書き換える
         run: |

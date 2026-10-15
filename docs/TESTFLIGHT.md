@@ -25,6 +25,17 @@ Xcode Cloud（`docs/XCODE-CLOUD.md`）は初回ワークフロー作成に Xcode
 | `APPSTORE_ISSUER_ID` | 4 の Issuer ID |
 | `APPSTORE_KEY_ID` | 4 の Key ID |
 | `APPSTORE_P8` | 4 の .p8 の中身。`-----BEGIN PRIVATE KEY-----` から `-----END PRIVATE KEY-----` まで全部 |
+| `SIGNING_KEY_PASSWORD` | 署名用秘密鍵の暗号化パスフレーズ（自分で決めた長い文字列。下の「証明書」で使う） |
+
+## 証明書（1 度だけ。3 回目の TestFlight で `maximum number of certificates` が出た対策）
+GitHub の macOS ランナーは毎回まっさらなので、自動署名が実行のたびに新しい Apple Development / Distribution 証明書を発行し、Apple の上限に当たる。`signing.yml` で鍵と証明書を 1 組作り、秘密鍵を暗号化して `ci/signing/` にコミットしておくと、`testflight.yml` がそれを一時キーチェーンに取り込み、以後は使い回す。
+
+1. Secrets に `SIGNING_KEY_PASSWORD` を追加（任意の長い文字列。忘れたら `rotate=true` で作り直せばよい）
+2. https://github.com/kajisho5/crosspoint/actions/workflows/signing.yml → **Run workflow**。`revoke` に **`ALL`** と入れる（この Apple ID には Mac が無く、証明書は CI が作ったものだけなので、全部失効して問題ない。cutline の CI も次回に作り直すだけ）
+3. 成功すると bot が `ci/signing/{ios.key.enc, development.cer, distribution.cer}` をコミットする。以後は TestFlight を普通に実行
+4. 証明書は 1 年で期限切れ → `signing.yml` を `rotate=true` で再実行
+
+平文の秘密鍵はランナーの一時領域にしか置かず、リポジトリと Secrets には暗号化したものしか残らない。
 
 ## 実行
 - https://github.com/kajisho5/crosspoint/actions/workflows/testflight.yml → **Run workflow**（main）
@@ -46,6 +57,8 @@ Xcode Cloud（`docs/XCODE-CLOUD.md`）は初回ワークフロー作成に Xcode
 | `GET /v1/apps -> HTTP 401` | Key ID / Issuer ID / .p8 の組合せ違い、または鍵が失効 |
 | `No App Store Connect app with bundle ID` | 3 のアプリ記録が無い、Bundle ID 不一致 |
 | `/v1/users -> HTTP 403` | 鍵が Admin でない。署名の自動発行には Admin が要る |
-| archive で署名エラー（`No profiles for …` 等） | 2 の Bundle ID 未登録、Developer Program の規約未同意（https://developer.apple.com/account の警告を確認）、証明書上限（Apple Distribution は 3 枚まで → https://developer.apple.com/account/resources/certificates/list で古いものを失効） |
+| archive で署名エラー（`No profiles for …` 等） | 2 の Bundle ID 未登録、Developer Program の規約未同意（https://developer.apple.com/account の警告を確認） |
+| `Choose a certificate to revoke. Your account has reached the maximum number of certificates` | ランナーが毎回証明書を作って上限に到達。上の「証明書」の手順（`signing.yml` を `revoke=ALL` で実行）。手動なら https://developer.apple.com/account/resources/certificates/list で失効 |
+| `SIGNING_KEY_PASSWORD secret is not set` | `ci/signing` があるのにパスフレーズが未登録。Secrets に追加するか、`ci/signing` を消す |
 | エラー 90725 | Xcode 26 が選ばれていない（ランナーイメージ変更時） |
 | アップロード後 TestFlight に出ない | 処理待ち。`ITSAppUsesNonExemptEncryption=false` 設定済みなので輸出コンプライアンスの質問は出ない |
