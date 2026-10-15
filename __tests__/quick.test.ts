@@ -1,5 +1,5 @@
 import { addr } from '@/core/codec/value';
-import { EMBEDDED_DIGITAL_GAIN_DB, embeddedAudioPreset, hdmiOut3Assign, sdiLevelAPreset } from '@/core/params/quick';
+import { EMBEDDED_DIGITAL_GAIN_DB, auxBuses, embeddedAudioPreset, groupAuxLabels, hdmiOut3Assign, sdiLevelAPreset } from '@/core/params/quick';
 
 /** F14 クイック操作：カタログから組み立てる一括書込みの内容（アドレス・バイト列）を SPEC §9-1 / ガイドの表と突き合わせる */
 describe('クイック操作（V-160HD）', () => {
@@ -50,5 +50,37 @@ describe('クイック操作（V-80HD）', () => {
     const a = hdmiOut3Assign('V-80HD')!;
     expect(a.addr).toBe(addr(0x00, 0x00, 0x12));
     expect(a.choices.map((c) => c.index)).toEqual([0, 2, 6]);
+  });
+});
+
+describe('AUX バス（F15）', () => {
+  test('V-160HD：AUX 1 本（00 00 11、32 ソース）。出力割当 7 つで AUX = index 3', () => {
+    const b = auxBuses('V-160HD');
+    expect(b).toHaveLength(1);
+    expect(b[0]!.name).toBe('AUX');
+    expect(b[0]!.addr).toBe(addr(0x00, 0x00, 0x11));
+    expect(b[0]!.param.labels).toHaveLength(32);
+    expect(b[0]!.outputs.map((o) => o.name)).toEqual(['HDMI OUTPUT 1', 'HDMI OUTPUT 2', 'HDMI OUTPUT 3', 'SDI OUTPUT 1', 'SDI OUTPUT 2', 'SDI OUTPUT 3', 'USB OUTPUT']);
+    expect(b[0]!.outputs.every((o) => o.auxIndex === 3)).toBe(true);
+    const sec = groupAuxLabels(b[0]!.param.labels);
+    expect(sec.map((s) => [s.title, s.items.length])).toEqual([
+      ['HDMI', 8],
+      ['SDI', 8],
+      ['STILL', 16],
+    ]);
+  });
+
+  test('V-80HD：Aux 1 / Aux 2（00 00 18 / 19）。出力割当では Aux 1 = 3、Aux 2 = 4', () => {
+    const b = auxBuses('V-80HD');
+    expect(b.map((x) => [x.name, x.addr])).toEqual([
+      ['AUX 1', addr(0x00, 0x00, 0x18)],
+      ['AUX 2', addr(0x00, 0x00, 0x19)],
+    ]);
+    expect(b[0]!.outputs.every((o) => o.auxIndex === 3)).toBe(true);
+    expect(b[1]!.outputs.every((o) => o.auxIndex === 4)).toBe(true);
+    expect(b[1]!.outputs.map((o) => o.name)).toContain('STREAM&RECORD');
+    const sec = groupAuxLabels(b[0]!.param.labels);
+    expect(sec.map((s) => s.title)).toEqual(['HDMI', 'SDI', 'STILL', 'INPUT', 'その他']);
+    expect(sec.find((s) => s.title === 'その他')!.items.map((i) => i.label)).toEqual(['Video Player/SRT In']);
   });
 });

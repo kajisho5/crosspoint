@@ -40,7 +40,7 @@ export const v80hd: DeviceProfile = {
   sysexModelId: [0x01, 0x05, 0x14],
   passwordLength: 8,
   lanAck: 'asciiACK',
-  capabilities: { cutAuto: false, tallySubscribe: false, usb: false, ble: false, split: true },
+  capabilities: { cutAuto: false, tallySubscribe: false, usb: false, ble: false, split: true, macro: false, sequencer: false },
 
   inputCount: 16,
   bankSize: 8,
@@ -91,7 +91,11 @@ export const v80hd: DeviceProfile = {
     tallyBlockSize: 57,
     cut: null,
     auto: null,
+    // V-80HD のマクロ実行アドレス・シーケンサーのパネルスイッチはガイド未記載・公開 OSS にも無い【不明】
+    macroTrigger: null,
+    sequencer: null,
   },
+  macroCount: 100,
 
   encodeInput: (n) => 0x28 + n,
   decodeInput: (value, assignOf) => {

@@ -22,6 +22,9 @@ jest.mock('expo-router', () => ({
 import MenuScreen from '@/app/(tabs)/more/menu/index';
 import MenuGroupScreen from '@/app/(tabs)/more/menu/[group]';
 import QuickScreen from '@/app/(tabs)/more/quick';
+import AuxScreen from '@/app/(tabs)/more/aux';
+import MacroScreen from '@/app/(tabs)/more/macro';
+import { useLogStore } from '@/stores/log';
 import { Alert } from 'react-native';
 import { addr } from '@/core/codec/value';
 import { getCatalog, paramAddr } from '@/core/params';
@@ -283,5 +286,79 @@ describe('F14 クイック操作', () => {
     expect(v[addr(0x00, 0x16, 0x00)]).toBe(0);
     expect(spy).toHaveBeenCalledTimes(2);
     spy.mockRestore();
+  });
+});
+
+describe('F15 AUX モード', () => {
+  test('V-160HD：ソースボタンを押すと AUX SOURCE（00 00 11）に書かれ、選択中になる', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-160HD');
+    });
+    await render(<AuxScreen />);
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(screen.getByText('AUX ソース')).toBeTruthy();
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText(/^AUX SDI 3/));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x11)]).toBe(10); // HDMI 1-8 = 0-7、SDI 3 = 10
+    expect(screen.getByLabelText(/^AUX SDI 3.*選択中$/)).toBeTruthy();
+    expect(screen.getByText('現在：SDI 3')).toBeTruthy();
+  });
+
+  test('V-80HD：Aux 1 / Aux 2 の切替が出て、Aux 2 に書ける', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-80HD');
+    });
+    await render(<AuxScreen />);
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(screen.getByLabelText('AUX バス')).toBeTruthy();
+    await act(async () => {
+      fireEvent(screen.getByLabelText('AUX バス'), 'change', { nativeEvent: { selectedSegmentIndex: 1 } });
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText(/^AUX 2 Still 5/));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x19)]).toBe(12); // HDMI 1-4, SDI 1-4, Still 5 = 12
+  });
+});
+
+describe('F16 マクロ・シーケンサー', () => {
+  test('V-160HD：マクロ 7 をタップすると 50 05 04 に 06 が送られ、シーケンサー NEXT は押下 01・解放 00', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-160HD');
+    });
+    const tx = () => useLogStore.getState().lines.filter((l) => l.dir === 'tx').map((l) => l.text);
+    await render(<MacroScreen />);
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('マクロ 7 を実行'));
+    });
+    expect(tx()).toContain('DTH:500504,06;');
+    expect(screen.getByText('最後に実行：マクロ 7')).toBeTruthy();
+    await act(async () => {
+      fireEvent(screen.getByLabelText('シーケンサー NEXT'), 'pressIn');
+    });
+    await act(async () => {
+      fireEvent(screen.getByLabelText('シーケンサー NEXT'), 'pressOut');
+    });
+    expect(tx().filter((t) => t.startsWith('DTH:0B0052,'))).toEqual(['DTH:0B0052,01;', 'DTH:0B0052,00;']);
+  });
+
+  test('V-80HD：アドレス不明なので画面は説明だけ', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-80HD');
+    });
+    await render(<MacroScreen />);
+    expect(screen.getByText(/マクロ実行・シーケンサーのアドレスは公開資料に無い/)).toBeTruthy();
+    expect(screen.queryByLabelText('マクロ 1 を実行')).toBeNull();
   });
 });

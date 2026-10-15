@@ -40,7 +40,7 @@ export const v160hd: DeviceProfile = {
   sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x02],
   passwordLength: 4,
   lanAck: 'byte06',
-  capabilities: { cutAuto: true, tallySubscribe: true, usb: true, ble: true, split: true },
+  capabilities: { cutAuto: true, tallySubscribe: true, usb: true, ble: true, split: true, macro: true, sequencer: true },
 
   inputCount: 20,
   bankSize: 10,
@@ -94,7 +94,12 @@ export const v160hd: DeviceProfile = {
     tallyBlockSize: 42,
     cut: addr(0x0b, 0x00, 0x1e),
     auto: addr(0x0b, 0x00, 0x1f),
+    // Companion roland-v160hd の run_macro（'500504' に macro-1 を書く）【事実：公開 OSS、MIT】。ガイド未記載なので実機で確認（§13）
+    macroTrigger: addr(0x50, 0x05, 0x04),
+    // SPEC §9-2：0B004F–52 SEQUENCER ON/AUTO/PREV/NEXT SW【事実：Companion 定数】
+    sequencer: { on: addr(0x0b, 0x00, 0x4f), auto: addr(0x0b, 0x00, 0x50), prev: addr(0x0b, 0x00, 0x51), next: addr(0x0b, 0x00, 0x52) },
   },
+  macroCount: 100,
 
   encodeInput: (n) => 0x1f + n,
   decodeInput: (value, assignOf) => {

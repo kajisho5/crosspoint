@@ -29,6 +29,10 @@ export interface Capabilities {
   usb: boolean;
   ble: boolean;
   split: boolean;
+  /** マクロ実行（`macroTrigger` が分かっている機種だけ真）。V-160HD は Companion の run_macro（50 05 04）【事実：公開 OSS】 */
+  macro: boolean;
+  /** シーケンサーのパネルスイッチ（ON/AUTO/PREV/NEXT）が分かっている機種だけ真 */
+  sequencer: boolean;
 }
 
 export interface KeyAddrs {
@@ -88,7 +92,13 @@ export interface DeviceProfile {
     tallyBlockSize: number;
     cut: Addr | null;
     auto: Addr | null;
+    /** マクロ実行トリガ（値 = マクロ番号 − 1、書込み専用）。不明な機種は null */
+    macroTrigger: Addr | null;
+    /** シーケンサーのパネルスイッチ（モーメンタリ）。不明な機種は null */
+    sequencer: { on: Addr; auto: Addr; prev: Addr; next: Addr } | null;
   };
+  /** マクロ数（capabilities.macro が真のとき） */
+  macroCount: number;
 
   /** INPUT n（1 始まり）→ PGM/PST に書く値 */
   encodeInput: (n: number) => number;

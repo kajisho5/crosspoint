@@ -48,9 +48,11 @@ Roland V-160HD / V-80HD を iPhone から LAN（Wi-Fi）・USB・Bluetooth の3�
 | F12 | **INPUT 設定シート**（v1.2）：クロスポイント長押し → 割当ソース（HDMI/SDI/STILL）の変更と 8 文字ラベル編集（`00 00 xx` INPUT ASSIGN と LABEL EDIT） |
 | F13 | **メニュー（全パラメータ）**（v1.2）：Remote Control Guide の Parameter Address Map 全項目。`tools/guide/parse_guide.py` → `normalize.py` で `core/params/*.params.json` を生成し、`components/params/ParamRow` が種別（bool/enum/int/level/text/exec）ごとの UI を出す。CAMERA CONTROL は PTZ パッド（押下で方向、離すと STOP）。表示中グループは `SyncEngine.setExtraPoll` で追加ポーリング |
 | F14 | **クイック操作**（v1.2）：①HDMI OUT 3 の出力割当を PROGRAM / PREVIEW / MULTI-VIEW の 3 ボタンで切替（VIDEO ASSIGN `00 00 0C`、V-80HD は `00 00 12`）②一括設定「HDMI/SDI 入力音声を −16.8 dB・LR MIX に」（AUDIO INPUT の HDMI IN / SDI IN 全系統：DIGITAL GAIN `01 xx 01` = 7EH 58H、MONO `01 xx 0A` = 03H）③一括設定「SDI OUT をすべて LEVEL-A に」（VIDEO OUTPUT (SDI) `00 xx 00` = 00H）。一括設定は確認ダイアログ後に CommandQueue 経由で順次書込み。定義は `core/params/quick.ts` がカタログから組み立て、該当パラメータが無い機種では出さない（§9-5） |
+| F15 | **AUX**（v1.2）：AUX バスのソースをクロスポイント風ボタンで切替（VIDEO ASSIGN の AUX SOURCE `00 00 11`。V-80HD は Aux 1/2 `00 00 18/19` を Segmented で切替）。HDMI / SDI / STILL / INPUT / その他に分けて 4 列、8 文字ラベルがあれば併記。そのバスを出している出力割当（OUTPUT ASSIGN が AUX のもの）をフッターに表示。`core/params/quick.ts` の `auxBuses()` がカタログから組み立てる |
+| F16 | **マクロ・シーケンサー**（v1.2）：マクロ 1–100 をタップで実行（`addrs.macroTrigger` = `50 05 04` に番号−1 を書く。**ガイド未記載**。根拠は Companion roland-v160hd の `run_macro`【事実：公開 OSS】→ §13 で実機確認）。シーケンサー ON/AUTO/PREV/NEXT は §9-2 のパネルスイッチ `0B004F–52`（モーメンタリ）。マクロ名の取得アドレスは無いので番号のみ。V-80HD は両方【不明】のため capabilities.macro/sequencer = false で画面を出さない |
 
 ### v1 非対象
-映像モニター（USB UVC）、マクロ／シーケンサー編集（Remote Control Guide にアドレスが無い）、RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。PTZ と全設定メニューは v1.2 で F13 として対象に入れた。
+映像モニター（USB UVC）、マクロ／シーケンサーの**編集**（アドレスが無い。実行は F16）、RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。PTZ と全設定メニューは v1.2 で F13 として対象に入れた。
 
 ---
 
@@ -442,6 +444,8 @@ AUDIO INPUT の x（00–14）割当：AUDIO IN 1, 2, 3/4, USB IN, Bluetooth IN,
 | PinP&KEY / DSK / SPLIT | 4 / 2 / 2 | 2 / 1 / 2 |
 | メモリー | 30（「メモリー」） | 32（画面表記は「シーン」） |
 | USB / BLE | 有効 | §13 の確認まで**無効**（S0 で「LAN のみ対応」と表示） |
+| AUX（F15） | 1 本（`000011`） | 2 本（`000018/19`） |
+| マクロ実行 / シーケンサー（F16） | `500504`【Companion】/ `0B004F–52` | **非表示**（両方【不明】） |
 
 - 使えない機能はボタンを置かない（disabled で並べない）。タブ自体は隠さず、内容で理由を説明する（HIG：タブを隠さない・無効にしない）。
 
@@ -521,6 +525,9 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - [ ] BLE：アプリ復帰時に端点が online のままか（自動再接続可否）
 - [ ] AUDIO INPUT x の対応、LABEL の xx 対応と文字コード
 - [ ] AUTO SW がタップ（01→150ms→00）で正しく動くか
+- [ ] **マクロ実行 `DTH:500504,nn;`**（nn = 番号−1）で本体のマクロが走るか（Companion 由来・ガイド未記載）。`RQH:500504,000001` の応答も記録
+- [ ] シーケンサー `0B004F–52` の押下/解放で本体が反応するか
+- [ ] F14 一括設定：無信号／モノの HDMI/SDI 入力で MONO=LR MIX が ERR:4 になるか
 **V-80HD（先に実機確認できる。M3.5 で実施）**
 - [ ] LAN：認証文字列（`Enter password:` / `Welcome to V-80HD.` か）、PW 8 文字の送り方、`ACK;` の実体（stx 付き文字列か）
 - [ ] LAN：自発通知の有無（本体で PGM を変えたとき `DTH:001500,..` が来るか）

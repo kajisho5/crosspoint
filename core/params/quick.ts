@@ -28,7 +28,7 @@ export interface QuickPreset {
 
 export const EMBEDDED_DIGITAL_GAIN_DB = -16.8;
 
-const norm = (s: string) => s.toUpperCase().replace(/[\s_()*0-9]/g, '').replace(/-/g, '');
+const norm = (s: string) => s.toUpperCase().replace(/[\s_()*-]/g, '');
 
 function findGroupByTitle(model: ModelId, re: RegExp): ParamGroup | undefined {
   return getCatalog(model).groups.find((g) => re.test(g.title.toUpperCase()));
@@ -98,4 +98,46 @@ export function hdmiOut3Assign(model: ModelId): OutputAssign | null {
   const choices = HDMI_OUT3_CHOICES.map((label) => ({ label, index: enumIndexOf(p, label) })).filter((c) => c.index >= 0);
   if (choices.length === 0) return null;
   return { param: p, addr: paramAddr(p, null as ParamInstance | null), choices };
+}
+
+/** AUX バス（VIDEO ASSIGN の AUX SOURCE / Aux n Source）と、そのバスを出している出力割当 */
+export interface AuxBus {
+  /** 表示名（"AUX" / "AUX 1" …） */
+  name: string;
+  param: EnumParam;
+  addr: Addr;
+  /** 出力割当のうち、この AUX を選べるもの（auxIndex = その AUX の列挙 index） */
+  outputs: { name: string; param: EnumParam; addr: Addr; auxIndex: number }[];
+}
+
+export function auxBuses(model: ModelId): AuxBus[] {
+  const g = findGroupByTitle(model, /^VIDEO ASSIGN$/);
+  if (!g) return [];
+  const outputs = g.params.filter((p): p is EnumParam => p.kind === 'enum' && /ASSIGN$/i.test(p.name) && !/^INPUT \d+ ASSIGN$/i.test(p.name));
+  const buses: AuxBus[] = [];
+  for (const p of g.params) {
+    const m = /^AUX\s*(\d*)\s*SOURCE$/i.exec(p.name);
+    if (!m || p.kind !== 'enum') continue;
+    const n = m[1] ?? '';
+    const name = n ? `AUX ${n}` : 'AUX';
+    const outs = outputs
+      .map((o) => ({ name: o.name.replace(/\s*ASSIGN$/i, '').toUpperCase(), param: o, addr: paramAddr(o, null), auxIndex: enumIndexOf(o, name) }))
+      .filter((o) => o.auxIndex >= 0);
+    buses.push({ name, param: p, addr: paramAddr(p, null), outputs: outs });
+  }
+  return buses;
+}
+
+/** 列挙ラベルを HDMI / SDI / STILL / その他に分ける（カタログの並び順は保つ） */
+export function groupAuxLabels(labels: readonly string[]): { title: string; items: { index: number; label: string }[] }[] {
+  const order = ['HDMI', 'SDI', 'STILL', 'INPUT', 'その他'];
+  const map = new Map<string, { index: number; label: string }[]>();
+  labels.forEach((label, index) => {
+    const u = label.toUpperCase();
+    const key = u.startsWith('HDMI') ? 'HDMI' : u.startsWith('SDI') ? 'SDI' : u.startsWith('STILL') ? 'STILL' : /^INPUT \d+$/.test(u) ? 'INPUT' : 'その他';
+    const arr = map.get(key) ?? [];
+    arr.push({ index, label });
+    map.set(key, arr);
+  });
+  return order.filter((k) => map.has(k)).map((k) => ({ title: k, items: map.get(k) ?? [] }));
 }
