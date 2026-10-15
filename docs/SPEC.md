@@ -536,7 +536,7 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - **v2 候補**：公式アプリの機能ブロック（AUX、OUTPUT FADE、INPUT ASSIGN 編集、オーディオ EQ/Comp、メモリー保存、MACRO、SEQUENCER、GPO、PTZ、USB MONITOR）は `docs/ANALYSIS-official-app.md` §6-2 に整理。v1 のスコープは変えない。
 - **0B 領域（パネルスイッチ）の正式リスト**：Roland サポートは「一部ボタンはガイド未記載、全リストはサポートへ問い合わせ」としている。V-80HD 分はオーナーから Roland Backstage 経由で請求する（入手経緯を docs に記録）。
 - App Review：審査員は実機を持たないため、審査メモに「起動画面の『デモモードで試す』で全機能を確認できる」と記載する（F11）。
-- Bundle ID は仮 `com.seventhwell.crosspoint`（オーナー確認後に確定）。
+- Bundle ID は `com.seventhwell.crospoint`（2026-10-16 確定。Apple 側の登録時の綴りに合わせた。"s" が 1 つなのは誤りではない）。
 
 ## 15. マイルストーン（各完了条件＝テスト緑＋型チェック緑）
 | M | 内容 | 完了条件 |

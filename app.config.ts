@@ -8,7 +8,7 @@ const config: ExpoConfig = {
   orientation: 'portrait',
   userInterfaceStyle: 'automatic',
   ios: {
-    bundleIdentifier: 'com.seventhwell.crosspoint',
+    bundleIdentifier: 'com.seventhwell.crospoint',
     supportsTablet: true,
     infoPlist: {
       NSLocalNetworkUsageDescription: '同じネットワーク上のビデオスイッチャーに接続するために使用します',

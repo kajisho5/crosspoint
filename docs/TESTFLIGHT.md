@@ -12,7 +12,7 @@ Xcode Cloud（`docs/XCODE-CLOUD.md`）は初回ワークフロー作成に Xcode
 | # | 何を | どこで |
 |---|---|---|
 | 1 | Team ID を確認 | https://developer.apple.com/account → Membership details（10 桁英数） |
-| 2 | Bundle ID 登録 `com.seventhwell.crosspoint` | https://developer.apple.com/account/resources/identifiers/list → `+` → App IDs → App → Explicit |
+| 2 | Bundle ID 登録 `com.seventhwell.crospoint` | https://developer.apple.com/account/resources/identifiers/list → `+` → App IDs → App → Explicit |
 | 3 | アプリ記録を作成 | https://appstoreconnect.apple.com/apps → `+` → 新規 App（iOS、名前は仮、Bundle ID = 2、SKU 任意） |
 | 4 | App Store Connect API キー（cutline のものがあれば流用可） | https://appstoreconnect.apple.com/access/integrations/api → Team Keys → `+` → アクセス **Admin** → `.p8` をダウンロード（1 回しか落とせない） |
 | 5 | TestFlight 内部グループ | App Store Connect → アプリ → TestFlight → Internal Testing → `+` → 自分の Apple ID を追加、自動配信オン |

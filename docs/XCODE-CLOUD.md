@@ -41,7 +41,7 @@ Xcode → Settings → Accounts に Apple Developer Program の Apple ID が入�
 2. Select a Product：**SWCROSSPOINT** → Next（複数チームに入っている場合はチーム選択）
 3. Review Workflow：既定のまま Next（後で直す）
 4. Grant Access to Your Source Code：**Grant Access** → ブラウザで GitHub にログイン → Apple の GitHub App を `kajisho5/crosspoint` に許可 → Xcode に戻って Next
-5. App Store Connect にアプリ記録が無ければ、ここで作成シートが出る：名前（仮でよい）、Bundle ID `com.seventhwell.crosspoint`、SKU 任意 → 作成（Bundle ID の登録も同時に行われる）
+5. App Store Connect にアプリ記録が無ければ、ここで作成シートが出る：名前（仮でよい）、Bundle ID `com.seventhwell.crospoint`、SKU 任意 → 作成（Bundle ID の登録も同時に行われる）
 6. Complete → **Start Build**（ブランチ main）。初回は `ci_scripts/ci_post_clone.sh` が Node 取得・`npm ci`・`pod install` を実行する
 
 **2. TestFlight 配布を足す（App Store Connect の Web でよい）**

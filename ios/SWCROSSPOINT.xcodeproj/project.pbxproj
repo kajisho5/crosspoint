@@ -106,7 +106,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				8D2E3464C8404824B4AD1B4D /* [Expo Dev Launcher] Strip Local Network Keys for Release */,
+				A08E49D2C7AA4A2887B77E8D /* [Expo Dev Launcher] Strip Local Network Keys for Release */,
 			);
 			buildRules = (
 			);
@@ -223,7 +223,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SWCROSSPOINT/Pods-SWCROSSPOINT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D2E3464C8404824B4AD1B4D /* [Expo Dev Launcher] Strip Local Network Keys for Release */ = {
+		A08E49D2C7AA4A2887B77E8D /* [Expo Dev Launcher] Strip Local Network Keys for Release */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -309,7 +309,7 @@ fi
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.seventhwell.crosspoint";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.seventhwell.crospoint";
 				PRODUCT_NAME = "SWCROSSPOINT";
 				SWIFT_OBJC_BRIDGING_HEADER = "SWCROSSPOINT/SWCROSSPOINT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -339,7 +339,7 @@ fi
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.seventhwell.crosspoint";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.seventhwell.crospoint";
 				PRODUCT_NAME = "SWCROSSPOINT";
 				SWIFT_OBJC_BRIDGING_HEADER = "SWCROSSPOINT/SWCROSSPOINT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

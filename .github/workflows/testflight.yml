@@ -16,7 +16,7 @@ concurrency:
 env:
   CI: 1
   EXPO_NO_TELEMETRY: 1
-  BUNDLE_ID: com.seventhwell.crosspoint
+  BUNDLE_ID: com.seventhwell.crospoint
 
 jobs:
   upload:

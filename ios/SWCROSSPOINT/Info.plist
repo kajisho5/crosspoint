@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>crosspoint</string>
-          <string>com.seventhwell.crosspoint</string>
+          <string>com.seventhwell.crospoint</string>
         </array>
       </dict>
       <dict>
