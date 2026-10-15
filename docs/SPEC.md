@@ -45,9 +45,12 @@ Roland V-160HD / V-80HD を iPhone から LAN（Wi-Fi）・USB・Bluetooth の3�
 | F9 | 操作ロック、ハプティクス、スリープ防止 |
 | F10 | 診断：送受信ログ、任意コマンド送信、アドレス読取り（RQH/RQ1）、受信通知の可視化 |
 | F11 | **デモモード**：S0 と About から起動できる利用者向け機能。MockTransport（§12-2）で全画面を実機なしで操作できる。画面上部に常時「デモ」バッジ。App Review・スクリーンショット・練習用 |
+| F12 | **INPUT 設定シート**（v1.2）：クロスポイント長押し → 割当ソース（HDMI/SDI/STILL）の変更と 8 文字ラベル編集（`00 00 xx` INPUT ASSIGN と LABEL EDIT） |
+| F13 | **メニュー（全パラメータ）**（v1.2）：Remote Control Guide の Parameter Address Map 全項目。`tools/guide/parse_guide.py` → `normalize.py` で `core/params/*.params.json` を生成し、`components/params/ParamRow` が種別（bool/enum/int/level/text/exec）ごとの UI を出す。CAMERA CONTROL は PTZ パッド（押下で方向、離すと STOP）。表示中グループは `SyncEngine.setExtraPoll` で追加ポーリング |
+| F14 | **クイック操作**（v1.2）：①HDMI OUT 3 の出力割当を PROGRAM / PREVIEW / MULTI-VIEW の 3 ボタンで切替（VIDEO ASSIGN `00 00 0C`、V-80HD は `00 00 12`）②一括設定「HDMI/SDI 入力音声を −16.8 dB・LR MIX に」（AUDIO INPUT の HDMI IN / SDI IN 全系統：DIGITAL GAIN `01 xx 01` = 7EH 58H、MONO `01 xx 0A` = 03H）③一括設定「SDI OUT をすべて LEVEL-A に」（VIDEO OUTPUT (SDI) `00 xx 00` = 00H）。一括設定は確認ダイアログ後に CommandQueue 経由で順次書込み。定義は `core/params/quick.ts` がカタログから組み立て、該当パラメータが無い機種では出さない（§9-5） |
 
 ### v1 非対象
-映像モニター（USB UVC）、マクロ／シーケンサー編集、PTZ、全設定メニュー、RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。
+映像モニター（USB UVC）、マクロ／シーケンサー編集（Remote Control Guide にアドレスが無い）、RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。PTZ と全設定メニューは v1.2 で F13 として対象に入れた。
 
 ---
 
@@ -537,6 +540,8 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - **0B 領域（パネルスイッチ）の正式リスト**：Roland サポートは「一部ボタンはガイド未記載、全リストはサポートへ問い合わせ」としている。V-80HD 分はオーナーから Roland Backstage 経由で請求する（入手経緯を docs に記録）。
 - App Review：審査員は実機を持たないため、審査メモに「起動画面の『デモモードで試す』で全機能を確認できる」と記載する（F11）。
 - Bundle ID は `com.seventhwell.crospoint`（2026-10-16 確定。Apple 側の登録時の綴りに合わせた。"s" が 1 つなのは誤りではない）。
+- **F14 一括設定の実機確認項目**：V-160HD ガイドの MONO は「(*3) Stereo audio only」。HDMI/SDI 入力はステレオなので対象【事実：ガイド脚注】だが、信号が無い／モノの入力で ERR:4 が返るかは【不明】（返ってもロールバックされ他の系統には影響しない）。V-160HD ガイドの USB OUTPUT ASSIGN はアドレスが `00 01 10` と記載されている（カタログもそのまま）。前後の行（`00 00 0F`・`00 00 11`）から `00 00 10` の誤植の可能性【推測】。実機で RQH して確定すること。
+- **他機種（VR-120HD 等）対応**：追加する機種ごとに (1) 公式 Remote Control Guide PDF → `tools/guide` でカタログ生成（F13/F14 はそれだけで動く）(2) `core/profiles/` にプロファイル（PGM/PST・タリー・オーディオ・メモリーのアドレス、MIDI Model ID、capabilities）(3) モックサーバーの `--model` 追加。PDF は shell から roland.com を取得できないためオーナーが添付する。
 
 ## 15. マイルストーン（各完了条件＝テスト緑＋型チェック緑）
 | M | 内容 | 完了条件 |

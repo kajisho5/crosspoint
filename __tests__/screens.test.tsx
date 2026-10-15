@@ -21,6 +21,9 @@ jest.mock('expo-router', () => ({
 }));
 import MenuScreen from '@/app/(tabs)/more/menu/index';
 import MenuGroupScreen from '@/app/(tabs)/more/menu/[group]';
+import QuickScreen from '@/app/(tabs)/more/quick';
+import { Alert } from 'react-native';
+import { addr } from '@/core/codec/value';
 import { getCatalog, paramAddr } from '@/core/params';
 
 afterEach(async () => {
@@ -223,5 +226,62 @@ describe('F13 設定メニュー（全パラメータ）', () => {
       await new Promise((r) => setTimeout(r, 40));
     });
     expect(useParamStore.getState().values[a]).toBe(0);
+  });
+});
+
+describe('F14 クイック操作', () => {
+  beforeEach(async () => {
+    await act(async () => {
+      await controller.connectDemo('V-160HD');
+    });
+  });
+
+  test('HDMI OUT 3 を PREVIEW / MULTI-VIEW に切り替えると 00 00 0C に書かれる', async () => {
+    await render(<QuickScreen />);
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('HDMI OUT 3 を PREVIEW に'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x0c)]).toBe(2);
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('HDMI OUT 3 を MULTI-VIEW に'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x0c)]).toBe(4);
+    expect(screen.getByText(/現在：MULTI-VIEW/)).toBeTruthy();
+  });
+
+  test('一括設定：確認で「実行」すると 16 系統の DIGITAL GAIN / MONO と SDI OUT 1–3 の LEVEL-A が書かれる', async () => {
+    const spy = jest.spyOn(Alert, 'alert').mockImplementation((_t, _m, buttons) => {
+      const run = buttons?.find((b) => b.text === '実行');
+      run?.onPress?.();
+    });
+    await render(<QuickScreen />);
+    await act(async () => {
+      fireEvent.press(screen.getByText('HDMI/SDI 入力音声を −16.8 dB・LR MIX に'));
+    });
+    await act(async () => {
+      fireEvent.press(screen.getByText('SDI OUT をすべて LEVEL-A に'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 200));
+    });
+    const v = useParamStore.getState().values;
+    // HDMI IN 1（xx 05H）・SDI IN 8（xx 14H）
+    expect([v[addr(0x01, 0x05, 0x01)], v[addr(0x01, 0x05, 0x02)]]).toEqual([0x7e, 0x58]);
+    expect(v[addr(0x01, 0x05, 0x0a)]).toBe(3);
+    expect([v[addr(0x01, 0x14, 0x01)], v[addr(0x01, 0x14, 0x02)]]).toEqual([0x7e, 0x58]);
+    expect(v[addr(0x01, 0x14, 0x0a)]).toBe(3);
+    expect(v[addr(0x00, 0x14, 0x00)]).toBe(0);
+    expect(v[addr(0x00, 0x16, 0x00)]).toBe(0);
+    expect(spy).toHaveBeenCalledTimes(2);
+    spy.mockRestore();
   });
 });

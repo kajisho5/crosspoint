@@ -6,6 +6,7 @@ export default function MoreLayout() {
   return (
     <Stack screenOptions={{ contentStyle: { backgroundColor: color.bg }, headerRight: () => <DemoBadge /> }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="quick" options={{ title: 'クイック操作' }} />
       <Stack.Screen name="menu/index" options={{ title: 'メニュー' }} />
       <Stack.Screen name="menu/[group]" options={{ title: '' }} />
       <Stack.Screen name="diagnostics" options={{ title: '送受信ログ' }} />

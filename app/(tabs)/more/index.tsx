@@ -57,7 +57,8 @@ export default function MoreScreen() {
           {link !== 'idle' ? <ListRow title="切断" destructive onPress={confirmDisconnect} /> : null}
         </GroupCard>
 
-        <GroupCard title="本体設定" footer="Remote Control Guide に載っている全パラメータ（ビデオ・オーディオ・システム・カメラ制御・メモリー）を操作できます。">
+        <GroupCard title="本体設定" footer="クイック操作：HDMI OUT 3 の出力切替、HDMI/SDI 入力音声の一括設定、SDI OUT の LEVEL-A 一括設定。メニュー：Remote Control Guide に載っている全パラメータ。">
+          <ListRow title="クイック操作" icon="bolt.fill" iconTint="warn" chevron onPress={() => router.push('/more/quick')} />
           <ListRow title="メニュー（全パラメータ）" icon="slider.horizontal.3" chevron onPress={() => router.push('/more/menu')} />
         </GroupCard>
 
