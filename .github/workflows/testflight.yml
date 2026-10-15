@@ -133,14 +133,16 @@ jobs:
         # 毎回新しい証明書を作らせない：暗号化済みの秘密鍵と証明書を一時キーチェーンに入れておくと、自動署名はそれを使う
         env:
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          P8: ${{ secrets.APPSTORE_P8 }}
         run: |
           if [ ! -f ci/signing/ios.key.enc ]; then
             echo "::warning::ci/signing が無いので自動署名に任せます（証明書の上限に当たったら signing.yml を実行してください。docs/TESTFLIGHT.md）"
             exit 0
           fi
           if [ -z "$SIGNING_KEY_PASSWORD" ]; then
-            echo "::error::SIGNING_KEY_PASSWORD secret is not set (needed to decrypt ci/signing/ios.key.enc)"
-            exit 1
+            SIGNING_KEY_PASSWORD="$(printf '%s' "$P8" | openssl dgst -sha256 -r | cut -c1-64)"
+            export SIGNING_KEY_PASSWORD
+            echo "::add-mask::$SIGNING_KEY_PASSWORD"
           fi
           set -euo pipefail
           dir="$RUNNER_TEMP/sign"; mkdir -p "$dir"

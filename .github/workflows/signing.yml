@@ -5,7 +5,8 @@ name: signing
 # Apple の上限（"maximum number of certificates"）に当たって archive が失敗する。
 # ここで作った鍵と証明書を testflight.yml が取り込めば、Xcode は既存の証明書を使い回す。
 #
-# 必要な Secrets：APPSTORE_KEY_ID / APPSTORE_ISSUER_ID / APPSTORE_P8 / APPLE_TEAM_ID（既存）＋ SIGNING_KEY_PASSWORD（鍵の暗号化パスフレーズ。任意の長い文字列）
+# 必要な Secrets：APPSTORE_KEY_ID / APPSTORE_ISSUER_ID / APPSTORE_P8（既存のみ）。
+# 鍵の暗号化パスフレーズは SIGNING_KEY_PASSWORD があればそれ、無ければ APPSTORE_P8 の SHA-256（p8 を持つ者は証明書を発行できるので信頼境界は同じ）
 
 on:
   workflow_dispatch:
@@ -43,10 +44,14 @@ jobs:
           [ -n "$ASC_KEY_ID" ] || missing="$missing APPSTORE_KEY_ID"
           [ -n "$ASC_ISSUER_ID" ] || missing="$missing APPSTORE_ISSUER_ID"
           [ -n "$P8" ] || missing="$missing APPSTORE_P8"
-          [ -n "$SIGNING_KEY_PASSWORD" ] || missing="$missing SIGNING_KEY_PASSWORD"
           if [ -n "$missing" ]; then
             echo "::error::Repository secrets not set:$missing (see docs/TESTFLIGHT.md)"
             exit 1
+          fi
+          if [ -z "$SIGNING_KEY_PASSWORD" ]; then
+            echo "SIGNING_KEY_PASSWORD=$(printf '%s' "$P8" | openssl dgst -sha256 -r | cut -c1-64)" >> "$GITHUB_ENV"
+            echo "::add-mask::$(printf '%s' "$P8" | openssl dgst -sha256 -r | cut -c1-64)"
+            echo "passphrase: derived from APPSTORE_P8"
           fi
           mkdir -p "$RUNNER_TEMP/keys"
           printf '%s\n' "$P8" > "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
