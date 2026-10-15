@@ -6,7 +6,7 @@ Roland V-160HD / V-80HD / VR-120HD を iPhone から LAN / USB / Bluetooth で�
 1. `docs/SPEC.md` — 実装仕様（唯一の正。通信・アドレス・受け入れ条件・マイルストーン）
 2. `docs/design/sw-crosspoint-board.svg`（PNG 同梱）— 画面デザイン。完全準拠
 3. `docs/DESIGN.md` — 設計の背景（SPEC と矛盾したら SPEC 優先）
-4. `docs/HIG-ja.md` — Apple HIG の要約（UI の設計・実装・レビューはこの指針と数値に従う。ユーザースキル `apple-hig` と同内容）
+4. `.claude/skills/apple-hig/SKILL.md` — Apple HIG の要約（プロジェクトスキル。UI の設計・実装・レビューはこの指針と数値に従う。`docs/HIG-ja.md` は案内のみ）
 
 ## 厳守
 - Expo（Development Build）＋ TypeScript strict ＋ NativeWind。WebView/素の HTML で作らない
