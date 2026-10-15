@@ -75,6 +75,9 @@
           "react-native-tcp-socket"
         ],
         "listUnknownPackages": false
+      },
+      "appConfigFieldsNotSyncedCheck": {
+        "enabled": false
       }
     }
   }

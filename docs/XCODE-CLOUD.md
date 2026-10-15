@@ -8,6 +8,7 @@
 | `ios/` をコミット | Xcode Cloud はワークフロー作成時にリポジトリ内の Xcode プロジェクトを検出するため。`ios/Pods` `ios/build` `.xcode.env.local` は除外 |
 | `SWCROSSPOINT.xcworkspace`（リポジトリ直下） | `ios/SWCROSSPOINT.xcodeproj` と `ios/Pods/Pods.xcodeproj` を参照するだけのファイル。`expo prebuild` が `ios/` を作り直しても消えない位置に置く |
 | `ci_scripts/ci_post_clone.sh`（リポジトリ直下） | Node 22 取得 → `npm ci` → `ios/.xcode.env.local` に NODE_BINARY → `pod install`。ワークスペースと同じ階層に置く必要がある（Apple の規約） |
+| `expo-doctor` | `ios/` をコミットすると「app.config のフィールドが同期されない」警告が出る（非 CNG 扱い）。同期は下の CI 差分検出で担保するので `appConfigFieldsNotSyncedCheck` を無効化した |
 | CI の差分検出 | GitHub CI が `expo prebuild` を実行し、コミット済み `ios/` と食い違えば失敗する。`app.config.ts`・ネイティブ依存を変えたら `npx expo prebuild --platform ios --clean --no-install` を再実行してコミット |
 
 ## App Store Connect 側（オーナーが 1 回だけ行う）
