@@ -59,7 +59,7 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, codec = 'db3', 
   };
 
   const pan = Gesture.Pan()
-    .activeOffsetY([-6, 6])
+    .activeOffsetY([-3, 3])
     .failOffsetX([-14, 14])
     .onBegin(() => {
       start.value = pos.value;

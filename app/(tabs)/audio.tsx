@@ -27,8 +27,9 @@ export default function AudioScreen() {
     setPage(Math.round(e.nativeEvent.contentOffset.x / PAGE_W));
   };
 
+  // 縦フェーダーの操作を画面の縦スクロールに取られないよう、この画面は縦スクロールしない（中身は 1 画面に収まる）
   return (
-    <Screen>
+    <Screen scroll={false}>
       <ScreenHeader subtitle={subtitle} title="オーディオ" />
       <OfflineBanner />
       <Gate>
