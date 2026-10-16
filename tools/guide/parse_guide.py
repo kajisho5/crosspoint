@@ -121,8 +121,26 @@ def parse(path):
                 r['sysex'] = ' '.join(x for x in (text(lines[j]['words'], c_sys, c_mean) for j in js) if x)
                 r['meaning'] = ' '.join(x for x in (text(lines[j]['words'], c_mean) for j in js) if x)
                 del r['lines']
+                repair_columns(r)
                 if r['name']: recs.append(r)
     return recs
+
+SYSEX_TAIL = re.compile(r'\s((?:[0-9A-F]{2}H(?:[ ,-]+)?)+)\s*:?\s*$')
+
+def repair_columns(r):
+    """見出し行と本文の列位置がずれたページ（V-160HD eng06 の SCAN TIME 等）では、SysEx 値が
+    name 列の末尾に、meaning の先頭が sysex 列に入る。name 末尾の 'xxH-yyH' を sysex に戻し、
+    sysex 列に残った文字列は meaning の先頭へ送る。"""
+    if 'H' in r['sysex']:
+        return
+    m = SYSEX_TAIL.search(' ' + r['name'])
+    if not m:
+        return
+    spill = r['sysex'].strip()
+    r['name'] = r['name'][: m.start()].strip()
+    r['sysex'] = m.group(1).strip().rstrip(',').strip()
+    if spill:
+        r['meaning'] = (spill + ' ' + r['meaning']).strip()
 
 if __name__ == '__main__':
     rows = parse(sys.argv[1])

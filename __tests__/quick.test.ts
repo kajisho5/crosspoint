@@ -25,13 +25,13 @@ describe('クイック操作（V-160HD）', () => {
     expect(p.writes.every((w) => w.bytes.length === 1 && w.bytes[0] === 0x00)).toBe(true);
   });
 
-  test('HDMI OUT 3 ASSIGN：00 00 0C、PROGRAM=0 / PREVIEW=2 / MULTI-VIEW=4', () => {
+  test('HDMI OUT 3 ASSIGN：00 00 0C、PROGRAM=0 / PREVIEW=2 / MULTI-VIEW=8（FW 3.30 ガイド：AUX1-3・DSK SOURCE が間に入る）', () => {
     const a = hdmiOut3Assign('V-160HD')!;
     expect(a.addr).toBe(addr(0x00, 0x00, 0x0c));
     expect(a.choices).toEqual([
       { label: 'PROGRAM', index: 0 },
       { label: 'PREVIEW', index: 2 },
-      { label: 'MULTI-VIEW', index: 4 },
+      { label: 'MULTI-VIEW', index: 8 },
     ]);
   });
 });
@@ -54,19 +54,24 @@ describe('クイック操作（V-80HD）', () => {
 });
 
 describe('AUX バス（F15）', () => {
-  test('V-160HD：AUX 1 本（00 00 11、32 ソース）。出力割当 7 つで AUX = index 3', () => {
+  test('V-160HD：AUX 1–3（00 00 11 / 2E / 2F、52 ソース）。出力割当では AUX 1 = 3、AUX 2 = 4、AUX 3 = 5（FW 3.30 ガイド）', () => {
     const b = auxBuses('V-160HD');
-    expect(b).toHaveLength(1);
-    expect(b[0]!.name).toBe('AUX');
-    expect(b[0]!.addr).toBe(addr(0x00, 0x00, 0x11));
-    expect(b[0]!.param.labels).toHaveLength(32);
+    expect(b.map((x) => [x.name, x.addr])).toEqual([
+      ['AUX 1', addr(0x00, 0x00, 0x11)],
+      ['AUX 2', addr(0x00, 0x00, 0x2e)],
+      ['AUX 3', addr(0x00, 0x00, 0x2f)],
+    ]);
+    expect(b[0]!.param.labels).toHaveLength(52);
     expect(b[0]!.outputs.map((o) => o.name)).toEqual(['HDMI OUTPUT 1', 'HDMI OUTPUT 2', 'HDMI OUTPUT 3', 'SDI OUTPUT 1', 'SDI OUTPUT 2', 'SDI OUTPUT 3', 'USB OUTPUT']);
     expect(b[0]!.outputs.every((o) => o.auxIndex === 3)).toBe(true);
+    expect(b[1]!.outputs.every((o) => o.auxIndex === 4)).toBe(true);
+    expect(b[2]!.outputs.every((o) => o.auxIndex === 5)).toBe(true);
     const sec = groupAuxLabels(b[0]!.param.labels);
     expect(sec.map((s) => [s.title, s.items.length])).toEqual([
       ['HDMI', 8],
       ['SDI', 8],
       ['STILL', 16],
+      ['INPUT', 20],
     ]);
   });
 

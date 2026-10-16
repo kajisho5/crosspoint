@@ -271,7 +271,7 @@ describe('F14 クイック操作', () => {
     await act(async () => {
       await new Promise((r) => setTimeout(r, 60));
     });
-    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x0c)]).toBe(4);
+    expect(useParamStore.getState().values[addr(0x00, 0x00, 0x0c)]).toBe(8);
     expect(screen.getByText(/現在：MULTI-VIEW/)).toBeTruthy();
   });
 
@@ -312,15 +312,15 @@ describe('F15 AUX モード', () => {
     await act(async () => {
       await new Promise((r) => setTimeout(r, 60));
     });
-    expect(screen.getByText('AUX ソース')).toBeTruthy();
+    expect(screen.getByText('AUX 1 ソース')).toBeTruthy();
     await act(async () => {
-      fireEvent.press(screen.getByLabelText(/^AUX SDI 3/));
+      fireEvent.press(screen.getByLabelText(/^AUX 1 SDI 3/));
     });
     await act(async () => {
       await new Promise((r) => setTimeout(r, 60));
     });
     expect(useParamStore.getState().values[addr(0x00, 0x00, 0x11)]).toBe(10); // HDMI 1-8 = 0-7、SDI 3 = 10
-    expect(screen.getByLabelText(/^AUX SDI 3.*選択中$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^AUX 1 SDI 3.*選択中$/)).toBeTruthy();
     expect(screen.getByText('現在：SDI 3')).toBeTruthy();
   });
 

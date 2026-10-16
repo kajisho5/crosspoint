@@ -51,7 +51,7 @@ describe('params カタログ', () => {
     const label = find('LABEL EDIT', 'LABEL');
     expect(label.p.kind).toBe('text');
     expect(label.p.size).toBe(8);
-    expect(label.g.instances!.length).toBe(36);
+    expect(label.g.instances!.length).toBe(40); // FW 3.30：AUX 1–3・DSK 1-2 SOURCE・3D が増えた
     expect(label.g.instances![8]!.label).toBe('SDI 1');
     expect(paramAddr(label.p, label.g.instances![8]!)).toBe(addr(0x02, 0x18, 0x00));
     const cam = find('CAMERA CONTROL', 'PAN');
@@ -89,7 +89,8 @@ describe('params カタログ', () => {
     expect(decodeParam(pos, [0x7c, 0x0c])).toEqual({ kind: 'int', value: -50, text: '-50.0%', isZeroLabel: false });
     const size = pinp.params.find((p) => p.name === 'SIZE') as IntParam;
     expect(encodeInt(size, 100)).toEqual([0x07, 0x68]);
-    expect(encodeInt(size, 5)).toEqual([0x00, 0x64]); // 下限 10.0% にクランプ
+    expect(encodeInt(size, 5)).toEqual([0x00, 0x32]); // 5.0%（FW 3.30 ガイドでは下限 0.0%）
+    expect(encodeInt(size, -1)).toEqual([0x00, 0x00]); // 下限にクランプ
     const scan = v160.groups.find((g) => g.title === 'AUTO SWITCHING')!.params.find((p) => p.name === 'INPUT SCAN TIME / INPUT 1') as IntParam;
     expect(decodeParam(scan, [0])).toMatchObject({ kind: 'int', text: 'OFF', isZeroLabel: true });
     expect(decodeParam(scan, [120])).toMatchObject({ kind: 'int', text: '120 sec' });
