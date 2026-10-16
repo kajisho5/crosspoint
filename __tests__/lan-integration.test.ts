@@ -149,11 +149,15 @@ describe('LAN 結合（V-80HD モック：--model v80hd）', () => {
     const res = await t.connect({ name: 'DEMO-SW-B', host: '127.0.0.1', port: server.port, password: '00000000' });
     expect(res).toEqual({ model: 'V-80HD', version: '1.30' });
     expect(logs).toContain('rx Welcome to V-80HD.');
+    // 接続確認中は生チャンクを残す（§13：プロンプト文字列・stx・ACK の実体）
+    const raw = logs.filter((l) => l.startsWith('rx raw "')).map((l) => l.slice('rx raw "'.length, -1)).join('');
+    expect(raw).toContain('Enter password:');
+    expect(raw).toContain('VER:V-80HD,1.30<0A>'); // 接続確認（VER 応答）までが生ログの範囲。終端 LF が見える
 
     const p = v80hd.addrs;
     t.writeParam(p.pst!, [v80hd.encodeInput(4)]);
     await until(() => server.mem.get(p.pst!) === v80hd.encodeInput(4));
-    expect(logs).toContain('rx ACK');
+    expect(logs).toContain('rx ACK（文字列 "ACK"）');
 
     t.writeParam(addr(0x0b, 0x00, 0x1e), [1]);
     await until(() => c.errs.includes(0));
@@ -189,6 +193,7 @@ describe('LAN 結合（VR-120HD モック：--model vr120hd）', () => {
     const p = vr120hd.addrs;
     t.writeParam(p.pst!, [vr120hd.encodeInput(5)]);
     await until(() => server.mem.get(p.pst!) === 0x21);
+    await until(() => logs.includes('rx ACK（06H）'));
     t.readParam(p.tallyBlock!, p.tallyBlockSize);
     await until(() => c.params.get(p.tallyBlock! + 0x1c + 5) === 2); // Input 5 = PST
     expect(c.params.get(p.tallyBlock! + 0x1c + 1)).toBe(1); // Input 1 = PGM
@@ -200,7 +205,7 @@ describe('LAN 結合（VR-120HD モック：--model vr120hd）', () => {
     await until(() => server.mem.get(p.pgm) === 0x21);
     t.sendText('QSEQSW;');
     await until(() => texts.includes('SQS:OFF'));
-    expect(logs).toContain('rx ACK');
+    expect(logs).toContain('rx ACK（文字列 "ACK"）');
     await t.disconnect();
   });
 });
@@ -250,7 +255,7 @@ describe('LAN 結合（V-1-4K モック：--model v14k）', () => {
     const p = v14k.addrs;
     t.writeParam(p.pgm, [v14k.encodeInput(2)]);
     await until(() => server.mem.get(p.pgm) === 0x08);
-    expect(logs).toContain('rx ACK');
+    expect(logs).toContain('rx ACK（文字列 "ACK"）');
     t.writeParam(p.fader!, encodeU14(4095));
     await until(() => server.mem.get(p.fader!) === 0x1f && server.mem.get(addrOffset(p.fader!, 1)) === 0x7f);
     t.readParam(p.tallyBlock!, p.tallyBlockSize);
@@ -313,7 +318,7 @@ describe('LAN 結合（テキストコマンド機種のモック）', () => {
       t.writeParam(VA.transType, [3]);
       await until(() => c.params.get(VA.transType) === 3);
       expect(logs).toContain('tx TRS:3;');
-      expect(logs).toContain('rx ACK');
+      expect(logs).toContain('rx ACK（文字列 "ACK"）');
       t.writeParam(VA.memLoad, [63]);
       await until(() => server.mem.get(VA.memCurrent) === 63);
       t.readParam(VA.pgm, 1); // 読めない → 何も送らない

@@ -45,7 +45,7 @@ Roland V-160HD / V-80HD を iPhone から LAN（Wi-Fi）・USB・Bluetooth の3�
 | F7 | オーディオ：AUDIO IN 1, 2, 3/4, USB, Bluetooth, HDMI 1–8, SDI 1–8 のレベル/ミュート、MASTER レベル/ミュート |
 | F8 | メモリー 1–30：名前表示、現在番号、長押し呼出し |
 | F9 | 操作ロック、ハプティクス、スリープ防止 |
-| F10 | 診断：送受信ログ、任意コマンド送信、アドレス読取り（RQH/RQ1）、受信通知の可視化 |
+| F10 | 診断：送受信ログ、任意コマンド送信、アドレス読取り（RQH/RQ1）、受信通知の可視化、**診断レポート共有**（アプリ版・端末・接続状態・プロファイル・CoreMIDI 端点一覧（名前 / driverOwner / 経路）・ログを 1 テキストに。§13 の実機確認は原則このレポートを `docs/verify/` に保存して `docs/VERIFY.md` に記録する）。LAN は接続確認が終わるまで受信チャンクを生のまま（制御文字は `<06>` 等で可視化）ログに残し、ACK は `ACK（06H）` / `ACK（文字列 "ACK"）` で区別する |
 | F11 | **デモモード**：S0 と About から起動できる利用者向け機能。MockTransport（§12-2）で全画面を実機なしで操作できる。画面上部に常時「デモ」バッジ。App Review・スクリーンショット・練習用 |
 | F12 | **INPUT 設定シート**（v1.2）：クロスポイント長押し → 割当ソース（HDMI/SDI/STILL）の変更と 8 文字ラベル編集（`00 00 xx` INPUT ASSIGN と LABEL EDIT） |
 | F13 | **メニュー（全パラメータ）**（v1.2）：Remote Control Guide の Parameter Address Map 全項目。`tools/guide/parse_guide.py` → `normalize.py` で `core/params/*.params.json` を生成し、`components/params/ParamRow` が種別（bool/enum/int/level/text/exec）ごとの UI を出す。CAMERA CONTROL は PTZ パッド（押下で方向、離すと STOP）。表示中グループは `SyncEngine.setExtraPoll` で追加ポーリング |
@@ -582,6 +582,8 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 ---
 
 ## 13. 実機確認チェックリスト（診断画面で実施できること）
+> 記録先：`docs/VERIFY.md`（項目ごとに 想定 / 結果 / 根拠 / 反映）。根拠は診断レポート（`docs/verify/<id>-<日付>.txt`）か OS の機器情報（Windows PnP / macOS ioreg）のみ。
+> **USB の前提**：公開資料は「ドライバ不要で USB 操作可」までで USB クラスの明記が無い（V-160HD RCS Connection Guide eng02 p.2 に USB 手順のみ、ドライバ配布無し【事実】）。アプリは USB MIDI クラスを仮定【推測】。判定基準は VERIFY.md 冒頭。
 - [ ] LAN：認証文字列・`ACK` の実体（文字列か 0x06 か）・VER 応答の終端
 - [ ] LAN：同時接続数（公式アプリ/Companion と同時に繋げるか）
 - [ ] **PGM/PST の値方式**（INPUT 3 選択時に `RQH:002100,000002` が `22` か `02` か）→ §9-3 の既定を確定

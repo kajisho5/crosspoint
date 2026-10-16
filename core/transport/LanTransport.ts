@@ -352,9 +352,12 @@ export class LanTransport implements Transport {
 
   private onData(text: string): void {
     this.touchIdle();
+    // 接続確認が終わるまで（認証プロンプト〜VER 応答）は受信チャンクを生のまま残す。
+    // §13 の「ACK の実体（06H か文字列か）」「stx / LF の有無」「プロンプト文字列」を実機で確定するための証跡
+    if (!this.up) this.log('rx', `raw ${escapeControl(text)}`);
     for (const tok of this.parser.feed(text)) {
       if (tok.kind === 'ack') {
-        this.log('rx', 'ACK');
+        this.log('rx', 'ACK（06H）');
         this.onTextAck();
         continue;
       }
@@ -403,7 +406,7 @@ export class LanTransport implements Transport {
           for (const cb of this.errCbs) cb(msg.code);
           break;
         case 'ack':
-          this.log('rx', 'ACK');
+          this.log('rx', `ACK（文字列 "${tok.text}"）`);
           this.onTextAck();
           break;
         default:
@@ -556,4 +559,15 @@ export class LanTransport implements Transport {
     const e: LogEntry = { ts: Date.now(), dir, text };
     for (const cb of this.logCbs) cb(e);
   }
+}
+
+/** 制御文字を可視化する（06H → `<06>`、LF → `<0A>`、stx → `<02>`）。診断ログの生チャンク表示用 */
+export function escapeControl(text: string): string {
+  let out = '"';
+  for (const ch of text) {
+    const c = ch.charCodeAt(0);
+    if (c < 0x20 || c === 0x7f || c === 0xff) out += `<${c.toString(16).toUpperCase().padStart(2, '0')}>`;
+    else out += ch;
+  }
+  return `${out}"`;
 }
