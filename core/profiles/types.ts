@@ -129,6 +129,8 @@ export interface DeviceProfile {
     macroTrigger: Addr | null;
     /** ASSIGNABLE PAD 1–8 のパネルスイッチ（モーメンタリ、01 押下 / 00 解放）。無い・不明な機種は省略 */
     pads?: readonly Addr[];
+    /** [SETUP (+PAD) BANK SELECT] ボタン（押したまま PAD でバンク選択）。無い機種は省略 */
+    padBankSelect?: Addr;
     /** シーケンサーのパネルスイッチ（モーメンタリ）。不明な機種は null */
     sequencer: { on: Addr; auto: Addr; prev: Addr; next: Addr } | null;
   };

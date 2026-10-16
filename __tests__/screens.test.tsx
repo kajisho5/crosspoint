@@ -146,7 +146,7 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     expect(useParamStore.getState().values[v80hdProfile.addrs.pst!]).toBe(pgm);
   });
 
-  test('ASSIGNABLE PAD 1–8（0B 00 21–28、押している間 ON）', async () => {
+  test('ASSIGNABLE PAD 1–8（0B 00 22–29、押している間 ON）、BANK SELECT（0B 00 21）を押したまま PAD', async () => {
     await render(<SwitcherScreen />);
     expect(screen.getByText('ASSIGNABLE PADS')).toBeTruthy();
     expect(screen.getAllByLabelText(/^アサイナブルパッド \d$/)).toHaveLength(8);
@@ -161,7 +161,17 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
       fireEvent(screen.getByLabelText('アサイナブルパッド 3'), 'pressIn');
       fireEvent(screen.getByLabelText('アサイナブルパッド 3'), 'pressOut');
     });
-    expect(writes).toEqual(['0B0023=1', '0B0023=0']);
+    expect(writes).toEqual(['0B0024=1', '0B0024=0']);
+    writes.length = 0;
+    // BANK：BANK SELECT を押したまま（ラッチ）→ PAD 2 → BANK SELECT を離す
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('バンク選択'));
+    });
+    await act(async () => {
+      fireEvent(screen.getByLabelText('アサイナブルパッド 2'), 'pressIn');
+      fireEvent(screen.getByLabelText('アサイナブルパッド 2'), 'pressOut');
+    });
+    expect(writes).toEqual(['0B0021=1', '0B0023=1', '0B0023=0', '0B0021=0']);
   });
 
   test('キーは PinP 2・DSK 1', async () => {
