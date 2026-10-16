@@ -14,3 +14,6 @@ jest.mock('@react-native-async-storage/async-storage', () => require('@react-nat
 require('react-native-gesture-handler/jestSetup');
 jest.mock('react-native-worklets', () => require('./node_modules/react-native-worklets/lib/module/mock.js'));
 jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
+
+// セーフエリア（Screen の scroll=false が useSafeAreaInsets を使う）。テストでは Provider 無しで 0 インセットを返す公式モック
+jest.mock('react-native-safe-area-context', () => require('react-native-safe-area-context/jest/mock').default);
