@@ -151,3 +151,27 @@ describe('テストパターン（新機種）', () => {
     expect(testPatternTarget('V-1HD')).toBeNull();
   });
 });
+
+describe('初期化・削除（クイック操作）', () => {
+  const { initAllMemoriesPreset, deleteAllStillsPreset } = jest.requireActual('@/core/params/quick') as typeof import('@/core/params/quick');
+
+  test('V-160HD：メモリー 1–30 を 0A0002 に 00–1D でトリガ', () => {
+    const p = initAllMemoriesPreset('V-160HD')!;
+    expect(p.writes).toHaveLength(30);
+    expect(p.writes[0]).toMatchObject({ addr: addr(0x0a, 0x00, 0x02), bytes: [0x00], trigger: true });
+    expect(p.writes[29]!.bytes).toEqual([0x1d]);
+    expect(p.destructive).toBe(true);
+  });
+
+  test('V-80HD：None を除いた 32 件', () => {
+    const p = initAllMemoriesPreset('V-80HD')!;
+    expect(p.writes).toHaveLength(32);
+    expect(p.writes[0]!.bytes).toEqual([0x00]);
+  });
+
+  test('スチル全削除は V-1-4K だけ（Target=ALL → Trigger）', () => {
+    const p = deleteAllStillsPreset('V-1-4K')!;
+    expect(p.writes.map((w) => w.trigger ?? false)).toEqual([false, true]);
+    expect(deleteAllStillsPreset('V-160HD')).toBeNull();
+  });
+});

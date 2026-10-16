@@ -17,6 +17,8 @@ export interface QuickWrite {
   bytes: number[];
   /** 送受信ログ・確認ダイアログ用の説明（例 "HDMI IN 1 DIGITAL GAIN → −16.8 dB"） */
   label: string;
+  /** 実行トリガ（書込み専用）。楽観更新せずにそのまま送る */
+  trigger?: boolean;
 }
 
 export interface QuickPreset {
@@ -24,6 +26,8 @@ export interface QuickPreset {
   title: string;
   detail: string;
   writes: QuickWrite[];
+  /** 取り消せない操作（確認ダイアログを破壊的スタイルにする） */
+  destructive?: boolean;
 }
 
 export const EMBEDDED_DIGITAL_GAIN_DB = -16.8;
@@ -172,4 +176,48 @@ export function groupAuxLabels(labels: readonly string[]): { title: string; item
     map.set(key, arr);
   });
   return order.filter((k) => map.has(k)).map((k) => ({ title: k, items: map.get(k) ?? [] }));
+}
+
+/** 全プリセット（シーン）メモリーの初期化：MEMORY INITIALIZE TRIGGER（例 V-160HD `0A 00 02` = メモリー番号−1）を全番号に書く */
+export function initAllMemoriesPreset(model: ModelId): QuickPreset | null {
+  for (const g of getCatalog(model).groups) {
+    const p = g.params.find((x) => /^MEMORY INIT(IALIZE)? TRIGGER$/.test(x.name.toUpperCase()));
+    if (!p || p.kind !== 'enum') continue;
+    const writes: QuickWrite[] = [];
+    p.values.forEach((v, i) => {
+      if (v < 0) return; // "None"
+      writes.push({ addr: paramAddr(p, null), bytes: encodeEnum(p, i), label: `MEMORY ${v + 1} を初期化`, trigger: true });
+    });
+    if (writes.length === 0) continue;
+    return {
+      id: 'init-all-memories',
+      title: 'プリセットメモリーをすべて初期化',
+      detail: `メモリー 1–${writes.length} を工場出荷時の状態に戻します（名前も含む）。取り消せません。本体の MEMORY PROTECT が ON のときは初期化されません。`,
+      writes,
+      destructive: true,
+    };
+  }
+  return null;
+}
+
+/** 全スチル削除：DELETE STILL IMAGE の Target = ALL → Trigger = Execute（V-1-4K のみガイドに記載） */
+export function deleteAllStillsPreset(model: ModelId): QuickPreset | null {
+  for (const g of getCatalog(model).groups) {
+    const target = g.params.find((x) => /^DELETE STILL IMAGE TARGET$/.test(x.name.toUpperCase()));
+    const trig = g.params.find((x) => /^DELETE STILL IMAGE TRIGGER$/.test(x.name.toUpperCase()));
+    if (!target || !trig || target.kind !== 'enum' || trig.kind !== 'enum') continue;
+    const all = enumIndexOf(target, 'ALL');
+    if (all < 0 || trig.values.length === 0) continue;
+    return {
+      id: 'delete-all-stills',
+      title: 'スチルをすべて削除',
+      detail: '本体内のスチル画像をすべて削除します。取り消せません。',
+      writes: [
+        { addr: paramAddr(target, null), bytes: encodeEnum(target, all), label: 'DELETE STILL IMAGE Target → ALL' },
+        { addr: paramAddr(trig, null), bytes: encodeEnum(trig, 0), label: 'DELETE STILL IMAGE 実行', trigger: true },
+      ],
+      destructive: true,
+    };
+  }
+  return null;
 }
