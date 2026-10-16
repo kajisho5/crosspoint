@@ -209,13 +209,13 @@ describe('DeviceController × MidiTransport', () => {
     await c.disconnect();
   });
 
-  test('VR-120HD は USB/BLE 無効（§9-5）→ ok:false', async () => {
+  test('VR-120HD：USB/BLE で接続できる', async () => {
     const fake = new FakeMidi(vr120hd);
     const c = new DeviceController({ lanSocketFactory: async () => { throw new Error('unused'); }, midiModule: () => fake });
-    const res = await c.connect('ble', { name: 'DEMO-SW-B', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
-    expect(res.ok).toBe(false);
-    if (!res.ok) expect(res.message).toContain('LAN のみ');
-    expect(useConnectionStore.getState().link).toBe('idle');
+    const res = await c.connect('usb', { name: 'DEMO-SW-C', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
+    expect(res).toEqual({ ok: true });
+    expect(useConnectionStore.getState().model).toBe('VR-120HD');
+    await c.disconnect();
   });
 
   test('ネイティブモジュール無しは明示メッセージ', async () => {

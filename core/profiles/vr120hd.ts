@@ -55,7 +55,7 @@ export const vr120hd: DeviceProfile = {
   // ガイド p.43：ack は制御コード 06H【事実】
   lanAck: 'byte06',
   // USB/BLE は V-160HD と同じ MIDI SysEx（ガイド p.2）。端点名などは実機確認（§13）まで LAN 先行
-  capabilities: { cutAuto: false, tallySubscribe: false, usb: false, ble: false, split: true, macro: false, sequencer: false },
+  capabilities: { cutAuto: false, tallySubscribe: false, usb: true, ble: true, split: true, macro: false, sequencer: false },
 
   inputCount: 8,
   bankSize: 8,

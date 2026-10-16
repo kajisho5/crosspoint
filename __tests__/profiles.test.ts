@@ -154,7 +154,7 @@ describe('VR-120HD プロファイル（リモート・コントロール・ガ�
     expect(p.dskCount).toBe(2);
     expect(p.memoryCount).toBe(32);
     expect(p.audioInputs).toHaveLength(24);
-    expect(p.capabilities).toEqual({ cutAuto: false, tallySubscribe: false, usb: false, ble: false, split: true, macro: false, sequencer: false });
+    expect(p.capabilities).toEqual({ cutAuto: false, tallySubscribe: false, usb: true, ble: true, split: true, macro: false, sequencer: false });
   });
 });
 
