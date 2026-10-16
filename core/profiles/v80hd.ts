@@ -101,6 +101,8 @@ export const v80hd: DeviceProfile = {
     // 0B 00 1B = [CUT]、0B 00 1C = [AUTO]（01 押下 → 00 解放）。V-160HD の 1E/1F とは番号が違う【事実：2026-10-16】
     cut: addr(0x0b, 0x00, 0x1b),
     auto: addr(0x0b, 0x00, 0x1c),
+    // ASSIGNABLE PAD 1–8 = 0B 00 21–28（実機観測：0B 00 21 から順に押したときユーザーが本体で PAD 1→8 の点灯を確認【事実：2026-10-16】）
+    pads: Array.from({ length: 8 }, (_, i) => addr(0x0b, 0x00, 0x21 + i)),
     // V-80HD のマクロ実行アドレス・シーケンサーのパネルスイッチはガイド未記載・公開 OSS にも無い【不明】
     macroTrigger: null,
     sequencer: null,

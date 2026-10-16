@@ -127,6 +127,8 @@ export interface DeviceProfile {
     autoValues?: { press: number; release: number };
     /** マクロ実行トリガ（値 = マクロ番号 − 1、書込み専用）。不明な機種は null */
     macroTrigger: Addr | null;
+    /** ASSIGNABLE PAD 1–8 のパネルスイッチ（モーメンタリ、01 押下 / 00 解放）。無い・不明な機種は省略 */
+    pads?: readonly Addr[];
     /** シーケンサーのパネルスイッチ（モーメンタリ）。不明な機種は null */
     sequencer: { on: Addr; auto: Addr; prev: Addr; next: Addr } | null;
   };

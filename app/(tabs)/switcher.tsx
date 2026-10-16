@@ -16,6 +16,7 @@ import { ScreenHeader } from '@/components/status/ScreenHeader';
 import { CrosspointGrid } from '@/components/switcher/CrosspointGrid';
 import { InputSetupSheet } from '@/components/switcher/InputSetupSheet';
 import type { Bus } from '@/components/switcher/CrosspointButton';
+import { AssignablePads } from '@/components/switcher/AssignablePads';
 import { TBar } from '@/components/switcher/TBar';
 import { AutoButton, CutAutoUnavailable, CutButton } from '@/components/switcher/TransitionButtons';
 import { TransitionPicker } from '@/components/switcher/TransitionPicker';
@@ -102,6 +103,7 @@ export default function SwitcherScreen() {
             </View>
           ) : null}
         </View>
+        <AssignablePads profile={profile} />
       </Gate>
     </Screen>
   );

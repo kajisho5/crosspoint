@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react-native';
-import { decodeAscii8 } from '@/core/codec/value';
+import { addrToHex, decodeAscii8 } from '@/core/codec/value';
 import { v160hd } from '@/core/profiles/v160hd';
 import { getProfile } from '@/core/profiles';
 import { useParamStore } from '@/stores/param';
@@ -144,6 +144,24 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     });
     expect(useParamStore.getState().values[v80hdProfile.addrs.pgm]).toBe(pst);
     expect(useParamStore.getState().values[v80hdProfile.addrs.pst!]).toBe(pgm);
+  });
+
+  test('ASSIGNABLE PAD 1–8（0B 00 21–28、押している間 ON）', async () => {
+    await render(<SwitcherScreen />);
+    expect(screen.getByText('ASSIGNABLE PADS')).toBeTruthy();
+    expect(screen.getAllByLabelText(/^アサイナブルパッド \d$/)).toHaveLength(8);
+    const writes: string[] = [];
+    const t = (controller as unknown as { transport: { writeParam: (a: number, b: number[]) => void } }).transport;
+    const orig = t.writeParam.bind(t);
+    t.writeParam = (a, b) => {
+      writes.push(`${addrToHex(a)}=${b.join(',')}`);
+      orig(a, b);
+    };
+    await act(async () => {
+      fireEvent(screen.getByLabelText('アサイナブルパッド 3'), 'pressIn');
+      fireEvent(screen.getByLabelText('アサイナブルパッド 3'), 'pressOut');
+    });
+    expect(writes).toEqual(['0B0023=1', '0B0023=0']);
   });
 
   test('キーは PinP 2・DSK 1', async () => {
