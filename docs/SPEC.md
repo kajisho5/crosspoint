@@ -514,6 +514,7 @@ AUDIO INPUT の x（00–14）割当：AUDIO IN 1, 2, 3/4, USB IN, Bluetooth IN,
 ## 11. 画面仕様と受け入れ条件
 見た目（レイアウト・寸法・情報配置）は SVG 準拠。ただし**色とタブバーはシステム標準に従う**（v1.1）：
 - **色はハードコードしない**。`PlatformColor` で semantic system color を参照する：`bg=systemBackground / group=secondarySystemBackground / fill=tertiarySystemBackground / fill2=systemGray4 / sep=separator / pgm=systemRed / pst=systemGreen / accent=systemBlue / warn=systemOrange`。ボードの hex（`#FF3B30` 等）は iOS 17–18 の参考値で、OS のバージョン・ライト/ダーク・コントラスト強調で自動的に変わる（HIG Color：システムカラーの値をハードコードしない）。
+  - 例外：色付き塗りの上の文字（`onTint`）・フェーダーのつまみ（`knob`）・スクリム（`scrim`）は UIKit の `UIColor.white` / `black` に相当する固定値。`PlatformColor` は semantic 名しか解決せず `'white'` / `'black'` は nil（＝透明）になるため【実機で確認：選択中クロスポイントの番号・ラベルが消えていた】。ライト/ダークで変わらない色なので semantic にする意味も無い
 - **タブバーは Native Tabs（システムの UITabBar）**。iOS 17–18 ではボードどおりの固定タブバー（高さ 83pt）、iOS 26 以降ではシステムが Liquid Glass のフローティング表示にする。自前でタブバーを描かない。コンテンツはタブバーの下まで敷き、下端の余白はセーフエリアで確保する。
 - 寸法トークン：角丸 クロスポイント12・カード10・大ボタン18、クロスポイント 66×58pt（5列、間隔8。V-80HD は 4 列、§9-5）。Dark 既定、Light・コントラスト強調はシステムカラーで自動対応。
 - PGM/PST・ON AIR は色だけで示さない（文字・枠で併記、VoiceOver ラベル付き）。

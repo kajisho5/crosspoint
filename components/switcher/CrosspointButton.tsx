@@ -16,12 +16,14 @@ export interface CrosspointButtonProps {
   onPress: (n: number) => void;
   /** 長押し：INPUT の設定シート（F12） */
   onLongPress?: (n: number) => void;
+  /** ボタン幅（pt）。グリッドが画面幅から列数で割って渡す。ラベル長で幅が変わらないよう固定する */
+  width: number;
 }
 
 const BUS_NAME: Record<Bus, string> = { pgm: 'プログラム', pst: 'プリセット' };
 
 /** クロスポイント（ボード 66×58pt・r12）。選択＝塗り、他バスのタリー＝2pt 枠 */
-export const CrosspointButton = memo(function CrosspointButton({ n, label, bus, selected, tally, onPress, onLongPress }: CrosspointButtonProps) {
+export const CrosspointButton = memo(function CrosspointButton({ n, label, bus, selected, tally, onPress, onLongPress, width }: CrosspointButtonProps) {
   const other: Bus = bus === 'pgm' ? 'pst' : 'pgm';
   const otherOn = tally === other || tally === 'both';
   const fill = selected ? color[bus] : color.fill;
@@ -36,9 +38,9 @@ export const CrosspointButton = memo(function CrosspointButton({ n, label, bus, 
       accessibilityHint={onLongPress ? '長押しで割当とラベルを設定' : undefined}
       accessibilityLabel={`${BUS_NAME[bus]} ${n}、${label}${states ? `、${states}` : ''}`}
       accessibilityState={{ selected }}
-      style={({ pressed }) => ({ flex: 1, opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}
+      style={({ pressed }) => ({ width, flexGrow: 0, flexShrink: 0, opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}
     >
-      <View style={{ height: xp.height, borderRadius: radius.xp, backgroundColor: fill, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ width, height: xp.height, borderRadius: radius.xp, backgroundColor: fill, justifyContent: 'center', alignItems: 'center' }}>
         {otherOn && !selected ? (
           <View
             pointerEvents="none"

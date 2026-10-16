@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { Alert, Pressable, View } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { controller } from '@/core/controller/DeviceController';
-import { decodeParam } from '@/core/params';
-import { embeddedAudioPreset, hdmiOut3Assign, sdiLevelAPreset, type QuickPreset } from '@/core/params/quick';
+import { decodeParam, encodeEnum } from '@/core/params';
+import { embeddedAudioPreset, hdmiOut3Assign, sdiLevelAPreset, testPatternTarget, type QuickPreset } from '@/core/params/quick';
 import { haptic } from '@/lib/haptics';
 import { useConnectionStore } from '@/stores/connection';
 import { useBytes } from '@/stores/param';
@@ -18,6 +18,7 @@ import { OfflineBanner } from '@/components/status/OfflineBanner';
 /**
  * F14 クイック操作：よく使う設定を 1 タップで。
  *  - HDMI OUT 3 の出力割当（PROGRAM / PREVIEW / MULTI-VIEW）
+ *  - テストパターン（対応する最後の HDMI 入力の TEST PATTERN を選択式で）
  *  - 一括設定（HDMI/SDI 入力音声 −16.8 dB＋LR MIX、SDI OUT 全 LEVEL-A）— 件数が多いので確認してから送る
  * 対象パラメータが無い機種ではその項目を出さない（SPEC §9-5）。
  */
@@ -25,9 +26,15 @@ export default function QuickScreen() {
   const profile = useLayoutProfile();
   const online = useConnectionStore((s) => s.link === 'online');
   const out3 = useMemo(() => hdmiOut3Assign(profile.model), [profile.model]);
+  const tp = useMemo(() => testPatternTarget(profile.model), [profile.model]);
   const presets = useMemo(() => [embeddedAudioPreset(profile.model), sdiLevelAPreset(profile.model)].filter((p): p is QuickPreset => p != null), [profile.model]);
 
-  const ranges = useMemo(() => (out3 ? [{ addr: out3.addr, size: out3.param.size }] : []), [out3]);
+  const ranges = useMemo(() => {
+    const r: { addr: number; size: number }[] = [];
+    if (out3) r.push({ addr: out3.addr, size: out3.param.size });
+    if (tp) r.push({ addr: tp.addr, size: tp.param.size });
+    return r;
+  }, [out3, tp]);
   useFocusEffect(
     useCallback(() => {
       controller.readRanges(ranges);
@@ -42,6 +49,9 @@ export default function QuickScreen() {
   const out3Bytes = useBytes(out3?.addr ?? null, out3?.param.size ?? 1);
   const out3Value = out3 && out3Bytes ? decodeParam(out3.param, out3Bytes) : null;
   const out3Index = out3Value?.kind === 'enum' ? out3Value.index : -1;
+  const tpBytes = useBytes(tp?.addr ?? null, tp?.param.size ?? 1);
+  const tpValue = tp && tpBytes ? decodeParam(tp.param, tpBytes) : null;
+  const tpIndex = tpValue?.kind === 'enum' ? tpValue.index : -1;
 
   const runPreset = (p: QuickPreset) => {
     Alert.alert(p.title, `${p.detail}\n\n${p.writes.length} 件を書き込みます。`, [
@@ -80,6 +90,27 @@ export default function QuickScreen() {
           </GroupCard>
         ) : null}
 
+        {tp ? (
+          <GroupCard title={`テストパターン（${tp.instance.label}）`} footer={`現在：${tpValue?.kind === 'enum' ? tpValue.label : '—'}。${tp.instance.label} の TEST PATTERN を切り替えます。INPUT に ${tp.instance.label} を割り当てておくと PGM/PST に出せます。`}>
+            <View className="flex-row flex-wrap px-4 py-3" style={{ gap: 10 }}>
+              {tp.choices.map((c) => (
+                <View key={c.label} style={{ width: '31%', flexGrow: 1 }}>
+                  <BigButton
+                    label={c.label}
+                    active={c.index === tpIndex}
+                    disabled={!online}
+                    accessibilityLabel={`テストパターンを ${c.label} に`}
+                    onPress={() => {
+                      haptic.select();
+                      controller.write(tp.addr, encodeEnum(tp.param, c.index));
+                    }}
+                  />
+                </View>
+              ))}
+            </View>
+          </GroupCard>
+        ) : null}
+
         {presets.length > 0 ? (
           <GroupCard title="一括設定" footer="タップすると内容を確認してから本体へ書き込みます。各値は後から「メニュー（全パラメータ）」で個別に直せます。">
             {presets.map((p) => (
@@ -88,7 +119,7 @@ export default function QuickScreen() {
           </GroupCard>
         ) : null}
 
-        {!out3 && presets.length === 0 ? (
+        {!out3 && !tp && presets.length === 0 ? (
           <AppText variant="body" tone="label2">
             {profile.model} にはクイック操作の対象パラメータがありません。
           </AppText>

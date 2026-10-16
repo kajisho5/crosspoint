@@ -24,12 +24,16 @@ export const color = {
   accent: sys('systemBlue', '#0A84FF'),
   warn: sys('systemOrange', '#FF9F0A'),
   gray: sys('systemGray', '#8E8E93'),
-  /** 色付き塗り（PGM/PST/アクセント）上の文字。iOS のボタン既定と同じ白 */
-  onTint: sys('white', '#FFFFFF'),
-  /** フェーダーのつまみ */
-  knob: sys('white', '#F2F2F7'),
-  /** 下地を暗くするスクリム */
-  scrim: sys('black', '#000000'),
+  /**
+   * 色付き塗り（PGM/PST/アクセント）上の文字。UIKit のボタン既定と同じ UIColor.white。
+   * PlatformColor は semantic 名しか解決しない（'white' / 'black' は nil → 透明になり、選択中ボタンの文字が消えた）ので、
+   * ここだけ固定値。ライト/ダークで変えない色なので semantic にする意味も無い（SPEC §11 の例外）
+   */
+  onTint: '#FFFFFF' as ColorValue,
+  /** フェーダーのつまみ（固定の白。同上） */
+  knob: '#FFFFFF' as ColorValue,
+  /** 下地を暗くするスクリム（固定の黒。同上） */
+  scrim: '#000000' as ColorValue,
 } as const;
 
 export type ColorToken = keyof typeof color;

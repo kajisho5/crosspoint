@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { View } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import type { DeviceProfile, TallyState } from '@/core/profiles/types';
 import { xp } from '@/theme/tokens';
 import { CrosspointButton, type Bus } from './CrosspointButton';
@@ -24,6 +24,9 @@ export function CrosspointGrid({ profile, bus, bank, selected, labels, tallies, 
     rows.push(Array.from({ length: profile.columns }, (_, c) => first + i + c).filter((n) => n <= profile.inputCount));
   }
   const handle = useCallback((n: number) => onSelect(bus, n), [onSelect, bus]);
+  // 幅は画面幅から列数で等分（ラベルの長さで伸縮させない。SPEC §11：均等グリッド）
+  const { width: screenWidth } = useWindowDimensions();
+  const buttonWidth = Math.floor((screenWidth - xp.sidePadding * 2 - xp.gap * (profile.columns - 1)) / profile.columns);
 
   return (
     <View style={{ paddingHorizontal: xp.sidePadding, gap: xp.gap }}>
@@ -39,6 +42,7 @@ export function CrosspointGrid({ profile, bus, bank, selected, labels, tallies, 
               tally={tallies[n - 1] ?? 'off'}
               onPress={handle}
               onLongPress={onSetup}
+              width={buttonWidth}
             />
           ))}
         </View>

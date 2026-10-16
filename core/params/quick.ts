@@ -100,6 +100,37 @@ export function hdmiOut3Assign(model: ModelId): OutputAssign | null {
   return { param: p, addr: paramAddr(p, null as ParamInstance | null), choices };
 }
 
+/**
+ * テストパターン：HDMI 入力の TEST PATTERN（VIDEO INPUT 系グループ。V-160HD は HDMI IN 5–8 のスケーラー入力のみ、
+ * V-80HD / VR-120HD / VR-6HD / V-8HD は全 HDMI 入力）。対応する HDMI 入力のうち番号が最大のもの
+ * （V-160HD なら HDMI IN 8）に入れる。そこを INPUT に割り当てておけば 1 タップで PGM/PST に出せる。
+ */
+export interface TestPatternTarget {
+  param: EnumParam;
+  instance: ParamInstance;
+  addr: Addr;
+  /** 列挙 index 順（0 = OFF） */
+  choices: { label: string; index: number }[];
+}
+
+export function testPatternTarget(model: ModelId): TestPatternTarget | null {
+  let best: { param: EnumParam; instance: ParamInstance; n: number } | null = null;
+  for (const g of getCatalog(model).groups) {
+    if (g.area !== 'video' || !g.instances) continue;
+    const p = findParam(g, /^TEST PATTERN$/);
+    if (!p || p.kind !== 'enum') continue;
+    for (const inst of g.instances) {
+      const m = /^HDMI IN (\d+)$/i.exec(inst.label);
+      if (!m) continue;
+      const n = Number(m[1]);
+      if (!best || n > best.n) best = { param: p, instance: inst, n };
+    }
+  }
+  if (!best) return null;
+  const choices = best.param.labels.map((label, i) => ({ label, index: i }));
+  return { param: best.param, instance: best.instance, addr: paramAddr(best.param, best.instance), choices };
+}
+
 /** AUX バス（VIDEO ASSIGN の AUX SOURCE / Aux n Source）と、そのバスを出している出力割当 */
 export interface AuxBus {
   /** 表示名（"AUX" / "AUX 1" …） */

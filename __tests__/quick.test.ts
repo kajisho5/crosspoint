@@ -1,5 +1,5 @@
 import { addr } from '@/core/codec/value';
-import { EMBEDDED_DIGITAL_GAIN_DB, auxBuses, embeddedAudioPreset, groupAuxLabels, hdmiOut3Assign, sdiLevelAPreset } from '@/core/params/quick';
+import { EMBEDDED_DIGITAL_GAIN_DB, auxBuses, embeddedAudioPreset, groupAuxLabels, hdmiOut3Assign, sdiLevelAPreset, testPatternTarget } from '@/core/params/quick';
 
 /** F14 クイック操作：カタログから組み立てる一括書込みの内容（アドレス・バイト列）を SPEC §9-1 / ガイドの表と突き合わせる */
 describe('クイック操作（V-160HD）', () => {
@@ -117,5 +117,24 @@ describe('VR-120HD：クイック操作と AUX（カタログ由来）', () => {
     expect(b[2]!.outputs.every((o) => o.auxIndex === 5)).toBe(true);
     expect(b[2]!.outputs.map((o) => o.name)).toEqual(['HDMI OUT 1', 'HDMI OUT 2', 'HDMI OUT 3', 'SDI OUT 1', 'SDI OUT 2', 'SDI OUT 3', 'USB OUT', 'STREAM/RECORD', 'LCD MONITOR']);
     expect(b[0]!.param.labels).toHaveLength(37); // HDMI 6, SDI 6, Still 16, VP/SRT, Input 1-8
+  });
+});
+
+describe('テストパターン（クイック操作）', () => {
+  test('V-160HD：HDMI IN 8（スケーラー入力 00 xx 16、xx=HDMI IN 5–8 の最後）に 6 択', () => {
+    const t = testPatternTarget('V-160HD')!;
+    expect(t.instance.label).toBe('HDMI IN 8');
+    expect(t.addr).toBe(addr(0x00, 0x08, 0x16));
+    expect(t.choices.map((c) => c.label)).toEqual(['OFF', '75% COLOR BAR', '100% COLOR BAR', 'RAMP', 'STEP', 'HATCH']);
+  });
+  test('V-80HD：HDMI In 4（00 04 00）、VR-120HD：HDMI In 6（00 06 16）、13 択', () => {
+    const v80 = testPatternTarget('V-80HD')!;
+    expect(v80.instance.label).toBe('HDMI In 4');
+    expect(v80.addr).toBe(addr(0x00, 0x04, 0x00));
+    expect(v80.choices).toHaveLength(13);
+    const vr = testPatternTarget('VR-120HD')!;
+    expect(vr.instance.label).toBe('HDMI In 6');
+    expect(vr.addr).toBe(addr(0x00, 0x06, 0x16));
+    expect(vr.choices[1]!.label).toBe('Color Bars 75%');
   });
 });
