@@ -4,6 +4,7 @@ import { encodeAscii8 } from '@/core/codec/value';
 import { controller } from '@/core/controller/DeviceController';
 import type { DeviceProfile } from '@/core/profiles/types';
 import { haptic } from '@/lib/haptics';
+import { applyTemplate, LABEL_TEMPLATES } from '@/lib/labelTemplates';
 import { assignedSource, labelOfSource } from '@/stores/selectors';
 import { useParamStore } from '@/stores/param';
 import { color, font, radius } from '@/theme/tokens';
@@ -51,6 +52,12 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
   const originalLabel = code == null ? '' : storedLabel(profile, values, code);
   const changed = code !== (currentCode ?? null) || (labelEditable && label.trim() !== originalLabel.trim());
   const canSave = n != null && code != null && labelValid && changed;
+
+  /** 他のソースに付いているラベル（番号付きテンプレートの連番に使う。編集中のソース自身は除く） */
+  const otherLabels = useMemo(
+    () => profile.sources.filter((s) => s.code !== code && s.labelAddr != null).map((s) => storedLabel(profile, values, s.code)).filter((l) => l.length > 0),
+    [profile, values, code],
+  );
 
   const save = () => {
     if (!canSave || n == null || code == null) return;
@@ -114,6 +121,38 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
                 <AppText variant="footnote" tone="pgm">
                   半角英数記号のみ、8 文字までです。
                 </AppText>
+              </View>
+            ) : null}
+            {labelEditable ? (
+              <View className="px-4 py-3" style={{ gap: 8 }}>
+                <AppText variant="caption" tone="label2">
+                  テンプレート（番号付きは空いている番号を自動で付けます）
+                </AppText>
+                <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+                  {LABEL_TEMPLATES.map((t) => {
+                    const next = applyTemplate(t, otherLabels);
+                    const active = label.trim().toUpperCase() === next.toUpperCase();
+                    return (
+                      <Pressable
+                        key={t.text}
+                        onPress={() => {
+                          haptic.select();
+                          setLabel(next);
+                        }}
+                        accessibilityRole="button"
+                        accessibilityLabel={`ラベルを ${next} に`}
+                        accessibilityState={{ selected: active }}
+                        style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1 })}
+                      >
+                        <View style={{ height: 34, paddingHorizontal: 12, borderRadius: 17, backgroundColor: active ? color.accent : color.fill, justifyContent: 'center' }}>
+                          <AppText variant="footnote" weight="600" mono tone={active ? 'onTint' : 'label'}>
+                            {next}
+                          </AppText>
+                        </View>
+                      </Pressable>
+                    );
+                  })}
+                </View>
               </View>
             ) : null}
           </GroupCard>
