@@ -1,5 +1,6 @@
 import { dbToU7, encodeAscii8, encodeLevel, encodeTime, encodeU14, addrOffset, type Addr } from '../codec/value';
 import type { DeviceProfile } from '../profiles/types';
+import { VA } from '../profiles/virtual';
 
 /**
  * デモモード（F11）とモックの初期状態。名称はすべて架空（CLAUDE.md）。
@@ -120,6 +121,16 @@ function demoAssignments(p: DeviceProfile): { n: number; code: number; label: st
   return base.map((b, i) => ({ n: i + 1, ...b }));
 }
 
+/** LAN テキストコマンド機種（仮想アドレス）の既定値。以降の汎用シードで上書きされる分もある */
+function seedTextModelDefaults(m: ByteMap): void {
+  put(m, VA.aux, [0]);
+  put(m, VA.outputFade, [0]);
+  put(m, VA.pinp(1), [0]);
+  put(m, VA.pinp(2), [0]);
+  put(m, VA.dskPgm, [0]);
+  put(m, VA.dskPvw, [0]);
+}
+
 /** デモの DSK ソース（機種ごとのソース値域に収める） */
 function demoDskSource(p: DeviceProfile, v160: number): number {
   switch (p.model) {
@@ -146,6 +157,7 @@ function demoDskSource(p: DeviceProfile, v160: number): number {
 
 export function buildDemoState(p: DeviceProfile): ByteMap {
   const m: ByteMap = new Map();
+  if (p.protocol === 'text') seedTextModelDefaults(m);
   const assigns = demoAssignments(p);
 
   for (const a of assigns) {

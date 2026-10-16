@@ -1,6 +1,6 @@
 import type { Addr } from '../codec/value';
 
-export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD' | 'VR-6HD' | 'V-1-4K' | 'V-8HD' | 'V-1HD' | 'V-1SDI' | 'VR-4HD' | 'V-02HD-MK2';
+export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD' | 'VR-6HD' | 'V-1-4K' | 'V-8HD' | 'V-1HD' | 'V-1SDI' | 'VR-4HD' | 'V-02HD-MK2' | 'V-60HD' | 'V-600UHD' | 'VR-50HD-MK2';
 
 export type TallyState = 'off' | 'pgm' | 'pst' | 'both';
 
@@ -51,7 +51,12 @@ export interface DeviceProfile {
   model: ModelId;
   /** VER 応答の機種名 */
   verName: string;
-  /** SysEx モデル ID（V-160HD 5byte / V-80HD 3byte） */
+  /**
+   * 制御方式：'sysex' = アドレスマップ（DTH/RQH・MIDI SysEx）、'text' = LAN の 3 文字テキストコマンドのみ
+   * （V-60HD / V-600UHD / VR-50HD MK II。addrs は core/profiles/virtual.ts の仮想アドレス）
+   */
+  protocol: 'sysex' | 'text';
+  /** SysEx モデル ID（V-160HD 5byte / V-80HD 3byte）。'text' 機種は空 */
   sysexModelId: readonly number[];
   passwordLength: 4 | 8;
   /** LAN の書込応答形式 */

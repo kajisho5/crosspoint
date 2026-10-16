@@ -3,7 +3,7 @@ import { controller } from '@/core/controller/DeviceController';
 import type { ModelId } from '@/core/profiles/types';
 import { haptic } from './haptics';
 
-const MODELS: ModelId[] = ['V-160HD', 'V-80HD', 'VR-120HD', 'VR-6HD', 'V-1-4K', 'V-8HD', 'V-1HD', 'V-1SDI', 'VR-4HD', 'V-02HD-MK2'];
+const MODELS: ModelId[] = ['V-160HD', 'V-80HD', 'VR-120HD', 'VR-6HD', 'V-1-4K', 'V-8HD', 'V-1HD', 'V-1SDI', 'VR-4HD', 'V-02HD-MK2', 'V-60HD', 'V-600UHD', 'VR-50HD-MK2'];
 
 /** F11 デモモードの機種を選んで開始（キャンセル時は false） */
 export function startDemo(): Promise<boolean> {

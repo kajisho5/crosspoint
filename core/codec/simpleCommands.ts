@@ -22,6 +22,10 @@ export const SIMPLE_COMMANDS_MIN_VERSION: Record<ModelId, string> = {
   'V-1SDI': '99.99',
   'VR-4HD': '99.99',
   'V-02HD-MK2': '99.99',
+  // LAN テキストコマンド機種（簡易制御コマンド文書の対象外。CUT/ATO 等は textCommandMap で同名コマンドに変換）
+  'V-60HD': '99.99',
+  'V-600UHD': '99.99',
+  'VR-50HD-MK2': '99.99',
 };
 
 /** マクロ・シーケンサーの簡易制御コマンドを持つ機種（文書の限定注記） */

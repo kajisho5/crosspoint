@@ -10,6 +10,9 @@ import v1hdJson from './v1hd.params.json';
 import v1sdiJson from './v1sdi.params.json';
 import vr4hdJson from './vr4hd.params.json';
 import v02hdmk2Json from './v02hdmk2.params.json';
+import v60hdJson from './v60hd.params.json';
+import v600uhdJson from './v600uhd.params.json';
+import vr50hdmk2Json from './vr50hdmk2.params.json';
 import type { EnumParam, IntParam, ParamCatalog, ParamDef, ParamGroup, ParamInstance } from './types';
 
 export * from './types';
@@ -25,6 +28,10 @@ const CATALOGS: Record<ModelId, ParamCatalog> = {
   'V-1SDI': v1sdiJson as unknown as ParamCatalog,
   'VR-4HD': vr4hdJson as unknown as ParamCatalog,
   'V-02HD-MK2': v02hdmk2Json as unknown as ParamCatalog,
+  // LAN テキストコマンド機種：SysEx のパラメータ表が無い（全パラメータメニューは空）
+  'V-60HD': v60hdJson as unknown as ParamCatalog,
+  'V-600UHD': v600uhdJson as unknown as ParamCatalog,
+  'VR-50HD-MK2': vr50hdmk2Json as unknown as ParamCatalog,
 };
 
 export function getCatalog(model: ModelId): ParamCatalog {

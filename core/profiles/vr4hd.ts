@@ -37,6 +37,7 @@ const AUDIO_INPUTS = [
 export const vr4hd: DeviceProfile = {
   model: 'VR-4HD',
   verName: 'VR-4HD',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x29],
   passwordLength: 4,
   lanAck: 'byte06',

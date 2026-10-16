@@ -177,7 +177,7 @@ export class MidiTransport implements Transport {
       }, this.opt.verTimeoutMs);
       this.verWaiter = { resolve, timer };
       // 接続確認中は全対応機種のヘッダを受け付けるため、全機種分の RQ1 を送る（modelId が違えば本体は無応答）
-      for (const p of Object.values(PROFILES)) void this.send(buildRq1(p.sysexModelId, p.version.addr, p.version.size));
+      for (const p of Object.values(PROFILES)) if (p.sysexModelId.length > 0) void this.send(buildRq1(p.sysexModelId, p.version.addr, p.version.size));
     });
   }
 
@@ -191,7 +191,7 @@ export class MidiTransport implements Transport {
   // ---- 受信 ----------------------------------------------------------------
 
   private onSysEx(bytes: number[]): void {
-    const candidates = this.profile ? [this.profile.sysexModelId] : Object.values(PROFILES).map((p) => p.sysexModelId);
+    const candidates = this.profile ? [this.profile.sysexModelId] : Object.values(PROFILES).filter((p) => p.sysexModelId.length > 0).map((p) => p.sysexModelId);
     const parsed = parseSysEx(bytes, candidates);
     if (parsed.kind === 'other') {
       this.log('rx', `? ${toHex(bytes)}（${parsed.reason}）`);

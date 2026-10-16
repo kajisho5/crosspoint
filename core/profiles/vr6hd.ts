@@ -50,6 +50,7 @@ function byteToTally(v: number): TallyState {
 export const vr6hd: DeviceProfile = {
   model: 'VR-6HD',
   verName: 'VR-6HD',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x2c],
   passwordLength: 4,
   lanAck: 'byte06',

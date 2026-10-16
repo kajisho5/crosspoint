@@ -49,6 +49,7 @@ function byteToTally(v: number): TallyState {
 export const vr120hd: DeviceProfile = {
   model: 'VR-120HD',
   verName: 'VR-120HD',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x25],
   passwordLength: 4,
   // ガイド p.43：ack は制御コード 06H【事実】

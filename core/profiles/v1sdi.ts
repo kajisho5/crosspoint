@@ -40,6 +40,7 @@ const AUDIO_INPUTS = [
 export const v1sdi: DeviceProfile = {
   model: 'V-1SDI',
   verName: 'V-1SDI',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x31],
   passwordLength: 4,
   lanAck: 'byte06',

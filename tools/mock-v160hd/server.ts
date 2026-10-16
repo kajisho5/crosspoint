@@ -3,6 +3,7 @@ import { buildDemoState, writeTally, type ByteMap } from '../../core/transport/d
 import { simulateSimpleCommand } from '../../core/transport/simpleCommandSim';
 import { addr, addrOffset, addrToHex, decodeTime, type Addr } from '../../core/codec/value';
 import { getProfile, modelIdFrom } from '../../core/profiles';
+import { simulateTextModel, seedTextModel } from '../../core/transport/textModelSim';
 import type { DeviceProfile, ModelId } from '../../core/profiles/types';
 
 /**
@@ -40,7 +41,7 @@ export interface MockServer {
   close: () => Promise<void>;
 }
 
-const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00', 'V-8HD': '3.00', 'V-1HD': '2.10', 'V-1SDI': '1.50', 'VR-4HD': '2.10', 'V-02HD-MK2': '1.03' };
+const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00', 'V-8HD': '3.00', 'V-1HD': '2.10', 'V-1SDI': '1.50', 'VR-4HD': '2.10', 'V-02HD-MK2': '1.03', 'V-60HD': '3.10', 'V-600UHD': '3.00', 'VR-50HD-MK2': '2.00' };
 const TALLY_SUBSCRIBE = addr(0x0c, 0x01, 0x00);
 
 function hex2(b: number): string {
@@ -142,9 +143,28 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
     return ackText;
   };
 
+  const textModel = profile.protocol === 'text';
+  // テキストコマンド機種の応答形式：V-60HD / VR-50HD MK II は stx 付き＋ack 06H、V-600UHD は stx 無し＋"ACK"+LF
+  const textStx = model === 'V-600UHD' ? '' : '\x02';
+  const textAck = model === 'V-600UHD' ? 'ACK\n' : '\x06';
+  if (textModel) seedTextModel(profile, mem);
+
+  const handleTextLine = (sock: net.Socket, line: string) => {
+    if (line === 'VER') {
+      send(sock, `${textStx}VER:${profile.verName},${VERSIONS[model]};`);
+      return;
+    }
+    const replies = simulateTextModel(profile, line, mem, { later: (fn, ms) => void setTimeout(fn, ms) });
+    for (const r of replies) send(sock, r === 'ACK' ? textAck : `${textStx}${r}`);
+  };
+
   const handleLine = (sock: net.Socket, st: { authed: boolean; buf: string }, raw: string) => {
     const line = raw.trim();
     if (line.length === 0) return;
+    if (textModel) {
+      handleTextLine(sock, line);
+      return;
+    }
     if (!st.authed) {
       if (line === password) {
         st.authed = true;
@@ -203,10 +223,10 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
   const server = net.createServer((sock: net.Socket) => {
     sock.setEncoding('latin1');
     sock.setNoDelay(true);
-    const st = { authed: false, buf: '' };
+    const st = { authed: textModel, buf: '' };
     clients.set(sock, st);
     log(`client connected (${clients.size})`);
-    send(sock, 'Enter password:');
+    if (!textModel) send(sock, 'Enter password:'); // テキストコマンド機種は認証プロンプト無し【事実：資料に記載無し】
     sock.on('data', (chunk: string) => {
       st.buf += chunk.replace(/[\x02\r]/g, '');
       for (;;) {

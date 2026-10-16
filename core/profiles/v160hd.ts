@@ -37,6 +37,7 @@ function bitmaskToTally(v: number): TallyState {
 export const v160hd: DeviceProfile = {
   model: 'V-160HD',
   verName: 'V-160HD',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x02],
   passwordLength: 4,
   lanAck: 'byte06',

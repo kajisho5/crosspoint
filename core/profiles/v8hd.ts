@@ -42,6 +42,7 @@ function byteToTally(v: number): TallyState {
 export const v8hd: DeviceProfile = {
   model: 'V-8HD',
   verName: 'V-8HD',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x68],
   passwordLength: 4,
   lanAck: 'byte06',

@@ -105,7 +105,7 @@ describe('MidiTransport（SPEC §4）', () => {
     expect(res).toEqual({ model: 'V-160HD', version: '3.60' });
     expect(states).toEqual(['connecting', 'authenticating', 'syncing']);
     // 接続確認では全対応機種分の RQ1 を送る（PROFILES の数）
-    expect(fake.sent.length).toBe(Object.keys(PROFILES).length);
+    expect(fake.sent.length).toBe(Object.values(PROFILES).filter((p) => p.sysexModelId.length > 0).length);
     expect(toHex(fake.sent[0]!)).toBe('F0 41 10 00 00 00 00 02 11 02 00 00 00 00 06 78 F7');
     await t.disconnect();
   });

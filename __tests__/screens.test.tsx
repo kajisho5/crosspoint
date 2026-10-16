@@ -498,8 +498,8 @@ describe('デモ V-1-4K（8 入力・CUT/AUTO は SysEx・PinP 無し・DSK 1）
   });
 });
 
-describe('デモ：Reference Manual 系 5 機種（USB のみ。無い要素を出さずに全タブが描ける）', () => {
-  const models = ['V-8HD', 'V-1HD', 'V-1SDI', 'VR-4HD', 'V-02HD-MK2'] as const;
+describe('デモ：Reference Manual 系 5 機種＋LAN テキストコマンド 3 機種（無い要素を出さずに全タブが描ける）', () => {
+  const models = ['V-8HD', 'V-1HD', 'V-1SDI', 'VR-4HD', 'V-02HD-MK2', 'V-60HD', 'V-600UHD', 'VR-50HD-MK2'] as const;
   for (const model of models) {
     test(`${model}：スイッチャー / キー / オーディオ / メモリー`, async () => {
       await act(async () => {
@@ -546,5 +546,35 @@ describe('デモ：Reference Manual 系 5 機種（USB のみ。無い要素を�
     expect(calls).toEqual([0x13, 0x53]);
     spy.mockRestore();
     tp.mockRestore();
+  });
+});
+
+describe('デモ V-60HD（LAN テキストコマンド：仮想アドレス）', () => {
+  test('PST を押すと仮想アドレス 7F 00 01 に書かれ、CUT で PGM/PST が入れ替わる。メニューは空の案内', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-60HD');
+    });
+    await render(<SwitcherScreen />);
+    expect(screen.getByText('V-60HD')).toBeTruthy();
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText(/^プリセット 6、/));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x7f, 0x00, 0x01)]).toBe(5);
+    const cut = screen.getByText('CUT');
+    await act(async () => {
+      fireEvent(cut, 'pressIn');
+    });
+    await act(async () => {
+      fireEvent(cut, 'pressOut');
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(useParamStore.getState().values[addr(0x7f, 0x00, 0x00)]).toBe(5);
+    await render(<MenuScreen />);
+    expect(screen.getByText(/テキストコマンドだけで制御する機種/)).toBeTruthy();
   });
 });

@@ -35,6 +35,7 @@ const AUDIO_INPUTS = [
 export const v02hdmk2: DeviceProfile = {
   model: 'V-02HD-MK2',
   verName: 'V-02HD MK II',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x00, 0x0a],
   passwordLength: 4,
   lanAck: 'byte06',

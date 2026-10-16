@@ -30,6 +30,7 @@ const AUDIO_INPUTS = [
 export const v1hd: DeviceProfile = {
   model: 'V-1HD',
   verName: 'V-1HD',
+  protocol: 'sysex',
   sysexModelId: [0x00, 0x00, 0x00, 0x20],
   passwordLength: 4,
   lanAck: 'byte06',

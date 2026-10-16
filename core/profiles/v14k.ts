@@ -49,6 +49,7 @@ function byteToTally(v: number): TallyState {
 export const v14k: DeviceProfile = {
   model: 'V-1-4K',
   verName: 'V-1-4K',
+  protocol: 'sysex',
   sysexModelId: [0x01, 0x06, 0x10],
   passwordLength: 8,
   lanAck: 'asciiACK',

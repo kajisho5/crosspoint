@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { addr, addrOffset, decodeU14, encodeU14, type Addr } from '@/core/codec/value';
+import { addr, addrOffset, decodeU14, encodeLevel, encodeU14, type Addr } from '@/core/codec/value';
 import { LanTransport } from '@/core/transport/LanTransport';
 import { nodeSocketFactory } from '@/core/transport/nodeSocket';
 import type { LinkError, LinkState } from '@/core/transport/Transport';
@@ -10,6 +10,7 @@ import { v80hd } from '@/core/profiles/v80hd';
 import { vr120hd } from '@/core/profiles/vr120hd';
 import { vr6hd } from '@/core/profiles/vr6hd';
 import { v14k } from '@/core/profiles/v14k';
+import { VA } from '@/core/profiles/virtual';
 import { startMockServer, type MockServer } from '../tools/mock-v160hd/server';
 
 /** SPEC §12-4 結合テスト：モックサーバーに対し 接続→認証→同期→PGM 変更→自発通知→CUT→切断→自動再接続 */
@@ -255,5 +256,96 @@ describe('LAN 結合（V-1-4K モック：--model v14k）', () => {
     t.readParam(p.tallyBlock!, p.tallyBlockSize);
     await until(() => c.params.get(p.tallyBlock! + 0x06 + 2) === 1); // INPUT 2 = PGM
     await t.disconnect();
+  });
+});
+
+describe('LAN 結合（テキストコマンド機種のモック）', () => {
+  test('V-60HD：プロンプト無し → stxVER; → PGM:a; を ACK(06H) で確定、QPL/TLY で読み戻し、CUT; で入替', async () => {
+    const server = await startMockServer({ model: 'V-60HD', port: 0 });
+    try {
+      const t = new LanTransport(nodeSocketFactory, { promptTimeoutMs: 150 });
+      const c = collect(t);
+      const logs: string[] = [];
+      t.on('log', (e) => logs.push(`${e.dir} ${e.text}`));
+      const res = await t.connect({ name: 'DEMO-SW-D', host: '127.0.0.1', port: server.port });
+      expect(res).toEqual({ model: 'V-60HD', version: '3.10' });
+      expect(logs.some((l) => l.includes('テキストコマンド機種'))).toBe(true);
+      // 書込：PGM → "PGM:5;"（stx 付き）、ACK で echo
+      t.writeParam(VA.pgm, [5]);
+      await until(() => server.mem.get(VA.pgm) === 5);
+      await until(() => c.params.get(VA.pgm) === 5);
+      expect(logs).toContain('tx PGM:5;');
+      // 読出：PST を読む → QPL:7; → QPL 応答から PST/AUX/PinP/DSK も埋まる
+      t.readParam(VA.pst, 1);
+      await until(() => c.params.get(VA.pst) === 2);
+      expect(c.params.get(VA.aux)).toBe(0);
+      // タリー
+      t.readParam(VA.tally, 8);
+      await until(() => c.params.get(VA.tally + 5) === 1); // INPUT 6 (a=5) = PGM
+      expect(c.params.get(VA.tally + 2)).toBe(2); // PST = INPUT 3
+      // レベル：IAL:3,-120;（-12.0 dB）→ 読み戻し QAL:3;
+      t.writeParam(VA.audioLevel(3), encodeLevel(-12.0));
+      await until(() => logs.includes('tx IAL:3,-120;'));
+      await until(() => c.params.has(VA.audioLevel(3)));
+      t.readParam(VA.masterLevel, 3);
+      await until(() => logs.includes('tx QAL:12;'));
+      // CUT
+      t.writeParam(VA.cut, [1]);
+      await until(() => server.mem.get(VA.pgm) === 2 && server.mem.get(VA.pst) === 5);
+      expect(logs).toContain('tx CUT;');
+      t.writeParam(VA.cut, [0]); // 解放はコマンドにならない
+      await t.disconnect();
+      expect(logs.filter((l) => l === 'tx CUT;')).toHaveLength(1);
+    } finally {
+      await server.close();
+    }
+  });
+
+  test('V-600UHD：stx 無し・ACK は "ACK"+LF、読出しコマンド無し、MEM:63;', async () => {
+    const server = await startMockServer({ model: 'V-600UHD', port: 0 });
+    try {
+      const t = new LanTransport(nodeSocketFactory, { promptTimeoutMs: 150 });
+      const c = collect(t);
+      const logs: string[] = [];
+      t.on('log', (e) => logs.push(`${e.dir} ${e.text}`));
+      const res = await t.connect({ name: 'DEMO-SW-E', host: '127.0.0.1', port: server.port });
+      expect(res).toEqual({ model: 'V-600UHD', version: '3.00' });
+      t.writeParam(VA.transType, [3]);
+      await until(() => c.params.get(VA.transType) === 3);
+      expect(logs).toContain('tx TRS:3;');
+      expect(logs).toContain('rx ACK');
+      t.writeParam(VA.memLoad, [63]);
+      await until(() => server.mem.get(VA.memCurrent) === 63);
+      t.readParam(VA.pgm, 1); // 読めない → 何も送らない
+      await new Promise((r) => setTimeout(r, 80));
+      expect(logs.some((l) => l.startsWith('tx Q'))).toBe(false);
+      await t.disconnect();
+    } finally {
+      await server.close();
+    }
+  });
+
+  test('VR-50HD MK II：PGM:4;（STILL）、LM2:100;、QPG; で PGM を読み戻す', async () => {
+    const server = await startMockServer({ model: 'VR-50HD-MK2', port: 0 });
+    try {
+      const t = new LanTransport(nodeSocketFactory, { promptTimeoutMs: 150 });
+      const c = collect(t);
+      const logs: string[] = [];
+      t.on('log', (e) => logs.push(`${e.dir} ${e.text}`));
+      const res = await t.connect({ name: 'DEMO-SW-F', host: '127.0.0.1', port: server.port });
+      expect(res).toEqual({ model: 'VR-50HD-MK2', version: '2.00' });
+      t.writeParam(VA.pgm, [4]);
+      await until(() => server.mem.get(VA.pgm) === 4);
+      t.writeParam(VA.audioLevel(1), [100]);
+      await until(() => logs.includes('tx LM2:100;'));
+      t.writeParam(VA.audioLevel(5), [64]);
+      await until(() => logs.includes('tx LS2:64;'));
+      t.readParam(VA.pgm, 1);
+      await until(() => logs.includes('tx QPG;'));
+      await until(() => c.params.get(VA.pgm) === 4);
+      await t.disconnect();
+    } finally {
+      await server.close();
+    }
   });
 });

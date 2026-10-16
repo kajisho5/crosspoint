@@ -3,7 +3,7 @@
  * 根拠は公開ガイドのみ（SPEC §0 ルール8）。生成元：tools/guide/*.raw.json（ガイド PDF の表を機械的に抽出したもの）。
  */
 
-export type ParamArea = 'video' | 'audio' | 'system' | 'other' | 'tally' | 'name';
+export type ParamArea = 'video' | 'audio' | 'system' | 'panel' | 'other' | 'tally' | 'name';
 
 export type ParamKind = 'bool' | 'enum' | 'int' | 'level' | 'text' | 'unknown';
 

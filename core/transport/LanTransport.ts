@@ -4,6 +4,7 @@ import type { Addr } from '../codec/value';
 import { CommandQueue, type QueuedCommand } from '../controller/CommandQueue';
 import { profileFromVerName } from '../profiles';
 import type { ModelId } from '../profiles/types';
+import { textMapFor, type TextCommandMap } from '../codec/textCommandMap';
 import { classifySocketError, type RawSocket, type SocketFactory } from './socket';
 import {
   LinkFailure,
@@ -24,6 +25,10 @@ import {
  * - 受信は LanParser（§3-4）→ parseLanMessage。DTH は param、ERR は err、ACK はログ
  * - 切断：close/error → reconnecting、バックオフ 1→2→4→8→15s（§3-7）。無通信 10s で VER キープアライブ、5s 無応答で切断扱い
  * connect() は認証・機種確認まで含めて resolve し、状態 'syncing' を出す（'online' は同期完了後に controller が出す）。
+ *
+ * テキストモード（V-60HD / V-600UHD / VR-50HD MK II）：VER 応答の機種名でプロファイルが 'text' なら、以後の
+ * writeParam / readParam を core/codec/textCommandMap.ts でコマンドへ変換して送る。本体は値を echo しないので、
+ * ACK を受けたら直前の書込値を param 通知して確定扱いにする（§3-6 の楽観更新の戻しを防ぐ）。
  */
 
 export interface LanTransportOptions {
@@ -40,7 +45,7 @@ export interface LanTransportOptions {
 
 const DEFAULTS: Required<LanTransportOptions> = {
   connectTimeoutMs: 5000,
-  promptTimeoutMs: 5000,
+  promptTimeoutMs: 1500, // プロンプトは接続直後に来る。来ない機種（V-60HD 等）の VER 送出を早める
   authTimeoutMs: 5000,
   verTimeoutMs: 3000,
   keepAliveIdleMs: 10000,
@@ -70,6 +75,15 @@ export class LanTransport implements Transport {
   private idleTimer: ReturnType<typeof setTimeout> | null = null;
   private keepAliveTimer: ReturnType<typeof setTimeout> | null = null;
   private verSentAt = 0;
+  /** テキストモード（null = DTH/RQH） */
+  private textMap: TextCommandMap | null = null;
+  /** テキストモード：ACK 待ちの書込（FIFO。ACK で echo） */
+  private textEchoes: { addr: Addr; bytes: number[] }[] = [];
+  /** テキストモード：直前に送った問い合わせ（QAL の応答に a が無いため） */
+  private lastQuery: string | null = null;
+  private lastQueryAt = 0;
+  /** テキストモード：既知の現在値（トグル系コマンドの判断用） */
+  private shadow = new Map<Addr, number>();
 
   private promptWaiter: Waiter<'prompt' | 'ver'> | null = null;
   private welcomeWaiter: Waiter<string> | null = null;
@@ -123,6 +137,10 @@ export class LanTransport implements Transport {
     }
     this.up = false;
     this.model = null;
+    this.textMap = null;
+    this.textEchoes = [];
+    this.lastQuery = null;
+    this.shadow.clear();
     this.parser.reset();
     if (this.state !== 'idle') this.emitState('idle');
   }
@@ -210,6 +228,10 @@ export class LanTransport implements Transport {
       if (!profile) throw this.fail('WRONG_DEVICE', `未対応機種 ${ver.model}`);
       if (target.model && target.model !== profile.model) throw this.fail('WRONG_DEVICE', `保存済み ${target.model} ≠ ${profile.model}`);
       this.model = profile.model;
+      this.textMap = profile.protocol === 'text' ? textMapFor(profile.model) : null;
+      this.textEchoes = [];
+      this.shadow.clear();
+      if (this.textMap) this.log('info', `テキストコマンド機種（${profile.model}）：DTH/RQH は使わず 3 文字コマンドに変換`);
       this.up = true;
       this.attempt = 0;
       this.touchIdle();
@@ -228,7 +250,10 @@ export class LanTransport implements Transport {
       const timer = setTimeout(() => {
         // 5s 以内にプロンプトが来ない → VER を送って応答があれば認証不要
         this.promptWaiter = null;
+        // 認証プロンプトを出さない機種（V-60HD / V-600UHD / VR-50HD MK II）：stx 付きと無しの両方で VER を送る
+        // （V-60HD / VR-50HD MK II は stx 付き、V-600UHD は LAN では stx 無し【事実：各 Reference Manual】）
         this.write(VER_COMMAND);
+        this.write('\x02VER;', '\\x02VER;');
         const t2 = setTimeout(() => {
           this.verWaiter = null;
           reject(this.fail('NO_RESPONSE', 'prompt/VER とも無応答'));
@@ -304,8 +329,14 @@ export class LanTransport implements Transport {
         timer,
       };
       this.verSentAt = Date.now();
-      this.write(VER_COMMAND);
+      this.writeVer();
     });
+  }
+
+  /** VER（テキストモードは機種の stx 規則に合わせる） */
+  private writeVer(): void {
+    if (this.textMap) this.write(`${this.textMap.stx ? '\x02' : ''}VER;`, 'VER;');
+    else this.write(VER_COMMAND);
   }
 
   private rejectWaiters(err: LinkFailure): void {
@@ -324,9 +355,20 @@ export class LanTransport implements Transport {
     for (const tok of this.parser.feed(text)) {
       if (tok.kind === 'ack') {
         this.log('rx', 'ACK');
+        this.onTextAck();
         continue;
       }
       const msg = parseLanMessage(tok.text);
+      if (this.textMap && msg.type !== 'ver' && msg.type !== 'err' && msg.type !== 'ack' && msg.type !== 'prompt' && msg.type !== 'welcome') {
+        this.log('rx', tok.text);
+        const decoded = this.textMap.decode(tok.text.trim(), this.lastQuery);
+        if (decoded.length > 0) {
+          for (const d of decoded) this.emitParam(d.addr, d.bytes);
+        } else {
+          for (const cb of this.textCbs) cb(msg.type === 'unknown' ? msg.raw : tok.text);
+        }
+        continue;
+      }
       switch (msg.type) {
         case 'prompt':
           this.log('rx', tok.text);
@@ -354,7 +396,7 @@ export class LanTransport implements Transport {
         }
         case 'dth':
           this.log('rx', tok.text);
-          for (const cb of this.paramCbs) cb(msg.addr, msg.bytes);
+          this.emitParam(msg.addr, msg.bytes);
           break;
         case 'err':
           this.log('rx', `${tok.text}（${ERR_TEXT[msg.code] ?? '不明'}）`);
@@ -362,6 +404,7 @@ export class LanTransport implements Transport {
           break;
         case 'ack':
           this.log('rx', 'ACK');
+          this.onTextAck();
           break;
         default:
           this.log('rx', msg.raw);
@@ -424,7 +467,7 @@ export class LanTransport implements Transport {
       this.idleTimer = null;
       if (!this.up) return;
       this.verSentAt = Date.now();
-      this.write(VER_COMMAND);
+      this.writeVer();
       this.keepAliveTimer = setTimeout(() => {
         this.keepAliveTimer = null;
         if (!this.up) return;
@@ -448,11 +491,41 @@ export class LanTransport implements Transport {
   // ---- 送信 --------------------------------------------------------------
 
   private sendCommand(cmd: QueuedCommand): void {
+    if (this.textMap) {
+      const stx = this.textMap.stx ? '\x02' : '';
+      if (cmd.kind === 'write') {
+        const r = this.textMap.encodeWrite(cmd.addr, cmd.bytes, (a) => this.shadow.get(a));
+        if (!r.command) return;
+        if (r.echo) this.textEchoes.push(r.echo);
+        this.write(`${stx}${r.command}`, r.command);
+      } else {
+        const q = this.textMap.encodeRead(cmd.addr);
+        if (!q) return;
+        // 同じ問い合わせの連投（複数の仮想アドレスが 1 つの QPL に集約される）は 300ms に 1 回
+        if (q === this.lastQuery && Date.now() - this.lastQueryAt < 300) return;
+        this.lastQuery = q;
+        this.lastQueryAt = Date.now();
+        this.write(`${stx}${q}`, q);
+      }
+      return;
+    }
     if (cmd.kind === 'write') {
       for (const line of formatDthBytes(cmd.addr, cmd.bytes)) this.write(line);
     } else {
       this.write(formatRqh(cmd.addr, cmd.size));
     }
+  }
+
+  /** テキストモード：ACK で直前の書込を確定（本体は echo しない） */
+  private onTextAck(): void {
+    if (!this.textMap) return;
+    const e = this.textEchoes.shift();
+    if (e) this.emitParam(e.addr, e.bytes);
+  }
+
+  private emitParam(a: Addr, bytes: number[]): void {
+    bytes.forEach((b, i) => this.shadow.set(a + i, b));
+    for (const cb of this.paramCbs) cb(a, bytes);
   }
 
   private write(text: string, logAs?: string): void {
