@@ -88,9 +88,10 @@ export type SimpleReply = { kind: 'seqSw'; on: boolean } | { kind: 'seqAuto'; on
 
 export function parseSimpleReply(text: string): SimpleReply | null {
   const t = text.trim().replace(/;$/, '');
-  let m = /^SQS:(ON|OFF)$/.exec(t);
+  // V-80HD（FW 1.30.207）の実応答は `SEQSW:OFF` / `SEQAS:OFF`【事実：2026-10-16 実機】。資料の `SQS:` / `SQA:` も受ける
+  let m = /^(?:SQS|SEQSW):(ON|OFF)$/.exec(t);
   if (m) return { kind: 'seqSw', on: m[1] === 'ON' };
-  m = /^SQA:(ON|OFF)$/.exec(t);
+  m = /^(?:SQA|SEQAS):(ON|OFF)$/.exec(t);
   if (m) return { kind: 'seqAuto', on: m[1] === 'ON' };
   m = /^MCRST:MACRO(\d+),(ON|OFF)$/.exec(t);
   if (m) return { kind: 'macroState', n: Number(m[1]), on: m[2] === 'ON' };

@@ -156,3 +156,19 @@ ioreg -p IOUSB -l -w0 | grep -iE 'bInterfaceClass|bInterfaceSubClass|USB Product
 | `PGM:a;` でトランジションが走るか | — | — | — | — |
 | `QPG;` の応答 | — | — | — | — |
 | `AUX:a;` の 4/5/6 の意味 | — | — | — | — |
+
+### V-80HD LAN 実機検証（2026-10-16 21:20、PC から TCP 8023 に直接。FW 1.30.207）
+| 項目 | 結果 | 反映 |
+|---|---|---|
+| 認証 | 接続直後 `<0A>Enter password:` → PW 8 文字＋LF → `<0A>Welcome to V-80HD.<0A>`（USER NAME は聞かれない） | ✅ 現行どおり |
+| 応答形式 | 各応答の先頭に stx（02H）、末尾 LF。ACK は `<02>ACK;<0A>` | ✅ |
+| VER | `VER:V-80HD,1.30.207;`（本人が 1.20.201 → 1.30 に更新済み） | ✅ |
+| **複数バイト書込み** | `DTH:010A01,7F;` `DTH:010A02,1C;`（1 バイトずつ）は ACK が返るが**値は変わらない**。`DTH:010A01,7F4E;`（連結）は反映。3 バイト（INPUT LEVEL `DTH:010A03,7F7F44;`）も連結で反映 | ❌→修正：formatDthBytes を連結 1 通に（DIGITAL GAIN・音量・T バーが LAN で効かなかった原因） |
+| 同時接続 | 2 本目の TCP は接続できるがプロンプトも応答も返らない（1 接続のみ） | 注意：iPhone と RCS 等を同時に LAN で使えない |
+| 自発通知 | PST 変更で `DTH:001500..` は来ない | ポーリングで追従（現行どおり） |
+| タリー購読 | `DTH:0C0100,01;` で即座に `DTH:0C0000,<49 バイト>` が返り、以後 PGM/PST 変化・遷移中（03 = 両方）に自動送信 | ✅ tallySubscribe: true、tallyBlockSize 49（従来 57） |
+| タリー配置 | 49 バイト（00–30H）。PGM=INPUT 1（29H）・PST=INPUT 5（2DH）で byte 00/04 と 29H/2DH が 01/02 → INPUT n = 28H+n | ✅ |
+| PGM/PST の値 | `RQH:001500,000004` → `292D0000`（INPUT 1 / INPUT 5、T バー 0） | ✅ 0x28+n |
+| 簡易制御 CUT; / ATO; | どちらも `ACK;` → PGM/PST 入替（ATO は遷移中タリー 03） | ✅ FW 1.30 以上で CUT/AUTO 表示 |
+| QSEQSW; / QSEQAS; | 応答は `SEQSW:OFF;` / `SEQAS:OFF;`（資料の `SQS:` / `SQA:` ではない） | ❌→修正：両方受ける |
+| TLY; | `TLY:` に 57 個（0–3） | — |

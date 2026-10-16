@@ -191,15 +191,22 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
       send(sock, dthText(a, readBytes(a, size)));
       return;
     }
-    const dth = /^DTH:([0-9A-Fa-f]{6}),([0-9A-Fa-f]{2})$/.exec(line);
+    // 複数バイトは連結（`DTH:010A01,7E58;`）。実機（V-80HD）と同じく先頭番地から順に書く
+    const dth = /^DTH:([0-9A-Fa-f]{6}),((?:[0-9A-Fa-f]{2})+)$/.exec(line);
     if (dth) {
       const a = hexAddr(dth[1] ?? '000000');
-      const v = parseInt(dth[2] ?? '0', 16);
-      if (v > 0x7f) {
+      const hex = dth[2] ?? '';
+      const vals: number[] = [];
+      for (let i = 0; i < hex.length; i += 2) vals.push(parseInt(hex.slice(i, i + 2), 16));
+      if (vals.some((v) => v > 0x7f)) {
         send(sock, 'ERR:5;');
         return;
       }
-      send(sock, handleWrite(sock, a, v));
+      let reply = '';
+      vals.forEach((v, i) => {
+        reply = handleWrite(sock, addrOffset(a, i), v);
+      });
+      send(sock, reply);
       return;
     }
     // 簡易制御コマンド（LAN/RS-232 簡易制御コマンド Ver.02）。応答は `;` 区切り＋LF

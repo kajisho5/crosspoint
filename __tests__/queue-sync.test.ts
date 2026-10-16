@@ -148,7 +148,7 @@ describe('SyncEngine（SPEC §10）', () => {
   test('V-80HD の初期同期範囲は V-80HD のアドレス', () => {
     const r = initialSyncRanges(v80hd, 'lan', 'switcher');
     expect(r.some((x) => x.addr === addr(0, 0x15, 0) && x.size === 4)).toBe(true);
-    expect(r.some((x) => x.addr === addr(0x0c, 0, 0) && x.size === 57)).toBe(true);
+    expect(r.some((x) => x.addr === addr(0x0c, 0, 0) && x.size === 49)).toBe(true);
     expect(r.some((x) => x.addr === addr(0, 0x14, 0) && x.size === 3)).toBe(true); // DSK time/pgm/pvw
   });
 
@@ -170,14 +170,14 @@ describe('SyncEngine（SPEC §10）', () => {
     expect(writes).toEqual([{ a: TALLY_SUBSCRIBE_ADDR, bytes: [1] }]);
   });
 
-  test('initialSync：V-80HD は購読を書かず、未受信はタイムアウトで missing', async () => {
+  test('initialSync：V-80HD もタリー購読を書く（実機で確認）、未受信はタイムアウトで missing', async () => {
     const store = mem();
     const writes: Addr[] = [];
     const transport = { readParam: () => {}, writeParam: (a: Addr) => writes.push(a) };
     const e = new SyncEngine(transport, v80hd, store, { link: 'lan', pollMs: () => 500 });
     const { missing } = await e.initialSync(120);
     expect(missing.length).toBeGreaterThan(0);
-    expect(writes).toEqual([]);
+    expect(writes).toEqual([TALLY_SUBSCRIBE_ADDR]);
   });
 
   test('pollRanges：表示中タブのみ、重いものは 10 周期に 1 回', () => {

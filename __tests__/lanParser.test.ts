@@ -46,13 +46,14 @@ describe('lanParser（SPEC §3-4 必須ケース）', () => {
 describe('TextCodec', () => {
   test('DTH / RQH / VER の組立て', () => {
     expect(formatDth(addr(0x00, 0x21, 0x00), 0x22)).toBe('DTH:002100,22;\n');
-    expect(formatDthBytes(addr(0x00, 0x21, 0x02), [0x08, 0x00])).toEqual(['DTH:002102,08;\n', 'DTH:002103,00;\n']);
+    expect(formatDthBytes(addr(0x00, 0x21, 0x02), [0x08, 0x00])).toEqual(['DTH:002102,0800;\n']);
     expect(formatRqh(addr(0x00, 0x21, 0x00), 2)).toBe('RQH:002100,000002;\n');
     expect(VER_COMMAND).toBe('VER;\n');
   });
 
   test('7bit 桁上がりで次のアドレスへ進む', () => {
-    expect(formatDthBytes(addr(0x00, 0x21, 0x7f), [1, 2])).toEqual(['DTH:00217F,01;\n', 'DTH:002200,02;\n']);
+    expect(formatDthBytes(addr(0x00, 0x21, 0x7f), [1, 2])).toEqual(['DTH:00217F,0102;\n']);
+    expect(formatDthBytes(addr(0x01, 0x0a, 0x03), [0x7f, 0x7f, 0x44])).toEqual(['DTH:010A03,7F7F44;\n']);
   });
 
   test('受信メッセージの解釈', () => {

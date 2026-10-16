@@ -17,9 +17,13 @@ export function formatDth(a: Addr, byte: number): string {
   return `DTH:${addrToHex(a)},${hex2(byte)};\n`;
 }
 
-/** 複数バイトは 1 バイトずつ別アドレスで送る（SPEC §3-3） */
+/**
+ * 複数バイトは区切り無しで連結して 1 通で送る（`DTH:010A01,7E58;`。RQH 応答と同じ形）。
+ * 1 バイトずつ別アドレスで送ると V-80HD（FW 1.30.207）は ACK を返すが値を変えない【事実：2026-10-16 実機。docs/VERIFY.md】
+ */
 export function formatDthBytes(a: Addr, bytes: readonly number[]): string[] {
-  return bytes.map((b, i) => formatDth(a + i, b));
+  if (bytes.length === 0) return [];
+  return [`DTH:${addrToHex(a)},${bytes.map(hex2).join('')};\n`];
 }
 
 /** `RQH:{addr6},{size6};\n` */
