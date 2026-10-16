@@ -32,18 +32,38 @@ def token():
                       KEY, algorithm="ES256", headers={"kid": KEY_ID, "typ": "JWT"})
 
 
+class Duplicate(Exception):
+    """同じビルド番号が既に送られている（前回の試行でアップロード自体は通っていた）"""
+
+
+# App Store Connect は混雑時に 5xx やタイムアウトを返すことがある（2026-10-16 夜に連発）。
+# 一時的な失敗は間隔を空けて再試行し、4xx（鍵・内容の誤り）だけを即失敗にする
+RETRIES = 5
+
+
 def api(method, path, body=None):
     data = None if body is None else json.dumps(body).encode()
-    req = urllib.request.Request(API + path, data=data, method=method,
-                                 headers={"Authorization": f"Bearer {token()}", "Content-Type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as res:
-            raw = res.read()
-            return json.loads(raw) if raw else {}
-    except urllib.error.HTTPError as e:
-        print(f"{method} {path} -> HTTP {e.code}")
-        print(e.read().decode(errors="replace")[:4000])
-        sys.exit(1)
+    for attempt in range(1, RETRIES + 1):
+        req = urllib.request.Request(API + path, data=data, method=method,
+                                     headers={"Authorization": f"Bearer {token()}", "Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=90) as res:
+                raw = res.read()
+                return json.loads(raw) if raw else {}
+        except urllib.error.HTTPError as e:
+            text = e.read().decode(errors="replace")
+            print(f"{method} {path} -> HTTP {e.code} (attempt {attempt}/{RETRIES})")
+            print(text[:4000])
+            if e.code == 409 and "DUPLICATE" in text:
+                raise Duplicate(text)
+            if e.code < 500 or attempt == RETRIES:
+                sys.exit(1)
+        except (TimeoutError, urllib.error.URLError, ConnectionError) as e:
+            print(f"{method} {path} -> {type(e).__name__}: {e} (attempt {attempt}/{RETRIES})")
+            if attempt == RETRIES:
+                sys.exit(1)
+        time.sleep(min(120, 15 * 2 ** (attempt - 1)))
+    sys.exit(1)
 
 
 def main():
@@ -58,11 +78,16 @@ def main():
         sys.exit(1)
     app_id = apps[0]["id"]
 
-    upload = api("POST", "/v1/buildUploads", {"data": {
-        "type": "buildUploads",
-        "attributes": {"cfBundleShortVersionString": version, "cfBundleVersion": build, "platform": "IOS"},
-        "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
-    }})["data"]
+    try:
+        upload = api("POST", "/v1/buildUploads", {"data": {
+            "type": "buildUploads",
+            "attributes": {"cfBundleShortVersionString": version, "cfBundleVersion": build, "platform": "IOS"},
+            "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
+        }})["data"]
+    except Duplicate:
+        # 再実行（rerun --failed）で同じ番号を送り直した場合。前回の試行で送信済みなので成功扱いにする
+        print(f"::warning::Build {version} ({build}) was already uploaded by an earlier attempt; check the TestFlight tab")
+        return
     print("build upload:", upload["id"])
 
     file = api("POST", "/v1/buildUploadFiles", {"data": {
