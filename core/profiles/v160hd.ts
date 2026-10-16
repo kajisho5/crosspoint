@@ -56,6 +56,8 @@ export const v160hd: DeviceProfile = {
   sources: buildSources(),
   audioInputs: AUDIO_INPUTS,
 
+  faderMax: 2047,
+
   addrs: {
     pgm: addr(0x00, 0x21, 0x00),
     pst: addr(0x00, 0x21, 0x01),
@@ -101,6 +103,8 @@ export const v160hd: DeviceProfile = {
   },
   macroCount: 100,
 
+  assignToSource: (_n, value) => value,
+  sourceToAssign: (_n, code) => code,
   encodeInput: (n) => 0x1f + n,
   decodeInput: (value, assignOf) => {
     if (value >= 0x20 && value <= 0x33) return value - 0x1f;

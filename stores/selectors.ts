@@ -22,8 +22,17 @@ export function useOnline(): boolean {
   return useConnectionStore((s) => s.link === 'online');
 }
 
+/** INPUT n の割当をソース code で返す（割当値が相対な機種は変換。V-1-4K） */
 function assignLookup(p: DeviceProfile, values: Record<number, number>) {
-  return (n: number) => values[p.addrs.inputAssign(n)];
+  return (n: number) => {
+    const v = values[p.addrs.inputAssign(n)];
+    if (v === undefined) return undefined;
+    return p.assignToSource(n, v) ?? undefined;
+  };
+}
+
+export function assignedSource(p: DeviceProfile, values: Record<number, number>, n: number): number | undefined {
+  return assignLookup(p, values)(n);
 }
 
 /** PGM / PST の INPUT 番号 */
@@ -77,7 +86,7 @@ export function useInputLabels(p: DeviceProfile): string[] {
   return useParamStore(
     useShallow((s) =>
       Array.from({ length: p.inputCount }, (_, i) => {
-        const code = s.values[p.addrs.inputAssign(i + 1)];
+        const code = assignedSource(p, s.values, i + 1);
         return code === undefined ? `INPUT ${i + 1}` : labelOfSource(p, s.values, code);
       }),
     ),

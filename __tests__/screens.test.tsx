@@ -424,3 +424,75 @@ describe('デモ VR-120HD（8 入力・AUX 3 本）', () => {
     expect(useParamStore.getState().values[addr(0x00, 0x00, 0x25)]).toBe(11);
   });
 });
+
+describe('デモ VR-6HD（6 入力 3 列・PinP 2・DSK 1・BLE 対応）', () => {
+  beforeEach(async () => {
+    await act(async () => {
+      await controller.connectDemo('VR-6HD');
+    });
+  });
+
+  test('スイッチャー：INPUT 1–6、CUT/AUTO は簡易制御コマンド経路で出る', async () => {
+    await render(<SwitcherScreen />);
+    expect(screen.getByText('VR-6HD')).toBeTruthy();
+    expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(6);
+    expect(screen.getByText('CUT')).toBeTruthy();
+    expect(screen.getByLabelText('プログラム 1、CAM 1、選択中')).toBeTruthy();
+  });
+
+  test('キー：PinP 2・DSK 1、メモリー 32、AUX 1 本', async () => {
+    await render(<KeysScreen />);
+    expect(screen.getByText('PinP & KEY 2')).toBeTruthy();
+    expect(screen.queryByText('PinP & KEY 3')).toBeNull();
+    expect(screen.getAllByText('DSK')).toHaveLength(2); // グループ見出し＋1 系統の行
+    await render(<MemoryScreen />);
+    expect(screen.getByText('32')).toBeTruthy();
+    await render(<AuxScreen />);
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    expect(screen.getByText('AUX ソース')).toBeTruthy();
+  });
+});
+
+describe('デモ V-1-4K（8 入力・CUT/AUTO は SysEx・PinP 無し・DSK 1）', () => {
+  beforeEach(async () => {
+    await act(async () => {
+      await controller.connectDemo('V-1-4K');
+    });
+  });
+
+  test('スイッチャー：INPUT 1–8、CUT を押すと 0B 00 1A に 1→0 が書かれる', async () => {
+    await render(<SwitcherScreen />);
+    expect(screen.getByText('V-1-4K')).toBeTruthy();
+    expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(8);
+    expect(screen.getByLabelText('プログラム 1、CAM 1、選択中')).toBeTruthy();
+    expect(screen.getByLabelText('プリセット 3、CAM 3、選択中')).toBeTruthy();
+    const cut = screen.getByText('CUT');
+    await act(async () => {
+      fireEvent(cut, 'pressIn');
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 40));
+    });
+    await act(async () => {
+      fireEvent(cut, 'pressOut');
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 60));
+    });
+    // モックは CUT（0B 00 1A）の押下で PGM/PST を入れ替える
+    expect(useParamStore.getState().values[addr(0x00, 0x12, 0x00)]).toBe(0x09); // INPUT 3
+    expect(useParamStore.getState().values[addr(0x00, 0x12, 0x01)]).toBe(0x07); // INPUT 1
+  });
+
+  test('キー：PinP 無し・DSK 1。メモリー 8', async () => {
+    await render(<KeysScreen />);
+    expect(screen.queryByText('PinP & KEY 1')).toBeNull();
+    expect(screen.queryByText('PinP & KEY')).toBeNull();
+    expect(screen.getAllByText('DSK')).toHaveLength(2);
+    await render(<MemoryScreen />);
+    expect(screen.getByText('08')).toBeTruthy();
+    expect(screen.queryByText('09')).toBeNull();
+  });
+});

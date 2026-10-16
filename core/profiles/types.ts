@@ -1,6 +1,6 @@
 import type { Addr } from '../codec/value';
 
-export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD';
+export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD' | 'VR-6HD' | 'V-1-4K';
 
 export type TallyState = 'off' | 'pgm' | 'pst' | 'both';
 
@@ -71,6 +71,9 @@ export interface DeviceProfile {
   sources: readonly SourceDef[];
   audioInputs: readonly AudioChannelDef[];
 
+  /** T バー（AB Fader）の最大値（V-160HD 系 2047、V-1-4K 4095） */
+  faderMax: number;
+
   addrs: {
     pgm: Addr;
     pst: Addr;
@@ -100,6 +103,13 @@ export interface DeviceProfile {
   /** マクロ数（capabilities.macro が真のとき） */
   macroCount: number;
 
+  /**
+   * INPUT ASSIGN の値 ⇄ ソース code（sources[].code）。既定は同一（V-160HD 系）。
+   * V-1-4K は割当値が相対（00 = その番号の HDMI IN、01–02 STILL、03 BLACK）なので変換が要る。
+   * sourceToAssign が null を返すソースはその INPUT に割り当てられない（設定シートに出さない）
+   */
+  assignToSource: (n: number, value: number) => number | null;
+  sourceToAssign: (n: number, code: number) => number | null;
   /** INPUT n（1 始まり）→ PGM/PST に書く値 */
   encodeInput: (n: number) => number;
   /** PGM/PST の値 → INPUT n（判定できなければ null） */

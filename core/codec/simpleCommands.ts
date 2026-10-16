@@ -3,7 +3,8 @@ import type { ModelId } from '../profiles/types';
 /**
  * LAN/RS-232 簡易制御コマンド（Roland「LAN/RS-232 簡易制御コマンド」Ver.02、2025）【事実：公式公開資料】
  *  - 形式：`CMD:param,param;`（ASCII）。応答は `ACK;` または `XXX:...;ACK;`、末尾に LF
- *  - 対象：V-160HD Ver.3.5 以降 / V-80HD Ver.1.3 以降 / VR-120HD Ver.2.2 以降（VR-6HD 2.2 / V-1-4K 1.0 は未対応機種）
+ *  - 対象：V-160HD Ver.3.5 以降 / V-80HD Ver.1.3 以降 / VR-120HD Ver.2.2 以降 / VR-6HD Ver.2.2 以降 / V-1-4K Ver.1.0 以降
+ *  - マクロ（MCREX / QMCRST）・シーケンサー（SEQ*）は「(V-160HD/V-80HD/VR-120HD/VR-6HD)」限定。V-1-4K には無い【事実：文書 p.41–43】
  *  - LAN / RS-232 のみ。USB / Bluetooth（MIDI SysEx）では使えない
  * ここでは本アプリが使う分だけを組み立てる（CUT / AUTO / マクロ / シーケンサー / シーンメモリー / タリー取得）。
  */
@@ -12,7 +13,13 @@ export const SIMPLE_COMMANDS_MIN_VERSION: Record<ModelId, string> = {
   'V-160HD': '3.50',
   'V-80HD': '1.30',
   'VR-120HD': '2.20',
+  // 文書の表紙（掲載順）：VR-6HD は Version 2.2 and later、V-1-4K は Version 1.0 and later【推測：表紙の対応】
+  'VR-6HD': '2.20',
+  'V-1-4K': '1.00',
 };
+
+/** マクロ・シーケンサーの簡易制御コマンドを持つ機種（文書の限定注記） */
+export const SIMPLE_MACRO_MODELS: ReadonlySet<ModelId> = new Set<ModelId>(['V-160HD', 'V-80HD', 'VR-120HD', 'VR-6HD']);
 
 /** "3.60" のような版文字列を比較（major.minor のみ。数値化できなければ true＝使ってみる） */
 export function supportsSimpleCommands(model: ModelId, version: string | null): boolean {

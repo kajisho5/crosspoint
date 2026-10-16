@@ -56,6 +56,8 @@ export const v80hd: DeviceProfile = {
   sources: buildSources(),
   audioInputs: AUDIO_INPUTS,
 
+  faderMax: 2047,
+
   addrs: {
     pgm: addr(0x00, 0x15, 0x00),
     pst: addr(0x00, 0x15, 0x01),
@@ -97,6 +99,8 @@ export const v80hd: DeviceProfile = {
   },
   macroCount: 100,
 
+  assignToSource: (_n, value) => value,
+  sourceToAssign: (_n, code) => code,
   encodeInput: (n) => 0x28 + n,
   decodeInput: (value, assignOf) => {
     if (value >= 0x29 && value <= 0x38) return value - 0x28;

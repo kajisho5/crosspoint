@@ -1,0 +1,3500 @@
+[
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (1)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (2)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (3)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (4)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (5)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (6)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (7)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Version String (8)",
+  "sysex": "00H-7FH",
+  "meaning": "ASCII Character (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "Reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "00",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "System Device Mode",
+  "sysex": "00H",
+  "meaning": "00H: Normal (Read Only)"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "BPM BPM SYNC",
+  "sysex": "00 14H-01 7AH 00H-03H",
+  "meaning": "20-250 ×1/ 4, ×1/2, ×1, ×2"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "HDCP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT CONTRAST",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT SATURATION",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT BRIGHTNESS",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT COLOR SPACE",
+  "sysex": "00H-03H",
+  "meaning": "AUTO, RGB-FULL, RGB-LIMIT, YPbPr"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT DVI-D, HDMI",
+  "sysex": "00H-02H",
+  "meaning": "AUTO, DVI-D, HDMI"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "09"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "Reserved PREVIEW CONTRAST PREVIEW SATURATION PREVIEW BRIGHTNESS",
+  "sysex": "00H-7FH 00H-7FH 00H-7FH",
+  "meaning": "-64-63 -64-63 -64-63"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "PREVIEW COLOR SPACE PREVIEW DVI-D, HDMI PREVIEW OUT PinP BORDER",
+  "sysex": "00H-03H 00H-02H 00H-02H 00H-0FH",
+  "meaning": "AUTO, RGB-FULL, RGB-LIMIT, YPbPr AUTO, DVI-D, HDMI MULTI-VIEW, OUTPUT, PREVIEW 0-15"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "PinP BORDER COLOR",
+  "sysex": "00H-06H",
+  "meaning": "BLACK, WHITE, GRAY, RED, GREEN, BLUE, YELLOW"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "AUTO SCAN",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "Reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "AUTO SCAN TRANS TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0sec"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "A,/B MODE",
+  "sysex": "00H-01H",
+  "meaning": "A/B, PGM/PST"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "FREEZE MODE",
+  "sysex": "00H-01H",
+  "meaning": "ALL, SELECT"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "NO SIGNAL BACK",
+  "sysex": "00H-01H",
+  "meaning": "BLACK, BLUE"
+ },
+ {
+  "page": 12,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "UNFIT SIGNAL BACK",
+  "sysex": "00H-02H",
+  "meaning": "BLACK, BLUE, THRU"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "19"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "DEINTERLACE MODE COLOR BAR OUTPUT TEST TONE OUTPUT MIDI Rx SOURCE",
+  "sysex": "00H-01H 00H-01H 00H-01H 00H-01H",
+  "meaning": "WEAVE, BOB OFF, ON OFF, ON USB, MIDI IN"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "20"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "MIDI OUT MIDI Tx CHANNEL MIDI DEVICE ID MIDI Rx CHANNEL",
+  "sysex": "00H-01H 00H-0FH 00H-1FH 00H-0FH",
+  "meaning": "OUT, THRU ch. 1-16 1-32 ch. 1-16"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "21"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "MIDI Rx TEMPO CLOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "22"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "POWER ON LOAD",
+  "sysex": "00H-07H",
+  "meaning": "MEMORY 1-8"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "23"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "PGM LED",
+  "sysex": "00H-06H",
+  "meaning": "RED, GREEN, YELLOW, BLUE, PURPLE, L.BLUE, WHITE"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "24"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "PST LED",
+  "sysex": "00H-06H",
+  "meaning": "RED, GREEN, YELLOW, BLUE, PURPLE, L.BLUE, WHITE"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "25"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "INPUT LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "26"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "TRANSFORMER LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "27"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "AUDIO LED",
+  "sysex": "00H-06H",
+  "meaning": "MASTER OUT, MIC, AUDIO IN, HDMI 1, HDMI 2, HDMI 3, HDMI 4"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "28"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "MEMORY PANEL LOAD",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "29"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "EFFECTS TYPE CHANGE WIPE TYPE CHANGE MIX TYPE CHANGE AUTO OFF",
+  "sysex": "00H-01H 00H-01H 00H-01H 00H-01H",
+  "meaning": "OFF, ON OFF, ON OFF, ON OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "30"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "FRAME RATE AUTO SCAN TIME CH1 AUTO SCAN TIME CH2 AUTO SCAN TIME CH3",
+  "sysex": "00H-01H 00H-78H 00H-78H 00H-78H",
+  "meaning": "59.94, 50 OFF, 1-120sec OFF, 1-120sec OFF, 1-120sec"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "31"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "AUTO SCAN TIME CH4",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120sec"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "32"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "AUTO SCAN SEQUENCE",
+  "sysex": "00H-01H",
+  "meaning": "NORMAL, RANDOM"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "33"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "AUDIO LEVEL METER",
+  "sysex": "00H-09H",
+  "meaning": "OFF, LOWER L, LOWER, LOWER R, LEFT, CENTER, RIGHT, UPPER L, UPPER, UPPER R"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "34"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT FADE LEFT",
+  "sysex": "00H-02H",
+  "meaning": "BLACK, AUDIO, BLK & AUD"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "35"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT FADE RIGHT",
+  "sysex": "00H-02H",
+  "meaning": "WHITE, AUDIO, WHT & AUD"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "36"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "A BUS SW LOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "37"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "B BUS SW LOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "38"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "TRANSFORMER SW LOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "39"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "BPM SYNC SW LOCK WIPE SW LOCK MIX SW LOCK CUT SW LOCK",
+  "sysex": "00H-01H 00H-01H 00H-01H 00H-01H",
+  "meaning": "OFF, ON OFF, ON OFF, ON OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "40"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "FREEZE SW LOCK MEMORY SW LOCK AUDIO SW LOCK EFFECTS SW LOCK",
+  "sysex": "00H-01H 00H-01H 00H-01H 00H-01H",
+  "meaning": "OFF, ON OFF, ON OFF, ON OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "41"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "EFFECTS VOL LOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "42"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "OUTPUT FADE VOL LOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "70",
+   "01",
+   "43"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in"
+  ],
+  "name": "A/B FADER LOCK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Video",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-1",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-2 saved at memory numbers other than",
+  "sysex": "the one currently selected.",
+  "meaning": "Data saved at the currently selected memory is not modified."
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Video (Memory 1)",
+  "sysex": "72H 10H 00H",
+  "meaning": "Video (Memory 5)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-1 (Memory 1)",
+  "sysex": "72H 11H 00H",
+  "meaning": "Audio Parameter-1 (Memory 5)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "02",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-2 (Memory 1)",
+  "sysex": "72H 12H 00H",
+  "meaning": "Audio Parameter-2 (Memory 5)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "04",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Video (Memory 2)",
+  "sysex": "72H 14H 00H",
+  "meaning": "Video (Memory 6)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "05",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-1 (Memory 2)",
+  "sysex": "72H 15H 00H",
+  "meaning": "Audio Parameter-1 (Memory 6)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "06",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-2 (Memory 2)",
+  "sysex": "72H 16H 00H",
+  "meaning": "Audio Parameter-2 (Memory 6)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "08",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Video (Memory 3)",
+  "sysex": "72H 18H 00H",
+  "meaning": "Video (Memory 7)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "72",
+   "09",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Audio Parameter-1 (Memory 3) Audio Parameter-2 (Memory 3) Video (Memory 4) Audio Parameter-1 (Memory 4) Audio Parameter-2 (Memory 4)",
+  "sysex": "72H 19H 00H 72H 1aH 00H 72H 1cH 00H 72H 1dH 00H 72H 1eH 00H",
+  "meaning": "Audio Parameter-1 (Memory 7) Audio Parameter-2 (Memory 7) Video (Memory 8) Audio Parameter-1 (Memory 8) Audio Parameter-2 (Memory 8)"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "A/B fader effects A pod effects B pod outfader video sel A",
+  "sysex": "00 00H-07 7FH 00 00H-01 7FH 00 00H-01 7FH 00 00H-01 7FH 00H-03H",
+  "meaning": "0-1023 1-255 1-255 1-255 HDMI 1-4"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "09"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "video sel B effect A effect B transition BPM SYNC",
+  "sysex": "00H-03H 00H-01H 00H-01H 00H-02H 00H-01H",
+  "meaning": "HDMI 1-4 OFF, ON OFF, ON WIPE, MIX, CUT OFF, ON NEGATIVE, EMBOSS, COLORIZE, COLORPASS, POSTERIZE, SILHOUETTE,"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "EFFECTS A EFFECTS B WIPE",
+  "sysex": "00H-12H 00H-12H 00H-1DH",
+  "meaning": "MONOCOLOR, FINDEDGE, FLIP, WHT-L.KEY, BLK-L.KEY, GRN-C.KEY, BLU-C. KEY, PinP 1/4, PinP 1/2, SPLIT-VS, SPLIT-VC, SPLIT-HS, SPLIT-HC NEGATIVE, EMBOSS, COLORIZE, COLORPASS, POSTERIZE, SILHOUETTE, MONOCOLOR, FINDEDGE, FLIP, WHT-L.KEY, BLK-L.KEY, GRN-C.KEY, BLU-C. KEY, PinP 1/4, PinP 1/2, SPLIT-VS, SPLIT-VC, SPLIT-HS, SPLIT-HC H-DOWN, H-UP, V-RIGHT, V-LEFT, V-IN, V-OUT, H-IN, H-OUT, R-DOWN, L-DOWN, R-UP, L-UP, BLOCK, V-GRID, H-GRID, H-DOWN/s, H-UP/s, V-RIGHT/s, V-LEFT/s, H-IN/s, H-OUT/s, V-IN/s, V-OUT/s, R-DOWN/s,"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIX",
+  "sysex": "00H-03H",
+  "meaning": "L-DOWN/s, R-UP/s, L-UP/s, BLOCK/s, V-GRID/s, H-GRID/s MIX, FAM, NAM, MOS-AIC"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "TRANSFORMER A",
+  "sysex": "00H-0AH",
+  "meaning": "NONE, TRANSFORM, , , WHITE, BLACK, BPM SYNC, WIPE, MIX, CUT, EFFECTS"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "TRANSFORMER B",
+  "sysex": "00H-0AH",
+  "meaning": "NONE, TRANSFORM, , , WHITE, BLACK, BPM SYNC, WIPE, MIX, CUT, EFFECTS"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "TRANSFORM TIME",
+  "sysex": "00H-2CH",
+  "meaning": "0.0-4.0sec, BPM×1/4, BPM×1/2, BPM×1, BPM×2"
+ },
+ {
+  "page": 14,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "PinP A CROPPING H",
+  "sysex": "01H-64H",
+  "meaning": "1-100%"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "PinP A CROPPING V",
+  "sysex": "01H-64H",
+  "meaning": "1-100%"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "PinP A VIEW POSITION H",
+  "sysex": "00H-64H",
+  "meaning": "-50-50%"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "PinP A VIEW POSITION V",
+  "sysex": "00H-64H",
+  "meaning": "-50-50%"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "00",
+   "19"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "PinP B CROPPING H PinP B CROPPING V PinP B VIEW POSITION H PinP B VIEW POSITION V",
+  "sysex": "01H-64H 01H-64H 00H-64H 00H-64H",
+  "meaning": "1-100% 1-100% -50-50% -50-50%"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 1 LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 3 LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 4 LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MASTER OUT LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO FOLLOW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 1 EQ Hi",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "09"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 1 EQ Hi FREQ HDMI IN 1 EQ Mid HDMI IN 1 EQ Mid FREQ HDMI IN 1 EQ Mid Q HDMI IN 1 EQ Lo",
+  "sysex": "00H-08H 00H-1EH 00H-1BH 00H-05H 00H-1EH",
+  "meaning": "700Hz-11.0KHz -15-15dB 20.0Hz-10.0KHz 0.5-16.0 -15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 1 EQ Lo FREQ Reserved HDMI IN 1 DELAY HDMI IN 2 EQ Hi",
+  "sysex": "00H-09H 00 00H-27 08 H 00H-1EH",
+  "meaning": "55Hz-800Hz 0.0-500.0msec -15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 EQ Hi FREQ",
+  "sysex": "00H-08H",
+  "meaning": "700Hz-11.0KHz"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 EQ Mid",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 EQ Mid FREQ",
+  "sysex": "00H-1BH",
+  "meaning": "20.0Hz-10.0KHz"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 EQ Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5-16.0"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 EQ Lo",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 EQ Lo FREQ",
+  "sysex": "00H-09H",
+  "meaning": "55Hz-800Hz"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "19"
+  ],
+  "size": 2,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Reserved HDMI IN 2 DELAY HDMI IN 3 EQ Hi HDMI IN 3 EQ Hi FREQ",
+  "sysex": "00 00H-27 08 H 00H-1EH 00H-08H",
+  "meaning": "0.0-500.0msec -15-15dB 700Hz-11.0KHz"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "20"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 3 EQ Mid HDMI IN 3 EQ Mid FREQ HDMI IN 3 EQ Mid Q",
+  "sysex": "00H-1EH 00H-1BH 00H-05H",
+  "meaning": "-15-15dB 20.0Hz-10.0KHz 0.5-16.0"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "21"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 3 EQ Lo",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "22"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 3 EQ Lo FREQ",
+  "sysex": "00H-09H",
+  "meaning": "55Hz-800Hz"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "23"
+  ],
+  "size": 2,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Reserved HDMI IN 3 DELAY",
+  "sysex": "00 00H-27 08 H",
+  "meaning": "0.0-500.0msec"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "26"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 4 EQ Hi",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "27"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 4 EQ Hi FREQ",
+  "sysex": "00H-08H",
+  "meaning": "700Hz-11.0KHz"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "28"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 4 EQ Mid",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 15,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "01",
+   "29"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 4 EQ Mid FREQ",
+  "sysex": "00H-1BH",
+  "meaning": "20.0Hz-10.0KHz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Hi",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Hi FREQ",
+  "sysex": "00H-08H",
+  "meaning": "700Hz-11.0KHz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Mid",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Mid FREQ",
+  "sysex": "00H-1BH",
+  "meaning": "20.0Hz-10.0KHz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5-16.0"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Lo",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN EQ Lo FREQ",
+  "sysex": "00H-09H",
+  "meaning": "55Hz-800Hz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "07"
+  ],
+  "size": 2,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Reserved AUDIO IN DELAY MIC EQ Hi MIC EQ Hi FREQ MIC EQ Mid",
+  "sysex": "00 00H-27 08 H 00H-1EH 00H-08H 00H-1EH",
+  "meaning": "0.0-500.0msec -15-15dB 700Hz-11.0KHz -15-15dB"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC EQ Mid FREQ MIC EQ Mid Q MIC EQ Lo MIC EQ Lo FREQ",
+  "sysex": "00H-1BH 00H-05H 00H-1EH 00H-09H",
+  "meaning": "20.0Hz-10.0KHz 0.5-16.0 -15-15dB 55Hz-800Hz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "11"
+  ],
+  "size": 2,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "Reserved MIC DELAY",
+  "sysex": "00 00H-27 08 H",
+  "meaning": "0.0-500.0msec"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC COMP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC COMP-THRESHOLD",
+  "sysex": "00H-32H",
+  "meaning": "-50-0dB"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC COMP-RATIO",
+  "sysex": "00H-08H",
+  "meaning": "1.0:1-INF:1"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC COMP-ATTACK",
+  "sysex": "00H-19H",
+  "meaning": "0.2-100ms"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC COMP-RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000ms"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "19"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC GATE MIC GATE-THRESHOLD MIC GATE-RELEASE MIC HPF",
+  "sysex": "00H-01H 00H-32H 00H-7FH 00H-01H",
+  "meaning": "OFF, ON -50-0dB 30-5000ms OFF, ON"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "20"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MAIN EQ Hi MAIN EQ Hi FREQ MAIN EQ Mid MAIN EQ Mid FREQ",
+  "sysex": "00H-1EH 00H-08H 00H-1EH 00H-1BH",
+  "meaning": "-15-15dB 700Hz-11.0KHz -15-15dB 20.0Hz-10.0KHz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "21"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MAIN EQ Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5-16.0"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "22"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MAIN EQ Lo",
+  "sysex": "00H-1EH",
+  "meaning": "-15-15dB"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "23"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MAIN EQ Lo FREQ",
+  "sysex": "00H-09H",
+  "meaning": "55Hz-800Hz"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "24"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 1 REV SEND",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "25"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 2 REV SEND",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "26"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 3 REV SEND",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "27"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "HDMI IN 4 REV SEND",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "28"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "AUDIO IN REV SEND",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "29"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MIC REV SEND REVERB LEVEL REVERB TIME REVERB TYPE",
+  "sysex": "00H-7FH 00H-7FH 00H-32H 00H-01H",
+  "meaning": "0-127 0-127 0.0-5.0sec ROOM, HALL"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "30"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MASTERING MASTERING NS MASTERING ENHANCER MASTERING Hi",
+  "sysex": "00H-01H 00H-7FH 00H-7FH 00H-7FH",
+  "meaning": "OFF, ON 0-127 0-127 0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "31"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MASTERING Mid",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "32"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "MASTERING Lo",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "33"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "A.FOLLOW AUDIO IN",
+  "sysex": "00H-04H",
+  "meaning": "HDMI 1-4, OFF"
+ },
+ {
+  "page": 16,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "71",
+   "02",
+   "34"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory"
+  ],
+  "name": "A.FOLLOW MIC",
+  "sysex": "00H-04H",
+  "meaning": "HDMI 1-4, OFF"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Memory Select Memory PANEL Save",
+  "sysex": "00H-07H 10H-17H",
+  "meaning": "Memory 1-8 Memory 1-8"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED OUTFADER BLACK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, Green (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED OUTFADER WHITE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, Green (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED FREEZE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, Red (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED MEMORY",
+  "sysex": "00H-01H",
+  "meaning": "OFF, Blue (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED AUDIO",
+  "sysex": "00H-03H",
+  "meaning": "OFF, Red, Green, Orange (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED PEKSIG",
+  "sysex": "00H-03H",
+  "meaning": "OFF, Red, Green, Orange (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED TAP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, Green (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED EFFECTS A",
+  "sysex": "00H-01H",
+  "meaning": "OFF, Green (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "09"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED EFFECTS B LED HDCP LED BPM SYNC LED WIPE",
+  "sysex": "00H-01H 00H-01H 00H-01H 00H-01H",
+  "meaning": "OFF, Green (Read Only) OFF, Red (Read Only) OFF, Red (Read Only) OFF, Green (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED MIX LED CUT LED TRANSFRMER A LED TRANSFRMER B",
+  "sysex": "00H-01H 00H-01H 00H-07H 00H-07H",
+  "meaning": "OFF, Green (Read Only) OFF, Green (Read Only) OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only) OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELA-1",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELA-2",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELA-3",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELA-4",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELB-1",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELB-2",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELB-3",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "02",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "LED VDOSELB-4",
+  "sysex": "00H-07H",
+  "meaning": "OFF, Red, Green, Yellow, Blue, Mazenta, Cyan, White (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "03",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Audio Level Master L",
+  "sysex": "00H-7fH",
+  "meaning": "output level (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "03",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Audio Level Master R",
+  "sysex": "00H-7fH",
+  "meaning": "output level (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "03",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Audio Level HDMI 1",
+  "sysex": "00H-7fH",
+  "meaning": "input level (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "03",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Audio Level HDMI 2",
+  "sysex": "00H-7fH",
+  "meaning": "input level (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "03",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Audio Level HDMI 3",
+  "sysex": "00H-7fH",
+  "meaning": "input level (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "03",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Audio Level HDMI 4 Audio Level Line Audio Level MIC",
+  "sysex": "00H-7fH 00H-7fH 00H-7fH",
+  "meaning": "input level (Read Only) input level (Read Only) input level (Read Only)"
+ },
+ {
+  "page": 17,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "04",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "Ctrl Button",
+  "sysex": "ON, OFF",
+  "meaning": "The on/off status of the respective button changes according to the value of Value."
+ },
+ {
+  "page": 18,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "73",
+   "04",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to"
+  ],
+  "name": "[FREEZE]",
+  "sysex": "00H, 40H",
+  "meaning": "[FREEZE] button on/off"
+ },
+ {
+  "page": 19,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "MIDI Visual Control ON/OFF",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 19,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Clip Control Rx MIDI Ch.",
+  "sysex": "00H-10H",
+  "meaning": "1-16 Ch., OFF"
+ },
+ {
+  "page": 19,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Effect Control Rx MIDI Ch.",
+  "sysex": "00H-10H",
+  "meaning": "1-16 Ch., OFF"
+ },
+ {
+  "page": 19,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Note Mode Enabled",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 19,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "30",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Dissolve Time Ctrl Assign Keyboard Range Lower",
+  "sysex": "01H-1FH, 40H-5FH, D0H, E0H, FFH 00H-7FH",
+  "meaning": "Transition Time: Control Change, After touch, Pitch Bend, OFF Note Number"
+ },
+ {
+  "page": 19,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "30",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Keyboard Range Upper",
+  "sysex": "00H-7FH",
+  "meaning": "Note Number"
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "System Preference Area (See 3-3-1)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "10",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Clip Control Assignment Area (See 3-3-2)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "20",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Color Control Assignment Area (See",
+  "sysex": "3-3-3)",
+  "meaning": ""
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "30",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "Clip Control Preference Area (See 3-3-4) Assign Value (status) - 1 - 1 - OFF CC#05 0 Sel. OFF -",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "OFF - OFF - Lower - 36 Upper - 84 transmitting is BCH, send 0BH as the first byte, V-LINK Enabled",
+  "sysex": "then send 0CH. When receiving, 00H-01H",
+  "meaning": "if the unit does not receive consecutive 2 byte, such data transmission is OFF, ON"
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "V-LINK Rx MIDI Channel (Clip)",
+  "sysex": "00H-10H",
+  "meaning": "1-16 Ch., OFF"
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "V-LINK Rx MIDI Channel (Color)",
+  "sysex": "00H-10H",
+  "meaning": "1-16 Ch., OFF"
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "V-LINK Note Mode V-LINK Rx Setting (Dissolve Time) V-LINK Rx Setting (Audio Level) V-LINK Rx Setting (Transition Type)",
+  "sysex": "00H, 02H 01H-05H, 07H-1FH, 40H-5FH, 01H-05H, 07H-1FH, 40H-5FH, 01H-05H, 07H-1FH, 40H-5FH,",
+  "meaning": "OFF, Assignable Transition Time: Control Change, D0H, E0H, FFH Channel Press, Pitch Bend, OFF Audio Level: Control Change, D0H, E0H, FFH Channel Press, Pitch Bend, OFF Transition Type: Control Change, D0H, E0H, FFH Channel Press, Pitch Bend, OFF"
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "30",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "V-LINK Rx Setting (Output Fader) V-LINK Rx Setting (Assignable Note Mode: Lower Key)",
+  "sysex": "01H-05H, 07H-1FH, 40H-5FH, 00H-7FH",
+  "meaning": "Output Fader: Control Change, D0H, E0H, FFH Channel Press, Pitch Bend, OFF Note Number"
+ },
+ {
+  "page": 20,
+  "section": "3. Parameter Address Map",
+  "sub": null,
+  "addr": [
+   "10",
+   "30",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* Transmission and reception are always possible regardless of whether MVC or V-LINK is on or off.",
+   "* At addresses with “#” appended, the specified data is transmitted divided into the upper 2 bytes and lower 2 bytes. The data is ignored if the 2-byte sets are not received in",
+   "* The parameters in “Video Parameter” (p. 14), “Audio Parameter-1” (p. 15) and “Audio Parameter-2” (p. 16)are also common to the video and audio parameter memory",
+   "* To ensure correct operation, after executing an “on” operation, be sure to",
+   "* MVC messages are ignored if received while MVC is turned OFF.",
+   "* MVC messages (except MVC ON messages) are ignored if received while MVC is set to OFF (when in standard mode or V-LINK mode).",
+   "* The unit automatically switches to standard mode when MVC OFF is received.",
+   "* If MVC ON is received after reception of V-LINK ON, the unit changes from V-LINK mode to MVC mode.",
+   "* The settings executed using MVC messages are not saved to internal memory.",
+   "* Default MVC settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits).",
+   "* V-LINK messages are ignored if received while V-LINK is turned OFF.",
+   "* If V-LINK ON is received after reception of MVC ON, the unit changes from MVC mode to V-LINK mode.",
+   "* The settings executed using V-LINK messages are not saved to internal memory.",
+   "* Default V-LINK settings as follows.",
+   "* Send data divided into 2 parts for the address with “#”, upper nibble (upper 4 bits) and lower nibble (lower 4 bits)."
+  ],
+  "name": "V-LINK Rx Setting (Assignable Note Mode: Upper Key)",
+  "sysex": "00H-7FH",
+  "meaning": "Note Number"
+ }
+]

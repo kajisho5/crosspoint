@@ -1,3 +1,4 @@
+import { PROFILES } from '@/core/profiles';
 import { DeviceController } from '@/core/controller/DeviceController';
 import { buildDt1, parseSysEx, toHex } from '@/core/codec/SysExCodec';
 import { addr, addrOffset, encodeU14, type Addr } from '@/core/codec/value';
@@ -103,8 +104,8 @@ describe('MidiTransport（SPEC §4）', () => {
     const res = await t.connect({ name: 'X', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
     expect(res).toEqual({ model: 'V-160HD', version: '3.60' });
     expect(states).toEqual(['connecting', 'authenticating', 'syncing']);
-    // 接続確認では全対応機種分の RQ1 を送る（V-160HD ＋ V-80HD ＋ VR-120HD）
-    expect(fake.sent.length).toBe(3);
+    // 接続確認では全対応機種分の RQ1 を送る（PROFILES の数）
+    expect(fake.sent.length).toBe(Object.keys(PROFILES).length);
     expect(toHex(fake.sent[0]!)).toBe('F0 41 10 00 00 00 00 02 11 02 00 00 00 00 06 78 F7');
     await t.disconnect();
   });

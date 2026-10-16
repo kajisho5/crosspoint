@@ -156,3 +156,67 @@ describe('VR-120HD プロファイル（リモート・コントロール・ガ�
     expect(p.capabilities).toEqual({ cutAuto: false, tallySubscribe: false, usb: false, ble: false, split: true, macro: false, sequencer: false });
   });
 });
+
+describe('VR-6HD プロファイル（Remote Control Guide eng03）', () => {
+  const vr6 = getProfile('VR-6HD');
+  test('Model ID 5 バイト、LAN 4 桁 PW・ack 06、USB/BLE あり', () => {
+    expect(vr6.sysexModelId).toEqual([0x00, 0x00, 0x00, 0x00, 0x2c]);
+    expect(vr6.passwordLength).toBe(4);
+    expect(vr6.lanAck).toBe('byte06');
+    expect(vr6.capabilities).toEqual({ cutAuto: false, tallySubscribe: false, usb: true, ble: true, split: true, macro: false, sequencer: false });
+    expect(profileFromVerName('VR-6HD')).toBe(vr6);
+  });
+  test('アドレス：PGM 000F00、INPUT n = 16H+n、タリー 29 バイト', () => {
+    expect(addrToHex(vr6.addrs.pgm)).toBe('000F00');
+    expect(addrToHex(vr6.addrs.fader)).toBe('000F02');
+    expect(addrToHex(vr6.addrs.transTime)).toBe('000B02');
+    expect(addrToHex(vr6.addrs.pinp(2).source)).toBe('000D03');
+    expect(addrToHex(vr6.addrs.dsk(1).type!)).toBe('000E06');
+    expect(addrToHex(vr6.addrs.split(1))).toBe('000B08');
+    expect(addrToHex(vr6.addrs.audioLevel(0x11))).toBe('011103');
+    expect(vr6.encodeInput(6)).toBe(0x1c);
+    expect(vr6.decodeInput(0x17, () => undefined)).toBe(1);
+    expect(vr6.decodeInput(0x03, (n) => (n === 4 ? 0x03 : undefined))).toBe(4);
+    expect(vr6.addrs.tallyBlockSize).toBe(29);
+    expect(vr6.tallyIndexOf(6)).toBe(0x1c);
+    expect(vr6.inputCount).toBe(6);
+    expect(vr6.memoryCount).toBe(32);
+  });
+});
+
+describe('V-1-4K プロファイル（Remote Control Guide eng01）', () => {
+  const v14k = getProfile('V-1-4K');
+  test('Model ID 3 バイト、LAN 8 文字 PW・ACK 文字列、フェーダー 0–4095、CUT/AUTO は 0B 00 1A/1B', () => {
+    expect(v14k.sysexModelId).toEqual([0x01, 0x06, 0x10]);
+    expect(v14k.passwordLength).toBe(8);
+    expect(v14k.lanAck).toBe('asciiACK');
+    expect(v14k.faderMax).toBe(4095);
+    expect(v14k.capabilities.cutAuto).toBe(true);
+    expect(v14k.addrs.cut && addrToHex(v14k.addrs.cut)).toBe('0B001A');
+    expect(v14k.addrs.auto && addrToHex(v14k.addrs.auto)).toBe('0B001B');
+    expect(v14k.pinpCount).toBe(0);
+    expect(v14k.dskCount).toBe(1);
+    expect(addrToHex(v14k.addrs.dsk(1).source)).toBe('001000');
+    expect(addrToHex(v14k.addrs.audioLevel(0x03))).toBe('010302');
+    expect(addrToHex(v14k.addrs.audioMute(0x03))).toBe('010305');
+  });
+  test('ソース値：HDMI 00–04 / STILL 05–06 / INPUT 07–0E / BLACK 0F。割当値は相対', () => {
+    expect(v14k.encodeInput(1)).toBe(0x07);
+    expect(v14k.encodeInput(8)).toBe(0x0e);
+    expect(v14k.decodeInput(0x0a, () => undefined)).toBe(4);
+    // INPUT 3 に HDMI IN 3（割当値 00）、INPUT 6 に STILL 1（割当値 01）、INPUT 8 に BLACK（03）
+    expect(v14k.assignToSource(3, 0x00)).toBe(0x02);
+    expect(v14k.assignToSource(6, 0x00)).toBeNull();
+    expect(v14k.assignToSource(6, 0x01)).toBe(0x05);
+    expect(v14k.assignToSource(8, 0x03)).toBe(0x0f);
+    expect(v14k.sourceToAssign(3, 0x02)).toBe(0x00);
+    expect(v14k.sourceToAssign(3, 0x01)).toBeNull();
+    expect(v14k.sourceToAssign(7, 0x06)).toBe(0x02);
+    expect(v14k.sourceToAssign(1, 0x0f)).toBe(0x03);
+    const assign = (n: number) => (n === 3 ? 0x02 : n === 8 ? 0x0f : undefined);
+    expect(v14k.decodeInput(0x02, assign)).toBe(3);
+    expect(v14k.decodeInput(0x0f, assign)).toBe(8);
+    expect(v14k.addrs.tallyBlockSize).toBe(15);
+    expect(v14k.tallyIndexOf(8)).toBe(0x0e);
+  });
+});

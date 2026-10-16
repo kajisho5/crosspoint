@@ -184,7 +184,7 @@ export default function ConnectScreen() {
                 )}
               </GroupCard>
 
-              <GroupCard title="新規（LAN）" footer="本体 MENU → LAN CONTROL で IP アドレスと NETWORK PASSWORD を確認してください（V-160HD・VR-120HD は 4 文字、V-80HD は 8 文字）。">
+              <GroupCard title="新規（LAN）" footer="本体 MENU → LAN CONTROL で IP アドレスと NETWORK PASSWORD を確認してください（V-160HD・VR-120HD・VR-6HD は 4 文字、V-80HD・V-1-4K は 8 文字）。">
                 <FormField label="名前" value={name} onChange={setName} placeholder="DEMO-SW-C" />
                 <FormField label="IP アドレス" value={host} onChange={setHost} placeholder="192.168.0.51" mono keyboard="decimal-pad" />
                 <FormField label="ポート" value={port} onChange={setPort} placeholder="8023" mono keyboard="number-pad" />

@@ -55,6 +55,32 @@ function demoAssignments(p: DeviceProfile): { n: number; code: number; label: st
     ];
     return base.map((b, i) => ({ n: i + 1, ...b }));
   }
+  if (p.model === 'VR-6HD') {
+    // VIDEO IN 1-6 = 00–05、STILL = 06–15、VP/SRT = 16
+    const base = [
+      { code: 0, label: 'CAM 1' },
+      { code: 1, label: 'CAM 2' },
+      { code: 2, label: 'CAM 3' },
+      { code: 3, label: 'PC 1' },
+      { code: 0x16, label: 'VP/SRT' },
+      { code: 6, label: 'STILL 1' },
+    ];
+    return base.map((b, i) => ({ n: i + 1, ...b }));
+  }
+  if (p.model === 'V-1-4K') {
+    // INPUT 1–5 は自分の番号の HDMI IN、6–7 は STILL、8 は BLACK（割当値は相対。sourceToAssign で変換）
+    const base = [
+      { code: 0, label: 'CAM 1' },
+      { code: 1, label: 'CAM 2' },
+      { code: 2, label: 'CAM 3' },
+      { code: 3, label: 'PC 1' },
+      { code: 4, label: 'PC 2' },
+      { code: 5, label: 'STILL 1' },
+      { code: 6, label: 'STILL 2' },
+      { code: 0x0f, label: 'BLACK' },
+    ];
+    return base.map((b, i) => ({ n: i + 1, ...b }));
+  }
   const base = [
     { code: 4, label: 'CAM 1' },
     { code: 5, label: 'CAM 2' },
@@ -81,7 +107,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
   const assigns = demoAssignments(p);
 
   for (const a of assigns) {
-    put(m, p.addrs.inputAssign(a.n), [a.code]);
+    put(m, p.addrs.inputAssign(a.n), [p.sourceToAssign(a.n, a.code) ?? 0]);
     const src = p.sources.find((s) => s.code === a.code);
     if (src?.labelAddr != null) put(m, src.labelAddr, encodeAscii8(a.label));
   }
@@ -89,7 +115,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
   // PGM = INPUT 1、PST = INPUT 3（ボード S1）
   put(m, p.addrs.pgm, [p.encodeInput(1)]);
   put(m, p.addrs.pst, [p.encodeInput(3)]);
-  put(m, p.addrs.fader, encodeU14(Math.round(2047 * 0.38)));
+  put(m, p.addrs.fader, encodeU14(Math.round(p.faderMax * 0.38)));
   put(m, p.addrs.transType, [0]);
   put(m, p.addrs.transTime, encodeTime(1.0));
 
@@ -104,7 +130,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
     const s = pinpSeed[n - 1];
     if (!s) continue;
     const k = p.addrs.pinp(n);
-    const srcCode = p.model === 'V-160HD' ? s.src : Math.min(s.src, p.model === 'VR-120HD' ? 11 : 7);
+    const srcCode = p.model === 'V-160HD' ? s.src : Math.min(s.src, p.model === 'VR-120HD' ? 11 : p.model === 'VR-6HD' ? 5 : 7);
     put(m, k.pgm, [s.pgm]);
     put(m, k.pvw, [s.pvw]);
     put(m, k.source, [srcCode]);
@@ -120,7 +146,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
     const k = p.addrs.dsk(n);
     put(m, k.pgm, [s.pgm]);
     put(m, k.pvw, [s.pvw]);
-    put(m, k.source, [p.model === 'V-160HD' ? s.src : p.model === 'VR-120HD' ? 12 : 9]);
+    put(m, k.source, [p.model === 'V-160HD' ? s.src : p.model === 'VR-120HD' ? 12 : p.model === 'VR-6HD' ? 6 : p.model === 'V-1-4K' ? 5 : 9]);
     if (k.type != null) put(m, k.type, [s.type]);
     put(m, k.time, encodeTime(s.t));
   }
@@ -156,7 +182,10 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
 export function writeTally(m: ByteMap, p: DeviceProfile): void {
   const size = p.addrs.tallyBlockSize;
   const bytes = new Array<number>(size).fill(0);
-  const assignOf = (n: number) => m.get(p.addrs.inputAssign(n));
+  const assignOf = (n: number) => {
+    const v = m.get(p.addrs.inputAssign(n));
+    return v === undefined ? undefined : (p.assignToSource(n, v) ?? undefined);
+  };
   const pgm = p.decodeInput(m.get(p.addrs.pgm) ?? 0, assignOf);
   const pst = p.decodeInput(m.get(p.addrs.pst) ?? 0, assignOf);
   for (let n = 1; n <= p.inputCount; n += 1) {

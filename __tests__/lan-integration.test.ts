@@ -8,6 +8,8 @@ import type { LinkError, LinkState } from '@/core/transport/Transport';
 import { v160hd } from '@/core/profiles/v160hd';
 import { v80hd } from '@/core/profiles/v80hd';
 import { vr120hd } from '@/core/profiles/vr120hd';
+import { vr6hd } from '@/core/profiles/vr6hd';
+import { v14k } from '@/core/profiles/v14k';
 import { startMockServer, type MockServer } from '../tools/mock-v160hd/server';
 
 /** SPEC §12-4 結合テスト：モックサーバーに対し 接続→認証→同期→PGM 変更→自発通知→CUT→切断→自動再接続 */
@@ -198,6 +200,60 @@ describe('LAN 結合（VR-120HD モック：--model vr120hd）', () => {
     t.sendText('QSEQSW;');
     await until(() => texts.includes('SQS:OFF'));
     expect(logs).toContain('rx ACK');
+    await t.disconnect();
+  });
+});
+
+describe('LAN 結合（VR-6HD モック：--model vr6hd）', () => {
+  let server: MockServer;
+  beforeAll(async () => {
+    server = await startMockServer({ model: 'VR-6HD', port: 0, ack: 'byte06' });
+  });
+  afterAll(async () => {
+    await server.close();
+  });
+
+  test('4 桁 PW、VER:VR-6HD,2.20、PGM 16H+n、タリー 29 バイト、CUT; で入替', async () => {
+    const t = new LanTransport(nodeSocketFactory);
+    const c = collect(t);
+    const res = await t.connect({ name: 'DEMO-SW-C', host: '127.0.0.1', port: server.port, password: '0000' });
+    expect(res).toEqual({ model: 'VR-6HD', version: '2.20' });
+    const p = vr6hd.addrs;
+    t.writeParam(p.pst, [vr6hd.encodeInput(4)]);
+    await until(() => server.mem.get(p.pst) === 0x1a);
+    t.readParam(p.tallyBlock, p.tallyBlockSize);
+    await until(() => c.params.get(p.tallyBlock + 0x16 + 4) === 2);
+    expect(c.params.get(p.tallyBlock + 0x16 + 1)).toBe(1);
+    t.sendText('CUT;');
+    await until(() => server.mem.get(p.pgm) === 0x1a);
+    await t.disconnect();
+  });
+});
+
+describe('LAN 結合（V-1-4K モック：--model v14k）', () => {
+  let server: MockServer;
+  beforeAll(async () => {
+    server = await startMockServer({ model: 'V-1-4K', port: 0 });
+  });
+  afterAll(async () => {
+    await server.close();
+  });
+
+  test('8 文字 PW、VER:V-1-4K,1.00、stx+ACK、PGM 06H+n、フェーダー 0–4095、タリー 15 バイト', async () => {
+    const t = new LanTransport(nodeSocketFactory);
+    const c = collect(t);
+    const logs: string[] = [];
+    t.on('log', (e) => logs.push(`${e.dir} ${e.text}`));
+    const res = await t.connect({ name: 'DEMO-SW-B', host: '127.0.0.1', port: server.port, password: '00000000' });
+    expect(res).toEqual({ model: 'V-1-4K', version: '1.00' });
+    const p = v14k.addrs;
+    t.writeParam(p.pgm, [v14k.encodeInput(2)]);
+    await until(() => server.mem.get(p.pgm) === 0x08);
+    expect(logs).toContain('rx ACK');
+    t.writeParam(p.fader, encodeU14(4095));
+    await until(() => server.mem.get(p.fader) === 0x1f && server.mem.get(addrOffset(p.fader, 1)) === 0x7f);
+    t.readParam(p.tallyBlock, p.tallyBlockSize);
+    await until(() => c.params.get(p.tallyBlock + 0x06 + 2) === 1); // INPUT 2 = PGM
     await t.disconnect();
   });
 });

@@ -4,7 +4,7 @@ import { encodeAscii8 } from '@/core/codec/value';
 import { controller } from '@/core/controller/DeviceController';
 import type { DeviceProfile } from '@/core/profiles/types';
 import { haptic } from '@/lib/haptics';
-import { labelOfSource } from '@/stores/selectors';
+import { assignedSource, labelOfSource } from '@/stores/selectors';
 import { useParamStore } from '@/stores/param';
 import { color, font, radius } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
@@ -29,7 +29,7 @@ export interface InputSetupSheetProps {
 
 export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
   const visible = n != null;
-  const currentCode = useParamStore((s) => (n == null ? undefined : s.values[profile.addrs.inputAssign(n)]));
+  const currentCode = useParamStore((s) => (n == null ? undefined : assignedSource(profile, s.values, n)));
   const values = useParamStore((s) => s.values);
 
   const [code, setCode] = useState<number | null>(null);
@@ -54,7 +54,10 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
 
   const save = () => {
     if (!canSave || n == null || code == null) return;
-    if (code !== currentCode) controller.write(profile.addrs.inputAssign(n), [code]);
+    if (code !== currentCode) {
+      const v = profile.sourceToAssign(n, code);
+      if (v != null) controller.write(profile.addrs.inputAssign(n), [v]);
+    }
     if (labelEditable && selectedSource?.labelAddr != null && label.trim() !== originalLabel.trim()) {
       controller.write(selectedSource.labelAddr, encodeAscii8(label));
     }
@@ -116,7 +119,7 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
           </GroupCard>
 
           <GroupCard title="割当ソース" footer="INPUT ASSIGN。本体の MENU と同じ設定です。">
-            {profile.sources.map((s) => (
+            {profile.sources.filter((s) => n == null || profile.sourceToAssign(n, s.code) != null).map((s) => (
               <ListRow
                 key={s.code}
                 title={s.name}

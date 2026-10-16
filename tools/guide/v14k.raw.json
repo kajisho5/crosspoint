@@ -1,0 +1,9865 @@
+[
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": null,
+  "addr": [
+   "00",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter Area",
+  "sysex": "10H",
+  "meaning": "00H 00H Video Parameter (Memory 1)"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": null,
+  "addr": [
+   "01",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter Area",
+  "sysex": "11H",
+  "meaning": "00H 00H Audio Parameter (Memory 1)"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": null,
+  "addr": [
+   "02",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Parameter Area",
+  "sysex": "12H",
+  "meaning": "00H 00H Video Parameter (Memory 2)"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": null,
+  "addr": [
+   "0A",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Command Area",
+  "sysex": "13H",
+  "meaning": "00H 00H Audio Parameter (Memory 2)"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": null,
+  "addr": [
+   "0B",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Panel Area",
+  "sysex": "",
+  "meaning": ": :"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": null,
+  "addr": [
+   "0C",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Tally Area",
+  "sysex": "1EH 1FH 60H",
+  "meaning": "00H 00H Video Parameter (Memory 8) 00H 00H Audio Parameter (Memory 8) 00H 00H Memory Name"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 1 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 1, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 2 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 2, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 3 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 3, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 4 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 4, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 5 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 5, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 6 ASSIGN",
+  "sysex": "01H-04H",
+  "meaning": "STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 7 ASSIGN",
+  "sysex": "01H-04H",
+  "meaning": "STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 8 ASSIGN",
+  "sysex": "01H-04H",
+  "meaning": "STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ROI 1 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "ROI 1, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ROI 2 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "ROI 2, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ROI 3 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "ROI 3, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ROI 4 ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "ROI 4, STILL 1-2, BLACK, N/A"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 3 ASSIGN",
+  "sysex": "00H-09H",
+  "meaning": "PROGRAM, PREVIEW, INPUT 1-8"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 4 / USB OUT ASSIGN",
+  "sysex": "00H-09H",
+  "meaning": "PROGRAM, PREVIEW, INPUT 1-8"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 3 ASSIGN FADE TIME",
+  "sysex": "00H-14H",
+  "meaning": "0.0-2.0 sec"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO ASSIGN",
+  "addr": [
+   "00",
+   "00",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 4 / USB OUT ASSIGN FADE TIME",
+  "sysex": "00H-14H",
+  "meaning": "0.0-2.0 sec"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "DYNAMIC RANGE",
+  "sysex": "00H-03H",
+  "meaning": "AUTO, SDR, HDR(PQ), HDR(HLG) INTERNAL, 1080i50, 1080i59.94/60, 1080p23.98/24, 1080p25, 1080p29.97/30,"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "EDID",
+  "sysex": "00H-0EH",
+  "meaning": "1080p50, 1080p59.94/60, 2160p(UHD)23.98/24, 2160p(UHD)25, 2160p(UHD)29.97/30, 2160p(UHD)50, 2160p(UHD)59.94/60, 2160p(UHD)50(YUV420), 2160p(UHD)59.94/60(YUV420)"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "02"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "ZOOM",
+  "sysex": "00H 64H-4EH 10H",
+  "meaning": "10.0-1000.0%"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "SCALING TYPE",
+  "sysex": "00H-04H",
+  "meaning": "FULL, LETTER BOX, CROP, DOT BY DOT, MANUAL"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "05"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "MANUAL SIZE H",
+  "sysex": "7EH 6AH 00H-01H 16H 00H",
+  "meaning": "-19200-0-19200"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "08"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "MANUAL SIZE V",
+  "sysex": "7FH 2BH 50H-00H 54H 30H",
+  "meaning": "-10800-0-10800"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "0B"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "POSITION H",
+  "sysex": "7EH 6AH 00H-01H 16H 00H",
+  "meaning": "-19200-0-19200"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "VIDEO INPUT",
+  "addr": [
+   "00",
+   "xx",
+   "0E"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 01H-05H (HDMI IN 1-5)"
+  ],
+  "name": "POSITION V",
+  "sysex": "7FH 2BH 50H-00H 54H 30H",
+  "meaning": "-10800-0-10800"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "HDMI OUT 3",
+  "addr": [
+   "00",
+   "08",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COLOR GAMUT",
+  "sysex": "00H-01H",
+  "meaning": "SYSTEM, REC.709"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "HDMI OUT 3",
+  "addr": [
+   "00",
+   "08",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DYNAMIC RANGE",
+  "sysex": "00H-01H",
+  "meaning": "SYSTEM, HDR"
+ },
+ {
+  "page": 3,
+  "section": "2. Parameter address map",
+  "sub": "HDMI OUT 3",
+  "addr": [
+   "00",
+   "08",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "1080p DOWN CONVERT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "HDMI OUT 4",
+  "addr": [
+   "00",
+   "09",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COLOR GAMUT",
+  "sysex": "00H-01H",
+  "meaning": "SYSTEM, REC.709"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "HDMI OUT 4",
+  "addr": [
+   "00",
+   "09",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DYNAMIC RANGE",
+  "sysex": "00H-01H",
+  "meaning": "SYSTEM, HDR"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "HDMI OUT 4",
+  "addr": [
+   "00",
+   "09",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "1080p DOWN CONVERT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "MIX, WIPE",
+  "addr": [
+   "00",
+   "0B",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TRANSITION",
+  "sysex": "00H-01H",
+  "meaning": "MIX, WIPE"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "MIX, WIPE",
+  "addr": [
+   "00",
+   "0B",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MIX TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0 sec"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "MIX, WIPE",
+  "addr": [
+   "00",
+   "0B",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE TYPE",
+  "sysex": "00H-08H",
+  "meaning": "HORIZONTAL, VERTICAL, UPPER LEFT, UPPER RIGHT, LOWER LEFT, LOWER RIGHT, H-CENTER, V-CENTER, BOX"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "MIX, WIPE",
+  "addr": [
+   "00",
+   "0B",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0 sec"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "MIX, WIPE",
+  "addr": [
+   "00",
+   "0B",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE DIRECTION",
+  "sysex": "00H-02H",
+  "meaning": "NORMAL, REVERSE, ROUND TRIP"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "MIX, WIPE",
+  "addr": [
+   "00",
+   "0B",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE BORDER COLOR",
+  "sysex": "00H-09H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK, CUSTOM, SOFT EDGE"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PinP&KEY SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TYPE",
+  "sysex": "00H-03H",
+  "meaning": "PinP, LUMINANCE-WHITE KEY, LUMINANCE-BLACK KEY, CHROMA KEY"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "03"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION H",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION V",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "07"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SIZE",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "09"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "CROPPING H",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "0B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "CROPPING V",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "BORDER COLOR",
+  "sysex": "00H-08H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK, CUSTOM"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "0E"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BORDER COLOR R",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "10"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BORDER COLOR G",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "12"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BORDER COLOR B",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "BORDER WIDTH",
+  "sysex": "00H-0EH",
+  "meaning": "0-14"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "15"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW POSITION H",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "17"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW POSITION V",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "19"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW ZOOM",
+  "sysex": "07H 68H-1FH 20H",
+  "meaning": "100.0-400.0%"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "1B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "KEY LEVEL",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "1D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "KEY GAIN",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "1F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "21"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "22"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HUE WIDTH",
+  "sysex": "62H-00H-1EH",
+  "meaning": "-30-0-+30"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "23"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "HUE",
+  "sysex": "00H 00H-02H 68H",
+  "meaning": "0-360"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "25"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SATURATION WIDTH",
+  "sysex": "7FH 00H-00H 00H-00H 7FH",
+  "meaning": "-128-0-+127"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "27"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SATURATION",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "29"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VALUE WIDTH",
+  "sysex": "7FH 00H-00H 00H-00H 7FH",
+  "meaning": "-128-0-+127"
+ },
+ {
+  "page": 4,
+  "section": "2. Parameter address map",
+  "sub": "PinP&KEY",
+  "addr": [
+   "00",
+   "0C",
+   "2B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VALUE",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SPLIT SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SPLIT TYPE",
+  "sysex": "00H-01H",
+  "meaning": "SPLIT V, SPLIT H"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "02"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SPLIT PGM/A-CENTER",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SPLIT PST/B-CENTER",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "06"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SPLIT CENTER POSITION",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SPLIT BORDER COLOR",
+  "sysex": "00H-08H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK, CUSTOM"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "09"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SPLIT BORDER COLOR R",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "0B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SPLIT BORDER COLOR G",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "0D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SPLIT BORDER COLOR B",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "SPLIT",
+  "addr": [
+   "00",
+   "0F",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SPLIT BORDER WIDTH",
+  "sysex": "00H-0EH",
+  "meaning": "0-14"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SOURCE",
+  "sysex": "00H-0EH",
+  "meaning": "HDMI IN 1-5, STILL 1-2, INPUT 1-8"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0 sec"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PVW SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TYPE",
+  "sysex": "00H-01H",
+  "meaning": "LUMINANCE-WHITE, LUMINANCE-BLACK"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "LEVEL",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "07"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GAIN",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "DSK",
+  "addr": [
+   "00",
+   "10",
+   "09"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "MIX LEVEL",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ROI MODE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "01"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 1 ZOOM",
+  "sysex": "07H 68H-1FH 20H",
+  "meaning": "100.0-400.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "03"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 1 POSITION H",
+  "sysex": "71H 00H-00H 00H-0FH 00H",
+  "meaning": "-1920-0-1920"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 1 POSITION V",
+  "sysex": "77H 48H-00H 00H-08H 38H",
+  "meaning": "-1080-0-1080"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "07"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 2 ZOOM",
+  "sysex": "07H 68H-1FH 20H",
+  "meaning": "100.0-400.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "09"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 2 POSITION H",
+  "sysex": "71H 00H-00H 00H-0FH 00H",
+  "meaning": "-1920-0-1920"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "0B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 2 POSITION V",
+  "sysex": "77H 48H-00H 00H-08H 38H",
+  "meaning": "-1080-0-1080"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "0D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 3 ZOOM",
+  "sysex": "07H 68H-1FH 20H",
+  "meaning": "100.0-400.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "0F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 3 POSITION H",
+  "sysex": "71H 00H-00H 00H-0FH 00H",
+  "meaning": "-1920-0-1920"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "11"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 3 POSITION V",
+  "sysex": "77H 48H-00H 00H-08H 38H",
+  "meaning": "-1080-0-1080"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "13"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 4 ZOOM",
+  "sysex": "07H 68H-1FH 20H",
+  "meaning": "100.0-400.0%"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "15"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 4 POSITION H",
+  "sysex": "71H 00H-00H 00H-0FH 00H",
+  "meaning": "-1920-0-1920"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "ROI",
+  "addr": [
+   "00",
+   "11",
+   "17"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ROI 4 POSITION V",
+  "sysex": "77H 48H-00H 00H-08H 38H",
+  "meaning": "-1080-0-1080"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "PANEL",
+  "addr": [
+   "00",
+   "12",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM SELECT",
+  "sysex": "00H-0FH",
+  "meaning": "HDMI IN 1-5, STILL 1-2, INPUT 1-8, BLACK"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "PANEL",
+  "addr": [
+   "00",
+   "12",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST SELECT",
+  "sysex": "00H-0FH",
+  "meaning": "HDMI IN 1-5, STILL 1-2, INPUT 1-8, BLACK"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "PANEL",
+  "addr": [
+   "00",
+   "12",
+   "02"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "PGM/PST FADER LEVEL",
+  "sysex": "00H 00H-1FH 7FH",
+  "meaning": "0-4095"
+ },
+ {
+  "page": 5,
+  "section": "2. Parameter address map",
+  "sub": "PANEL",
+  "addr": [
+   "00",
+   "12",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FADER BASE",
+  "sysex": "00H-01H",
+  "meaning": "UPPER, LOWER"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO KNOB ASSIGN",
+  "addr": [
+   "01",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN",
+  "sysex": "00H-06H",
+  "meaning": "AUDIO IN, USB IN, HDMI IN 1-5"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO KNOB ASSIGN",
+  "addr": [
+   "01",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUT",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, USB OUT"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO KNOB ASSIGN",
+  "addr": [
+   "01",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MAIN BUS",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, USB OUT"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "00"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "DIGITAL GAIN",
+  "sysex": "7CH 5CH-00H 00H-03H 24H",
+  "meaning": "-42.0-0.0-42.0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "02"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "INPUT LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "INPUT MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "MONO",
+  "sysex": "00H-03H",
+  "meaning": "OFF, L ONLY, R ONLY, LR MIX"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "SOLO",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "08"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0 msec"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "MAIN SEND",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "NOISE GATE SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "NOISE GATE THRESHOLD",
+  "sysex": "30H-00H",
+  "meaning": "-80-0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "NOISE GATE RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000 msec"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "COMPRESSOR SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "COMPRESSOR THRESHOLD",
+  "sysex": "4EH-00H",
+  "meaning": "-50-0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "COMPRESSOR RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00: 1, 1.12: 1, 1.25: 1, 1.40: 1, 1.60: 1, 1.80: 1, 2.00: 1, 2.50: 1, 3.20: 1, 4.00: 1, 5.60: 1, 8.00: 1, 16.0: 1, INF: 1"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "COMPRESSOR ATTACK",
+  "sysex": "00H-73H",
+  "meaning": "0.0-100 msec"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "COMPRESSOR RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000 msec"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "COMPRESSOR MAKEUP GAIN",
+  "sysex": "58H-00H-28H",
+  "meaning": "-40-0-40 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "HIGH PASS FILTER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "HIGH PASS FILTER FREQUENCY",
+  "sysex": "01H-45H",
+  "meaning": "20.0 Hz-1.00 kHz"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "19"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0 kHz"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Hi-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Hi-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "1C"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Hi-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Lo-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Lo-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Lo-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "20"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO INPUT",
+  "addr": [
+   "01",
+   "xx",
+   "21"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 01H-07H (AUDIO IN, USB IN, HDMI IN 1-5)"
+  ],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20 Hz-2.00 kHz"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 1",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 2",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 3",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 4",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT 5",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO OUT",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUT",
+  "sysex": "00H-03H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS, MONITOR BUS"
+ },
+ {
+  "page": 6,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO OUTPUT ASSIGN",
+  "addr": [
+   "01",
+   "20",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PHONES OUT",
+  "sysex": "00H-02H",
+  "meaning": "MAIN BUS, AUX 1 BUS, AUX 2 BUS"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SOLO",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0 msec"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0 kHz"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20 Hz-2.00 kHz"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR/LIMITER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR/LIMITER TYPE",
+  "sysex": "00H-01H",
+  "meaning": "COMPRESSOR, LIMITER"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR THRESHOLD",
+  "sysex": "4EH-00H",
+  "meaning": "-50-0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00: 1, 1.12: 1, 1.25: 1, 1.40: 1, 1.60: 1, 1.80: 1, 2.00: 1, 2.50: 1, 3.20: 1, 4.00: 1, 5.60: 1, 8.00: 1, 16.0: 1, INF: 1"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR ATTACK",
+  "sysex": "00H-73H",
+  "meaning": "0.0-100 msec"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000 msec"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR MAKEUP GAIN",
+  "sysex": "58H-00H-28H",
+  "meaning": "-40-0-40 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER THRESHOLD",
+  "sysex": "58H-00H",
+  "meaning": "-40-0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "GEQ SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "1B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 25 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "1D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 40 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "1F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 60 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "21"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 100 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "23"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 160 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "25"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 250 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "27"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 400 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "29"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 630 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "2B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 1 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "2D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 1.6 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "2F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 2.5 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "31"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 4 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "33"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 6.3 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "35"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 10 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 7,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MAIN BUS",
+  "addr": [
+   "01",
+   "21",
+   "37"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 16 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-0H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SOLO",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0 msec"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0 kHz"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20 Hz-2.00 kHz"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR/LIMITER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR/LIMITER TYPE",
+  "sysex": "00H-01H",
+  "meaning": "COMPRESSOR, LIMITER"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR THRESHOLD",
+  "sysex": "4EH-00H",
+  "meaning": "-50-0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00: 1, 1.12: 1, 1.25: 1, 1.40: 1, 1.60: 1, 1.80: 1, 2.00: 1, 2.50: 1, 3.20: 1, 4.00: 1, 5.60: 1, 8.00: 1, 16.0: 1, INF: 1"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR ATTACK",
+  "sysex": "00H-73H",
+  "meaning": "0.0-100 msec"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000 msec"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR MAKEUP GAIN",
+  "sysex": "58H-00H-28H",
+  "meaning": "-40-0-40 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER THRESHOLD",
+  "sysex": "58H-00H",
+  "meaning": "-40-0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "GEQ SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "1B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 25 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "1D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 40 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "1F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 60 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "21"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 100 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "23"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 160 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "25"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 250 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "27"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 400 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "29"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 630 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "2B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 1 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "2D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 1.6 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "2F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 2.5 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "31"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 4 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "33"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 6.3 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "35"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 10 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 8,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 BUS",
+  "addr": [
+   "01",
+   "22",
+   "37"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 16 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "AUDIO IN SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "03"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "USB IN SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "06"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 1 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "09"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 2 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "0C"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 3 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "0F"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 4 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "12"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 5 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB IN SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 3 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 4 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 1 SEND",
+  "addr": [
+   "01",
+   "23",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 5 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SOLO",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0 msec"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0 kHz"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20 Hz-2.00 kHz"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR/LIMITER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR/LIMITER TYPE",
+  "sysex": "00H-01H",
+  "meaning": "COMPRESSOR, LIMITER"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR THRESHOLD",
+  "sysex": "4EH-00H",
+  "meaning": "-50-0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00: 1, 1.12: 1, 1.25: 1, 1.40: 1, 1.60: 1, 1.80: 1, 2.00: 1, 2.50: 1, 3.20: 1, 4.00: 1, 5.60: 1, 8.00: 1, 16.0: 1, INF: 1"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR ATTACK",
+  "sysex": "00H-73H",
+  "meaning": "0.0-100 msec"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000 msec"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COMPRESSOR MAKEUP GAIN",
+  "sysex": "58H-00H-28H",
+  "meaning": "-40-0-40 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER THRESHOLD",
+  "sysex": "58H-00H",
+  "meaning": "-40-0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "GEQ SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "1B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 25 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "1D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 40 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "1F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 60 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "21"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 100 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 9,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "23"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 160 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "25"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 250 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "27"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 400 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "29"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 630 Hz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "2B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 1 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "2D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 1.6 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "2F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 2.5 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "31"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 4 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "33"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 6.3 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "35"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 10 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 BUS",
+  "addr": [
+   "01",
+   "24",
+   "37"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "GEQ GAIN 16 kHz",
+  "sysex": "7EH 6AH-00H 00H-01H 16H",
+  "meaning": "-15.0-+15.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "AUDIO IN SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "03"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "USB IN SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "06"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 1 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "09"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 2 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "0C"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 3 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "0F"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 4 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "12"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "HDMI IN 5 SEND",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB IN SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 3 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 4 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUX 2 SEND",
+  "addr": [
+   "01",
+   "25",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 5 SEND POINT",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0 msec"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0 kHz"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20 Hz-20.0 kHz"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo-Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5, 1.0, 2.0, 4.0, 8.0, 16.0"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0 dB"
+ },
+ {
+  "page": 10,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO USB OUT",
+  "addr": [
+   "01",
+   "26",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20 Hz-2.00 kHz"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO MONITOR BUS",
+  "addr": [
+   "01",
+   "27",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INF dB, -80.0-0.0-10.0 dB"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 3",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 4",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 5",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN",
+  "sysex": "00H-0FH",
+  "meaning": "OFF, HDMI IN 1-5, STILL 1-2, INPUT 1-8"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB IN",
+  "sysex": "00H-0FH",
+  "meaning": "OFF, HDMI IN 1-5, STILL 1-2, INPUT 1-8"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO FOLLOW",
+  "addr": [
+   "01",
+   "30",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK FOLLOW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO MIXING SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB IN",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 3",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 4",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 5",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB IN WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1 WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2 WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 3 WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 4 WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 11,
+  "section": "2. Parameter address map",
+  "sub": "AUDIO AUTO MIXING",
+  "addr": [
+   "01",
+   "31",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 5 WEIGHT",
+  "sysex": "00H-64H",
+  "meaning": "0-100%"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "VERSION",
+  "addr": [
+   "02",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM VERSION Major",
+  "sysex": "00H-09H",
+  "meaning": "0-9"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "VERSION",
+  "addr": [
+   "02",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM VERSION Minor (1)",
+  "sysex": "00H-09H",
+  "meaning": "0-9"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "VERSION",
+  "addr": [
+   "02",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM VERSION Minor (2)",
+  "sysex": "00H-09H",
+  "meaning": "0-9"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "VERSION",
+  "addr": [
+   "02",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM VERSION Build (1)",
+  "sysex": "00H-09H",
+  "meaning": "0-9"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "VERSION",
+  "addr": [
+   "02",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM VERSION Build (2)",
+  "sysex": "00H-09H",
+  "meaning": "0-9"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "VERSION",
+  "addr": [
+   "02",
+   "00",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM VERSION Build (3)",
+  "sysex": "00H-09H",
+  "meaning": "0-9"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDCP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SYSTEM FORMAT",
+  "sysex": "00H-01H",
+  "meaning": "2160p, 1080p"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FRAME RATE",
+  "sysex": "00H-07H",
+  "meaning": "60 Hz, 59.94 Hz, 50 Hz, 30 Hz, 29.97 Hz, 25 Hz, 24 Hz, 23.98 Hz"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COLOR GAMUT",
+  "sysex": "00H-01H",
+  "meaning": "REC.709, REC.2020"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DYNAMIC RANGE",
+  "sysex": "00H-02H",
+  "meaning": "SDR, HDR(PQ), HDR(HLG)"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PANEL OPERATION",
+  "sysex": "00H-01H",
+  "meaning": "A/B, PGM/PST"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CUT SW ASSIGN",
+  "sysex": "00H-03H",
+  "meaning": "Ç AUTO TAKE, Ç AUTO TAKE É , Ç CUT, Ç CUT É"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO SW ASSIGN",
+  "sysex": "00H-03H",
+  "meaning": "AUTO TAKE É , Ç AUTO TAKE É , CUT É , Ç CUT É"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO KNOB MODE",
+  "sysex": "00H-01H",
+  "meaning": "CATCH, DIRECT"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0 sec"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE ASSIGN AUDIO FADE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LED DIMMER",
+  "sysex": "01H-08H",
+  "meaning": "1-8"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MENU POS",
+  "sysex": "00H-01H",
+  "meaning": "LEFT, RIGHT"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TALLY FRAME",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PREVIEW LABEL",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LABEL SIZE",
+  "sysex": "00H-01H",
+  "meaning": "SMALL, NORMAL"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MULTI-VIEW LAYOUT",
+  "sysex": "00H-01H",
+  "meaning": "PVW/PGM, PGM/PVW"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST PATTERN",
+  "sysex": "00H-01H",
+  "meaning": "OFF, COLOR BARS"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST TONE LEVEL",
+  "sysex": "00H-03H",
+  "meaning": "OFF, -20 dB, -10 dB, 0 dB"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST TONE FREQUENCY L",
+  "sysex": "00H-02H",
+  "meaning": "500 Hz, 1 kHz, 2 kHz"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "SYSTEM",
+  "addr": [
+   "02",
+   "01",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST TONE FREQUENCY R",
+  "sysex": "00H-02H",
+  "meaning": "500 Hz, 1 kHz, 2 kHz"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 1 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 2 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 3 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 4 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 5 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 6 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 7 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 8 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 1 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 2 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 3 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 4 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 5 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 6 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 7 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 8 BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TRANSITION BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CUT BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VIDEO FADER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PADS SELECT BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PADS A BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PADS B BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PADS C BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 12,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PADS D BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PinP&KEY BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SPLIT BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CONTROL 1 KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "1C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CONTROL 2 KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK LEVEL KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK GAIN KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK PVW BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "20"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK PGM BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "21"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "22"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUT KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "23"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MAIN KNOB",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "24"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAPTURE IMAGE BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "PANEL LOCK",
+  "addr": [
+   "02",
+   "02",
+   "25"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE BUTTON",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "START UP",
+  "sysex": "7FH-00H-07H",
+  "meaning": "LAST MEMORY, MEMORY 1-8"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "START UP - PRIORITY",
+  "sysex": "00H-01H",
+  "meaning": "MEMORY, PANEL"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY PROTECT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FADE TIME",
+  "sysex": "00H-05H",
+  "meaning": "0.0-0.5 sec"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - VIDEO ASSIGN",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - VIDEO INPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - VIDEO OUTPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - TRANSITION TYPE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - MIX/WIPE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - PinP&KEY",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - SPLIT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - DSK",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - ROI MODE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - ROI SETTINGS",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - PGM/A, PST/B",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - VIDEO FADER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - AUDIO KNOB ASSIGN",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - AUDIO INPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - AUDIO OUTPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - AUDIO FOLLOW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "02",
+   "03",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETERS - AUDIO AUTO MIXING",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 1 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 2 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 3 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 4 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 5 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 6 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 7 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 13,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY EXIST",
+  "addr": [
+   "02",
+   "04",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 8 EXIST",
+  "sysex": "00H-01H",
+  "meaning": "Not Exist, Exist * Read only"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 1 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 2 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 3 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 4 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 5 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 6 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 7 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 8 THUMBNAIL POSITION - PROGRAM OUT",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 1 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 2 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 3 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 4 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 5 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 6 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 7 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY THUMBNAIL POSITION",
+  "addr": [
+   "02",
+   "05",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY 8 THUMBNAIL POSITION - DSK",
+  "sysex": "00H-08H",
+  "meaning": "UPPER LEFT, UPPER, UPPER RIGHT, LEFT, CENTER, RIGHT, LOWER LEFT, LOWER, LOWER RIGHT"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "STILL IMAGE",
+  "addr": [
+   "02",
+   "06",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAPTURE SAVE",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "Roland FILL+KEY",
+  "addr": [
+   "02",
+   "07",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MODE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO SWITCHING SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - SCAN SEQUENCE",
+  "sysex": "00H-02H",
+  "meaning": "NORMAL, REVERSE, RANDOM"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - SCAN TRANSITION TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 1 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 2 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 3 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 4 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 5 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 6 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 7 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 14,
+  "section": "2. Parameter address map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN - INPUT 8 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (0)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (1)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (2)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (3)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (4)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (5)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (6)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "PREVIEW LABEL",
+  "addr": [
+   "02",
+   "xx",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 20H-26H (HDMI IN 1-5, STILL 1-2), 29H (BLACK), 2AH (PGM), 2BAH (PVW), 2CH-2FH (ROI 1-4)"
+  ],
+  "name": "LABEL (7)",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL COMMON",
+  "addr": [
+   "02",
+   "50",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAMERA ID",
+  "sysex": "00H-04H",
+  "meaning": "CAMERA 1-5"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL COMMON",
+  "addr": [
+   "02",
+   "50",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAMERA CONTROL MODE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL COMMON",
+  "addr": [
+   "02",
+   "50",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ALL CAMERAS RECALL",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PROTOCOL",
+  "sysex": "00H-06H",
+  "meaning": "N/A, JVC, Panasonic, Canon, VISCA over IP, PTZOptics, Avonic"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "01"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "IP ADDRESS 1",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "03"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "IP ADDRESS 2",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "05"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "IP ADDRESS 3",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "07"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "IP ADDRESS 4",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "09"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 1",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 2",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 3",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 4",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 5",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 6",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 7",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "LOGIN NAME 8",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 1",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 2",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 3",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 4",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 5",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 6",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 7",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 8",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "19"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 9",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 10",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 11",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "1C"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 12",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 13",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 14",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 15",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "20"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PASSWORD 16",
+  "sysex": "00H-7FH",
+  "meaning": ""
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "21"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "CURRENT PRESET",
+  "sysex": "7FH-00H-63H",
+  "meaning": "None, PRESET 1-100 * Read only"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "22"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PAN",
+  "sysex": "7FH-00H-01H",
+  "meaning": "LEFT, STOP, RIGHT"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "23"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "TILT",
+  "sysex": "7FH-00H-01H",
+  "meaning": "DOWN, STOP, UP"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "24"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PAN/TILT SPEED",
+  "sysex": "01H-18H",
+  "meaning": "1-24"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "25"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "ZOOM",
+  "sysex": "7EH-00H-02H",
+  "meaning": "WIDE(FAST), WIDE(SLOW), STOP, TELE(SLOW), TELE(FAST)"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "26"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "FOCUS",
+  "sysex": "7FH-00H-01H",
+  "meaning": "NEAR, STOP, FAR"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "27"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "AUTO FOCUS",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "28"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "EXPOSURE",
+  "sysex": "00H-01H",
+  "meaning": "MANUAL, AUTO"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "29"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "TALLY CHANNEL",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 1-5"
+ },
+ {
+  "page": 15,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "02",
+   "xx",
+   "2A"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 51H-55H (CAMERA 1-5)"
+  ],
+  "name": "PORT",
+  "sysex": "00H 00H 00H-03H 7FH 7FH",
+  "meaning": "0-65535"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "0A",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY LOAD Trigger",
+  "sysex": "7FH-00H-08H",
+  "meaning": "None, MEMORY 1-8 * Write only"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "0A",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SAVE Trigger",
+  "sysex": "7FH-00H-08H",
+  "meaning": "None, MEMORY 1-8 * Write only"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "0A",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY INITIALIZE Trigger",
+  "sysex": "7FH-00H-08H",
+  "meaning": "None, MEMORY 1-8 * Write only"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "0A",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Loaded Memory Number",
+  "sysex": "7FH-00H-08H",
+  "meaning": "LAST MEMORY, MEMORY 1-8 * Read only"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "MEMORY",
+  "addr": [
+   "0A",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Memory Fading",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON * Read only"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "0A",
+   "05",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAPTURE SOURCE",
+  "sysex": "00H-04H",
+  "meaning": "HDMI IN 1-5"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "0A",
+   "05",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TARGET STORAGE",
+  "sysex": "00H-01H",
+  "meaning": "STILL 1-2"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "0A",
+   "05",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAPTURE Execute Trigger",
+  "sysex": "01H",
+  "meaning": "Execute"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "0A",
+   "05",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DELETE STILL IMAGE Trigger",
+  "sysex": "01H",
+  "meaning": "Execute"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "0A",
+   "05",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "0A",
+   "05",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DELETE STILL IMAGE Target",
+  "sysex": "7FH-00H-01H",
+  "meaning": "ALL, STILL 1-2"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 1 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 2 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 3 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 4 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 5 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 6 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 7 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 8 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 1 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 2 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 3 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 4 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 5 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 6 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 7 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 8 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PADS SELECT Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD 8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the pad, 1: press the pad"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TRANSITION Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CUT Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "1C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PinP&KEY Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SPLIT Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CONTROL 1 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CONTROL 2 Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "20"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAPTURE IMAGE Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "21"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK PVW Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "22"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "DSK PGM Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "23"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MENU Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "24"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ENTER Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 16,
+  "section": "2. Parameter address map",
+  "sub": "SWITCH CONTROL (panel switch ON/OFF)",
+  "addr": [
+   "0B",
+   "00",
+   "25"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE Button",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the button, 1: press the button"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PGM/A 8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PST/B 8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "reserved",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "1C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD Panel 8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "20"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "21"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "22"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "23"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "24"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "25"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "26"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "27"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD A-8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "28"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "29"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "2A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "2B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "2C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "2D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "2E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "2F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD B-8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "30"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "31"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "32"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "33"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "34"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "35"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "36"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "37"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD C-8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "38"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-1",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "39"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-2",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "3A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-3",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "3B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-4",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "3C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-5",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "3D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-6",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "3E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-7",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 17,
+  "section": "2. Parameter address map",
+  "sub": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+  "addr": [
+   "0B",
+   "04",
+   "3F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "ASSIGNABLE PAD D-8",
+  "sysex": "00H-01H",
+  "meaning": "0: take your finger off the switch, 1: press the switch"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 3 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 4 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 5 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "STILL 1 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "STILL 2 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 1 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 2 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 3 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 4 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 5 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 6 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 7 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY INFO",
+  "addr": [
+   "0C",
+   "00",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 8 Tally",
+  "sysex": "00H-02H",
+  "meaning": "OFF, PGM, PST * Read only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "TALLY AUTO SEND",
+  "addr": [
+   "0C",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Tally Send Active",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON ON: Automatically sends the tally information when it changes. Set to “OFF” when the unit is turned on."
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "0D",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "PRESET RECALL",
+  "sysex": "00H-63H",
+  "meaning": "PRESET 1-100 * Write only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "0D",
+   "xx",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "PRESET STORE",
+  "sysex": "00H-63H",
+  "meaning": "PRESET 1-100 * Write only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "0D",
+   "xx",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "ZOOM Reset",
+  "sysex": "01H",
+  "meaning": "Resets the zoom * Write only"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (0)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (1st character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (1)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (2nd character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (2)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (3rd character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (3)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (4th character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (4)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (5th character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (5)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (6th character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (6)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (7th character)"
+ },
+ {
+  "page": 18,
+  "section": "2. Parameter address map",
+  "sub": "CAMERA CONTROL",
+  "addr": [
+   "60",
+   "xx",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (Camera 1-5)",
+   "* xxH: 00H-07H (MEMORY 1-8)"
+  ],
+  "name": "Name (7)",
+  "sysex": "",
+  "meaning": "Name of memory number xx (8th character)"
+ }
+]

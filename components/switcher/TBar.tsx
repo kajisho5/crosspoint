@@ -11,6 +11,7 @@ import { useFader } from '@/stores/selectors';
 import { color, radius } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
 
+/** V-160HD 系の既定（プロファイルの faderMax を優先） */
 export const FADER_MAX = 2047;
 const TRACK_H = 190;
 const TRACK_W = 14;
@@ -25,6 +26,7 @@ const SEND_INTERVAL_MS = 33;
  */
 export function TBar({ profile, height }: { profile: DeviceProfile; height: number }) {
   const value = useFader(profile);
+  const max = profile.faderMax;
   const pos = useSharedValue(value ?? 0);
   const start = useSharedValue(0);
   const dragging = useSharedValue(false);
@@ -41,7 +43,7 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
 
   const send = (v: number, force: boolean) => {
     setShown(v);
-    const edge = v >= FADER_MAX ? 'top' : v <= 0 ? 'bottom' : null;
+    const edge = v >= max ? 'top' : v <= 0 ? 'bottom' : null;
     if (edge && edge !== lastEdge.current) haptic.heavy();
     lastEdge.current = edge;
     const now = Date.now();
@@ -57,7 +59,7 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
       start.value = pos.value;
     })
     .onUpdate((e) => {
-      const v = Math.round(Math.min(FADER_MAX, Math.max(0, start.value - (e.translationY / TRACK_H) * FADER_MAX)));
+      const v = Math.round(Math.min(max, Math.max(0, start.value - (e.translationY / TRACK_H) * max)));
       if (v !== pos.value) {
         pos.value = v;
         scheduleOnRN(send, v, false);
@@ -68,12 +70,12 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
       scheduleOnRN(send, Math.round(pos.value), true);
     });
 
-  const fillStyle = useAnimatedStyle(() => ({ height: (pos.value / FADER_MAX) * TRACK_H }));
-  const knobStyle = useAnimatedStyle(() => ({ top: 40 + TRACK_H * (1 - pos.value / FADER_MAX) - KNOB_H / 2 }));
+  const fillStyle = useAnimatedStyle(() => ({ height: (pos.value / max) * TRACK_H }));
+  const knobStyle = useAnimatedStyle(() => ({ top: 40 + TRACK_H * (1 - pos.value / max) - KNOB_H / 2 }));
 
-  const pct = Math.round((shown / FADER_MAX) * 100);
+  const pct = Math.round((shown / max) * 100);
   const step = (dir: 1 | -1) => {
-    const v = Math.min(FADER_MAX, Math.max(0, shown + dir * Math.round(FADER_MAX / 10)));
+    const v = Math.min(max, Math.max(0, shown + dir * Math.round(max / 10)));
     pos.value = v;
     send(v, true);
   };

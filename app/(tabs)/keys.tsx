@@ -27,11 +27,13 @@ export default function KeysScreen() {
       <ScreenHeader subtitle={subtitle} title="キー" />
       <OfflineBanner />
       <Gate style={{ paddingHorizontal: 16 }}>
-        <GroupCard title="PinP & KEY">
-          {range(profile.pinpCount).map((n) => (
-            <KeyLine key={`p${n}`} profile={profile} kind="pinp" n={n} />
-          ))}
-        </GroupCard>
+        {profile.pinpCount > 0 ? (
+          <GroupCard title="PinP & KEY">
+            {range(profile.pinpCount).map((n) => (
+              <KeyLine key={`p${n}`} profile={profile} kind="pinp" n={n} />
+            ))}
+          </GroupCard>
+        ) : null}
         <GroupCard title="DSK">
           {range(profile.dskCount).map((n) => (
             <KeyLine key={`d${n}`} profile={profile} kind="dsk" n={n} />

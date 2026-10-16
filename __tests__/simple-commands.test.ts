@@ -92,3 +92,23 @@ describe('簡易制御コマンドの模擬（モック共通）', () => {
     expect(simulateSimpleCommand('XYZ;', h)).toEqual(['ERR:0']);
   });
 });
+
+describe('新機種の経路（VR-6HD / V-1-4K）', () => {
+  test('VR-6HD：LAN では CUT/AUTO・マクロ・シーケンサーが簡易制御コマンド。USB/BLE では CUT/AUTO 無し', () => {
+    const p = getProfile('VR-6HD');
+    expect(featureRoute('cutAuto', p, 'lan', '2.20')).toBe('text');
+    expect(featureRoute('macro', p, 'lan', '2.20')).toBe('text');
+    expect(featureRoute('sequencer', p, 'lan', '2.20')).toBe('text');
+    expect(featureRoute('cutAuto', p, 'usb', '2.20')).toBeNull();
+    expect(featureRoute('macro', p, 'ble', '2.20')).toBeNull();
+    expect(featureRoute('cutAuto', p, 'lan', '2.10')).toBeNull();
+  });
+  test('V-1-4K：CUT/AUTO は SysEx（0B 00 1A/1B）、マクロ・シーケンサーは簡易制御コマンドでも無し', () => {
+    const p = getProfile('V-1-4K');
+    expect(featureRoute('cutAuto', p, 'lan', '1.00')).toBe('sysex');
+    expect(featureRoute('cutAuto', p, 'usb', '1.00')).toBe('sysex');
+    expect(featureRoute('macro', p, 'lan', '1.00')).toBeNull();
+    expect(featureRoute('sequencer', p, 'lan', '1.00')).toBeNull();
+    expect(supportsSimpleCommands('V-1-4K', '1.00')).toBe(true);
+  });
+});

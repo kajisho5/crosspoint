@@ -2,11 +2,11 @@ import * as net from 'net';
 import { buildDemoState, writeTally, type ByteMap } from '../../core/transport/demoState';
 import { simulateSimpleCommand } from '../../core/transport/simpleCommandSim';
 import { addr, addrOffset, addrToHex, decodeTime, type Addr } from '../../core/codec/value';
-import { getProfile } from '../../core/profiles';
+import { getProfile, modelIdFrom } from '../../core/profiles';
 import type { DeviceProfile, ModelId } from '../../core/profiles/types';
 
 /**
- * V-160HD / V-80HD / VR-120HD の LAN モックサーバー（SPEC §12-1）。`npm run mock [-- --model v80hd|vr120hd --port 8023 --password 0000 --jitter --split]`
+ * V-160HD / V-80HD / VR-120HD / VR-6HD / V-1-4K の LAN モックサーバー（SPEC §12-1）。`npm run mock [-- --model v80hd|vr120hd|vr6hd|v14k --port 8023 --password 0000 --jitter --split]`
  * - 接続直後 `Enter password:`、正しい PW で `Welcome to {機種}.`、誤りは切断
  * - `VER;` → `VER:{機種},{版}\n`
  * - `RQH` → 疎メモリから連結 hex で `DTH:…;`
@@ -40,7 +40,7 @@ export interface MockServer {
   close: () => Promise<void>;
 }
 
-const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00' };
+const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00' };
 const TALLY_SUBSCRIBE = addr(0x0c, 0x01, 0x00);
 
 function hex2(b: number): string {
@@ -57,7 +57,8 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
   const seqState = { on: false, auto: false };
   const subscribers = new Set<net.Socket>();
   const clients = new Map<net.Socket, { authed: boolean; buf: string }>();
-  const maxPgmValue = model === 'V-160HD' ? 0x33 : model === 'VR-120HD' ? 0x24 : 0x38;
+  // PGM/PST に書ける最大値 = INPUT n の最後（V-160HD 0x33 / V-80HD 0x38 / VR-120HD 0x24 / VR-6HD 0x1C / V-1-4K 0x0F=BLACK）
+  const maxPgmValue = model === 'V-1-4K' ? 0x0f : profile.encodeInput(profile.inputCount);
 
   const send = (sock: net.Socket, text: string) => {
     if (sock.destroyed) return;
@@ -73,7 +74,8 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
     if (options.jitter) setTimeout(go, Math.floor(Math.random() * 40));
     else go();
   };
-  const ackText = model === 'V-80HD' ? '\x02ACK;' : options.ack === 'byte06' ? '\x06' : 'ACK;';
+  // V-80HD / V-1-4K：ガイドの表記は `stxACK;`（文字列）。それ以外は制御コード 06H または `ACK;`
+  const ackText = model === 'V-80HD' || model === 'V-1-4K' ? '\x02ACK;' : options.ack === 'byte06' ? '\x06' : 'ACK;';
 
   const readBytes = (a: Addr, size: number) => Array.from({ length: size }, (_, i) => mem.get(addrOffset(a, i)) ?? 0);
   const dthText = (a: Addr, bytes: number[]) => `DTH:${addrToHex(a)},${bytes.map(hex2).join('')};`;
@@ -257,7 +259,7 @@ function parseArgs(argv: string[]): MockServerOptions {
     const k = argv[i];
     const v = argv[i + 1];
     if (k === '--model' && v) {
-      o.model = v.toLowerCase() === 'v80hd' ? 'V-80HD' : v.toLowerCase() === 'vr120hd' ? 'VR-120HD' : 'V-160HD';
+      o.model = modelIdFrom(v) ?? 'V-160HD';
       i += 1;
     } else if (k === '--port' && v) {
       o.port = Number(v);

@@ -1,4 +1,4 @@
-import { supportsSimpleCommands } from '@/core/codec/simpleCommands';
+import { SIMPLE_MACRO_MODELS, supportsSimpleCommands } from '@/core/codec/simpleCommands';
 import type { DeviceProfile } from '@/core/profiles/types';
 import type { TransportKind } from '@/core/transport/Transport';
 import { useConnectionStore } from '@/stores/connection';
@@ -19,10 +19,10 @@ export function featureRoute(feature: Feature, profile: DeviceProfile, transport
       if (profile.capabilities.cutAuto) return 'sysex';
       return text ? 'text' : null;
     case 'macro':
-      if (text) return 'text';
+      if (text && SIMPLE_MACRO_MODELS.has(profile.model)) return 'text';
       return profile.capabilities.macro && profile.addrs.macroTrigger != null ? 'sysex' : null;
     case 'sequencer':
-      if (text) return 'text';
+      if (text && SIMPLE_MACRO_MODELS.has(profile.model)) return 'text';
       return profile.capabilities.sequencer && profile.addrs.sequencer != null ? 'sysex' : null;
     default:
       return null;
