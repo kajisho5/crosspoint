@@ -44,7 +44,9 @@ export default function SwitcherScreen() {
   const onSelect = useCallback(
     (bus: Bus, n: number) => {
       haptic.select();
-      controller.write(bus === 'pgm' ? profile.addrs.pgm : profile.addrs.pst, [controller.encodePgmValue(profile, n, pgmMode)]);
+      const a = bus === 'pgm' ? profile.addrs.pgm : profile.addrs.pst;
+      if (a == null) return;
+      controller.write(a, [controller.encodePgmValue(profile, n, pgmMode)]);
     },
     [profile, pgmMode],
   );
@@ -74,10 +76,14 @@ export default function SwitcherScreen() {
         </View>
         <CrosspointGrid profile={profile} bus="pgm" bank={safeBank} selected={pgm} labels={labels} tallies={tallies} onSelect={onSelect} onSetup={onSetup} />
 
-        <View className="mt-4 px-4" style={{ marginBottom: 8 }}>
-          <BusLabel bus="pst" />
-        </View>
-        <CrosspointGrid profile={profile} bus="pst" bank={safeBank} selected={pst} labels={labels} tallies={tallies} onSelect={onSelect} onSetup={onSetup} />
+        {profile.addrs.pst != null ? (
+          <>
+            <View className="mt-4 px-4" style={{ marginBottom: 8 }}>
+              <BusLabel bus="pst" />
+            </View>
+            <CrosspointGrid profile={profile} bus="pst" bank={safeBank} selected={pst} labels={labels} tallies={tallies} onSelect={onSelect} onSetup={onSetup} />
+          </>
+        ) : null}
 
         <View className="mt-5 flex-row px-4" style={{ gap: 12 }}>
           <View style={{ flex: 172, gap: 10 }}>
@@ -90,9 +96,11 @@ export default function SwitcherScreen() {
               <CutAutoUnavailable />
             )}
           </View>
-          <View style={{ flex: 177 }}>
-            <TBar profile={profile} height={246} />
-          </View>
+          {profile.addrs.fader != null ? (
+            <View style={{ flex: 177 }}>
+              <TBar profile={profile} height={246} />
+            </View>
+          ) : null}
         </View>
       </Gate>
     </Screen>

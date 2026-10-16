@@ -46,7 +46,8 @@ export const MIDI_UNAVAILABLE_MESSAGE = 'この環境では USB / Bluetooth MIDI
 export class DeviceController {
   private transport: Transport | null = null;
   private unsubs: Unsub[] = [];
-  private pressed = new Set<Addr>();
+  /** 押下中のモーメンタリ（値 = 解放時に書く値） */
+  private pressed = new Map<Addr, number>();
   private tapTimers = new Set<ReturnType<typeof setTimeout>>();
   private sync: SyncEngine | null = null;
   private visibleTab: VisibleTab = 'switcher';
@@ -217,23 +218,24 @@ export class DeviceController {
   }
 
   /** モーメンタリ押下（touchDown） */
-  press(a: Addr): void {
+  press(a: Addr, values: { press: number; release: number } = { press: 1, release: 0 }): void {
     if (!this.transport || !this.online || this.pressed.has(a)) return;
-    this.pressed.add(a);
-    this.transport.writeParam(a, [1]);
+    this.pressed.set(a, values.release);
+    this.transport.writeParam(a, [values.press]);
   }
 
   /** モーメンタリ解放（touchUp / touchCancel） */
   release(a: Addr): void {
-    if (!this.pressed.has(a)) return;
+    const rel = this.pressed.get(a);
+    if (rel === undefined) return;
     this.pressed.delete(a);
-    this.transport?.writeParam(a, [0]);
+    this.transport?.writeParam(a, [rel]);
   }
 
   /** タップ（01 → 150ms 後 00）：AUTO */
-  tap(a: Addr): void {
+  tap(a: Addr, values?: { press: number; release: number }): void {
     if (!this.transport || !this.online) return;
-    this.press(a);
+    this.press(a, values);
     const timer = setTimeout(() => {
       this.tapTimers.delete(timer);
       this.release(a);
@@ -243,7 +245,7 @@ export class DeviceController {
 
   /** アプリ非アクティブ時など：押下中をすべて解放 */
   releaseAll(): void {
-    for (const a of [...this.pressed]) this.release(a);
+    for (const a of [...this.pressed.keys()]) this.release(a);
   }
 
   /** INPUT n を PGM/PST に書く値（SPEC §9-3：V-160HD のみ guide10 を選べる） */

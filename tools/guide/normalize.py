@@ -29,6 +29,8 @@ def parse_sysex(sysex, size):
     # 'xxH, yyH, zzH' → 離散値
     if ',' in s and DASH not in s:
         vals = [to_signed(v, 1) for v in hexes(s)]
+        if not vals:
+            return None
         return (min(vals), max(vals), any(v < 0 for v in vals), vals, neg_inf)
     # 'aaH-bbH' / 'aaH-00H-bbH' / 'aaH bbH-ccH ddH' / 'aaH bbH-ccH ddH-eeH ffH' / '00H-1DH, 7FH'
     extra = []
@@ -192,7 +194,9 @@ def parse_instances(note):
             out.append({'xx': x, 'label': labels[i] if i < len(labels) else f'{x:02X}'})
     return out or None
 
-AREA = {'00': 'video', '01': 'audio', '02': 'system', '0A': 'other', '0C': 'tally', '60': 'name'}
+AREA = {'00': 'video', '01': 'audio', '02': 'system', '0A': 'other', '0C': 'tally', '60': 'name',
+        # Reference Manual 系（V-8HD / VR-4HD / V-1HD / V-1SDI / V-02HD MK II）
+        '03': 'system', '0B': 'panel', '50': 'other', '70': 'system', '71': 'video', '72': 'other', '73': 'panel', '10': 'other'}
 
 def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')

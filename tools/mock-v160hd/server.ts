@@ -40,7 +40,7 @@ export interface MockServer {
   close: () => Promise<void>;
 }
 
-const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00' };
+const VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00', 'V-8HD': '3.00', 'V-1HD': '2.10', 'V-1SDI': '1.50', 'VR-4HD': '2.10', 'V-02HD-MK2': '1.03' };
 const TALLY_SUBSCRIBE = addr(0x0c, 0x01, 0x00);
 
 function hex2(b: number): string {
@@ -85,6 +85,7 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
     for (const [sock, st] of clients) if (st.authed && sock !== except) send(sock, dthText(a, bytes));
   };
   const notifyTally = () => {
+    if (profile.addrs.tallyBlock == null) return;
     writeTally(mem, profile);
     const bytes = readBytes(profile.addrs.tallyBlock, profile.addrs.tallyBlockSize);
     for (const sock of subscribers) send(sock, dthText(profile.addrs.tallyBlock, bytes));
@@ -95,6 +96,7 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
     if (a === profile.addrs.pgm || a === profile.addrs.pst) notifyTally();
   };
   const swapPgmPst = (except?: net.Socket) => {
+    if (profile.addrs.pst == null) return;
     const pgm = mem.get(profile.addrs.pgm) ?? 0;
     const pst = mem.get(profile.addrs.pst) ?? 0;
     setBytes(profile.addrs.pgm, [pst], except);
@@ -130,7 +132,7 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
     }
     if (a === profile.addrs.memLoad) {
       if (v >= profile.memoryCount) return 'ERR:5;';
-      setBytes(profile.addrs.memCurrent, [v], undefined);
+      if (profile.addrs.memCurrent != null) setBytes(profile.addrs.memCurrent, [v], undefined);
       return ackText;
     }
     if ((a === profile.addrs.pgm || a === profile.addrs.pst) && v > maxPgmValue) return 'ERR:5;';
@@ -185,8 +187,11 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
       swap: () => swapPgmPst(),
       autoMs: () => decodeTime([mem.get(profile.addrs.transTime) ?? 10]) * 1000,
       later: (fn, ms) => void setTimeout(fn, ms),
-      loadMemory: (n) => setBytes(profile.addrs.memCurrent, [n - 1]),
+      loadMemory: (n) => {
+        if (profile.addrs.memCurrent != null) setBytes(profile.addrs.memCurrent, [n - 1]);
+      },
       tally: () => {
+        if (profile.addrs.tallyBlock == null) return [];
         writeTally(mem, profile);
         return readBytes(profile.addrs.tallyBlock, profile.addrs.tallyBlockSize);
       },

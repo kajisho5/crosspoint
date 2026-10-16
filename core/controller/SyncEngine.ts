@@ -63,29 +63,55 @@ export function mergeRanges(ranges: readonly ReadRange[]): ReadRange[] {
 
 export function initialSyncRanges(p: DeviceProfile, link: 'lan' | 'midi', visible: VisibleTab): ReadRange[] {
   const r: ReadRange[] = [];
-  if (link === 'midi') r.push({ addr: VERSION_ADDR, size: VERSION_SIZE });
-  for (let n = 1; n <= p.inputCount; n += 1) r.push({ addr: p.addrs.inputAssign(n), size: 1 });
+  if (link === 'midi') r.push({ addr: p.version.addr, size: p.version.size });
+  r.push(...switcherRanges(p), ...assignRanges(p));
   for (const s of p.sources) if (s.labelAddr != null) r.push({ addr: s.labelAddr, size: 8 });
-  r.push({ addr: p.addrs.pgm, size: 2 }, { addr: p.addrs.fader, size: 2 });
-  r.push({ addr: p.addrs.transType, size: 1 }, { addr: p.addrs.transTime, size: 1 });
   r.push(...keyRanges(p));
-  r.push({ addr: p.addrs.memCurrent, size: 1 });
-  for (let n = 1; n <= p.memoryCount; n += 1) r.push({ addr: p.addrs.memName(n), size: 8 });
-  r.push({ addr: p.addrs.tallyBlock, size: p.addrs.tallyBlockSize });
+  r.push(...memoryRanges(p, true));
   if (visible === 'audio') r.push(...audioRanges(p));
   return mergeRanges(r);
+}
+
+/** スイッチャー画面の軽い読出し（PGM/PST・フェーダー・トランジション・タリー）。無いアドレスは飛ばす */
+function switcherRanges(p: DeviceProfile): ReadRange[] {
+  const a = p.addrs;
+  const r: ReadRange[] = [{ addr: a.pgm, size: 1 }];
+  if (a.pst != null) r.push({ addr: a.pst, size: 1 });
+  if (a.fader != null) r.push({ addr: a.fader, size: 2 });
+  if (a.transType != null) r.push({ addr: a.transType, size: 1 });
+  r.push({ addr: a.transTime, size: 1 });
+  if (a.tallyBlock != null && a.tallyBlockSize > 0) r.push({ addr: a.tallyBlock, size: a.tallyBlockSize });
+  return r;
+}
+
+function assignRanges(p: DeviceProfile): ReadRange[] {
+  const r: ReadRange[] = [];
+  if (p.addrs.inputAssign != null) for (let n = 1; n <= p.inputCount; n += 1) r.push({ addr: p.addrs.inputAssign(n), size: 1 });
+  return r;
+}
+
+function memoryRanges(p: DeviceProfile, withNames: boolean): ReadRange[] {
+  const r: ReadRange[] = [];
+  if (p.addrs.memCurrent != null) r.push({ addr: p.addrs.memCurrent, size: 1 });
+  if (withNames && p.addrs.memName != null) for (let n = 1; n <= p.memoryCount; n += 1) r.push({ addr: p.addrs.memName(n), size: 8 });
+  return r;
+}
+
+function pushKey(r: ReadRange[], k: { pgm: Addr; pvw: Addr | null; source: Addr | null; time: Addr | null; type?: Addr }): void {
+  r.push({ addr: k.pgm, size: 1 });
+  if (k.pvw != null) r.push({ addr: k.pvw, size: 1 });
+  if (k.source != null) r.push({ addr: k.source, size: 1 });
+  if (k.time != null) r.push({ addr: k.time, size: 1 });
+  if (k.type != null) r.push({ addr: k.type, size: 1 });
 }
 
 function keyRanges(p: DeviceProfile): ReadRange[] {
   const r: ReadRange[] = [];
   for (let n = 1; n <= p.pinpCount; n += 1) {
-    const k = p.addrs.pinp(n);
-    r.push({ addr: k.pgm, size: 1 }, { addr: k.pvw, size: 1 }, { addr: k.source, size: 1 }, { addr: k.time, size: 1 });
+    pushKey(r, p.addrs.pinp(n));
   }
   for (let n = 1; n <= p.dskCount; n += 1) {
-    const k = p.addrs.dsk(n);
-    r.push({ addr: k.pgm, size: 1 }, { addr: k.pvw, size: 1 }, { addr: k.source, size: 1 }, { addr: k.time, size: 1 });
-    if (k.type != null) r.push({ addr: k.type, size: 1 });
+    pushKey(r, p.addrs.dsk(n));
   }
   if (p.capabilities.split) for (let n = 1; n <= p.splitCount; n += 1) r.push({ addr: p.addrs.split(n), size: 1 });
   return r;
@@ -93,11 +119,14 @@ function keyRanges(p: DeviceProfile): ReadRange[] {
 
 function audioRanges(p: DeviceProfile): ReadRange[] {
   const r: ReadRange[] = [];
+  const levelSize = p.audioLevelCodec === 'db3' ? 3 : 1;
   for (const ch of p.audioInputs) {
-    // level(3byte) と mute(1byte) は 01 xx 03–06 で連続
-    r.push({ addr: p.addrs.audioLevel(ch.x), size: 3 }, { addr: p.addrs.audioMute(ch.x), size: 1 });
+    // V-160HD 系：level(3byte) と mute(1byte) は 01 xx 03–06 で連続
+    r.push({ addr: p.addrs.audioLevel(ch.x), size: levelSize });
+    if (p.addrs.audioMute != null) r.push({ addr: p.addrs.audioMute(ch.x), size: 1 });
   }
-  r.push({ addr: p.addrs.masterLevel, size: 3 }, { addr: p.addrs.masterMute, size: 1 });
+  r.push({ addr: p.addrs.masterLevel, size: levelSize });
+  if (p.addrs.masterMute != null) r.push({ addr: p.addrs.masterMute, size: 1 });
   return r;
 }
 
@@ -107,10 +136,8 @@ export function pollRanges(p: DeviceProfile, visible: VisibleTab): { light: Read
   const heavy: ReadRange[] = [];
   switch (visible) {
     case 'switcher':
-      light.push({ addr: p.addrs.pgm, size: 2 }, { addr: p.addrs.fader, size: 2 });
-      light.push({ addr: p.addrs.transType, size: 1 }, { addr: p.addrs.transTime, size: 1 });
-      light.push({ addr: p.addrs.tallyBlock, size: p.addrs.tallyBlockSize });
-      for (let n = 1; n <= p.inputCount; n += 1) heavy.push({ addr: p.addrs.inputAssign(n), size: 1 });
+      light.push(...switcherRanges(p));
+      heavy.push(...assignRanges(p));
       for (const s of p.sources) if (s.labelAddr != null) heavy.push({ addr: s.labelAddr, size: 8 });
       break;
     case 'keys':
@@ -120,8 +147,8 @@ export function pollRanges(p: DeviceProfile, visible: VisibleTab): { light: Read
       light.push(...audioRanges(p));
       break;
     case 'memory':
-      light.push({ addr: p.addrs.memCurrent, size: 1 });
-      for (let n = 1; n <= p.memoryCount; n += 1) heavy.push({ addr: p.addrs.memName(n), size: 8 });
+      light.push(...memoryRanges(p, false));
+      if (p.addrs.memName != null) for (let n = 1; n <= p.memoryCount; n += 1) heavy.push({ addr: p.addrs.memName(n), size: 8 });
       break;
     default:
       break;

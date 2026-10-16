@@ -126,7 +126,7 @@ describe('MidiTransport（SPEC §4）', () => {
     t.on('param', (a, b) => params.set(a, b));
     await t.connect({ name: 'X', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
     fake.sent.length = 0;
-    t.writeParam(v160hd.addrs.fader, encodeU14(1024));
+    t.writeParam(v160hd.addrs.fader!, encodeU14(1024));
     await until(() => fake.sent.length === 1);
     expect(toHex(fake.sent[0]!)).toBe('F0 41 10 00 00 00 00 02 12 00 21 02 08 00 55 F7');
     t.readParam(v160hd.addrs.pgm, 2);
@@ -172,8 +172,14 @@ describe('MidiTransport（SPEC §4）', () => {
   });
 
   test('formatVersion', () => {
+    // ガイドの Version 表記：Major / Minor(1) / Minor(2) / Build(1-3) の数字バイト → "3.60"
+    expect(formatVersion([0x03, 0x06, 0x00, 0x00, 0x00, 0x00])).toBe('3.60');
+    expect(formatVersion([0x03, 0x00, 0x00], 'digits')).toBe('3.00');
+    // ASCII 文字列（V-1HD / V-1SDI / VR-4HD）
+    expect(formatVersion([0x33, 0x2e, 0x36, 0x30, 0x20, 0x20], 'ascii')).toBe('3.60');
     expect(formatVersion([0x33, 0x2e, 0x36, 0x30, 0x20, 0x20])).toBe('3.60');
-    expect(formatVersion([0x03, 0x06, 0x00, 0x00, 0x00, 0x00])).toBe('03 06 00 00 00 00');
+    // 判定できないバイト列は 16 進
+    expect(formatVersion([0x7f, 0x01], 'digits')).toBe('7F 01');
   });
 });
 

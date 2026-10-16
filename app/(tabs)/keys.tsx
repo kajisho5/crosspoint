@@ -72,13 +72,15 @@ function KeyLine({ profile, kind, n }: { profile: DeviceProfile; kind: KeyKind; 
   const toggle = (which: 'pgm' | 'pvw', cur: boolean | null) => {
     if (cur == null) return;
     haptic.select();
-    controller.write(which === 'pgm' ? addrs.pgm : addrs.pvw, [cur ? 0 : 1]);
+    const a = which === 'pgm' ? addrs.pgm : addrs.pvw;
+    if (a == null) return;
+    controller.write(a, [cur ? 0 : 1]);
   };
 
   return (
     <KeyRow name={name} sub={sub}>
       <TogglePill label="PGM" tone="pgm" on={k.pgm} a11yName={name} onPress={() => toggle('pgm', k.pgm)} />
-      <TogglePill label="PVW" tone="pst" on={k.pvw} a11yName={name} onPress={() => toggle('pvw', k.pvw)} />
+      {addrs.pvw != null ? <TogglePill label="PVW" tone="pst" on={k.pvw} a11yName={name} onPress={() => toggle('pvw', k.pvw)} /> : null}
     </KeyRow>
   );
 }

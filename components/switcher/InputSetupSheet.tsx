@@ -56,7 +56,7 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
     if (!canSave || n == null || code == null) return;
     if (code !== currentCode) {
       const v = profile.sourceToAssign(n, code);
-      if (v != null) controller.write(profile.addrs.inputAssign(n), [v]);
+      if (v != null && profile.addrs.inputAssign != null) controller.write(profile.addrs.inputAssign(n), [v]);
     }
     if (labelEditable && selectedSource?.labelAddr != null && label.trim() !== originalLabel.trim()) {
       controller.write(selectedSource.labelAddr, encodeAscii8(label));

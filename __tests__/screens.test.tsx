@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react-native';
 import { decodeAscii8 } from '@/core/codec/value';
 import { v160hd } from '@/core/profiles/v160hd';
+import { getProfile } from '@/core/profiles';
 import { useParamStore } from '@/stores/param';
 import { controller } from '@/core/controller/DeviceController';
 import SwitcherScreen from '@/app/(tabs)/switcher';
@@ -116,7 +117,7 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     expect(screen.getByText('タップで切替')).toBeTruthy();
     expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(8);
     const pgm = useParamStore.getState().values[v80hdProfile.addrs.pgm];
-    const pst = useParamStore.getState().values[v80hdProfile.addrs.pst];
+    const pst = useParamStore.getState().values[v80hdProfile.addrs.pst!];
     await act(async () => {
       fireEvent(screen.getByLabelText('カット'), 'pressIn');
       fireEvent(screen.getByLabelText('カット'), 'pressOut');
@@ -127,7 +128,7 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     const tx = useLogStore.getState().lines.filter((l) => l.dir === 'tx').map((l) => l.text);
     expect(tx).toContain('CUT;');
     expect(useParamStore.getState().values[v80hdProfile.addrs.pgm]).toBe(pst);
-    expect(useParamStore.getState().values[v80hdProfile.addrs.pst]).toBe(pgm);
+    expect(useParamStore.getState().values[v80hdProfile.addrs.pst!]).toBe(pgm);
   });
 
   test('キーは PinP 2・DSK 1', async () => {
@@ -184,7 +185,7 @@ describe('F12 INPUT 設定シート（長押し → 割当・ラベル編集）'
     await act(async () => {
       await new Promise((r) => setTimeout(r, 50));
     });
-    expect(useParamStore.getState().values[v160hd.addrs.inputAssign(2)]).toBe(16);
+    expect(useParamStore.getState().values[v160hd.addrs.inputAssign!(2)]).toBe(16);
   });
 });
 
@@ -220,7 +221,7 @@ describe('F13 設定メニュー（全パラメータ）', () => {
     await act(async () => {
       await new Promise((r) => setTimeout(r, 60));
     });
-    expect(useParamStore.getState().values[v160hd.addrs.transType]).toBe(1);
+    expect(useParamStore.getState().values[v160hd.addrs.transType!]).toBe(1);
   });
 
   test('CAMERA CONTROL：PTZ パッドが出て、押下で LEFT・解放で STOP を書く', async () => {
@@ -494,5 +495,56 @@ describe('デモ V-1-4K（8 入力・CUT/AUTO は SysEx・PinP 無し・DSK 1）
     await render(<MemoryScreen />);
     expect(screen.getByText('08')).toBeTruthy();
     expect(screen.queryByText('09')).toBeNull();
+  });
+});
+
+describe('デモ：Reference Manual 系 5 機種（USB のみ。無い要素を出さずに全タブが描ける）', () => {
+  const models = ['V-8HD', 'V-1HD', 'V-1SDI', 'VR-4HD', 'V-02HD-MK2'] as const;
+  for (const model of models) {
+    test(`${model}：スイッチャー / キー / オーディオ / メモリー`, async () => {
+      await act(async () => {
+        await controller.connectDemo(model);
+      });
+      const p = getProfile(model);
+      await render(<SwitcherScreen />);
+      expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(p.inputCount);
+      if (p.addrs.pst == null) expect(screen.queryByLabelText(/^プリセット \d+、/)).toBeNull();
+      else expect(screen.getAllByLabelText(/^プリセット \d+、/)).toHaveLength(p.inputCount);
+      if (p.addrs.fader == null) expect(screen.queryByText('T-BAR')).toBeNull();
+      else expect(screen.getByText('T-BAR')).toBeTruthy();
+      if (p.addrs.cut == null && p.addrs.auto == null) expect(screen.queryByText('CUT')).toBeNull();
+      await render(<KeysScreen />);
+      if (p.pinpCount === 0) expect(screen.queryByText('PinP & KEY')).toBeNull();
+      if (p.dskCount > 0) expect(screen.getAllByText('DSK').length).toBeGreaterThanOrEqual(1);
+      await render(<AudioScreen />);
+      expect(screen.getByLabelText('MAIN ミュート')).toBeTruthy();
+      await render(<MemoryScreen />);
+      expect(screen.getByText(String(p.memoryCount).padStart(2, '0'))).toBeTruthy();
+    });
+  }
+
+  test('V-1SDI：AUTO を押すと CTRL BUTTON（73 04 00）に 13H → 53H', async () => {
+    await act(async () => {
+      await controller.connectDemo('V-1SDI');
+    });
+    await render(<SwitcherScreen />);
+    const writes: number[][] = [];
+    const orig = controller.write.bind(controller);
+    const spy = jest.spyOn(controller as never, 'write' as never).mockImplementation(((a: number, b: number[]) => {
+      if (a === addr(0x73, 0x04, 0x00)) writes.push(b);
+      return orig(a, b);
+    }) as never);
+    const t = controller as unknown as { transport: { writeParam: (a: number, b: number[]) => void } };
+    const tp = jest.spyOn(t.transport, 'writeParam');
+    await act(async () => {
+      fireEvent.press(screen.getByText('AUTO'));
+    });
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 250));
+    });
+    const calls = tp.mock.calls.filter((c) => c[0] === addr(0x73, 0x04, 0x00)).map((c) => c[1][0]);
+    expect(calls).toEqual([0x13, 0x53]);
+    spy.mockRestore();
+    tp.mockRestore();
   });
 });

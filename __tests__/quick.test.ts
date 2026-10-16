@@ -138,3 +138,16 @@ describe('テストパターン（クイック操作）', () => {
     expect(vr.choices[1]!.label).toBe('Color Bars 75%');
   });
 });
+
+describe('テストパターン（新機種）', () => {
+  test('VR-6HD：VIDEO IN 6（00 06 16）13 択、V-8HD：INPUT 8（00 07 16）6 択、V-1-4K/V-1HD は無し', () => {
+    const vr6 = testPatternTarget('VR-6HD')!;
+    expect(vr6.addr).toBe(addr(0x00, 0x06, 0x16));
+    expect(vr6.choices).toHaveLength(13);
+    const v8 = testPatternTarget('V-8HD')!;
+    expect(v8.instance.label).toBe('INPUT 8');
+    expect(v8.addr).toBe(addr(0x00, 0x07, 0x16));
+    expect(v8.choices).toHaveLength(6);
+    expect(testPatternTarget('V-1HD')).toBeNull();
+  });
+});

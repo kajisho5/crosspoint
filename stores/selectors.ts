@@ -1,5 +1,5 @@
 import { useShallow } from 'zustand/react/shallow';
-import { decodeAscii8, decodeLevel, decodeTime, decodeU14 } from '@/core/codec/value';
+import { decodeAscii8, decodeLevel, decodeTime, decodeU14, u7ToDb } from '@/core/codec/value';
 import { getProfile, sourceName } from '@/core/profiles';
 import type { DeviceProfile, KeyKind, TallyState } from '@/core/profiles/types';
 import { useConnectionStore } from './connection';
@@ -25,6 +25,7 @@ export function useOnline(): boolean {
 /** INPUT n の割当をソース code で返す（割当値が相対な機種は変換。V-1-4K） */
 function assignLookup(p: DeviceProfile, values: Record<number, number>) {
   return (n: number) => {
+    if (p.addrs.inputAssign == null) return p.assignToSource(n, 0) ?? undefined;
     const v = values[p.addrs.inputAssign(n)];
     if (v === undefined) return undefined;
     return p.assignToSource(n, v) ?? undefined;
@@ -38,7 +39,9 @@ export function assignedSource(p: DeviceProfile, values: Record<number, number>,
 /** PGM / PST の INPUT 番号 */
 export function useBusInput(p: DeviceProfile, bus: 'pgm' | 'pst'): number | null {
   return useParamStore((s) => {
-    const v = s.values[bus === 'pgm' ? p.addrs.pgm : p.addrs.pst];
+    const a = bus === 'pgm' ? p.addrs.pgm : p.addrs.pst;
+    if (a == null) return null;
+    const v = s.values[a];
     if (v === undefined) return null;
     return p.decodeInput(v, assignLookup(p, s.values));
   });
@@ -50,10 +53,10 @@ export function useTallies(p: DeviceProfile): TallyState[] {
     useShallow((s) => {
       const lookup = assignLookup(p, s.values);
       const pgmV = s.values[p.addrs.pgm];
-      const pstV = s.values[p.addrs.pst];
+      const pstV = p.addrs.pst == null ? undefined : s.values[p.addrs.pst];
       const pgm = pgmV === undefined ? null : p.decodeInput(pgmV, lookup);
       const pst = pstV === undefined ? null : p.decodeInput(pstV, lookup);
-      const block = readBytes(s.values, p.addrs.tallyBlock, p.addrs.tallyBlockSize).map((b) => b ?? 0);
+      const block = p.addrs.tallyBlock == null ? [] : readBytes(s.values, p.addrs.tallyBlock, p.addrs.tallyBlockSize).map((b) => b ?? 0);
       return Array.from({ length: p.inputCount }, (_, i) => {
         const n = i + 1;
         const fromBlock = p.tallyOf(n, block);
@@ -100,13 +103,15 @@ export function useSourceLabel(p: DeviceProfile, code: number | undefined): stri
 /** Tバー 0–2047 */
 export function useFader(p: DeviceProfile): number | null {
   const b = useBytes(p.addrs.fader, 2);
-  return b ? decodeU14(b) : null;
+  return b && p.addrs.fader != null ? decodeU14(b) : null;
 }
 
 /** トランジション：0=MIX / 1=WIPE */
 export function useTransType(p: DeviceProfile): number | null {
   return useByte(p.addrs.transType) ?? null;
 }
+
+/** INPUT n のラベルを決める割当ソース（inputAssign が無い機種は固定の物理入力） */
 
 /** トランジション時間（秒） */
 export function useTransTime(p: DeviceProfile): number | null {
@@ -127,12 +132,12 @@ export function useKey(p: DeviceProfile, kind: KeyKind, n: number): KeyState {
   return useParamStore(
     useShallow((s) => {
       const pgm = s.values[k.pgm];
-      const pvw = s.values[k.pvw];
-      const time = s.values[k.time];
+      const pvw = k.pvw == null ? undefined : s.values[k.pvw];
+      const time = k.time == null ? undefined : s.values[k.time];
       return {
         pgm: pgm === undefined ? null : pgm === 1,
         pvw: pvw === undefined ? null : pvw === 1,
-        source: s.values[k.source],
+        source: k.source == null ? undefined : s.values[k.source],
         type: k.type != null ? s.values[k.type] : undefined,
         time: time === undefined ? null : decodeTime([time]),
       };
@@ -151,24 +156,25 @@ export interface ChannelState {
   mute: boolean | null;
 }
 
-function useChannelAt(levelAddr: number, muteAddr: number): ChannelState {
-  const lv = useBytes(levelAddr, 3);
+function useChannelAt(p: DeviceProfile, levelAddr: number, muteAddr: number | null): ChannelState {
+  const lv = useBytes(levelAddr, p.audioLevelCodec === 'db3' ? 3 : 1);
   const mute = useByte(muteAddr);
-  return { db: lv ? decodeLevel(lv) : undefined, mute: mute === undefined ? null : mute === 1 };
+  const db = lv ? (p.audioLevelCodec === 'db3' ? decodeLevel(lv) : u7ToDb(lv[0] ?? 0)) : undefined;
+  return { db, mute: muteAddr == null ? null : mute === undefined ? null : mute === 1 };
 }
 
 export function useChannel(p: DeviceProfile, x: number): ChannelState {
-  return useChannelAt(p.addrs.audioLevel(x), p.addrs.audioMute(x));
+  return useChannelAt(p, p.addrs.audioLevel(x), p.addrs.audioMute ? p.addrs.audioMute(x) : null);
 }
 
 export function useMaster(p: DeviceProfile): ChannelState {
-  return useChannelAt(p.addrs.masterLevel, p.addrs.masterMute);
+  return useChannelAt(p, p.addrs.masterLevel, p.addrs.masterMute);
 }
 
 /** 現在のメモリー番号（1 始まり。7F=Last などは null） */
 export function useMemCurrent(p: DeviceProfile): number | null {
   const v = useByte(p.addrs.memCurrent);
-  if (v === undefined || v >= p.memoryCount) return null;
+  if (p.addrs.memCurrent == null || v === undefined || v >= p.memoryCount) return null;
   return v + 1;
 }
 
@@ -176,6 +182,7 @@ export function useMemNames(p: DeviceProfile): (string | null)[] {
   return useParamStore(
     useShallow((s) =>
       Array.from({ length: p.memoryCount }, (_, i) => {
+        if (p.addrs.memName == null) return null;
         const b = readBytes(s.values, p.addrs.memName(i + 1), 8);
         if (b.some((x) => x === undefined)) return null;
         return decodeAscii8(b as number[]).trim();

@@ -1,7 +1,6 @@
 import { buildDt1, buildRq1, parseSysEx, toHex } from '../codec/SysExCodec';
 import { addrToHex, type Addr } from '../codec/value';
 import { CommandQueue, type QueuedCommand } from '../controller/CommandQueue';
-import { VERSION_ADDR, VERSION_SIZE } from '../controller/SyncEngine';
 import { PROFILES } from '../profiles';
 import type { DeviceProfile } from '../profiles/types';
 import type { CrosspointMidi, MidiEndpointInfo } from '@/modules/crosspoint-midi/src';
@@ -162,8 +161,8 @@ export class MidiTransport implements Transport {
     }
     this.profile = profile;
     this.up = true;
-    const version = formatVersion(data);
-    this.log('info', `機種 ${profile.model}、版 raw=${toHex(data)}（表示形式は【不明】）`);
+    const version = formatVersion(data, profile.version.kind);
+    this.log('info', `機種 ${profile.model}、版 raw=${toHex(data)} → ${version}`);
     this.emitState('syncing');
     return { model: profile.model, version };
   }
@@ -178,7 +177,7 @@ export class MidiTransport implements Transport {
       }, this.opt.verTimeoutMs);
       this.verWaiter = { resolve, timer };
       // 接続確認中は全対応機種のヘッダを受け付けるため、全機種分の RQ1 を送る（modelId が違えば本体は無応答）
-      for (const p of Object.values(PROFILES)) void this.send(buildRq1(p.sysexModelId, VERSION_ADDR, VERSION_SIZE));
+      for (const p of Object.values(PROFILES)) void this.send(buildRq1(p.sysexModelId, p.version.addr, p.version.size));
     });
   }
 
@@ -207,9 +206,9 @@ export class MidiTransport implements Transport {
       return;
     }
     this.log('rx', `DT1 ${addrToHex(parsed.addr)},${parsed.data.map((b) => b.toString(16).toUpperCase().padStart(2, '0')).join('')}`);
-    if (this.verWaiter && parsed.addr === VERSION_ADDR) {
+    if (this.verWaiter) {
       const profile = Object.values(PROFILES).find((p) => p.sysexModelId.length === parsed.modelId.length && p.sysexModelId.every((b, i) => parsed.modelId[i] === b));
-      if (profile) {
+      if (profile && parsed.addr === profile.version.addr) {
         const w = this.verWaiter;
         this.cancelVerWait();
         w.resolve({ profile, data: parsed.data });
@@ -283,10 +282,19 @@ export class MidiTransport implements Transport {
   }
 }
 
-/** 版 6byte の表示（形式は【不明】：ASCII なら文字列、そうでなければ 16 進） */
-export function formatVersion(data: number[]): string {
+/**
+ * 版の表示。kind='digits'：各バイトが 0–9 の数字（Major / Minor1 / Minor2 / Build…。V-160HD 系・V-8HD・V-02HD MK II）→ "3.60" 形式。
+ * kind='ascii'：ASCII 文字列（V-1HD / V-1SDI / VR-4HD）。それ以外・判定できないときは 16 進のまま
+ */
+export function formatVersion(data: number[], kind: 'digits' | 'ascii' = 'digits'): string {
+  if (data.length === 0) return '';
+  if (kind === 'digits' && data.every((b) => b <= 9)) {
+    const major = data[0] ?? 0;
+    const minor = data.slice(1, 3).map((b) => String(b)).join('');
+    return minor.length > 0 ? `${major}.${minor}` : String(major);
+  }
   const printable = data.every((b) => b >= 0x20 && b <= 0x7e);
-  if (printable && data.length > 0) return String.fromCharCode(...data).trim();
+  if (printable) return String.fromCharCode(...data).replace(/\0/g, '').trim();
   return data.map((b) => b.toString(16).toUpperCase().padStart(2, '0')).join(' ');
 }
 

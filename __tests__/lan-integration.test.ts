@@ -57,34 +57,34 @@ describe('LAN 結合（V-160HD モック）', () => {
     // 読出し（RQH）：PGM/PST/Tバー 4 バイトが連結 hex で返る
     const p = v160hd.addrs;
     t.readParam(p.pgm, 4);
-    await until(() => c.params.has(p.fader + 1));
+    await until(() => c.params.has(p.fader! + 1));
     expect(c.params.get(p.pgm)).toBe(v160hd.encodeInput(1));
-    expect(c.params.get(p.pst)).toBe(v160hd.encodeInput(3));
+    expect(c.params.get(p.pst!)).toBe(v160hd.encodeInput(3));
 
     // 書込み（DTH）→ サーバー側メモリに反映。ACK はログのみ
-    t.writeParam(p.pst, [v160hd.encodeInput(5)]);
-    await until(() => server.mem.get(p.pst) === v160hd.encodeInput(5));
+    t.writeParam(p.pst!, [v160hd.encodeInput(5)]);
+    await until(() => server.mem.get(p.pst!) === v160hd.encodeInput(5));
 
     // 多バイト書込みは 1 バイトずつ DTH、サーバーで u14 として読める
-    t.writeParam(p.fader, encodeU14(1024));
-    await until(() => decodeU14([server.mem.get(p.fader) ?? 0, server.mem.get(p.fader + 1) ?? 0]) === 1024);
+    t.writeParam(p.fader!, encodeU14(1024));
+    await until(() => decodeU14([server.mem.get(p.fader!) ?? 0, server.mem.get(p.fader! + 1) ?? 0]) === 1024);
 
     // タリー購読 → PGM 変更で 0C0000 がまとめて届く
     t.writeParam(addr(0x0c, 0x01, 0x00), [1]);
     await wait(50);
     server.panelWrite(p.pgm, [v160hd.encodeInput(2)]);
     await until(() => c.params.get(p.pgm) === v160hd.encodeInput(2)); // 自発通知
-    await until(() => c.params.get(p.tallyBlock + v160hd.tallyIndexOf(2)) === 1); // PGM タリー
-    expect(c.params.get(p.tallyBlock + v160hd.tallyIndexOf(5))).toBe(2); // PST タリー
+    await until(() => c.params.get(p.tallyBlock! + v160hd.tallyIndexOf(2)) === 1); // PGM タリー
+    expect(c.params.get(p.tallyBlock! + v160hd.tallyIndexOf(5))).toBe(2); // PST タリー
 
     // CUT：押下→解放で PGM/PST 入替
     t.writeParam(p.cut!, [1]);
     await wait(30);
     t.writeParam(p.cut!, [0]);
-    await until(() => server.mem.get(p.pgm) === v160hd.encodeInput(5) && server.mem.get(p.pst) === v160hd.encodeInput(2));
+    await until(() => server.mem.get(p.pgm) === v160hd.encodeInput(5) && server.mem.get(p.pst!) === v160hd.encodeInput(2));
 
     // 範囲外書込みは ERR:5
-    t.writeParam(p.transType, [9]);
+    t.writeParam(p.transType!, [9]);
     await until(() => c.errs.includes(5));
 
     // キープアライブ：無通信で VER が飛び、応答があれば維持
@@ -150,8 +150,8 @@ describe('LAN 結合（V-80HD モック：--model v80hd）', () => {
     expect(logs).toContain('rx Welcome to V-80HD.');
 
     const p = v80hd.addrs;
-    t.writeParam(p.pst, [v80hd.encodeInput(4)]);
-    await until(() => server.mem.get(p.pst) === v80hd.encodeInput(4));
+    t.writeParam(p.pst!, [v80hd.encodeInput(4)]);
+    await until(() => server.mem.get(p.pst!) === v80hd.encodeInput(4));
     expect(logs).toContain('rx ACK');
 
     t.writeParam(addr(0x0b, 0x00, 0x1e), [1]);
@@ -186,11 +186,11 @@ describe('LAN 結合（VR-120HD モック：--model vr120hd）', () => {
     expect(logs).toContain('rx Welcome to VR-120HD.');
 
     const p = vr120hd.addrs;
-    t.writeParam(p.pst, [vr120hd.encodeInput(5)]);
-    await until(() => server.mem.get(p.pst) === 0x21);
-    t.readParam(p.tallyBlock, p.tallyBlockSize);
-    await until(() => c.params.get(p.tallyBlock + 0x1c + 5) === 2); // Input 5 = PST
-    expect(c.params.get(p.tallyBlock + 0x1c + 1)).toBe(1); // Input 1 = PGM
+    t.writeParam(p.pst!, [vr120hd.encodeInput(5)]);
+    await until(() => server.mem.get(p.pst!) === 0x21);
+    t.readParam(p.tallyBlock!, p.tallyBlockSize);
+    await until(() => c.params.get(p.tallyBlock! + 0x1c + 5) === 2); // Input 5 = PST
+    expect(c.params.get(p.tallyBlock! + 0x1c + 1)).toBe(1); // Input 1 = PGM
 
     // 簡易制御コマンド：CUT; で PGM/PST が入れ替わり、QSEQSW; の応答 SQS:OFF が text で届く
     const texts: string[] = [];
@@ -219,11 +219,11 @@ describe('LAN 結合（VR-6HD モック：--model vr6hd）', () => {
     const res = await t.connect({ name: 'DEMO-SW-C', host: '127.0.0.1', port: server.port, password: '0000' });
     expect(res).toEqual({ model: 'VR-6HD', version: '2.20' });
     const p = vr6hd.addrs;
-    t.writeParam(p.pst, [vr6hd.encodeInput(4)]);
-    await until(() => server.mem.get(p.pst) === 0x1a);
-    t.readParam(p.tallyBlock, p.tallyBlockSize);
-    await until(() => c.params.get(p.tallyBlock + 0x16 + 4) === 2);
-    expect(c.params.get(p.tallyBlock + 0x16 + 1)).toBe(1);
+    t.writeParam(p.pst!, [vr6hd.encodeInput(4)]);
+    await until(() => server.mem.get(p.pst!) === 0x1a);
+    t.readParam(p.tallyBlock!, p.tallyBlockSize);
+    await until(() => c.params.get(p.tallyBlock! + 0x16 + 4) === 2);
+    expect(c.params.get(p.tallyBlock! + 0x16 + 1)).toBe(1);
     t.sendText('CUT;');
     await until(() => server.mem.get(p.pgm) === 0x1a);
     await t.disconnect();
@@ -250,10 +250,10 @@ describe('LAN 結合（V-1-4K モック：--model v14k）', () => {
     t.writeParam(p.pgm, [v14k.encodeInput(2)]);
     await until(() => server.mem.get(p.pgm) === 0x08);
     expect(logs).toContain('rx ACK');
-    t.writeParam(p.fader, encodeU14(4095));
-    await until(() => server.mem.get(p.fader) === 0x1f && server.mem.get(addrOffset(p.fader, 1)) === 0x7f);
-    t.readParam(p.tallyBlock, p.tallyBlockSize);
-    await until(() => c.params.get(p.tallyBlock + 0x06 + 2) === 1); // INPUT 2 = PGM
+    t.writeParam(p.fader!, encodeU14(4095));
+    await until(() => server.mem.get(p.fader!) === 0x1f && server.mem.get(addrOffset(p.fader!, 1)) === 0x7f);
+    t.readParam(p.tallyBlock!, p.tallyBlockSize);
+    await until(() => c.params.get(p.tallyBlock! + 0x06 + 2) === 1); // INPUT 2 = PGM
     await t.disconnect();
   });
 });

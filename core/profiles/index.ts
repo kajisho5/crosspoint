@@ -3,6 +3,11 @@ import { v80hd } from './v80hd';
 import { vr120hd } from './vr120hd';
 import { vr6hd } from './vr6hd';
 import { v14k } from './v14k';
+import { v8hd } from './v8hd';
+import { v1hd } from './v1hd';
+import { v1sdi } from './v1sdi';
+import { vr4hd } from './vr4hd';
+import { v02hdmk2 } from './v02hdmk2';
 import type { DeviceProfile, ModelId } from './types';
 
 export const PROFILES: Record<ModelId, DeviceProfile> = {
@@ -11,6 +16,11 @@ export const PROFILES: Record<ModelId, DeviceProfile> = {
   'VR-120HD': vr120hd,
   'VR-6HD': vr6hd,
   'V-1-4K': v14k,
+  'V-8HD': v8hd,
+  'V-1HD': v1hd,
+  'V-1SDI': v1sdi,
+  'VR-4HD': vr4hd,
+  'V-02HD-MK2': v02hdmk2,
 };
 
 /** モック・CLI 用：'v80hd' 'vr-6hd' のような表記から ModelId を引く */

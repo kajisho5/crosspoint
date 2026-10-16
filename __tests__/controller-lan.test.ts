@@ -43,40 +43,40 @@ describe('DeviceController × LanTransport × モック（接続〜同期〜onli
     const v = useParamStore.getState().values;
     const p = v160hd.addrs;
     expect(v[p.pgm]).toBe(v160hd.encodeInput(1));
-    expect(v[p.inputAssign(20)]).toBeDefined();
-    expect(v[p.memName(30)]).toBeDefined();
-    expect(v[p.tallyBlock + v160hd.tallyIndexOf(1)]).toBe(1);
+    expect(v[p.inputAssign!(20)]).toBeDefined();
+    expect(v[p.memName!(30)]).toBeDefined();
+    expect(v[p.tallyBlock! + v160hd.tallyIndexOf(1)]).toBe(1);
     expect(notices).toEqual([]);
   });
 
   test('write は楽観更新され、ポーリング/通知で確定する（ロールバックしない）', async () => {
     const p = v160hd.addrs;
-    controller.write(p.pst, [v160hd.encodeInput(7)]);
-    expect(useParamStore.getState().values[p.pst]).toBe(v160hd.encodeInput(7));
-    expect(useParamStore.getState().pending[p.pst]).toBeDefined();
-    await until(() => useParamStore.getState().pending[p.pst] === undefined);
-    expect(useParamStore.getState().confirmed[p.pst]).toBe(v160hd.encodeInput(7));
+    controller.write(p.pst!, [v160hd.encodeInput(7)]);
+    expect(useParamStore.getState().values[p.pst!]).toBe(v160hd.encodeInput(7));
+    expect(useParamStore.getState().pending[p.pst!]).toBeDefined();
+    await until(() => useParamStore.getState().pending[p.pst!] === undefined);
+    expect(useParamStore.getState().confirmed[p.pst!]).toBe(v160hd.encodeInput(7));
     expect(notices).toEqual([]);
   });
 
   test('ERR:5（範囲外）は楽観更新をロールバックして通知', async () => {
     const p = v160hd.addrs;
-    const before = useParamStore.getState().confirmed[p.transType];
-    controller.write(p.transType, [9]);
+    const before = useParamStore.getState().confirmed[p.transType!];
+    controller.write(p.transType!, [9]);
     await until(() => notices.length > 0);
-    expect(useParamStore.getState().values[p.transType]).toBe(before);
+    expect(useParamStore.getState().values[p.transType!]).toBe(before);
     notices.length = 0;
   });
 
   test('press/release（CUT）で本体の PGM/PST が入れ替わり、自発通知で画面に反映', async () => {
     const p = v160hd.addrs;
-    controller.write(p.fader, encodeU14(2047));
+    controller.write(p.fader!, encodeU14(2047));
     const pgm = useParamStore.getState().values[p.pgm];
-    const pst = useParamStore.getState().values[p.pst];
+    const pst = useParamStore.getState().values[p.pst!];
     controller.press(p.cut!);
     await wait(30);
     controller.release(p.cut!);
-    await until(() => useParamStore.getState().values[p.pgm] === pst && useParamStore.getState().values[p.pst] === pgm);
+    await until(() => useParamStore.getState().values[p.pgm] === pst && useParamStore.getState().values[p.pst!] === pgm);
   });
 
   test('disconnect で store が初期化される', async () => {

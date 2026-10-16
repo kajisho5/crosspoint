@@ -3,7 +3,7 @@ import { Pressable, View, type AccessibilityActionEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { encodeLevel, formatDb, type Addr } from '@/core/codec/value';
+import { dbToU7, encodeLevel, formatDb, type Addr } from '@/core/codec/value';
 import { controller } from '@/core/controller/DeviceController';
 import { haptic } from '@/lib/haptics';
 import type { ChannelState } from '@/stores/selectors';
@@ -22,13 +22,16 @@ export interface ChannelStripProps {
   name: string;
   state: ChannelState;
   levelAddr: Addr;
-  muteAddr: Addr;
+  /** ミュートが無い機種は null（ボタンを無効にする） */
+  muteAddr: Addr | null;
+  /** レベルの符号化（profile.audioLevelCodec） */
+  codec?: 'db3' | 'u7';
   master?: boolean;
   width?: number;
 }
 
 /** 縦フェーダー＋dB 表示＋MUTE（ボード S3、66×520）。ダブルタップで 0.0dB */
-export function ChannelStrip({ name, state, levelAddr, muteAddr, master = false, width = STRIP_W }: ChannelStripProps) {
+export function ChannelStrip({ name, state, levelAddr, muteAddr, codec = 'db3', master = false, width = STRIP_W }: ChannelStripProps) {
   const pos = useSharedValue(state.db === undefined ? 1 : dbToPos(state.db));
   const start = useSharedValue(0);
   const dragging = useSharedValue(false);
@@ -47,7 +50,7 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, master = false,
     const now = Date.now();
     if (!force && now - lastSent.current < SEND_INTERVAL_MS) return;
     lastSent.current = now;
-    controller.write(levelAddr, encodeLevel(db));
+    controller.write(levelAddr, codec === 'db3' ? encodeLevel(db) : [dbToU7(db)]);
   };
 
   const setDb = (db: number | null) => {
@@ -152,7 +155,7 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, master = false,
 
       <Pressable
         onPress={() => {
-          if (state.mute == null) return;
+          if (state.mute == null || muteAddr == null) return;
           haptic.select();
           controller.write(muteAddr, [muted ? 0 : 1]);
         }}

@@ -49,7 +49,7 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
     const now = Date.now();
     if (!force && now - lastSent.current < SEND_INTERVAL_MS) return;
     lastSent.current = now;
-    controller.write(profile.addrs.fader, encodeU14(v));
+    if (profile.addrs.fader != null) controller.write(profile.addrs.fader, encodeU14(v));
   };
 
   const pan = Gesture.Pan()

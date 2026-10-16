@@ -70,6 +70,9 @@ export const vr120hd: DeviceProfile = {
   sources: buildSources(),
   audioInputs: AUDIO_INPUTS,
 
+  transTypes: ['MIX', 'WIPE'],
+  audioLevelCodec: 'db3',
+  version: { addr: addr(0x02, 0x00, 0x00), size: 6, kind: 'digits' },
   faderMax: 2047,
 
   addrs: {

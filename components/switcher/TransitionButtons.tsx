@@ -27,7 +27,7 @@ export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile
         setDown(true);
         haptic.impact();
         if (route === 'text') controller.sendText(CMD_CUT);
-        else if (a != null) controller.press(a);
+        else if (a != null) controller.press(a, profile.addrs.cutValues);
       }}
       onPressOut={() => {
         setDown(false);
@@ -78,7 +78,7 @@ export function AutoButton({ profile, route = 'sysex' }: { profile: DeviceProfil
   const start = () => {
     haptic.impact();
     if (route === 'text') controller.sendText(CMD_AUTO);
-    else if (a != null) controller.tap(a);
+    else if (a != null) controller.tap(a, profile.addrs.autoValues);
     const ms = Math.max(100, (time ?? 1) * 1000);
     cancelAnimation(progress);
     progress.value = 0;

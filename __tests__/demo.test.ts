@@ -23,7 +23,7 @@ describe('デモモード（F11, MockTransport）', () => {
     const p = getProfile('V-160HD');
     const v = useParamStore.getState().values;
     expect(v[p.addrs.pgm]).toBe(0x20);
-    expect(v[p.addrs.pst]).toBe(0x22);
+    expect(v[p.addrs.pst!]).toBe(0x22);
     expect(String.fromCharCode(...(readBytes(v, 0x02 << 14 | 0x10 << 7, 5) as number[]))).toBe('CAM 1');
     expect(decodeLevel(readBytes(v, p.addrs.masterLevel, 3) as number[])).toBe(-2);
   });
@@ -37,7 +37,7 @@ describe('デモモード（F11, MockTransport）', () => {
     await flush();
     const s = useParamStore.getState();
     expect(s.pending[p.addrs.pgm]).toBeUndefined();
-    const tally = readBytes(s.values, p.addrs.tallyBlock, 42).map((b) => b ?? 0);
+    const tally = readBytes(s.values, p.addrs.tallyBlock!, 42).map((b) => b ?? 0);
     expect(p.tallyOf(5, tally)).toBe('pgm');
     expect(p.tallyOf(1, tally)).toBe('off');
   });
@@ -49,7 +49,7 @@ describe('デモモード（F11, MockTransport）', () => {
     controller.press(cut);
     await flush();
     expect(useParamStore.getState().values[p.addrs.pgm]).toBe(0x22);
-    expect(useParamStore.getState().values[p.addrs.pst]).toBe(0x20);
+    expect(useParamStore.getState().values[p.addrs.pst!]).toBe(0x20);
     controller.release(cut);
     const tx = useLogStore.getState().lines.filter((l) => l.dir === 'tx').map((l) => l.text);
     expect(tx).toContain('DTH:0B001E,01;');
@@ -87,7 +87,7 @@ describe('デモモード（F11, MockTransport）', () => {
     expect(useParamStore.getState().values[p.addrs.pgm]).toBe(0x29);
     controller.write(p.addrs.memLoad, [11]);
     await flush();
-    expect(useParamStore.getState().values[p.addrs.memCurrent]).toBe(11);
+    expect(useParamStore.getState().values[p.addrs.memCurrent!]).toBe(11);
   });
 
   test('未接続では書込みしない', () => {

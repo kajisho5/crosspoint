@@ -1,4 +1,4 @@
-import { encodeAscii8, encodeLevel, encodeTime, encodeU14, addrOffset, type Addr } from '../codec/value';
+import { dbToU7, encodeAscii8, encodeLevel, encodeTime, encodeU14, addrOffset, type Addr } from '../codec/value';
 import type { DeviceProfile } from '../profiles/types';
 
 /**
@@ -67,6 +67,24 @@ function demoAssignments(p: DeviceProfile): { n: number; code: number; label: st
     ];
     return base.map((b, i) => ({ n: i + 1, ...b }));
   }
+  if (p.model === 'V-8HD') {
+    // INPUT n ASSIGN は相対（00 = HDMI n、01–08 = STILL 1–8）。code は HDMI 1–8 = 0–7、STILL = 8–15
+    const base = [
+      { code: 0, label: 'CAM 1' },
+      { code: 1, label: 'CAM 2' },
+      { code: 2, label: 'CAM 3' },
+      { code: 3, label: 'CAM 4' },
+      { code: 4, label: 'PC 1' },
+      { code: 5, label: 'PC 2' },
+      { code: 8, label: 'STILL 1' },
+      { code: 9, label: 'STILL 2' },
+    ];
+    return base.map((b, i) => ({ n: i + 1, ...b }));
+  }
+  if (p.addrs.inputAssign == null) {
+    // 物理入力直指定の機種：INPUT n = sources[n-1]
+    return p.sources.slice(0, p.inputCount).map((s, i) => ({ n: i + 1, code: s.code, label: s.name }));
+  }
   if (p.model === 'V-1-4K') {
     // INPUT 1–5 は自分の番号の HDMI IN、6–7 は STILL、8 は BLACK（割当値は相対。sourceToAssign で変換）
     const base = [
@@ -102,21 +120,45 @@ function demoAssignments(p: DeviceProfile): { n: number; code: number; label: st
   return base.map((b, i) => ({ n: i + 1, ...b }));
 }
 
+/** デモの DSK ソース（機種ごとのソース値域に収める） */
+function demoDskSource(p: DeviceProfile, v160: number): number {
+  switch (p.model) {
+    case 'V-160HD':
+      return v160;
+    case 'VR-120HD':
+      return 12;
+    case 'VR-6HD':
+      return 6;
+    case 'V-1-4K':
+      return 5;
+    case 'V-8HD':
+      return 8; // STILL 1
+    case 'V-1SDI':
+      return 4; // STILL
+    case 'VR-4HD':
+      return 5; // STILL
+    case 'V-02HD-MK2':
+      return 2; // STILL IMAGE
+    default:
+      return 9;
+  }
+}
+
 export function buildDemoState(p: DeviceProfile): ByteMap {
   const m: ByteMap = new Map();
   const assigns = demoAssignments(p);
 
   for (const a of assigns) {
-    put(m, p.addrs.inputAssign(a.n), [p.sourceToAssign(a.n, a.code) ?? 0]);
+    if (p.addrs.inputAssign != null) put(m, p.addrs.inputAssign(a.n), [p.sourceToAssign(a.n, a.code) ?? 0]);
     const src = p.sources.find((s) => s.code === a.code);
     if (src?.labelAddr != null) put(m, src.labelAddr, encodeAscii8(a.label));
   }
 
   // PGM = INPUT 1、PST = INPUT 3（ボード S1）
   put(m, p.addrs.pgm, [p.encodeInput(1)]);
-  put(m, p.addrs.pst, [p.encodeInput(3)]);
-  put(m, p.addrs.fader, encodeU14(Math.round(p.faderMax * 0.38)));
-  put(m, p.addrs.transType, [0]);
+  if (p.addrs.pst != null) put(m, p.addrs.pst, [p.encodeInput(3)]);
+  if (p.addrs.fader != null) put(m, p.addrs.fader, encodeU14(Math.round(p.faderMax * 0.38)));
+  if (p.addrs.transType != null) put(m, p.addrs.transType, [0]);
   put(m, p.addrs.transTime, encodeTime(1.0));
 
   // キー（ボード S2）
@@ -132,9 +174,9 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
     const k = p.addrs.pinp(n);
     const srcCode = p.model === 'V-160HD' ? s.src : Math.min(s.src, p.model === 'VR-120HD' ? 11 : p.model === 'VR-6HD' ? 5 : 7);
     put(m, k.pgm, [s.pgm]);
-    put(m, k.pvw, [s.pvw]);
-    put(m, k.source, [srcCode]);
-    put(m, k.time, encodeTime(s.t));
+    if (k.pvw != null) put(m, k.pvw, [s.pvw]);
+    if (k.source != null) put(m, k.source, [srcCode]);
+    if (k.time != null) put(m, k.time, encodeTime(s.t));
   }
   const dskSeed = [
     { pgm: 1, pvw: 1, src: 17, type: 0, t: 1.0 },
@@ -145,10 +187,10 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
     if (!s) continue;
     const k = p.addrs.dsk(n);
     put(m, k.pgm, [s.pgm]);
-    put(m, k.pvw, [s.pvw]);
-    put(m, k.source, [p.model === 'V-160HD' ? s.src : p.model === 'VR-120HD' ? 12 : p.model === 'VR-6HD' ? 6 : p.model === 'V-1-4K' ? 5 : 9]);
+    if (k.pvw != null) put(m, k.pvw, [s.pvw]);
+    if (k.source != null) put(m, k.source, [demoDskSource(p, s.src)]);
     if (k.type != null) put(m, k.type, [s.type]);
-    put(m, k.time, encodeTime(s.t));
+    if (k.time != null) put(m, k.time, encodeTime(s.t));
   }
   for (let n = 1; n <= p.splitCount; n += 1) put(m, p.addrs.split(n), [0]);
 
@@ -162,16 +204,18 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
   };
   for (const ch of p.audioInputs) {
     const v = levels[ch.short] ?? { db: -20.0, mute: false };
-    put(m, p.addrs.audioLevel(ch.x), encodeLevel(v.db));
-    put(m, p.addrs.audioMute(ch.x), [v.mute ? 1 : 0]);
+    put(m, p.addrs.audioLevel(ch.x), p.audioLevelCodec === 'db3' ? encodeLevel(v.db) : [dbToU7(v.db)]);
+    if (p.addrs.audioMute != null) put(m, p.addrs.audioMute(ch.x), [v.mute ? 1 : 0]);
   }
-  put(m, p.addrs.masterLevel, encodeLevel(-2.0));
-  put(m, p.addrs.masterMute, [0]);
+  put(m, p.addrs.masterLevel, p.audioLevelCodec === 'db3' ? encodeLevel(-2.0) : [dbToU7(-2.0)]);
+  if (p.addrs.masterMute != null) put(m, p.addrs.masterMute, [0]);
 
   // メモリー（ボード S4：現在 07、1–12 に名前）
-  put(m, p.addrs.memCurrent, [6]);
-  for (let n = 1; n <= p.memoryCount; n += 1) {
-    put(m, p.addrs.memName(n), encodeAscii8(n <= 12 ? 'SCENE' : ''));
+  if (p.addrs.memCurrent != null) put(m, p.addrs.memCurrent, [6]);
+  if (p.addrs.memName != null) {
+    for (let n = 1; n <= p.memoryCount; n += 1) {
+      put(m, p.addrs.memName(n), encodeAscii8(n <= 12 ? 'SCENE' : ''));
+    }
   }
 
   writeTally(m, p);
@@ -180,14 +224,16 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
 
 /** PGM/PST の値からタリーブロックを作り直す（モック用） */
 export function writeTally(m: ByteMap, p: DeviceProfile): void {
+  if (p.addrs.tallyBlock == null) return;
   const size = p.addrs.tallyBlockSize;
   const bytes = new Array<number>(size).fill(0);
   const assignOf = (n: number) => {
+    if (p.addrs.inputAssign == null) return p.assignToSource(n, 0) ?? undefined;
     const v = m.get(p.addrs.inputAssign(n));
     return v === undefined ? undefined : (p.assignToSource(n, v) ?? undefined);
   };
   const pgm = p.decodeInput(m.get(p.addrs.pgm) ?? 0, assignOf);
-  const pst = p.decodeInput(m.get(p.addrs.pst) ?? 0, assignOf);
+  const pst = p.addrs.pst == null ? null : p.decodeInput(m.get(p.addrs.pst) ?? 0, assignOf);
   for (let n = 1; n <= p.inputCount; n += 1) {
     const idx = p.tallyIndexOf(n);
     if (idx >= size) continue;

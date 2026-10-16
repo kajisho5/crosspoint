@@ -75,10 +75,10 @@ export default function AudioScreen() {
 
 function InputStrip({ profile, ch }: { profile: DeviceProfile; ch: AudioChannelDef }) {
   const state = useChannel(profile, ch.x);
-  return <ChannelStrip name={ch.short} state={state} levelAddr={profile.addrs.audioLevel(ch.x)} muteAddr={profile.addrs.audioMute(ch.x)} />;
+  return <ChannelStrip name={ch.short} state={state} levelAddr={profile.addrs.audioLevel(ch.x)} muteAddr={profile.addrs.audioMute ? profile.addrs.audioMute(ch.x) : null} codec={profile.audioLevelCodec} />;
 }
 
 function MasterStrip({ profile }: { profile: DeviceProfile }) {
   const state = useMaster(profile);
-  return <ChannelStrip name="MAIN" state={state} levelAddr={profile.addrs.masterLevel} muteAddr={profile.addrs.masterMute} master width={63} />;
+  return <ChannelStrip name="MAIN" state={state} levelAddr={profile.addrs.masterLevel} muteAddr={profile.addrs.masterMute} codec={profile.audioLevelCodec} master width={63} />;
 }

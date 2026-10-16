@@ -139,3 +139,17 @@ export function encodeTime(seconds: number): number[] {
   const v = Math.round(Math.min(4, Math.max(0, seconds)) * 10);
   return encodeU7(v);
 }
+
+/**
+ * 1 バイト 0–127 のレベル（V-1HD / V-1SDI）を dB 表示へ。資料は「0–127」としか書かないので
+ * 0 = -INF、127 = +10 dB、100 = 0 dB と置く【推測：V-1HD のレベル表記。実機で確認】
+ */
+export function u7ToDb(v: number): number | null {
+  if (v <= 0) return null;
+  return Math.round(((v - 100) * (v >= 100 ? 10 / 27 : 80 / 100)) * 10) / 10;
+}
+export function dbToU7(db: number | null): number {
+  if (db == null) return 0;
+  const v = db >= 0 ? 100 + (db * 27) / 10 : 100 + (db * 100) / 80;
+  return Math.max(0, Math.min(127, Math.round(v)));
+}

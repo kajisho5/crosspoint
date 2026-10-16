@@ -23,7 +23,7 @@ type ParamCb = (a: Addr, bytes: number[]) => void;
 type StateCb = (s: LinkState, err?: LinkError) => void;
 type LogCb = (e: LogEntry) => void;
 
-const DEMO_VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00' };
+const DEMO_VERSIONS: Record<ModelId, string> = { 'V-160HD': '3.60', 'V-80HD': '1.30', 'VR-120HD': '2.00', 'VR-6HD': '2.20', 'V-1-4K': '1.00', 'V-8HD': '3.00', 'V-1HD': '2.10', 'V-1SDI': '1.50', 'VR-4HD': '2.10', 'V-02HD-MK2': '1.03' };
 const LATENCY_MS = 12;
 
 export class MockTransport implements Transport {
@@ -111,10 +111,14 @@ export class MockTransport implements Transport {
       swap: () => this.swapPgmPst(),
       autoMs: () => decodeTime([this.mem.get(this.profile.addrs.transTime) ?? 10]) * 1000,
       later: (fn, ms) => this.later(fn, ms),
-      loadMemory: (n) => this.setBytes(this.profile.addrs.memCurrent, [n - 1]),
+      loadMemory: (n) => {
+        if (this.profile.addrs.memCurrent != null) this.setBytes(this.profile.addrs.memCurrent, [n - 1]);
+      },
       tally: () => {
         const p = this.profile;
-        return Array.from({ length: p.addrs.tallyBlockSize }, (_, i) => this.mem.get(addrOffset(p.addrs.tallyBlock, i)) ?? 0);
+        const tb = p.addrs.tallyBlock;
+        if (tb == null) return [];
+        return Array.from({ length: p.addrs.tallyBlockSize }, (_, i) => this.mem.get(addrOffset(tb, i)) ?? 0);
       },
       seq: { get: () => ({ on: this.seqOn, auto: this.seqAuto }), set: (v) => { if (v.on != null) this.seqOn = v.on; if (v.auto != null) this.seqAuto = v.auto; } },
     });
@@ -150,7 +154,7 @@ export class MockTransport implements Transport {
       return;
     }
     if (a === p.addrs.memLoad) {
-      this.setBytes(p.addrs.memCurrent, [bytes[0] ?? 0]);
+      if (p.addrs.memCurrent != null) this.setBytes(p.addrs.memCurrent, [bytes[0] ?? 0]);
       return;
     }
     this.setBytes(a, bytes);
@@ -159,6 +163,7 @@ export class MockTransport implements Transport {
 
   private swapPgmPst(): void {
     const p = this.profile;
+    if (p.addrs.pst == null) return; // PST バスが無い機種（VR-4HD / V-02HD MK II）は入替無し
     const pgm = this.mem.get(p.addrs.pgm) ?? 0;
     const pst = this.mem.get(p.addrs.pst) ?? 0;
     this.setBytes(p.addrs.pgm, [pst]);
@@ -168,6 +173,7 @@ export class MockTransport implements Transport {
 
   private refreshTally(): void {
     const p = this.profile;
+    if (p.addrs.tallyBlock == null) return;
     writeTally(this.mem, p);
     this.emitParam(p.addrs.tallyBlock, this.readBytes(p.addrs.tallyBlock, p.addrs.tallyBlockSize));
   }

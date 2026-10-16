@@ -26,16 +26,18 @@ export function TransitionPicker({ profile }: { profile: DeviceProfile }) {
 
   return (
     <View className="flex-row px-4" style={{ gap: 10 }}>
-      <Segmented
-        values={['MIX', 'WIPE']}
-        index={type ?? 0}
-        onChange={(i) => {
-          haptic.select();
-          controller.write(profile.addrs.transType, [i]);
-        }}
-        style={{ flex: 1, height: 34 }}
-        accessibilityLabel="トランジションの種類"
-      />
+      {profile.addrs.transType != null ? (
+        <Segmented
+          values={[...profile.transTypes]}
+          index={type ?? 0}
+          onChange={(i) => {
+            haptic.select();
+            if (profile.addrs.transType != null) controller.write(profile.addrs.transType, [i]);
+          }}
+          style={{ flex: 1, height: 34 }}
+          accessibilityLabel="トランジションの種類"
+        />
+      ) : null}
       <View className="flex-row items-center" style={{ flex: 0.95, height: 34, borderRadius: 9, backgroundColor: color.group, paddingLeft: 12 }}>
         <AppText variant="caption" tone="label2" weight="600" style={{ letterSpacing: 0.6 }} maxFontSizeMultiplier={1.2}>
           TIME

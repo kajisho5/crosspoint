@@ -120,7 +120,8 @@ export function testPatternTarget(model: ModelId): TestPatternTarget | null {
     const p = findParam(g, /^TEST PATTERN$/);
     if (!p || p.kind !== 'enum') continue;
     for (const inst of g.instances) {
-      const m = /^HDMI IN (\d+)$/i.exec(inst.label);
+      // V-8HD は HDMI 入力を "INPUT n" と呼ぶ（VIDEO INPUT / VIDEO INPUT (SCALER)）
+      const m = /^(?:HDMI IN|VIDEO IN|INPUT) (\d+)$/i.exec(inst.label);
       if (!m) continue;
       const n = Number(m[1]);
       if (!best || n > best.n) best = { param: p, instance: inst, n };

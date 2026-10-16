@@ -1,0 +1,4804 @@
+[
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "FLICKER FILTER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "FLIP H",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "FLIP V",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "EDID",
+  "sysex": "00H-0BH",
+  "meaning": "INTERNAL, SVGA (800x600), XGA (1024x768), WXGA (1280x800), FWXGA (1366x768), SXGA (1280x1024), SXGA+ (1400x1050), UXGA (1600x1200), WUXGA (1920x1200), 720p, 1080i, 1080p"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "04"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "ZOOM",
+  "sysex": "00H 64H-4EH 10H",
+  "meaning": "10.0-1000.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "SCALING TYPE",
+  "sysex": "00H-04H",
+  "meaning": "FULL, LETTERBOX, CROP, DOT BY DOT, MANUAL"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "07"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "MANUAL SIZE H",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "09"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "MANUAL SIZE V",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "0B"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "POSITION H",
+  "sysex": "71H 00H-00H 00H-0FH 00H",
+  "meaning": "-1920-0-1920"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "0D"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "POSITION V",
+  "sysex": "76H 50H-00H 00H-09H 30H",
+  "meaning": "-1200-0-1200"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "BRIGHTNESS",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "CONTRAST",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "SATURATION",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "RED",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "GREEN",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "BLUE",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Input",
+  "addr": [
+   "00",
+   "xx",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H, 01H (INPUT 1, INPUT 2)"
+  ],
+  "name": "SHARED INPUT (*)",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON (*) INPUT 2 only"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "OUTPUT ASSIGN (*1)",
+  "sysex": "00H-01H",
+  "meaning": "PROGRAM, PREVIEW (*1) PREVIEW OUT only"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "01"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "COLOR SPACE",
+  "sysex": "00H-03H",
+  "meaning": "YCC, RGB (0-255), RGB (16-235) (原文は 00H-03H で 3 項目)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "02"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "DVI-D/HDMI SIGNAL",
+  "sysex": "00H-01H",
+  "meaning": "HDMI, DVI-D"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "03"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "BRIGHTNESS",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "CONTRAST",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "SATURATION",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "RED",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "GREEN",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Video Output",
+  "addr": [
+   "00",
+   "xx",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 10H, 11H (PROGRAM OUT, PREVIEW OUT)"
+  ],
+  "name": "BLUE",
+  "sysex": "00H-7FH",
+  "meaning": "-64-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Scaling",
+  "addr": [
+   "00",
+   "12",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FORMAT",
+  "sysex": "00H-0DH",
+  "meaning": "480p/576p, 720p, 1080i, 1080p, SVGA (800x600), XGA (1024x768), WXGA (1280x800), FWXGA (1366x768), SXGA (1280x1024), SXGA+ (1400x1050), UXGA (1600x1200), WUXGA (1920x1200), HD (1280x720), FHD (1920x1080)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Scaling",
+  "addr": [
+   "00",
+   "12",
+   "01"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "ZOOM",
+  "sysex": "00H 64H-4EH 10H",
+  "meaning": "10.0-1000.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Scaling",
+  "addr": [
+   "00",
+   "12",
+   "03"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SIZE H",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Scaling",
+  "addr": [
+   "00",
+   "12",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SIZE V",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Scaling",
+  "addr": [
+   "00",
+   "12",
+   "07"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION H",
+  "sysex": "71H 00H-00H 00H-0FH 00H",
+  "meaning": "-1920-0-1920"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Scaling",
+  "addr": [
+   "00",
+   "12",
+   "09"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION V",
+  "sysex": "76H 50H-00H 00H-09H 30H",
+  "meaning": "-1200-0-1200"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "USB OUT",
+  "addr": [
+   "00",
+   "13",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUTPUT ASSIGN",
+  "sysex": "00H-01H",
+  "meaning": "PROGRAM, PREVIEW"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "USB OUT",
+  "addr": [
+   "00",
+   "13",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUTPUT FORMAT",
+  "sysex": "00H-01H",
+  "meaning": "YUY2 & MJPEG, YUY2"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Transition Time",
+  "addr": [
+   "00",
+   "20",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MIX/WIPE TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Transition Time",
+  "addr": [
+   "00",
+   "20",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PinP TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Transition Time",
+  "addr": [
+   "00",
+   "20",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "KEY TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "MIX/WIPE",
+  "addr": [
+   "00",
+   "21",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MIX TYPE",
+  "sysex": "00H-02H",
+  "meaning": "MIX, FAM, NAM"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "MIX/WIPE",
+  "addr": [
+   "00",
+   "21",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE TYPE",
+  "sysex": "00H-08H",
+  "meaning": "HORIZONTAL, VERTICAL, UPPER LEFT, UPPER RIGHT, LOWER LEFT, LOWER RIGHT, H-CENTER, V-CENTER, BOX"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "MIX/WIPE",
+  "addr": [
+   "00",
+   "21",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE DIRECTION",
+  "sysex": "00H-02H",
+  "meaning": "NORMAL, REVERSE, ROUND TRIP"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "MIX/WIPE",
+  "addr": [
+   "00",
+   "21",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE BORDER COLOR",
+  "sysex": "00H-08H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK, SOFT EDGE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "MIX/WIPE",
+  "addr": [
+   "00",
+   "21",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE BORDER WIDTH",
+  "sysex": "00H-0FH",
+  "meaning": "0-15"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "00"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION H",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "02"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION V",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SIZE",
+  "sysex": "00H 64H-07H 68H",
+  "meaning": "10.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "06"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "CROPPING H",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "08"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "CROPPING V",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "BORDER COLOR",
+  "sysex": "00H-08H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK, SOFT EDGE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "BORDER WIDTH",
+  "sysex": "00H-0FH",
+  "meaning": "0-15"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SHAPE",
+  "sysex": "00H-02H",
+  "meaning": "RECTANGLE, CIRCLE, DIAMOND"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "0D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW POSITION H",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "0F"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW POSITION V",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "11"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW ZOOM",
+  "sysex": "00H 64H-4EH 10H",
+  "meaning": "100-1000%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "PinP",
+  "addr": [
+   "00",
+   "22",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PROGRAM OUT MODE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "KEY SOURCE",
+  "sysex": "00H-02H",
+  "meaning": "INPUT 1, INPUT 2, STILL IMAGE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "KEY TYPE",
+  "sysex": "00H-02H",
+  "meaning": "LUMINANCE-WHITE, LUMINANCE-BLACK, CHROMA"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "02"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "KEY LEVEL",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "KEY GAIN",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "06"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "MIX LEVEL",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "08"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION H",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "0A"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "POSITION V",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "0C"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SIZE",
+  "sysex": "00H 64H-07H 68H",
+  "meaning": "10.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "0E"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "CROPPING H",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "10"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "CROPPING V",
+  "sysex": "00H 00H-07H 68H",
+  "meaning": "0.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "12"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW POSITION H",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "14"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW POSITION V",
+  "sysex": "7CH 0CH-00H 00H-03H 74H",
+  "meaning": "-50.0-0.0-50.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "16"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VIEW ZOOM",
+  "sysex": "00H 64H-4EH 10H",
+  "meaning": "100-1000%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CHROMA COLOR",
+  "sysex": "00H-01H",
+  "meaning": "GREEN, BLUE * Even if this is rewritten by DT1, the HUE and SATURATION settings are not changed."
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HUE WIDTH",
+  "sysex": "62H-00H-1EH",
+  "meaning": "-30-0-30"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "1A"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "HUE FINE",
+  "sysex": "00H 00H-02H 68H",
+  "meaning": "0-360"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "1C"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SATURATION WIDTH",
+  "sysex": "7FH 00H-00H 00H-00H 7FH",
+  "meaning": "-128-0-127"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "1E"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SATURATION FINE",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "20"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FILL TYPE",
+  "sysex": "00H-01H",
+  "meaning": "BUS, MATTE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "21"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MATTE COLOR",
+  "sysex": "00H-07H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "22"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EDGE TYPE",
+  "sysex": "00H-04H",
+  "meaning": "OFF, BORDER, DROP, SHADOW, OUTLINE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "23"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EDGE COLOR",
+  "sysex": "00H-07H",
+  "meaning": "WHITE, YELLOW, CYAN, GREEN, MAGENTA, RED, BLUE, BLACK"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "24"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EDGE WIDTH",
+  "sysex": "00H-0FH",
+  "meaning": "0-15"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "KEY",
+  "addr": [
+   "00",
+   "23",
+   "25"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PROGRAM OUT MODE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VFX SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VFX TYPE",
+  "sysex": "00H-0FH",
+  "meaning": "PART MOSAIC, BACKGROUND MOSAIC, FULL MOSAIC, WAVE, RGB REPLACE, COLOR PASS, NEGATIVE, COLORIZE, POSTERIZE, SILHOUETTE, EMBOSS, FIND EDGES, MONOCOLOR, HUE OFFSET, SATURATION OFFSET, VALUE OFFSET"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "02"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "MIX LEVEL",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PART MOSAIC BLOCK SIZE",
+  "sysex": "00H-07H",
+  "meaning": "OFF (1x1), 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "05"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "PART MOSAIC POSITION H",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "07"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "PART MOSAIC POSITION V",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "09"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "PART MOSAIC AREA SIZE",
+  "sysex": "00H 64H-07H 68H",
+  "meaning": "10.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "0B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "PART MOSAIC AREA CORRECTION H",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "0D"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "PART MOSAIC AREA CORRECTION V",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "BG MOSAIC BLOCK SIZE",
+  "sysex": "00H-07H",
+  "meaning": "OFF (1x1), 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "10"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BG MOSAIC POSITION H",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "12"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BG MOSAIC POSITION V",
+  "sysex": "78H 18H-00H 00H-07H 68H",
+  "meaning": "-100.0-0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "14"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BG MOSAIC AREA SIZE",
+  "sysex": "00H 64H-07H 68H",
+  "meaning": "10.0-100.0%"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "16"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BG MOSAIC AREA CORRECTION H",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "18"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "BG MOSAIC AREA CORRECTION V",
+  "sysex": "70H 30H-00H 00H-0FH 50H",
+  "meaning": "-2000-0-2000"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FULL MOSAIC BLOCK SIZE",
+  "sysex": "00H-07H",
+  "meaning": "OFF (1x1), 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "1B"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "WAVE GAIN",
+  "sysex": "00H 00H-01H 7FH",
+  "meaning": "0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WAVE TYPE",
+  "sysex": "00H-07H",
+  "meaning": "0-7"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "RGB REPLACE TYPE",
+  "sysex": "00H-05H",
+  "meaning": "OFF (R.G.B), B.R.G, G.B.R, R.B.G, G.R.B, B.G.R"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COLOR PASS TYPE",
+  "sysex": "01H-3FH",
+  "meaning": "1-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "20"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "NEGATIVE TYPE",
+  "sysex": "01H-07H",
+  "meaning": "Cr, Cb, CbCr, Y, YCr, YCb, YCbCr"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "21"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "COLORIZE TYPE",
+  "sysex": "00H-07H",
+  "meaning": "1-8"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "22"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "POSTERIZE LEVEL",
+  "sysex": "00H-03H",
+  "meaning": "1-4"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "23"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SILHOUETTE TYPE",
+  "sysex": "00H-7FH",
+  "meaning": "1-128"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "24"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EMBOSS TYPE",
+  "sysex": "00H-7FH",
+  "meaning": "1-128"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "25"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EMBOSS CONTRAST",
+  "sysex": "00H-0FH",
+  "meaning": "0-15"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "26"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FIND EDGES FG COLOR",
+  "sysex": "00H-0FH",
+  "meaning": "0-15"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "27"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FIND EDGES BG COLOR",
+  "sysex": "00H-0FH",
+  "meaning": "0-15"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "28"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MONOCOLOR Pb COLOR",
+  "sysex": "00H-3FH",
+  "meaning": "0-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "29"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MONOCOLOR Pr COLOR",
+  "sysex": "00H-3FH",
+  "meaning": "0-63"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "2A"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "HUE OFFSET VALUE",
+  "sysex": "00H 00H-02H 67H",
+  "meaning": "0-359"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "2C"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "SATURATION OFFSET VALUE",
+  "sysex": "7EH 00H-00H 00H-01H 7FH",
+  "meaning": "-256-0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "VFX",
+  "addr": [
+   "00",
+   "24",
+   "2E"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "VALUE OFFSET VALUE",
+  "sysex": "7EH 00H-00H 00H-01H 7FH",
+  "meaning": "-256-0-255"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel",
+  "addr": [
+   "00",
+   "25",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Background Channel",
+  "sysex": "00H-01H",
+  "meaning": "INPUT 1, 2"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel",
+  "addr": [
+   "00",
+   "25",
+   "01"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "Video Fader Position",
+  "sysex": "00H 00H-03H 7FH",
+  "meaning": "0-511"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel",
+  "addr": [
+   "00",
+   "25",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Output Fade Level",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel",
+  "addr": [
+   "00",
+   "25",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Effects Type",
+  "sysex": "00H-03H",
+  "meaning": "MIX, WIPE, PinP, KEY"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "00"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "ANALOG GAIN",
+  "sysex": "00H-37H",
+  "meaning": "0-55dB * AUDIO IN 1/2 only"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "01"
+  ],
+  "size": 3,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "INPUT LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INFdB, -80.0-0.0-10.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "04"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "INPUT MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "05"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "PLUG IN POWER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON * AUDIO IN 1/2 only"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "06"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "MONO",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "07"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "SOLO",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "08"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EFFECT PRESET",
+  "sysex": "00H-04H",
+  "meaning": "DEFAULT, MEETING, INTERVIEW, AMBIENT MIC, WINDY FIELD * Even if this is rewritten by DT1, the effect settings are not changed."
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "09"
+  ],
+  "size": 2,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0msec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "REVERB SEND",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "HIGH PASS FILTER 80Hz",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "NOISE GATE SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "NOISE GATE THRESHOLD",
+  "sysex": "30H-00H",
+  "meaning": "-80-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "NOISE GATE RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000ms"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "10"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "DE-ESSOR SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "11"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "DE-ESSOR SENS",
+  "sysex": "00H-64H",
+  "meaning": "0-100"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "12"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "DE-ESSOR DEPTH",
+  "sysex": "00H-64H",
+  "meaning": "0-100"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "13"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "COMPRESSOR SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "14"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "COMPRESSOR THRESHOLD",
+  "sysex": "4EH-00H",
+  "meaning": "-50-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "15"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "COMPRESSOR RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00:1, 1.12:1, 1.25:1, 1.40:1, 1.60:1, 1.80:1, 2.00:1, 2.50:1, 3.20:1, 4.00:1, 5.60:1, 8.00:1, 16.0:1, INF:1"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "16"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "COMPRESSOR ATTACK",
+  "sysex": "00H-73H",
+  "meaning": "0.0-100msec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "17"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "COMPRESSOR RELEASE",
+  "sysex": "00H-7FH",
+  "meaning": "30-5000ms"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "18"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "COMPRESSOR MAKEUP GAIN",
+  "sysex": "58H-00H-28H",
+  "meaning": "-40-40dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "19"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "1B"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "1C"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "1D"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20Hz-20.0kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "1E"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5-16.0"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "1F"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "20"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20-2.00kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "21"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "VOICE CHANGER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "22"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "VOICE CHANGER PITCH",
+  "sysex": "74H-00H-0CH",
+  "meaning": "-12-+12"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "23"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "VOICE CHANGER FORMANT",
+  "sysex": "76H-00H-0AH",
+  "meaning": "-10-+10"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "24"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "VOICE CHANGER ROBOT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Input",
+  "addr": [
+   "01",
+   "xx",
+   "25"
+  ],
+  "size": 1,
+  "notes": [
+   "* xxH: 00H-04H (AUDIO IN 1, AUDIO IN 2, USB IN, HDMI IN 1, HDMI IN 2)"
+  ],
+  "name": "VOICE CHANGER MIX",
+  "sysex": "00H-64H",
+  "meaning": "0-100"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output Assign",
+  "addr": [
+   "01",
+   "10",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PHONES OUT",
+  "sysex": "00H-01H",
+  "meaning": "MASTER OUTPUT, AUX"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output Assign",
+  "addr": [
+   "01",
+   "10",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUT",
+  "sysex": "00H-01H",
+  "meaning": "MASTER OUTPUT, AUX"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output Assign",
+  "addr": [
+   "01",
+   "10",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT PROGRAM",
+  "sysex": "00H-02H",
+  "meaning": "AUTO, MASTER OUTPUT, AUX"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output Assign",
+  "addr": [
+   "01",
+   "10",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI OUT PREVIEW",
+  "sysex": "00H-02H",
+  "meaning": "AUTO, MASTER OUTPUT, AUX"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "OUTPUT LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INFdB, -80.0-0.0-10.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0msec (値は 2 バイト幅。原文は 03H のみ記載 → 【不明】)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "OUTPUT MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON (原文は 04H-05H の 2 行にまたがる → 【不明】サイズ)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER THRESHOLD",
+  "sysex": "58H-00H",
+  "meaning": "-40-0.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "REVERB SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "REVERB LEVEL",
+  "sysex": "00H-7FH",
+  "meaning": "0-127"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "REVERB TYPE",
+  "sysex": "00H-01H",
+  "meaning": "ROOM, HALL"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "REVERB SIZE",
+  "sysex": "01H-14H",
+  "meaning": "1-20"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20Hz-20.0kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5-16.0"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "12"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "13"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20-2.00kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "14"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MULTI BAND COMPRESSOR SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "15"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MB COMP Hi THRESHOLD",
+  "sysex": "58H-00H",
+  "meaning": "-40-0.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "16"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MB COMP Hi RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00:1 … INF:1 (COMPRESSOR RATIO と同じ 14 段)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "17"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MB COMP Mid THRESHOLD",
+  "sysex": "7CH 70H-00H 00H",
+  "meaning": "-40.0-0.0dB (原文は 17H 1 行のみ → 【不明】サイズ)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "18"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MB COMP Mid RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00:1 … INF:1"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "19"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MB COMP Lo THRESHOLD",
+  "sysex": "7CH 70H-00H 00H",
+  "meaning": "-40.0-0.0dB (同上【不明】)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Output (MASTER OUTPUT)",
+  "addr": [
+   "01",
+   "11",
+   "1A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MB COMP Lo RATIO",
+  "sysex": "00H-0DH",
+  "meaning": "1.00:1 … INF:1"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "AUX LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INFdB, -80.0-0.0-10.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "AUX DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0msec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LIMITER THRESHOLD",
+  "sysex": "7CH 70H-00H 00H",
+  "meaning": "-40.0-0.0dB (値は 2 バイト幅 → 【不明】サイズ)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX SEND AUDIO IN 1",
+  "sysex": "2FH-00H",
+  "meaning": "-INFdB, -80-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX SEND AUDIO IN 2",
+  "sysex": "2FH-00H",
+  "meaning": "-INFdB, -80-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX SEND USB IN",
+  "sysex": "2FH-00H",
+  "meaning": "-INFdB, -80-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX SEND HDMI IN 1",
+  "sysex": "2FH-00H",
+  "meaning": "-INFdB, -80-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX SEND HDMI IN 2",
+  "sysex": "2FH-00H",
+  "meaning": "-INFdB, -80-0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX EFFECT AUDIO IN 1",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX EFFECT AUDIO IN 2",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX EFFECT USB IN",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX EFFECT HDMI IN 1",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio AUX Output",
+  "addr": [
+   "01",
+   "12",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUX EFFECT HDMI IN 2",
+  "sysex": "00H-02H",
+  "meaning": "DRY, PRE FADER, POST FADER"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "00"
+  ],
+  "size": 3,
+  "notes": [],
+  "name": "USB OUT LEVEL",
+  "sysex": "7EH 00H 00H, 7FH 79H 60H-00H 00H 00H-00H 00H 64H",
+  "meaning": "-INFdB, -80.0-0.0-10.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB OUT MUTE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "04"
+  ],
+  "size": 2,
+  "notes": [],
+  "name": "USB OUT DELAY",
+  "sysex": "00H 00H-27H 08H",
+  "meaning": "0.0-500.0msec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Hi FREQUENCY",
+  "sysex": "24H-3EH",
+  "meaning": "1.00-20.0kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Mid GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Mid FREQUENCY",
+  "sysex": "02H-3EH",
+  "meaning": "20Hz-20.0kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Mid Q",
+  "sysex": "00H-05H",
+  "meaning": "0.5-16.0"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo GAIN",
+  "sysex": "04H-7CH",
+  "meaning": "-12.0-12.0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio USB Output",
+  "addr": [
+   "01",
+   "13",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EQUALIZER Lo FREQUENCY",
+  "sysex": "02H-2AH",
+  "meaning": "20-2.00kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Follow",
+  "addr": [
+   "01",
+   "20",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 1",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Follow",
+  "addr": [
+   "01",
+   "20",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDMI IN 2",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Follow",
+  "addr": [
+   "01",
+   "20",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN 1",
+  "sysex": "00H-02H",
+  "meaning": "OFF, INPUT 1, INPUT 2"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Follow",
+  "addr": [
+   "01",
+   "20",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO IN 2",
+  "sysex": "00H-02H",
+  "meaning": "OFF, INPUT 1, INPUT 2"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Audio Follow",
+  "addr": [
+   "01",
+   "20",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "USB IN",
+  "sysex": "00H-02H",
+  "meaning": "OFF, INPUT 1, INPUT 2"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Version Parameter",
+  "addr": [
+   "02",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Version Major",
+  "sysex": "00H-09H",
+  "meaning": "Version Number (Read Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Version Parameter",
+  "addr": [
+   "02",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Version Minor (1)",
+  "sysex": "00H-09H",
+  "meaning": "Version Number (Read Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Version Parameter",
+  "addr": [
+   "02",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Version Minor (2)",
+  "sysex": "00H-09H",
+  "meaning": "Version Number (Read Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Version Parameter",
+  "addr": [
+   "02",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Version Build (1)",
+  "sysex": "00H-09H",
+  "meaning": "Version Number (Read Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Version Parameter",
+  "addr": [
+   "02",
+   "00",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Version Build (2)",
+  "sysex": "00H-09H",
+  "meaning": "Version Number (Read Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Version Parameter",
+  "addr": [
+   "02",
+   "00",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "System Version Build (3)",
+  "sysex": "00H-09H",
+  "meaning": "Version Number (Read Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "HDCP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FRAME RATE",
+  "sysex": "00H-01H",
+  "meaning": "59.94Hz, 50Hz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 1 SW ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "AUTO TAKE, AUTO TAKE(alt), CUT, CUT(alt), TRANSFORM (原文は記号付き「'AUTO TAKE, 'AUTO TAKE&, 'CUT, 'CUT&, 'TRANSFORM」。記号はフォント崩れ)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 2 SW ASSIGN",
+  "sysex": "00H-04H",
+  "meaning": "AUTO TAKE&, 'AUTO TAKE&, CUT&, 'CUT&, TRANSFORM& (原文ママ, 同上)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE LEFT ASSIGN",
+  "sysex": "00H-07H",
+  "meaning": "BLACK, WHITE, STILL IMAGE, CONTRAST, AUDIO, BLACK&AUDIO, WHITE&AUDIO, STILL IMAGE&AUDIO"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE RIGHT ASSIGN",
+  "sysex": "00H-07H",
+  "meaning": "BLACK, WHITE, STILL IMAGE, CONTRAST, AUDIO, BLACK&AUDIO, WHITE&AUDIO, STILL IMAGE&AUDIO"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO FX ASSIGN CTR1",
+  "sysex": "00H-1BH",
+  "meaning": "AUDIO IN 1 ANALOG GAIN, AUDIO IN 2 ANALOG GAIN, AUDIO IN 1 LEVEL, AUDIO IN 2 LEVEL, USB IN LEVEL, HDMI IN 1 LEVEL, HDMI IN 2 LEVEL, MASTER OUTPUT LEVEL, AUX OUTPUT LEVEL, USB OUTPUT LEVEL, AUDIO IN 1 DELAY, AUDIO IN 2 DELAY, USB IN DELAY, HDMI IN 1 DELAY, HDMI IN 2 DELAY, USB OUT DELAY, AUDIO IN 1 REVERB SEND, AUDIO IN 2 REVERB SEND, USB IN REVERB SEND, HDMI IN 1 REVERB SEND, HDMI IN 2 REVERB SEND, REVERB LEVEL, AUDIO IN 1 VOICE PITCH, AUDIO IN 2 VOICE PITCH, AUDIO IN 1 VOICE FORMANT, AUDIO IN 2 VOICE FORMANT, AUDIO IN 1 VOICE MIX, AUDIO IN 2 VOICE MIX"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO FX ASSIGN CTR2",
+  "sysex": "00H-1BH",
+  "meaning": "(CTR1 と同じ 28 項目)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PREVIEW LABEL",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUDIO LEVEL METER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO INPUT DETECT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO OFF",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST PATTERN",
+  "sysex": "00H-05H",
+  "meaning": "OFF, 75% COLOR BAR, 100% COLOR BAR, RAMP, STEP, HATCH"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST TONE LEVEL",
+  "sysex": "00H-03H",
+  "meaning": "OFF, -20dB, -10dB, 0dB"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST TONE FREQUENCY L",
+  "sysex": "00H-02H",
+  "meaning": "500Hz, 1kHz, 2kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "System",
+  "addr": [
+   "02",
+   "01",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "TEST TONE FREQUENCY R",
+  "sysex": "00H-02H",
+  "meaning": "500Hz, 1kHz, 2kHz"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 1 SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 2 SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VIDEO FADER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VFX SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EFFECT TYPE SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CONTROL 1 ENCODER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Panel Lock",
+  "addr": [
+   "02",
+   "02",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CONTROL 2 ENCODER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PROGRAM LED COLOR",
+  "sysex": "00H-07H",
+  "meaning": "RED, GREEN, YELLOW, BLUE, PURPLE, L.BLUE, WHITE, OFF"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PREVIEW LED COLOR",
+  "sysex": "00H-07H",
+  "meaning": "RED, GREEN, YELLOW, BLUE, PURPLE, L.BLUE, WHITE, OFF"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "BG SELECT LED COLOR",
+  "sysex": "00H-07H",
+  "meaning": "RED, GREEN, YELLOW, BLUE, PURPLE, L.BLUE, WHITE, OFF"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 1 LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT 2 LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VIDEO FADER LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MENU LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "VFX LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EFFECTS LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE LEFT LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "LED Assign",
+  "addr": [
+   "02",
+   "03",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "OUTPUT FADE RIGHT LED",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Effect Type SW Assign",
+  "addr": [
+   "02",
+   "04",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MIX",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Effect Type SW Assign",
+  "addr": [
+   "02",
+   "04",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "WIPE",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Effect Type SW Assign",
+  "addr": [
+   "02",
+   "04",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "PinP",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Effect Type SW Assign",
+  "addr": [
+   "02",
+   "04",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "KEY",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "START UP",
+  "sysex": "00H-08H",
+  "meaning": "LAST MEMORY, MEMORY 1-8"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY PROTECT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FADE TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0-4.0sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FADE SW MIX/WIPE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FADE SW PinP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "FADE SW KEY",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER VIDEO INPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER VIDEO OUTPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER TRANS TIME",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER MIX/WIPE",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER PinP",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER KEY",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER VFX",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER VIDEO CROSSPOINT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "0E"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER VIDEO FADER",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "0F"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER AUDIO INPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "10"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER AUDIO OUTPUT",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (設定)",
+  "addr": [
+   "02",
+   "05",
+   "11"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "LOAD PARAMETER AUDIO FOLLOW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "CTL/EXP",
+  "addr": [
+   "02",
+   "06",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CTL/EXP TYPE",
+  "sysex": "00H-02H",
+  "meaning": "OFF, CTL A & CTL B, EXP"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "CTL/EXP",
+  "addr": [
+   "02",
+   "06",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CTL A ASSIGN",
+  "sysex": "00H-19H",
+  "meaning": "N/A, EFFECT TYPE SW, EFFECT MIX, EFFECT WIPE, EFFECT PinP, EFFECT KEY, VFX SW, INPUT 1 SW, INPUT 2 SW, AUTO TAKE, CUT, STILL IMAGE, INPUT 1 AUDIO MUTE, INPUT 2 AUDIO MUTE, AUDIO IN AUDIO MUTE, AUDIO OUTPUT MUTE, OUTPUT FADE LEFT, OUTPUT FADE RIGHT, LOAD MEMORY 1-8"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "CTL/EXP",
+  "addr": [
+   "02",
+   "06",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CTL B ASSIGN",
+  "sysex": "00H-19H",
+  "meaning": "(CTL A と同じ 26 項目)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "CTL/EXP",
+  "addr": [
+   "02",
+   "06",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "EXP ASSIGN",
+  "sysex": "00H-0AH",
+  "meaning": "N/A, VIDEO FADER, CUT, VFX MIX LEVEL, OUTPUT FADE LEFT, OUTPUT FADE RIGHT, STILL IMAGE, INPUT 1 AUDIO LEVEL, INPUT 2 AUDIO LEVEL, AUDIO IN AUDIO LEVEL, AUDIO OUTPUT LEVEL"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "02",
+   "07",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "CAPTURE SHORTCUT",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "CAPTURE IMAGE",
+  "addr": [
+   "02",
+   "07",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "SAVE TO INTERNAL STORAGE",
+  "sysex": "00H-01H",
+  "meaning": "DISABLE, ENABLE"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO SWITCHING SW",
+  "sysex": "00H-01H",
+  "meaning": "OFF, ON"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "AUTO SWITCHING TYPE",
+  "sysex": "00H-01H",
+  "meaning": "INPUT SCAN, PRESET MEMORY SCAN"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN TIME INPUT 1",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN TIME INPUT 2",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "04"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "INPUT SCAN TRANS TIME",
+  "sysex": "00H-28H",
+  "meaning": "0.0 sec-4.0 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "05"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN SEQUENCE",
+  "sysex": "00H-02H",
+  "meaning": "NORMAL, REVERSE, RANDOM"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "06"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 1 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "07"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 2 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "08"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 3 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "09"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 4 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "0A"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 5 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "0B"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 6 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "0C"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 7 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "AUTO SWITCHING",
+  "addr": [
+   "02",
+   "08",
+   "0D"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "MEMORY SCAN MEMORY 8 TIME",
+  "sysex": "00H-78H",
+  "meaning": "OFF, 1-120 sec"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (トリガ)",
+  "addr": [
+   "0A",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Memory Load Trigger",
+  "sysex": "00H-07H",
+  "meaning": "Memory 1-8 (Write Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (トリガ)",
+  "addr": [
+   "0A",
+   "00",
+   "01"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Memory Save Trigger",
+  "sysex": "00H-07H",
+  "meaning": "Memory 1-8 (Write Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (トリガ)",
+  "addr": [
+   "0A",
+   "00",
+   "02"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Memory Initialize Trigger",
+  "sysex": "00H-07H",
+  "meaning": "Memory 1-8 (Write Only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory (トリガ)",
+  "addr": [
+   "0A",
+   "00",
+   "03"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Loaded Memory Number",
+  "sysex": "00H-07H, 7FH",
+  "meaning": "Memory 1-8, Last Memory (Read only)"
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "10",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 1)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "11",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 1)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "12",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 2)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "13",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 2)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "14",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 3)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "15",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 3)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "16",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 4)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "17",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 4)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "18",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 5)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "19",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 5)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "1A",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 6)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "1B",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 6)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "1C",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 7)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "1D",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 7)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "1E",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Video Parameter (Memory 8)",
+  "sysex": "",
+  "meaning": ""
+ },
+ {
+  "page": 0,
+  "section": "Parameter Address Map",
+  "sub": "Preset Memory Area",
+  "addr": [
+   "1F",
+   "00",
+   "00"
+  ],
+  "size": 1,
+  "notes": [],
+  "name": "Audio Parameter (Memory 8)",
+  "sysex": "",
+  "meaning": ""
+ }
+]

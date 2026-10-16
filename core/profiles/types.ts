@@ -1,6 +1,6 @@
 import type { Addr } from '../codec/value';
 
-export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD' | 'VR-6HD' | 'V-1-4K';
+export type ModelId = 'V-160HD' | 'V-80HD' | 'VR-120HD' | 'VR-6HD' | 'V-1-4K' | 'V-8HD' | 'V-1HD' | 'V-1SDI' | 'VR-4HD' | 'V-02HD-MK2';
 
 export type TallyState = 'off' | 'pgm' | 'pst' | 'both';
 
@@ -37,9 +37,12 @@ export interface Capabilities {
 
 export interface KeyAddrs {
   pgm: Addr;
-  pvw: Addr;
-  source: Addr;
-  time: Addr;
+  /** PVW スイッチが無い機種（V-02HD MK II の PinP/KEY、VR-4HD の KEY）は null → PVW ピルを出さない */
+  pvw: Addr | null;
+  /** ソース指定が無い機種は null */
+  source: Addr | null;
+  /** 時間が無い機種は null */
+  time: Addr | null;
   /** DSK のみ：キータイプ（LUMA/CHROMA 表示用） */
   type?: Addr;
 }
@@ -71,30 +74,46 @@ export interface DeviceProfile {
   sources: readonly SourceDef[];
   audioInputs: readonly AudioChannelDef[];
 
-  /** T バー（AB Fader）の最大値（V-160HD 系 2047、V-1-4K 4095） */
+  /** T バー（AB Fader）の最大値（V-160HD 系 2047、V-1-4K 4095、V-1HD/V-1SDI 1023、V-02HD MK II 511） */
   faderMax: number;
+  /** トランジションタイプの列挙（transType に書く index 順。V-160HD 系 MIX/WIPE、V-1HD/V-1SDI WIPE/MIX/CUT、VR-4HD CUT/MIX/WIPE） */
+  transTypes: readonly string[];
+  /** オーディオレベルの符号化：'db3' = 3 バイト 0.1dB（-INF あり）、'u7' = 1 バイト 0–127（V-1HD / V-1SDI） */
+  audioLevelCodec: 'db3' | 'u7';
+  /** バージョン読出し（MIDI 接続確認で RQ1 する）：'digits' = 数字バイト列（02 00 00、6 バイト）、'ascii' = ASCII 文字列（70 00 00 等、8 バイト） */
+  version: { addr: Addr; size: number; kind: 'digits' | 'ascii' };
 
   addrs: {
     pgm: Addr;
-    pst: Addr;
-    fader: Addr;
-    transType: Addr;
+    /** PST/PVW バス。無い機種（VR-4HD：PGM 書込で遷移、V-02HD MK II：背景チャンネル＋フェーダー）は null → PST グリッドを出さない */
+    pst: Addr | null;
+    /** T バー。無い機種は null */
+    fader: Addr | null;
+    transType: Addr | null;
     transTime: Addr;
-    inputAssign: (n: number) => Addr;
+    /** INPUT ASSIGN。クロスポイントが無く物理入力直指定の機種（V-1HD / V-1SDI / VR-4HD / V-02HD MK II）は null */
+    inputAssign: ((n: number) => Addr) | null;
     pinp: (n: number) => KeyAddrs;
     dsk: (n: number) => KeyAddrs;
     split: (n: number) => Addr;
     audioLevel: (x: number) => Addr;
-    audioMute: (x: number) => Addr;
+    /** ミュートが無い機種（V-1HD / V-1SDI）は null */
+    audioMute: ((x: number) => Addr) | null;
     masterLevel: Addr;
-    masterMute: Addr;
+    masterMute: Addr | null;
     memLoad: Addr;
-    memCurrent: Addr;
-    memName: (n: number) => Addr;
-    tallyBlock: Addr;
+    /** 現在のメモリー番号（読出し）。無い機種は null */
+    memCurrent: Addr | null;
+    /** メモリー名（8 文字）。無い機種は null */
+    memName: ((n: number) => Addr) | null;
+    /** タリーブロック。無い機種は null（tallyBlockSize 0） */
+    tallyBlock: Addr | null;
     tallyBlockSize: number;
     cut: Addr | null;
     auto: Addr | null;
+    /** CUT/AUTO に書く値（既定 press=1 / release=0。V-1SDI の CTRL BUTTON は AUTO=13H/53H） */
+    cutValues?: { press: number; release: number };
+    autoValues?: { press: number; release: number };
     /** マクロ実行トリガ（値 = マクロ番号 − 1、書込み専用）。不明な機種は null */
     macroTrigger: Addr | null;
     /** シーケンサーのパネルスイッチ（モーメンタリ）。不明な機種は null */

@@ -16,6 +16,12 @@ export const SIMPLE_COMMANDS_MIN_VERSION: Record<ModelId, string> = {
   // 文書の表紙（掲載順）：VR-6HD は Version 2.2 and later、V-1-4K は Version 1.0 and later【推測：表紙の対応】
   'VR-6HD': '2.20',
   'V-1-4K': '1.00',
+  // LAN を持たない機種（簡易制御コマンドは使えない。経路判定は transport で弾かれる）
+  'V-8HD': '99.99',
+  'V-1HD': '99.99',
+  'V-1SDI': '99.99',
+  'VR-4HD': '99.99',
+  'V-02HD-MK2': '99.99',
 };
 
 /** マクロ・シーケンサーの簡易制御コマンドを持つ機種（文書の限定注記） */
