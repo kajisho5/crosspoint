@@ -13,6 +13,7 @@ import { AppText } from '@/components/ui/AppText';
 import { GroupCard } from '@/components/ui/GroupCard';
 import { ListRow } from '@/components/ui/ListRow';
 import { Screen } from '@/components/ui/Screen';
+import { INSET_CARD, useColumnWidth } from '@/components/ui/useColumnWidth';
 import { OfflineBanner } from '@/components/status/OfflineBanner';
 
 /**
@@ -66,6 +67,9 @@ export default function QuickScreen() {
     ]);
   };
 
+  const out3Width = useColumnWidth(Math.max(1, out3?.choices.length ?? 1), INSET_CARD, 10);
+  const tpWidth = useColumnWidth(3, INSET_CARD, 10);
+
   return (
     <Screen>
       <OfflineBanner />
@@ -77,6 +81,7 @@ export default function QuickScreen() {
                 <BigButton
                   key={c.label}
                   label={c.label}
+                  width={out3Width}
                   active={c.index === out3Index}
                   disabled={!online}
                   accessibilityLabel={`HDMI OUT 3 を ${c.label} に`}
@@ -94,9 +99,10 @@ export default function QuickScreen() {
           <GroupCard title={`テストパターン（${tp.instance.label}）`} footer={`現在：${tpValue?.kind === 'enum' ? tpValue.label : '—'}。${tp.instance.label} の TEST PATTERN を切り替えます。INPUT に ${tp.instance.label} を割り当てておくと PGM/PST に出せます。`}>
             <View className="flex-row flex-wrap px-4 py-3" style={{ gap: 10 }}>
               {tp.choices.map((c) => (
-                <View key={c.label} style={{ width: '31%', flexGrow: 1 }}>
+                <View key={c.label}>
                   <BigButton
                     label={c.label}
+                    width={tpWidth}
                     active={c.index === tpIndex}
                     disabled={!online}
                     accessibilityLabel={`テストパターンを ${c.label} に`}
@@ -129,7 +135,7 @@ export default function QuickScreen() {
   );
 }
 
-function BigButton({ label, active, disabled, accessibilityLabel, onPress }: { label: string; active: boolean; disabled: boolean; accessibilityLabel: string; onPress: () => void }) {
+function BigButton({ label, active, disabled, accessibilityLabel, width, onPress }: { label: string; active: boolean; disabled: boolean; accessibilityLabel: string; width: number; onPress: () => void }) {
   return (
     <Pressable
       onPress={onPress}
@@ -137,10 +143,10 @@ function BigButton({ label, active, disabled, accessibilityLabel, onPress }: { l
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityState={{ selected: active, disabled }}
-      style={({ pressed }) => ({ flex: 1, opacity: disabled ? 0.4 : pressed ? 0.7 : 1 })}
+      style={({ pressed }) => ({ width, flexGrow: 0, flexShrink: 0, opacity: disabled ? 0.4 : pressed ? 0.7 : 1 })}
     >
-      <View className="items-center justify-center" style={{ height: 56, borderRadius: radius.card, backgroundColor: active ? color.accent : color.fill }}>
-        <AppText variant="body" weight="600" tone={active ? 'onTint' : 'label'}>
+      <View className="items-center justify-center" style={{ width, height: 56, borderRadius: radius.card, backgroundColor: active ? color.accent : color.fill, paddingHorizontal: 4 }}>
+        <AppText variant="body" weight="600" tone={active ? 'onTint' : 'label'} numberOfLines={1} adjustsFontSizeToFit>
           {label}
         </AppText>
       </View>

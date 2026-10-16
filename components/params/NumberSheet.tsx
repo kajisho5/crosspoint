@@ -3,6 +3,7 @@ import { Modal, Pressable, View } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { color, radius } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
+import { INSET_PAGE, useColumnWidth } from '../ui/useColumnWidth';
 
 /**
  * 数値の編集シート：スライダー＋ステッパー。
@@ -37,6 +38,8 @@ export function NumberSheet({
   onClose: () => void;
 }) {
   const [local, setLocal] = useState(value);
+  const w2 = useColumnWidth(2, INSET_PAGE, 12);
+  const wSmall = useColumnWidth(special && onSpecial ? 4 : 3, INSET_PAGE, 12);
   useEffect(() => {
     if (visible) setLocal(value);
   }, [visible, value]);
@@ -79,14 +82,14 @@ export function NumberSheet({
             accessibilityLabel={title}
           />
           <View className="flex-row" style={{ gap: 12 }}>
-            <StepButton label="−" onPress={() => commit(local - step)} />
-            <StepButton label="+" onPress={() => commit(local + step)} />
+            <StepButton label="−" width={w2} onPress={() => commit(local - step)} />
+            <StepButton label="+" width={w2} onPress={() => commit(local + step)} />
           </View>
           <View className="flex-row" style={{ gap: 12 }}>
-            <StepButton label="最小" small onPress={() => commit(min)} />
-            <StepButton label="0" small onPress={() => commit(Math.min(max, Math.max(min, 0)))} />
-            <StepButton label="最大" small onPress={() => commit(max)} />
-            {special && onSpecial ? <StepButton label={special} small tone={isSpecial ? 'accent' : undefined} onPress={onSpecial} /> : null}
+            <StepButton label="最小" small width={wSmall} onPress={() => commit(min)} />
+            <StepButton label="0" small width={wSmall} onPress={() => commit(Math.min(max, Math.max(min, 0)))} />
+            <StepButton label="最大" small width={wSmall} onPress={() => commit(max)} />
+            {special && onSpecial ? <StepButton label={special} small width={wSmall} tone={isSpecial ? 'accent' : undefined} onPress={onSpecial} /> : null}
           </View>
           <AppText variant="footnote" tone="label2" align="center">
             {format(min)} 〜 {format(max)}　刻み {format(step)}
@@ -97,10 +100,10 @@ export function NumberSheet({
   );
 }
 
-function StepButton({ label, onPress, small, tone }: { label: string; onPress: () => void; small?: boolean; tone?: 'accent' }) {
+function StepButton({ label, onPress, small, tone, width }: { label: string; onPress: () => void; small?: boolean; tone?: 'accent'; width: number }) {
   return (
-    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} style={({ pressed }) => ({ flex: 1, opacity: pressed ? 0.7 : 1 })}>
-      <View className="items-center justify-center" style={{ height: small ? 44 : 56, borderRadius: radius.card, backgroundColor: tone === 'accent' ? color.accent : color.fill }}>
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} style={({ pressed }) => ({ width, flexGrow: 0, flexShrink: 0, opacity: pressed ? 0.7 : 1 })}>
+      <View className="items-center justify-center" style={{ width, height: small ? 44 : 56, borderRadius: radius.card, backgroundColor: tone === 'accent' ? color.accent : color.fill }}>
         <AppText variant={small ? 'body' : 'title'} weight="600" tone={tone === 'accent' ? 'onTint' : 'label'}>
           {label}
         </AppText>

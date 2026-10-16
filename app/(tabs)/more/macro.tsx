@@ -12,6 +12,7 @@ import { color, radius, xp } from '@/theme/tokens';
 import { AppText } from '@/components/ui/AppText';
 import { GroupCard } from '@/components/ui/GroupCard';
 import { Screen } from '@/components/ui/Screen';
+import { INSET_CARD, useColumnWidth } from '@/components/ui/useColumnWidth';
 import { OfflineBanner } from '@/components/status/OfflineBanner';
 
 /**
@@ -62,6 +63,11 @@ export default function MacroScreen() {
   const rows: number[][] = [];
   for (let n = 1; n <= profile.macroCount; n += COLUMNS) rows.push(Array.from({ length: COLUMNS }, (_, i) => n + i).filter((m) => m <= profile.macroCount));
 
+  const macroWidth = useColumnWidth(COLUMNS, INSET_CARD);
+  const w2 = useColumnWidth(2, INSET_CARD, 10);
+  const w3 = useColumnWidth(3, INSET_CARD, 10);
+  const w4 = useColumnWidth(4, INSET_CARD, 10);
+
   const runMacro = (n: number) => {
     haptic.impact();
     if (macroRoute === 'text') controller.sendText(cmdMacroExec(n));
@@ -77,19 +83,19 @@ export default function MacroScreen() {
           <GroupCard title="シーケンサー" footer={`LAN 簡易制御コマンドで操作します（本体 Ver.${SIMPLE_COMMANDS_MIN_VERSION[profile.model]} 以降）。状態：${seqOn == null ? '—' : seqOn ? 'ON' : 'OFF'}、Auto Sequence：${seqAuto == null ? '—' : seqAuto ? 'ON' : 'OFF'}`}>
             <View className="px-4 py-3" style={{ gap: 10 }}>
               <View className="flex-row" style={{ gap: 10 }}>
-                <TapButton label={seqOn ? 'SEQ OFF' : 'SEQ ON'} active={seqOn === true} disabled={!online} accessibilityLabel="シーケンサー ON/OFF" onPress={() => {
+                <TapButton label={seqOn ? 'SEQ OFF' : 'SEQ ON'} active={seqOn === true} disabled={!online} width={w2} accessibilityLabel="シーケンサー ON/OFF" onPress={() => {
                   controller.sendText(cmdSeqSw(!seqOn));
                   controller.sendText(CMD_SEQ_QUERY);
                 }} />
-                <TapButton label={seqAuto ? 'AUTO OFF' : 'AUTO ON'} active={seqAuto === true} disabled={!online} accessibilityLabel="シーケンサー AUTO" onPress={() => {
+                <TapButton label={seqAuto ? 'AUTO OFF' : 'AUTO ON'} active={seqAuto === true} disabled={!online} width={w2} accessibilityLabel="シーケンサー AUTO" onPress={() => {
                   controller.sendText(cmdSeqAuto(!seqAuto));
                   controller.sendText(CMD_SEQ_AUTO_QUERY);
                 }} />
               </View>
               <View className="flex-row" style={{ gap: 10 }}>
-                <TapButton label="先頭へ" disabled={!online} accessibilityLabel="シーケンサー 先頭へ" onPress={() => controller.sendText(cmdSeqPrev(true))} />
-                <TapButton label="PREV" disabled={!online} accessibilityLabel="シーケンサー PREV" onPress={() => controller.sendText(cmdSeqPrev())} />
-                <TapButton label="NEXT" disabled={!online} accessibilityLabel="シーケンサー NEXT" onPress={() => controller.sendText(CMD_SEQ_NEXT)} />
+                <TapButton label="先頭へ" disabled={!online} width={w3} accessibilityLabel="シーケンサー 先頭へ" onPress={() => controller.sendText(cmdSeqPrev(true))} />
+                <TapButton label="PREV" disabled={!online} width={w3} accessibilityLabel="シーケンサー PREV" onPress={() => controller.sendText(cmdSeqPrev())} />
+                <TapButton label="NEXT" disabled={!online} width={w3} accessibilityLabel="シーケンサー NEXT" onPress={() => controller.sendText(CMD_SEQ_NEXT)} />
               </View>
             </View>
           </GroupCard>
@@ -97,10 +103,10 @@ export default function MacroScreen() {
         {seqRoute === 'sysex' && seqAddrs ? (
           <GroupCard title="シーケンサー" footer="本体のパネルスイッチと同じ動作（押している間 ON）。">
             <View className="flex-row px-4 py-3" style={{ gap: 10 }}>
-              <HoldButton label="ON" a={seqAddrs.on} disabled={!online} />
-              <HoldButton label="AUTO" a={seqAddrs.auto} disabled={!online} />
-              <HoldButton label="PREV" a={seqAddrs.prev} disabled={!online} />
-              <HoldButton label="NEXT" a={seqAddrs.next} disabled={!online} />
+              <HoldButton label="ON" a={seqAddrs.on} disabled={!online} width={w4} />
+              <HoldButton label="AUTO" a={seqAddrs.auto} disabled={!online} width={w4} />
+              <HoldButton label="PREV" a={seqAddrs.prev} disabled={!online} width={w4} />
+              <HoldButton label="NEXT" a={seqAddrs.next} disabled={!online} width={w4} />
             </View>
           </GroupCard>
         ) : null}
@@ -126,9 +132,9 @@ export default function MacroScreen() {
                       accessibilityRole="button"
                       accessibilityLabel={`マクロ ${n} を実行`}
                       onPress={() => runMacro(n)}
-                      style={({ pressed }) => ({ flex: 1, opacity: !online ? 0.4 : pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}
+                      style={({ pressed }) => ({ width: macroWidth, flexGrow: 0, flexShrink: 0, opacity: !online ? 0.4 : pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}
                     >
-                      <View style={{ height: 48, borderRadius: radius.xp, backgroundColor: last === n ? color.accent : color.fill, justifyContent: 'center', alignItems: 'center' }}>
+                      <View style={{ width: macroWidth, height: 48, borderRadius: radius.xp, backgroundColor: last === n ? color.accent : color.fill, justifyContent: 'center', alignItems: 'center' }}>
                         <AppText variant="body" weight="600" mono tone={last === n ? 'onTint' : 'label'}>
                           {n}
                         </AppText>
@@ -145,7 +151,7 @@ export default function MacroScreen() {
   );
 }
 
-function TapButton({ label, active, disabled, accessibilityLabel, onPress }: { label: string; active?: boolean; disabled: boolean; accessibilityLabel: string; onPress: () => void }) {
+function TapButton({ label, active, disabled, accessibilityLabel, width, onPress }: { label: string; active?: boolean; disabled: boolean; accessibilityLabel: string; width: number; onPress: () => void }) {
   return (
     <Pressable
       disabled={disabled}
@@ -156,9 +162,9 @@ function TapButton({ label, active, disabled, accessibilityLabel, onPress }: { l
         haptic.impact();
         onPress();
       }}
-      style={({ pressed }) => ({ flex: 1, opacity: disabled ? 0.4 : pressed ? 0.7 : 1 })}
+      style={({ pressed }) => ({ width, flexGrow: 0, flexShrink: 0, opacity: disabled ? 0.4 : pressed ? 0.7 : 1 })}
     >
-      <View className="items-center justify-center" style={{ height: 56, borderRadius: radius.card, backgroundColor: active ? color.accent : color.fill }}>
+      <View className="items-center justify-center" style={{ width, height: 56, borderRadius: radius.card, backgroundColor: active ? color.accent : color.fill }}>
         <AppText variant="body" weight="600" tone={active ? 'onTint' : 'label'}>
           {label}
         </AppText>
@@ -167,7 +173,7 @@ function TapButton({ label, active, disabled, accessibilityLabel, onPress }: { l
   );
 }
 
-function HoldButton({ label, a, disabled }: { label: string; a: Addr; disabled: boolean }) {
+function HoldButton({ label, a, disabled, width }: { label: string; a: Addr; disabled: boolean; width: number }) {
   const [down, setDown] = useState(false);
   return (
     <Pressable
@@ -183,9 +189,9 @@ function HoldButton({ label, a, disabled }: { label: string; a: Addr; disabled: 
         setDown(false);
         controller.release(a);
       }}
-      style={{ flex: 1, opacity: disabled ? 0.4 : 1 }}
+      style={{ width, flexGrow: 0, flexShrink: 0, opacity: disabled ? 0.4 : 1 }}
     >
-      <View className="items-center justify-center" style={{ height: 56, borderRadius: radius.card, backgroundColor: down ? color.accent : color.fill }}>
+      <View className="items-center justify-center" style={{ width, height: 56, borderRadius: radius.card, backgroundColor: down ? color.accent : color.fill }}>
         <AppText variant="body" weight="600" tone={down ? 'onTint' : 'label'}>
           {label}
         </AppText>

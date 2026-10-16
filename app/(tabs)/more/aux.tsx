@@ -15,6 +15,7 @@ import { AppText } from '@/components/ui/AppText';
 import { GroupCard } from '@/components/ui/GroupCard';
 import { Screen } from '@/components/ui/Screen';
 import { Segmented } from '@/components/ui/Segmented';
+import { INSET_PAGE, useColumnWidth } from '@/components/ui/useColumnWidth';
 import { OfflineBanner } from '@/components/status/OfflineBanner';
 import { useShallow } from 'zustand/react/shallow';
 
@@ -101,6 +102,7 @@ function AuxBusPanel({ bus, profile, online }: { bus: AuxBus; profile: DevicePro
   );
 
   const sections = useMemo(() => groupAuxLabels(bus.param.labels), [bus.param.labels]);
+  const buttonWidth = useColumnWidth(COLUMNS, INSET_PAGE);
   const select = (i: number) => {
     haptic.select();
     controller.write(bus.addr, encodeEnum(bus.param, i));
@@ -124,10 +126,9 @@ function AuxBusPanel({ bus, profile, online }: { bus: AuxBus; profile: DevicePro
             {chunk(sec.items, COLUMNS).map((row) => (
               <View key={row[0]?.index ?? 0} className="flex-row" style={{ gap: xp.gap }}>
                 {row.map((it) => (
-                  <AuxButton key={it.index} name={it.label} sub={labels[it.index] ?? null} bus={bus.name} selected={it.index === selectedIndex} disabled={!online || !loaded} onPress={() => select(it.index)} />
+                  <AuxButton key={it.index} name={it.label} sub={labels[it.index] ?? null} bus={bus.name} selected={it.index === selectedIndex} disabled={!online || !loaded} width={buttonWidth} onPress={() => select(it.index)} />
                 ))}
-                {row.length < COLUMNS ? Array.from({ length: COLUMNS - row.length }, (_, i) => <View key={`pad-${i}`} style={{ flex: 1 }} />) : null}
-              </View>
+                              </View>
             ))}
           </View>
         </View>
@@ -136,7 +137,7 @@ function AuxBusPanel({ bus, profile, online }: { bus: AuxBus; profile: DevicePro
   );
 }
 
-function AuxButton({ name, sub, bus, selected, disabled, onPress }: { name: string; sub: string | null; bus: string; selected: boolean; disabled: boolean; onPress: () => void }) {
+function AuxButton({ name, sub, bus, selected, disabled, width, onPress }: { name: string; sub: string | null; bus: string; selected: boolean; disabled: boolean; width: number; onPress: () => void }) {
   return (
     <Pressable
       onPress={onPress}
@@ -144,9 +145,9 @@ function AuxButton({ name, sub, bus, selected, disabled, onPress }: { name: stri
       accessibilityRole="button"
       accessibilityLabel={`${bus} ${name}${sub ? `、${sub}` : ''}${selected ? '、選択中' : ''}`}
       accessibilityState={{ selected, disabled }}
-      style={({ pressed }) => ({ flex: 1, opacity: disabled ? 0.4 : pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}
+      style={({ pressed }) => ({ width, flexGrow: 0, flexShrink: 0, opacity: disabled ? 0.4 : pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.97 : 1 }] })}
     >
-      <View style={{ height: xp.height, borderRadius: radius.xp, backgroundColor: selected ? color.accent : color.fill, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 4 }}>
+      <View style={{ width, height: xp.height, borderRadius: radius.xp, backgroundColor: selected ? color.accent : color.fill, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 4 }}>
         <AppText variant="caption2" weight="600" tone={selected ? 'onTint' : 'label'} numberOfLines={1}>
           {name}
         </AppText>
