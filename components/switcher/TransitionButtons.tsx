@@ -6,6 +6,8 @@ import Svg, { Circle } from 'react-native-svg';
 import type { DeviceProfile } from '@/core/profiles/types';
 import { CMD_AUTO, CMD_CUT } from '@/core/codec/simpleCommands';
 import { controller } from '@/core/controller/DeviceController';
+import { faderAuto, faderCut } from '@/lib/faderTransition';
+import type { FeatureRoute } from '@/lib/features';
 import { haptic } from '@/lib/haptics';
 import { useTransTime } from '@/stores/selectors';
 import { color, radius } from '@/theme/tokens';
@@ -15,9 +17,12 @@ const BIG_H = 118;
 
 /**
  * CUT：route='sysex' は押している間だけ ON（touchDown で 01、touchUp/Cancel で 00。SPEC §9-2）。
- * route='text' は簡易制御コマンド `CUT;` をタップで送る（V-80HD / VR-120HD の LAN）
+ * route='text' は簡易制御コマンド `CUT;` をタップで送る（V-80HD / VR-120HD の LAN）。
+ * route='fader' は Fader Level に最大値を 1 回書く（V-80HD / VR-120HD の USB/BLE 等。lib/faderTransition.ts）
  */
-export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile; route?: 'sysex' | 'text' }) {
+type Route = Exclude<FeatureRoute, null>;
+
+export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile; route?: Route }) {
   const a = profile.addrs.cut;
   const [down, setDown] = useState(false);
   if (route === 'sysex' && a == null) return null;
@@ -27,6 +32,7 @@ export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile
         setDown(true);
         haptic.impact();
         if (route === 'text') controller.sendText(CMD_CUT);
+        else if (route === 'fader') faderCut(profile);
         else if (a != null) controller.press(a, profile.addrs.cutValues);
       }}
       onPressOut={() => {
@@ -35,7 +41,7 @@ export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile
       }}
       accessibilityRole="button"
       accessibilityLabel="カット"
-      accessibilityHint={route === 'text' ? 'CUT で切り替えます' : '押している間、CUT スイッチを押下します'}
+      accessibilityHint={route !== 'sysex' ? 'CUT で切り替えます' : '押している間、CUT スイッチを押下します'}
     >
       <View
         style={{
@@ -51,7 +57,7 @@ export function CutButton({ profile, route = 'sysex' }: { profile: DeviceProfile
           CUT
         </AppText>
         <AppText variant="caption2" tone="label2" className="mt-1.5" maxFontSizeMultiplier={1.2}>
-          {route === 'text' ? 'タップで切替' : '押している間 ON'}
+          {route !== 'sysex' ? 'タップで切替' : '押している間 ON'}
         </AppText>
       </View>
     </Pressable>
@@ -62,8 +68,8 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const RING_R = 10;
 const RING_LEN = 2 * Math.PI * RING_R;
 
-/** AUTO：タップで AUTO SW（01 → 150ms 後 00）。遷移中は TIME から算出したリング進捗 */
-export function AutoButton({ profile, route = 'sysex' }: { profile: DeviceProfile; route?: 'sysex' | 'text' }) {
+/** AUTO：タップで AUTO SW（01 → 150ms 後 00）。route='fader' は TIME かけて Fader Level を 0→最大。遷移中は TIME から算出したリング進捗 */
+export function AutoButton({ profile, route = 'sysex' }: { profile: DeviceProfile; route?: Route }) {
   const a = profile.addrs.auto;
   const time = useTransTime(profile);
   const progress = useSharedValue(0);
@@ -78,6 +84,7 @@ export function AutoButton({ profile, route = 'sysex' }: { profile: DeviceProfil
   const start = () => {
     haptic.impact();
     if (route === 'text') controller.sendText(CMD_AUTO);
+    else if (route === 'fader') faderAuto(profile, time ?? 1);
     else if (a != null) controller.tap(a, profile.addrs.autoValues);
     const ms = Math.max(100, (time ?? 1) * 1000);
     cancelAnimation(progress);
@@ -128,7 +135,7 @@ export function AutoButton({ profile, route = 'sysex' }: { profile: DeviceProfil
   );
 }
 
-/** CUT/AUTO の経路が無い接続（V-80HD / VR-120HD の USB/BLE、または簡易制御コマンド非対応 FW）：Tバーでの代替を案内（SPEC §9-5） */
+/** CUT/AUTO の経路が無い機種・接続（featureRoute が null）：Tバーでの代替を案内（SPEC §9-5） */
 export function CutAutoUnavailable() {
   return (
     <View style={{ height: BIG_H * 2 + 10, borderRadius: radius.big, backgroundColor: color.group, padding: 16, justifyContent: 'center' }}>

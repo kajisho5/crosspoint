@@ -172,3 +172,18 @@ ioreg -p IOUSB -l -w0 | grep -iE 'bInterfaceClass|bInterfaceSubClass|USB Product
 | 簡易制御 CUT; / ATO; | どちらも `ACK;` → PGM/PST 入替（ATO は遷移中タリー 03） | ✅ FW 1.30 以上で CUT/AUTO 表示 |
 | QSEQSW; / QSEQAS; | 応答は `SEQSW:OFF;` / `SEQAS:OFF;`（資料の `SQS:` / `SQA:` ではない） | ❌→修正：両方受ける |
 | TLY; | `TLY:` に 57 個（0–3） | — |
+
+### V-80HD：CUT/AUTO を Fader Level で（2026-10-16、LAN の DTH/RQH で観測。USB/BLE も同じ SysEx アドレス）
+CUT/AUTO スイッチ（V-160HD の 0B 領域相当）は V-80HD / VR-120HD のガイドに無い。公開アドレス 00 15 02 PGM/PST Fader Level と 00 15 05 Fader Base の挙動を観測した。
+
+| 操作 | 結果 |
+|---|---|
+| `DTH:001500,2D29;`（PGM/PST を連結で入替） | PGM/PST が入れ替わる。タリーも追従【事実】 |
+| `DTH:001502,0800;`（1024） | 遷移途中（タリー 03 = 両方）。読出し 0800【事実】 |
+| `DTH:001502,0F7F;`（2047）を 1 回 | 遷移完了：PGM/PST 入替、Level 0000 に戻る、Fader Base 00⇄01 反転【事実】 |
+| Base = Upper で 1024 → 2047 | 同様に途中 → 完了。Level は Base によらず「遷移の進み量」【事実】 |
+| 0→2047 を 30ms 間隔で連続書込み | 完了まで正常に遷移【事実】 |
+
+→ アプリ：USB/BLE（と LAN 旧 FW）の CUT = Level 2047 を 1 回、AUTO = TIME 秒かけて 0→2047（lib/faderTransition.ts、featureRoute 'fader'）。Tバーは Base = Upper の間 表示位置 = 2047 − Level（物理レバーと同じ）。
+VR-120HD は同じ Panel ブロック（00 1B 00–05）なので同じ方式【推測：実機未確認】。
+検証後の状態：PGM 29 / PST 2D / Level 0 / Base 00（開始時と同じ）。

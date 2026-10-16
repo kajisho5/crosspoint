@@ -7,7 +7,7 @@ import type { DeviceProfile } from '@/core/profiles/types';
 import { encodeU14 } from '@/core/codec/value';
 import { controller } from '@/core/controller/DeviceController';
 import { haptic } from '@/lib/haptics';
-import { useFader } from '@/stores/selectors';
+import { useFader, useFaderBaseUpper } from '@/stores/selectors';
 import { color, radius } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
 
@@ -23,10 +23,14 @@ const SEND_INTERVAL_MS = 33;
 /**
  * Tバー（AB Fader 0–2047）。上下ドラッグ、端でハプティクス、指を離しても値を保持（SPEC §11 S1）。
  * 上端 = B（2047）、下端 = A（0）。
+ * Fader Base を持つ機種（V-80HD / VR-120HD）は Level = 遷移の進み量なので、Base が Upper の間は
+ * 表示位置 = max − Level、書く Level = max − 位置（物理レバーと同じ動き。完了で Base が反転しても位置は端のまま）。
  */
 export function TBar({ profile, height }: { profile: DeviceProfile; height: number }) {
-  const value = useFader(profile);
+  const level = useFader(profile);
   const max = profile.faderMax;
+  const upper = useFaderBaseUpper(profile);
+  const value = level == null ? null : upper ? max - level : level;
   const pos = useSharedValue(value ?? 0);
   const start = useSharedValue(0);
   const dragging = useSharedValue(false);
@@ -49,7 +53,7 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
     const now = Date.now();
     if (!force && now - lastSent.current < SEND_INTERVAL_MS) return;
     lastSent.current = now;
-    if (profile.addrs.fader != null) controller.write(profile.addrs.fader, encodeU14(v));
+    if (profile.addrs.fader != null) controller.write(profile.addrs.fader, encodeU14(upper ? max - v : v));
   };
 
   const pan = Gesture.Pan()

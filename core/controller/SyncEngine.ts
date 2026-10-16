@@ -81,6 +81,7 @@ function switcherRanges(p: DeviceProfile): ReadRange[] {
   const r: ReadRange[] = [{ addr: a.pgm, size: 1 }];
   if (a.pst != null) r.push({ addr: a.pst, size: 1 });
   if (a.fader != null) r.push({ addr: a.fader, size: 2 });
+  if (a.faderBase != null) r.push({ addr: a.faderBase, size: 1 });
   if (a.transType != null) r.push({ addr: a.transType, size: 1 });
   r.push({ addr: a.transTime, size: 1 });
   if (a.tallyBlock != null && a.tallyBlockSize > 0) r.push({ addr: a.tallyBlock, size: a.tallyBlockSize });

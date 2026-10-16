@@ -390,11 +390,12 @@ describe('デモ VR-120HD（8 入力・AUX 3 本）', () => {
     });
   });
 
-  test('スイッチャー：INPUT 1–8（4 列）、CUT/AUTO なし、ラベルは Preview Label から', async () => {
+  test('スイッチャー：INPUT 1–8（4 列）、CUT/AUTO は Fader Level 経由、ラベルは Preview Label から', async () => {
     await render(<SwitcherScreen />);
     expect(screen.getByText('VR-120HD')).toBeTruthy();
     expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(8);
-    expect(screen.queryByText('CUT')).toBeNull();
+    expect(screen.getByText('CUT')).toBeTruthy();
+    expect(screen.getByText('タップで切替')).toBeTruthy();
     expect(screen.getAllByText('CAM 1').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByLabelText('プログラム 1、CAM 1、選択中')).toBeTruthy();
   });

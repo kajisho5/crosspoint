@@ -170,6 +170,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
   put(m, p.addrs.pgm, [p.encodeInput(1)]);
   if (p.addrs.pst != null) put(m, p.addrs.pst, [p.encodeInput(3)]);
   if (p.addrs.fader != null) put(m, p.addrs.fader, encodeU14(Math.round(p.faderMax * 0.38)));
+  if (p.addrs.faderBase != null) put(m, p.addrs.faderBase, [0]);
   if (p.addrs.transType != null) put(m, p.addrs.transType, [0]);
   put(m, p.addrs.transTime, encodeTime(1.0));
 

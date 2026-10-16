@@ -7,17 +7,21 @@ import { useConnectionStore } from '@/stores/connection';
  * 機能の提供経路（SPEC §9-5）：
  *  - 'sysex'：プロファイルのアドレスで操作（USB/BLE/LAN 共通）
  *  - 'text' ：LAN/RS-232 簡易制御コマンド（LAN・デモのみ。本体 FW が対応版以上）
+ *  - 'fader'：CUT/AUTO 専用。CUT/AUTO スイッチのアドレスが公開されていない機種（V-80HD / VR-120HD）で、
+ *             公開アドレス PGM/PST Fader Level を使う（CUT = 2047 を 1 回書く、AUTO = TIME かけて 0→2047）。
+ *             USB/BLE/LAN 共通。動作は V-80HD 実機で確認（docs/VERIFY.md）
  *  - null   ：この機種・この接続では出さない
  */
 export type Feature = 'cutAuto' | 'macro' | 'sequencer';
-export type FeatureRoute = 'sysex' | 'text' | null;
+export type FeatureRoute = 'sysex' | 'text' | 'fader' | null;
 
 export function featureRoute(feature: Feature, profile: DeviceProfile, transport: TransportKind | null, version: string | null): FeatureRoute {
   const text = (transport === 'lan' || transport === 'mock') && supportsSimpleCommands(profile.model, version);
   switch (feature) {
     case 'cutAuto':
       if (profile.capabilities.cutAuto) return 'sysex';
-      return text ? 'text' : null;
+      if (text) return 'text';
+      return profile.addrs.fader != null && profile.addrs.faderBase != null ? 'fader' : null;
     case 'macro':
       if (text && SIMPLE_MACRO_MODELS.has(profile.model)) return 'text';
       return profile.capabilities.macro && profile.addrs.macroTrigger != null ? 'sysex' : null;

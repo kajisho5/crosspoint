@@ -106,6 +106,11 @@ export function useFader(p: DeviceProfile): number | null {
   return b && p.addrs.fader != null ? decodeU14(b) : null;
 }
 
+/** Fader Base が Upper（01）か。アドレスが無い機種・未読込は false（profiles/types.ts の faderBase 参照） */
+export function useFaderBaseUpper(p: DeviceProfile): boolean {
+  return useByte(p.addrs.faderBase ?? null) === 1;
+}
+
 /** トランジション：0=MIX / 1=WIPE */
 export function useTransType(p: DeviceProfile): number | null {
   return useByte(p.addrs.transType) ?? null;

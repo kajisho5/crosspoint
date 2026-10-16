@@ -94,6 +94,12 @@ export interface DeviceProfile {
     pst: Addr | null;
     /** T バー。無い機種は null */
     fader: Addr | null;
+    /**
+     * Fader Base（00 = Lower / 01 = Upper）。V-80HD / VR-120HD のみ。
+     * 実機観測（V-80HD FW 1.30、docs/VERIFY.md）：Fader Level はトランジションの進み量（0 = 未遷移、2047 = 完了）で、
+     * 2047 を書くと PGM/PST が入れ替わり Level は 0 に戻り Base が反転する。物理レバー位置 = Base が Upper なら max − Level
+     */
+    faderBase?: Addr | null;
     transType: Addr | null;
     transTime: Addr;
     /** INPUT ASSIGN。クロスポイントが無く物理入力直指定の機種（V-1HD / V-1SDI / VR-4HD / V-02HD MK II）は null */

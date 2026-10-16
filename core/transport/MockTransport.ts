@@ -1,4 +1,4 @@
-import { addrOffset, addrToHex, decodeTime, type Addr } from '../codec/value';
+import { addrOffset, addrToHex, decodeTime, decodeU14, encodeU14, type Addr } from '../codec/value';
 import { getProfile } from '../profiles';
 import type { DeviceProfile, ModelId } from '../profiles/types';
 import { buildDemoState, writeTally, type ByteMap } from './demoState';
@@ -159,6 +159,12 @@ export class MockTransport implements Transport {
     }
     this.setBytes(a, bytes);
     if (a === p.addrs.pgm || a === p.addrs.pst) this.refreshTally();
+    // Fader Base を持つ機種（V-80HD / VR-120HD）：Level が最大に達したら遷移完了（PGM/PST 入替、Level 0、Base 反転。実機観測）
+    if (a === p.addrs.fader && p.addrs.faderBase != null && decodeU14([bytes[0] ?? 0, bytes[1] ?? 0]) >= p.faderMax) {
+      this.swapPgmPst();
+      this.setBytes(p.addrs.fader, encodeU14(0));
+      this.setBytes(p.addrs.faderBase, [(this.mem.get(p.addrs.faderBase) ?? 0) === 1 ? 0 : 1]);
+    }
   }
 
   private swapPgmPst(): void {

@@ -1,7 +1,7 @@
 import * as net from 'net';
 import { buildDemoState, writeTally, type ByteMap } from '../../core/transport/demoState';
 import { simulateSimpleCommand } from '../../core/transport/simpleCommandSim';
-import { addr, addrOffset, addrToHex, decodeTime, type Addr } from '../../core/codec/value';
+import { addr, addrOffset, addrToHex, decodeTime, decodeU14, encodeU14, type Addr } from '../../core/codec/value';
 import { getProfile, modelIdFrom } from '../../core/profiles';
 import { simulateTextModel, seedTextModel } from '../../core/transport/textModelSim';
 import type { DeviceProfile, ModelId } from '../../core/profiles/types';
@@ -140,6 +140,14 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
     if (a === profile.addrs.transType && v > 1) return 'ERR:5;';
     if (a === profile.addrs.transTime && v > 0x28) return 'ERR:5;';
     setBytes(a, [v], sock);
+    // Fader Base を持つ機種（V-80HD / VR-120HD）：Level が最大に達したら遷移完了（PGM/PST 入替、Level 0、Base 反転。実機観測）
+    const fa = profile.addrs.fader;
+    const fb = profile.addrs.faderBase;
+    if (fa != null && fb != null && a === addrOffset(fa, 1) && decodeU14(readBytes(fa, 2)) >= profile.faderMax) {
+      swapPgmPst();
+      setBytes(fa, encodeU14(0));
+      setBytes(fb, [(mem.get(fb) ?? 0) === 1 ? 0 : 1]);
+    }
     return ackText;
   };
 
