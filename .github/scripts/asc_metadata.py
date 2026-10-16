@@ -45,8 +45,16 @@ AGE_RATING_NONE = {
     "violenceCartoonOrFantasy": "NONE",
     "violenceRealistic": "NONE",
     "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+    "gunsOrOtherWeapons": "NONE",
     "gambling": False,
     "unrestrictedWebAccess": False,
+    "lootBox": False,
+    "userGeneratedContent": False,
+    "advertising": False,
+    "ageAssurance": False,
+    "healthOrWellnessTopics": False,
+    "messagingAndChat": False,
+    "parentalControls": False,
 }
 
 
