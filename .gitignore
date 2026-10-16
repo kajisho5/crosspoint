@@ -40,3 +40,4 @@ yarn-error.*
 build/
 *.ipa
 *.dSYM.zip
+__pycache__/
