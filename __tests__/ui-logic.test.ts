@@ -50,3 +50,13 @@ test('ログはリングバッファ 500 件', () => {
   expect(lines[0]?.text).toBe('L20');
   expect(lines[lines.length - 1]?.text).toBe(`L${LOG_CAPACITY + 19}`);
 });
+
+describe('オーディオフェーダーの 0dB 吸い付き', () => {
+  const { snapZero, ZERO_DB_POS, posToDb } = require('@/components/audio/levelScale') as typeof import('@/components/audio/levelScale');
+  test('0dB の位置 ± zone は 0.0dB、外は素通し', () => {
+    const z = 9 / 340;
+    expect(posToDb(snapZero(ZERO_DB_POS + z * 0.9, z))).toBe(0);
+    expect(posToDb(snapZero(ZERO_DB_POS - z * 0.9, z))).toBe(0);
+    expect(snapZero(ZERO_DB_POS + z * 1.5, z)).toBeCloseTo(ZERO_DB_POS + z * 1.5);
+  });
+});

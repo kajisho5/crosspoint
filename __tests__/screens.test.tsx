@@ -128,10 +128,10 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     });
   });
 
-  test('CUT/AUTO は簡易制御コマンド（CUT; / ATO;）で動く、4 列・バンク 1–8', async () => {
+  test('CUT/AUTO は SysEx（0B 00 1B/1C）で動く、4 列・バンク 1–8', async () => {
     await render(<SwitcherScreen />);
     expect(screen.getByText('CUT')).toBeTruthy();
-    expect(screen.getByText('タップで切替')).toBeTruthy();
+    expect(screen.getByText('押している間 ON')).toBeTruthy();
     expect(screen.getAllByLabelText(/^プログラム \d+、/)).toHaveLength(8);
     const pgm = useParamStore.getState().values[v80hdProfile.addrs.pgm];
     const pst = useParamStore.getState().values[v80hdProfile.addrs.pst!];
@@ -142,8 +142,6 @@ describe('デモ V-80HD（SPEC §9-5 の出し分け）', () => {
     await act(async () => {
       await new Promise((r) => setTimeout(r, 60));
     });
-    const tx = useLogStore.getState().lines.filter((l) => l.dir === 'tx').map((l) => l.text);
-    expect(tx).toContain('CUT;');
     expect(useParamStore.getState().values[v80hdProfile.addrs.pgm]).toBe(pst);
     expect(useParamStore.getState().values[v80hdProfile.addrs.pst!]).toBe(pgm);
   });

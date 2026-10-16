@@ -55,6 +55,9 @@ export default function ConnectScreen() {
       router.back();
     } else if (message) {
       setNotice(message);
+      // USB/BLE は端点一覧の下に出る文言に気付きにくいので、失敗はダイアログでも知らせる（詳細は 診断 → レポート）
+      haptic.warning();
+      Alert.alert('接続できませんでした', `${message}\n\n「その他 → 診断 → レポート」で送受信ログを共有できます。`);
     }
   };
 

@@ -141,7 +141,7 @@ describe('LAN 結合（V-80HD モック：--model v80hd）', () => {
     await server.close();
   });
 
-  test('8 文字 PW、Welcome to V-80HD.、stx+ACK、0B 領域は ERR:0', async () => {
+  test('8 文字 PW、Welcome to V-80HD.、stx+ACK、0B 00 1B は CUT（実機観測）', async () => {
     const t = new LanTransport(nodeSocketFactory);
     const c = collect(t);
     const logs: string[] = [];
@@ -159,8 +159,10 @@ describe('LAN 結合（V-80HD モック：--model v80hd）', () => {
     await until(() => server.mem.get(p.pst!) === v80hd.encodeInput(4));
     expect(logs).toContain('rx ACK（文字列 "ACK"）');
 
-    t.writeParam(addr(0x0b, 0x00, 0x1e), [1]);
-    await until(() => c.errs.includes(0));
+    const pgmBefore = server.mem.get(p.pgm);
+    t.writeParam(addr(0x0b, 0x00, 0x1b), [1]);
+    t.writeParam(addr(0x0b, 0x00, 0x1b), [0]);
+    await until(() => server.mem.get(p.pst!) === pgmBefore);
 
     // 自発通知なし：本体側変更はポーリング（RQH）で拾う
     server.panelWrite(p.pgm, [v80hd.encodeInput(2)]);

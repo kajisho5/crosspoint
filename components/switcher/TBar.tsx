@@ -10,13 +10,14 @@ import { haptic } from '@/lib/haptics';
 import { useFader, useFaderBaseUpper } from '@/stores/selectors';
 import { color, radius } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
+import { FaderCap } from '../ui/FaderCap';
 
 /** V-160HD 系の既定（プロファイルの faderMax を優先） */
 export const FADER_MAX = 2047;
 const TRACK_H = 190;
 const TRACK_W = 14;
-const KNOB_W = 74;
-const KNOB_H = 28;
+const KNOB_W = 84;
+const KNOB_H = 40;
 /** 送信間引き（CommandQueue の coalesce は M2） */
 const SEND_INTERVAL_MS = 33;
 
@@ -112,7 +113,7 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
           A
         </AppText>
 
-        <View style={{ position: 'absolute', top: 40, left: 58, width: TRACK_W, height: TRACK_H, borderRadius: TRACK_W / 2, backgroundColor: color.fill2, overflow: 'hidden' }}>
+        <View style={{ position: 'absolute', top: 40, left: 58, width: TRACK_W, height: TRACK_H, borderRadius: TRACK_W / 2, backgroundColor: color.scrim, overflow: 'hidden' }}>
           <Animated.View style={[{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: color.accent }, fillStyle]} />
         </View>
         {Array.from({ length: 11 }, (_, i) => (
@@ -121,27 +122,8 @@ export function TBar({ profile, height }: { profile: DeviceProfile; height: numb
             style={{ position: 'absolute', top: 40 + i * (TRACK_H / 10), left: 58 + 26, width: i % 5 === 0 ? 14 : 8, height: 1, backgroundColor: color.label3 }}
           />
         ))}
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            {
-              position: 'absolute',
-              left: 58 + TRACK_W / 2 - KNOB_W / 2,
-              width: KNOB_W,
-              height: KNOB_H,
-              borderRadius: 8,
-              backgroundColor: color.knob,
-              alignItems: 'center',
-              justifyContent: 'center',
-              shadowColor: color.scrim,
-              shadowOpacity: 0.3,
-              shadowRadius: 4,
-              shadowOffset: { width: 0, height: 2 },
-            },
-            knobStyle,
-          ]}
-        >
-          <View style={{ width: 50, height: 2, borderRadius: 1, backgroundColor: color.gray }} />
+        <Animated.View pointerEvents="none" style={[{ position: 'absolute', left: 58 + TRACK_W / 2 - KNOB_W / 2, width: KNOB_W, height: KNOB_H }, knobStyle]}>
+          <FaderCap width={KNOB_W} height={KNOB_H} accent="accent" />
         </Animated.View>
       </View>
     </GestureDetector>

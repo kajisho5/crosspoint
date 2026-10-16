@@ -30,3 +30,9 @@ export function posToDb(p: number): number | null {
   const db = -Math.pow(g, 1 / CURVE) * -LEVEL_MIN_DB;
   return Math.round(db * 10) / 10;
 }
+
+/** 0dB 付近（|p − ZERO_DB_POS| < zone）を 0dB の位置に吸い付ける */
+export function snapZero(p: number, zone: number): number {
+  'worklet';
+  return Math.abs(p - ZERO_DB_POS) < zone ? ZERO_DB_POS : p;
+}

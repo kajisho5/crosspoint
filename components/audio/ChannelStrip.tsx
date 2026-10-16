@@ -9,14 +9,19 @@ import { haptic } from '@/lib/haptics';
 import type { ChannelState } from '@/stores/selectors';
 import { color } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
-import { dbToPos, posToDb, ZERO_DB_POS } from './levelScale';
+import { dbToPos, posToDb, snapZero, ZERO_DB_POS } from './levelScale';
+import { FaderCap } from '../ui/FaderCap';
 
 export const STRIP_W = 66;
 export const STRIP_H = 520;
 const TRACK_TOP = 70;
 const TRACK_H = 340;
-const KNOB_H = 32;
+const KNOB_H = 44;
+/** 目盛り（dB。null = −INF） */
+const SCALE: readonly (number | null)[] = [10, 5, 0, -5, -10, -20, -40, null];
 const SEND_INTERVAL_MS = 33;
+/** 0dB の吸い付き幅（指の移動量、片側） */
+const DETENT_PX = 9;
 
 export interface ChannelStripProps {
   name: string;
@@ -35,6 +40,7 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, codec = 'db3', 
   const pos = useSharedValue(state.db === undefined ? 1 : dbToPos(state.db));
   const start = useSharedValue(0);
   const dragging = useSharedValue(false);
+  const inDetent = useSharedValue(false);
   const [shownDb, setShownDb] = useState<number | null | undefined>(state.db);
   const lastSent = useRef(0);
 
@@ -63,12 +69,19 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, codec = 'db3', 
     .failOffsetX([-14, 14])
     .onBegin(() => {
       start.value = pos.value;
+      inDetent.value = Math.abs(pos.value - ZERO_DB_POS) < 1e-6;
     })
     .onStart(() => {
       dragging.value = true;
     })
     .onUpdate((e) => {
-      const p = Math.min(1, Math.max(0, start.value + e.translationY / TRACK_H));
+      const raw = Math.min(1, Math.max(0, start.value + e.translationY / TRACK_H));
+      // 0dB に吸い付く（±DETENT_PX の範囲は 0.0dB。入った瞬間に軽いハプティクス）
+      const p = snapZero(raw, DETENT_PX / TRACK_H);
+      const snapped = p === ZERO_DB_POS;
+      if (snapped && !inDetent.value) scheduleOnRN(haptic.select);
+      inDetent.value = snapped;
+      if (p === pos.value) return;
       pos.value = p;
       scheduleOnRN(send, posToDb(p), false);
     })
@@ -94,6 +107,9 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, codec = 'db3', 
   const knobStyle = useAnimatedStyle(() => ({ top: TRACK_TOP + TRACK_H * pos.value - KNOB_H / 2 }));
 
   const muted = state.mute === true;
+  // 目盛り文字の分だけフェーダーを右に寄せる
+  const trackX = Math.round(width * 0.6);
+  const capW = Math.min(40, (width - trackX) * 2 - 6);
   const dbText = shownDb === undefined ? '—' : formatDb(shownDb);
 
   const onA11y = (e: AccessibilityActionEvent) => {
@@ -125,32 +141,23 @@ export function ChannelStrip({ name, state, levelAddr, muteAddr, codec = 'db3', 
         />
       </GestureDetector>
 
-      <View pointerEvents="none" style={{ position: 'absolute', top: TRACK_TOP, left: width / 2 - 3, width: 6, height: TRACK_H, borderRadius: 3, backgroundColor: color.fill2, overflow: 'hidden' }}>
+      {SCALE.map((db) => {
+        const y = TRACK_TOP + TRACK_H * dbToPos(db);
+        const zero = db === 0;
+        return (
+          <View key={db ?? 'inf'} pointerEvents="none" style={{ position: 'absolute', top: y - 7, left: 0, width: trackX - 4, height: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+            <AppText size={9} weight={zero ? '800' : '600'} mono tone={zero ? 'label' : 'label3'} maxFontSizeMultiplier={1}>
+              {db === null ? '-∞' : db > 0 ? `+${db}` : `${db}`}
+            </AppText>
+            <View style={{ width: zero ? 7 : 4, height: zero ? 2 : 1, marginLeft: 2, backgroundColor: zero ? color.label : color.label3 }} />
+          </View>
+        );
+      })}
+      <View pointerEvents="none" style={{ position: 'absolute', top: TRACK_TOP, left: trackX - 2, width: 4, height: TRACK_H, borderRadius: 2, backgroundColor: color.scrim, overflow: 'hidden' }}>
         <Animated.View style={[{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: muted ? color.gray : color.accent }, fillStyle]} />
       </View>
-      <View pointerEvents="none" style={{ position: 'absolute', top: TRACK_TOP + TRACK_H * ZERO_DB_POS, left: 8, width: 8, height: 1, backgroundColor: color.label3 }} />
-      <View pointerEvents="none" style={{ position: 'absolute', top: TRACK_TOP + TRACK_H * ZERO_DB_POS, right: 8, width: 8, height: 1, backgroundColor: color.label3 }} />
-      <Animated.View
-        pointerEvents="none"
-        style={[
-          {
-            position: 'absolute',
-            left: 9,
-            right: 9,
-            height: KNOB_H,
-            borderRadius: 7,
-            backgroundColor: color.knob,
-            alignItems: 'center',
-            justifyContent: 'center',
-            shadowColor: color.scrim,
-            shadowOpacity: 0.3,
-            shadowRadius: 3,
-            shadowOffset: { width: 0, height: 1 },
-          },
-          knobStyle,
-        ]}
-      >
-        <View style={{ width: width - 30, height: 2, borderRadius: 1, backgroundColor: color.gray }} />
+      <Animated.View pointerEvents="none" style={[{ position: 'absolute', left: trackX - capW / 2, width: capW, height: KNOB_H }, knobStyle]}>
+        <FaderCap width={capW} height={KNOB_H} accent={master ? 'accent' : muted ? 'gray' : 'label'} />
       </Animated.View>
 
       <Pressable

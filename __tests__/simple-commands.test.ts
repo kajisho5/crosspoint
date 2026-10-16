@@ -51,11 +51,12 @@ describe('機能の経路（lib/features）', () => {
     expect(featureRoute('macro', v160, 'lan', '3.40')).toBe('sysex'); // 旧 FW は Companion 由来のアドレス
     expect(featureRoute('sequencer', v160, 'ble', null)).toBe('sysex');
   });
-  test('V-80HD / VR-120HD：CUT/AUTO は LAN（対応 FW）なら text、それ以外（USB/BLE・旧 FW）は Fader Level', () => {
-    expect(featureRoute('cutAuto', v80, 'lan', '1.30')).toBe('text');
-    expect(featureRoute('cutAuto', v80, 'lan', '1.20')).toBe('fader');
-    expect(featureRoute('cutAuto', v80, 'usb', null)).toBe('fader');
-    expect(featureRoute('cutAuto', v80, 'ble', null)).toBe('fader');
+  test('CUT/AUTO：V-80HD は全接続 SysEx（0B 00 1B/1C）。VR-120HD は LAN（対応 FW）なら text、それ以外は Fader Level', () => {
+    expect(featureRoute('cutAuto', v80, 'lan', '1.30')).toBe('sysex');
+    expect(featureRoute('cutAuto', v80, 'usb', null)).toBe('sysex');
+    expect(featureRoute('cutAuto', v80, 'ble', null)).toBe('sysex');
+    expect(featureRoute('cutAuto', vr120, 'lan', '2.20')).toBe('text');
+    expect(featureRoute('cutAuto', vr120, 'lan', '2.10')).toBe('fader');
     expect(featureRoute('cutAuto', vr120, 'usb', null)).toBe('fader');
     expect(featureRoute('macro', vr120, 'lan', '2.20')).toBe('text');
     expect(featureRoute('macro', vr120, 'usb', '2.20')).toBeNull();

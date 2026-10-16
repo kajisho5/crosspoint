@@ -108,7 +108,7 @@ export async function startMockServer(options: MockServerOptions = {}): Promise<
   const handleWrite = (sock: net.Socket, a: Addr, v: number): string => {
     const a1 = (a >> 14) & 0x7f;
     if (a1 === 0x0b) {
-      if (model !== 'V-160HD') return 'ERR:0;';
+      if (profile.addrs.cut == null) return 'ERR:0;'; // 0B 領域の割付が分かっている機種だけ（V-160HD はガイド、V-80HD は実機観測）
       if (a === profile.addrs.cut) {
         if (v === 1 && !pressed.has(a)) {
           pressed.add(a);

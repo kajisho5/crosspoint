@@ -41,7 +41,7 @@ export const v80hd: DeviceProfile = {
   sysexModelId: [0x01, 0x05, 0x14],
   passwordLength: 8,
   lanAck: 'asciiACK',
-  capabilities: { cutAuto: false, tallySubscribe: true, usb: true, ble: true, split: true, macro: false, sequencer: false },
+  capabilities: { cutAuto: true, tallySubscribe: true, usb: true, ble: true, split: true, macro: false, sequencer: false },
 
   inputCount: 16,
   bankSize: 8,
@@ -97,8 +97,10 @@ export const v80hd: DeviceProfile = {
     tallyBlock: addr(0x0c, 0x00, 0x00),
     // 実機の RQH:0C0000,000039 応答は 49 バイト（00–30H、INPUT n = 28H+n）。購読（0C0100=01）で変化時に同じ 49 バイトが届く【事実：2026-10-16】
     tallyBlockSize: 49,
-    cut: null,
-    auto: null,
+    // 0B 領域（パネルスイッチ）はガイドに記載なし。実機観測（FW 1.30.207、docs/VERIFY.md）：
+    // 0B 00 1B = [CUT]、0B 00 1C = [AUTO]（01 押下 → 00 解放）。V-160HD の 1E/1F とは番号が違う【事実：2026-10-16】
+    cut: addr(0x0b, 0x00, 0x1b),
+    auto: addr(0x0b, 0x00, 0x1c),
     // V-80HD のマクロ実行アドレス・シーケンサーのパネルスイッチはガイド未記載・公開 OSS にも無い【不明】
     macroTrigger: null,
     sequencer: null,

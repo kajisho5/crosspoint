@@ -82,10 +82,10 @@ describe('V-80HD プロファイル（SPEC §9-4・§9-5）', () => {
     expect(v80.tallyOf(3, bytes)).toBe('off');
   });
 
-  test('capabilities：CUT/AUTO は無効、USB・BLE は有効（公式 Remote Connection Guide）、件数', () => {
-    expect(v80.capabilities).toEqual({ cutAuto: false, tallySubscribe: true, usb: true, ble: true, split: true, macro: false, sequencer: false });
-    expect(v80.addrs.cut).toBeNull();
-    expect(v80.addrs.auto).toBeNull();
+  test('capabilities：CUT/AUTO は 0B 00 1B/1C（実機観測）、USB・BLE は有効（公式 Remote Connection Guide）、件数', () => {
+    expect(v80.capabilities).toEqual({ cutAuto: true, tallySubscribe: true, usb: true, ble: true, split: true, macro: false, sequencer: false });
+    expect(addrToHex(v80.addrs.cut!)).toBe('0B001B');
+    expect(addrToHex(v80.addrs.auto!)).toBe('0B001C');
     expect([v80.inputCount, v80.bankSize, v80.columns, v80.memoryCount, v80.pinpCount, v80.dskCount]).toEqual([16, 8, 4, 32, 2, 1]);
     expect(v80.memoryNoun).toBe('シーン');
     expect(v80.audioInputs).toHaveLength(15);
