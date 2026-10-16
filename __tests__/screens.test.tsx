@@ -67,6 +67,23 @@ describe('デモ V-160HD（ボード S1〜S5 のダミー値）', () => {
     expect(screen.getByLabelText('プログラム 3、CAM 3、プリセット中')).toBeTruthy();
   });
 
+  test('TIME：＋/− は 0.1s ずつ（押した瞬間に反映、離すと止まる）', async () => {
+    await render(<SwitcherScreen />);
+    const p = getProfile('V-160HD');
+    const plus = screen.getByLabelText('トランジション時間を長くする');
+    await act(async () => {
+      fireEvent(plus, 'pressIn');
+      fireEvent(plus, 'pressOut');
+    });
+    expect(useParamStore.getState().values[p.addrs.transTime]).toBe(11);
+    const minus = screen.getByLabelText('トランジション時間を短くする');
+    await act(async () => {
+      fireEvent(minus, 'pressIn');
+      fireEvent(minus, 'pressOut');
+    });
+    expect(useParamStore.getState().values[p.addrs.transTime]).toBe(10);
+  });
+
   test('S2：PinP & KEY 4 系統・DSK 2・SPLIT 2', async () => {
     await render(<KeysScreen />);
     expect(screen.getByText('PinP & KEY 4')).toBeTruthy();
