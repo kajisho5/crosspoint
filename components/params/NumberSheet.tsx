@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, Pressable, View } from 'react-native';
 import Slider from '@react-native-community/slider';
+import { decimalsOf } from '@/core/params';
 import { color, radius } from '@/theme/tokens';
 import { AppText } from '../ui/AppText';
 import { INSET_PAGE, useColumnWidth } from '../ui/useColumnWidth';
@@ -44,8 +45,9 @@ export function NumberSheet({
     if (visible) setLocal(value);
   }, [visible, value]);
 
-  const decimals = step < 1 ? Math.max(0, Math.ceil(-Math.log10(step))) : 0;
-  const snap = (v: number) => Number((Math.round(v / step) * step).toFixed(decimals));
+  const safeStep = Number.isFinite(step) && step > 0 ? step : 1;
+  const decimals = decimalsOf(safeStep);
+  const snap = (v: number) => Number((Math.round(v / safeStep) * safeStep).toFixed(decimals));
   const commit = (v: number) => {
     const s = Math.min(max, Math.max(min, snap(v)));
     setLocal(s);
@@ -76,7 +78,7 @@ export function NumberSheet({
             value={local}
             minimumValue={min}
             maximumValue={max}
-            step={step}
+            step={safeStep}
             onValueChange={(v) => setLocal(snap(v))}
             onSlidingComplete={commit}
             accessibilityLabel={title}

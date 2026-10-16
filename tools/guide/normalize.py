@@ -11,7 +11,7 @@ Param = {id, name, a1, a2, a3, size, kind, ...}
   writeOnly / readOnly
 heuristics で決まらない行は unparsed に出すので、目視で確認して手で直す。
 """
-import json, re, sys
+import json, math, re, sys
 
 DASH = '-'
 
@@ -141,6 +141,9 @@ def classify(row):
             if abs(scale - cand) < 1e-6:
                 scale = cand
                 break
+        if not _usable_scale(scale):
+            # 単位が途中で変わる（20Hz-20.0kHz）・非線形（NOISE GATE THRESHOLD）など線形換算できない → 生の値で編集（表示は raw）
+            return dict(kind='int', min=lo, max=hi, rawMin=lo, rawMax=hi, scale=1, unit='', signed=signed, raw=True, **flags)
         return dict(kind='int', min=dmin, max=dmax, rawMin=lo, rawMax=hi, scale=scale, unit=unit, signed=signed, **flags)
     # 'OFF, 1-120sec' / 'N/A, 0.0-4.0sec' → 0 にラベル付き数値
     if len(toks) == 2 and RANGE_RE.match(toks[1]) and not re.search(r'[A-Za-z]', toks[0].replace('N/A', '').replace('OFF', '').replace('Off', '')):
@@ -153,6 +156,8 @@ def classify(row):
             if abs(scale - cand) < 1e-6:
                 scale = cand
                 break
+        if not _usable_scale(scale):
+            return dict(kind='int', min=lo, max=hi, rawMin=lo, rawMax=hi, scale=1, unit='', signed=signed, raw=True, **flags)
         return dict(kind='int', min=nums[0], max=nums[-1], rawMin=lo + 1, rawMax=hi, scale=scale, unit=unit, signed=signed, zeroLabel=toks[0], zeroRaw=lo, **flags)
     # 列挙
     labels = expand_labels(meaning_clean)
@@ -170,6 +175,11 @@ def classify(row):
         # 意味欄が無い（別資料参照）→ 生の数値として編集可能にする
         return dict(kind='int', min=lo, max=hi, rawMin=lo, rawMax=hi, scale=1, unit='', signed=signed, raw=True, **flags)
     return dict(kind='unknown', rawMin=lo, rawMax=hi, **flags)
+
+def _usable_scale(scale):
+    """表示 = raw × scale が成り立つ正の有限値だけ採用（0 → toFixed(Infinity) でアプリが落ちる、負 → 逆転）"""
+    return isinstance(scale, (int, float)) and math.isfinite(scale) and scale > 0
+
 
 INST_RE = re.compile(r'\*\s*xxH:\s*(.*)$')
 

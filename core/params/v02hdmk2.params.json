@@ -2632,13 +2632,14 @@
      "sysex": "30H-00H",
      "meaning": "-80-0dB",
      "kind": "int",
-     "min": -80.0,
-     "max": 0.0,
+     "min": 48,
+     "max": 0,
      "rawMin": 48,
      "rawMax": 0,
-     "scale": -1.6666666666666667,
-     "unit": "dB",
-     "signed": true
+     "scale": 1,
+     "unit": "",
+     "signed": true,
+     "raw": true
     },
     {
      "id": "noise-gate-release",
@@ -2918,13 +2919,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-mid-q",
@@ -2972,13 +2974,14 @@
      "sysex": "02H-2AH",
      "meaning": "20-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 2.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": -0.45,
-     "unit": "kHz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "voice-changer-sw",
@@ -3394,13 +3397,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-mid-q",
@@ -3448,13 +3452,14 @@
      "sysex": "02H-2AH",
      "meaning": "20-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 2.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": -0.45,
-     "unit": "kHz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "multi-band-compressor-sw",
@@ -3512,13 +3517,14 @@
      "sysex": "7CH 70H-00H 00H",
      "meaning": "-40.0-0.0dB (原文は 17H 1 行のみ → 【不明】サイズ)",
      "kind": "int",
-     "min": -40.0,
-     "max": 0.0,
+     "min": 15856,
+     "max": 0,
      "rawMin": 15856,
      "rawMax": 0,
-     "scale": -0.0025227043390514633,
-     "unit": "dB",
-     "signed": true
+     "scale": 1,
+     "unit": "",
+     "signed": true,
+     "raw": true
     },
     {
      "id": "mb-comp-mid-ratio",
@@ -3543,13 +3549,14 @@
      "sysex": "7CH 70H-00H 00H",
      "meaning": "-40.0-0.0dB (同上【不明】)",
      "kind": "int",
-     "min": -40.0,
-     "max": 0.0,
+     "min": 15856,
+     "max": 0,
      "rawMin": 15856,
      "rawMax": 0,
-     "scale": -0.0025227043390514633,
-     "unit": "dB",
-     "signed": true
+     "scale": 1,
+     "unit": "",
+     "signed": true,
+     "raw": true
     },
     {
      "id": "mb-comp-lo-ratio",
@@ -3645,13 +3652,14 @@
      "sysex": "7CH 70H-00H 00H",
      "meaning": "-40.0-0.0dB (値は 2 バイト幅 → 【不明】サイズ)",
      "kind": "int",
-     "min": -40.0,
-     "max": 0.0,
+     "min": 15856,
+     "max": 0,
      "rawMin": 15856,
      "rawMax": 0,
-     "scale": -0.0025227043390514633,
-     "unit": "dB",
-     "signed": true
+     "scale": 1,
+     "unit": "",
+     "signed": true,
+     "raw": true
     },
     {
      "id": "aux-send-audio-in-1",
@@ -3978,13 +3986,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-mid-q",
@@ -4032,13 +4041,14 @@
      "sysex": "02H-2AH",
      "meaning": "20-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 2.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": -0.45,
-     "unit": "kHz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     }
    ]
   },
@@ -5761,13 +5771,14 @@
      "sysex": "00H-28H",
      "meaning": "0.0 sec-4.0 sec",
      "kind": "int",
-     "min": 0.0,
-     "max": 0.0,
+     "min": 0,
+     "max": 40,
      "rawMin": 0,
      "rawMax": 40,
-     "scale": 0.0,
-     "unit": "sec",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "memory-scan-sequence",

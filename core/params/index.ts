@@ -117,9 +117,16 @@ export function decodeParam(p: ParamDef, bytes: readonly number[]): ParamValue {
   }
 }
 
+/** scale から表示桁数（0〜3 に収める。scale が 0・負・非数でも落とさない：toFixed(Infinity) は RangeError） */
+export function decimalsOf(scale: number): number {
+  if (!Number.isFinite(scale) || scale <= 0 || scale >= 1) return 0;
+  const d = Math.ceil(-Math.log10(scale));
+  return Number.isFinite(d) ? Math.min(3, Math.max(0, d)) : 0;
+}
+
 export function formatInt(p: IntParam, value: number): string {
-  const decimals = p.scale < 1 ? Math.max(0, Math.ceil(-Math.log10(p.scale))) : 0;
-  const s = value.toFixed(decimals);
+  const decimals = decimalsOf(p.scale);
+  const s = (Number.isFinite(value) ? value : 0).toFixed(decimals);
   return p.unit ? `${s}${p.unit === '%' || p.unit === '°' ? '' : ' '}${p.unit}` : s;
 }
 

@@ -3421,13 +3421,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-1-eq-mid",
@@ -3457,13 +3458,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-1-eq-mid-q",
@@ -3511,13 +3513,14 @@
      "sysex": "00H-09H",
      "meaning": "55Hz-800Hz",
      "kind": "int",
-     "min": 55.0,
-     "max": 55.0,
+     "min": 0,
+     "max": 9,
      "rawMin": 0,
      "rawMax": 9,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-1-delay",
@@ -3565,13 +3568,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-2-eq-mid",
@@ -3601,13 +3605,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-2-eq-mid-q",
@@ -3655,13 +3660,14 @@
      "sysex": "00H-09H",
      "meaning": "55Hz-800Hz",
      "kind": "int",
-     "min": 55.0,
-     "max": 55.0,
+     "min": 0,
+     "max": 9,
      "rawMin": 0,
      "rawMax": 9,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-3-eq-hi",
@@ -3691,13 +3697,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-3-eq-mid",
@@ -3727,13 +3734,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-3-eq-mid-q",
@@ -3781,13 +3789,14 @@
      "sysex": "00H-09H",
      "meaning": "55Hz-800Hz",
      "kind": "int",
-     "min": 55.0,
-     "max": 55.0,
+     "min": 0,
+     "max": 9,
      "rawMin": 0,
      "rawMax": 9,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-3-delay",
@@ -3835,13 +3844,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-4-eq-mid",
@@ -3871,13 +3881,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-4-eq-mid-q",
@@ -3987,13 +3998,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "audio-in-eq-mid",
@@ -4023,13 +4035,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "audio-in-eq-mid-q",
@@ -4077,13 +4090,14 @@
      "sysex": "00H-09H",
      "meaning": "55Hz-800Hz",
      "kind": "int",
-     "min": 55.0,
-     "max": 55.0,
+     "min": 0,
+     "max": 9,
      "rawMin": 0,
      "rawMax": 9,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "audio-in-delay",
@@ -4131,13 +4145,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "mic-eq-mid",
@@ -4167,13 +4182,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "mic-eq-mid-q",
@@ -4221,13 +4237,14 @@
      "sysex": "00H-09H",
      "meaning": "55Hz-800Hz",
      "kind": "int",
-     "min": 55.0,
-     "max": 55.0,
+     "min": 0,
+     "max": 9,
      "rawMin": 0,
      "rawMax": 9,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "mic-delay",
@@ -4423,13 +4440,14 @@
      "sysex": "00H-08H",
      "meaning": "700Hz-11.0KHz",
      "kind": "int",
-     "min": 700.0,
-     "max": 700.0,
+     "min": 0,
+     "max": 8,
      "rawMin": 0,
      "rawMax": 8,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "main-eq-mid",
@@ -4459,13 +4477,14 @@
      "sysex": "00H-1BH",
      "meaning": "20.0Hz-10.0KHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 27,
      "rawMin": 0,
      "rawMax": 27,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "main-eq-mid-q",
@@ -4513,13 +4532,14 @@
      "sysex": "00H-09H",
      "meaning": "55Hz-800Hz",
      "kind": "int",
-     "min": 55.0,
-     "max": 55.0,
+     "min": 0,
+     "max": 9,
      "rawMin": 0,
      "rawMax": 9,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi-in-1-rev-send",

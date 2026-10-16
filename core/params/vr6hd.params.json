@@ -4386,13 +4386,14 @@
      "sysex": "30H-00H",
      "meaning": "-80-0dB",
      "kind": "int",
-     "min": -80.0,
-     "max": 0.0,
+     "min": 48,
+     "max": 0,
      "rawMin": 48,
      "rawMax": 0,
-     "scale": -1.6666666666666667,
-     "unit": "dB",
-     "signed": true
+     "scale": 1,
+     "unit": "",
+     "signed": true,
+     "raw": true
     },
     {
      "id": "noise-gate-release",
@@ -4621,13 +4622,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -4684,13 +4686,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -4747,13 +4750,14 @@
      "sysex": "02H-2AH",
      "meaning": "20Hz-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "voice-changer-sw",
@@ -4872,13 +4876,14 @@
      "sysex": "01H-45H",
      "meaning": "20.0Hz-1kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 1,
+     "max": 69,
      "rawMin": 1,
      "rawMax": 69,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     }
    ]
   },
@@ -5489,13 +5494,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -5552,13 +5558,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -5615,13 +5622,14 @@
      "sysex": "02H-2AH",
      "meaning": "20Hz-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "geq-sw",
@@ -6420,13 +6428,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -6483,13 +6492,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -6546,13 +6556,14 @@
      "sysex": "02H-2AH",
      "meaning": "20Hz-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "geq-sw",
@@ -7791,13 +7802,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -7854,13 +7866,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -7917,13 +7930,14 @@
      "sysex": "02H-2AH",
      "meaning": "20Hz-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "geq-sw",
@@ -8965,13 +8979,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -9028,13 +9043,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -9091,13 +9107,14 @@
      "sysex": "02H-2AH",
      "meaning": "20Hz-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     }
    ]
   },
@@ -9234,13 +9251,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -9297,13 +9315,14 @@
      "sysex": "02H-3EH",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -9360,13 +9379,14 @@
      "sysex": "02H-2AH",
      "meaning": "20Hz-2.00kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     }
    ]
   },
@@ -30301,9 +30321,20 @@
   {
    "id": "memory-47",
    "title": "MEMORY",
-   "area": "name",
+   "area": "other",
    "instances": null,
    "params": [
+    {
+     "id": "video-parameter-memory-1",
+     "name": "VIDEO PARAMETER (MEMORY 1)",
+     "a1": "10",
+     "a2": "00",
+     "a3": "00",
+     "size": 1,
+     "sysex": "",
+     "meaning": "Load/rewrite video parameter stored in Memory 1",
+     "kind": "unknown"
+    },
     {
      "id": "name",
      "name": "NAME",

@@ -5084,13 +5084,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "sdi1-in-eq-mid-q",
@@ -5210,13 +5211,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "sdi2-in-eq-mid-q",
@@ -5336,13 +5338,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "sdi3-in-eq-mid-q",
@@ -5462,13 +5465,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi3-in-eq-mid-q",
@@ -5588,13 +5592,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "hdmi4-in-eq-mid-q",
@@ -5722,13 +5727,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "audio-in-eq-mid-q",
@@ -5848,13 +5854,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "mic-in-eq-mid-q",
@@ -6122,13 +6129,14 @@
      "sysex": "00H-78H",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "master-out-eq-mid-q",

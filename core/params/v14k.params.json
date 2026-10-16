@@ -2389,13 +2389,14 @@
      "sysex": "30H-00H",
      "meaning": "-80-0 dB",
      "kind": "int",
-     "min": -80.0,
-     "max": 0.0,
+     "min": 48,
+     "max": 0,
      "rawMin": 48,
      "rawMax": 0,
-     "scale": -1.6666666666666667,
-     "unit": "dB",
-     "signed": true
+     "scale": 1,
+     "unit": "",
+     "signed": true,
+     "raw": true
     },
     {
      "id": "noise-gate-release",
@@ -2570,13 +2571,14 @@
      "sysex": "01H-45H",
      "meaning": "20.0 Hz-1.00 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 1,
+     "max": 69,
      "rawMin": 1,
      "rawMax": 69,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-sw",
@@ -2657,13 +2659,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -2720,13 +2723,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -2783,13 +2787,14 @@
      "sysex": "02H-2AH",
      "meaning": "20 Hz-2.00 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     }
    ]
   },
@@ -3131,13 +3136,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -3194,13 +3200,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -3257,13 +3264,14 @@
      "sysex": "02H-2AH",
      "meaning": "20 Hz-2.00 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "compressor-limiter-sw",
@@ -3867,13 +3875,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -3930,13 +3939,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -3993,13 +4003,14 @@
      "sysex": "02H-2AH",
      "meaning": "20 Hz-2.00 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "compressor-limiter-sw",
@@ -4863,13 +4874,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -4926,13 +4938,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -4989,13 +5002,14 @@
      "sysex": "02H-2AH",
      "meaning": "20 Hz-2.00 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "compressor-limiter-sw",
@@ -5844,13 +5858,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-hi-mid-q",
@@ -5907,13 +5922,14 @@
      "sysex": "02H-3EH",
      "meaning": "20 Hz-20.0 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 62,
      "rawMin": 2,
      "rawMax": 62,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-lo-mid-q",
@@ -5970,13 +5986,14 @@
      "sysex": "02H-2AH",
      "meaning": "20 Hz-2.00 kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 2,
+     "max": 42,
      "rawMin": 2,
      "rawMax": 42,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     }
    ]
   },
@@ -10223,7 +10240,1897 @@
    ]
   },
   {
-   "id": "tally-info-35",
+   "id": "switch-control-panel-switch-on-off-35",
+   "title": "SWITCH CONTROL (panel switch ON/OFF)",
+   "area": "panel",
+   "instances": null,
+   "params": [
+    {
+     "id": "pgm-a-1-button",
+     "name": "PGM/A 1 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "00",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-2-button",
+     "name": "PGM/A 2 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "01",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-3-button",
+     "name": "PGM/A 3 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "02",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-4-button",
+     "name": "PGM/A 4 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "03",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-5-button",
+     "name": "PGM/A 5 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "04",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-6-button",
+     "name": "PGM/A 6 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "05",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-7-button",
+     "name": "PGM/A 7 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "06",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pgm-a-8-button",
+     "name": "PGM/A 8 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "07",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-1-button",
+     "name": "PST/B 1 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "08",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-2-button",
+     "name": "PST/B 2 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "09",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-3-button",
+     "name": "PST/B 3 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "0A",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-4-button",
+     "name": "PST/B 4 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "0B",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-5-button",
+     "name": "PST/B 5 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "0C",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-6-button",
+     "name": "PST/B 6 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "0D",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-7-button",
+     "name": "PST/B 7 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "0E",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pst-b-8-button",
+     "name": "PST/B 8 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "0F",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "assignable-pads-select-button",
+     "name": "ASSIGNABLE PADS SELECT Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "10",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "assignable-pad-1",
+     "name": "ASSIGNABLE PAD 1",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "11",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-2",
+     "name": "ASSIGNABLE PAD 2",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "12",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-3",
+     "name": "ASSIGNABLE PAD 3",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "13",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-4",
+     "name": "ASSIGNABLE PAD 4",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "14",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-5",
+     "name": "ASSIGNABLE PAD 5",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "15",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-6",
+     "name": "ASSIGNABLE PAD 6",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "16",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-7",
+     "name": "ASSIGNABLE PAD 7",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "17",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "assignable-pad-8",
+     "name": "ASSIGNABLE PAD 8",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "18",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the pad, 1: press the pad",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the pad",
+      "1: press the pad"
+     ]
+    },
+    {
+     "id": "transition-button",
+     "name": "TRANSITION Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "19",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "cut-button",
+     "name": "CUT Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "1A",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "auto-button",
+     "name": "AUTO Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "1B",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "pinp-key-button",
+     "name": "PinP&KEY Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "1C",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "split-button",
+     "name": "SPLIT Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "1D",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "control-1-button",
+     "name": "CONTROL 1 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "1E",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "control-2-button",
+     "name": "CONTROL 2 Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "1F",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "capture-image-button",
+     "name": "CAPTURE IMAGE Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "20",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "dsk-pvw-button",
+     "name": "DSK PVW Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "21",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "dsk-pgm-button",
+     "name": "DSK PGM Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "22",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "menu-button",
+     "name": "MENU Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "23",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "enter-button",
+     "name": "ENTER Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "24",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    },
+    {
+     "id": "output-fade-button",
+     "name": "OUTPUT FADE Button",
+     "a1": "0B",
+     "a2": "00",
+     "a3": "25",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the button, 1: press the button",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the button",
+      "1: press the button"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "internal-switch-control-internal-switch-on-off-36",
+   "title": "INTERNAL SWITCH CONTROL (internal switch ON/OFF)",
+   "area": "panel",
+   "instances": null,
+   "params": [
+    {
+     "id": "pgm-a-1",
+     "name": "PGM/A 1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "00",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-2",
+     "name": "PGM/A 2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "01",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-3",
+     "name": "PGM/A 3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "02",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-4",
+     "name": "PGM/A 4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "03",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-5",
+     "name": "PGM/A 5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "04",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-6",
+     "name": "PGM/A 6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "05",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-7",
+     "name": "PGM/A 7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "06",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pgm-a-8",
+     "name": "PGM/A 8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "07",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-1",
+     "name": "PST/B 1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "08",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-2",
+     "name": "PST/B 2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "09",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-3",
+     "name": "PST/B 3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "0A",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-4",
+     "name": "PST/B 4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "0B",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-5",
+     "name": "PST/B 5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "0C",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-6",
+     "name": "PST/B 6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "0D",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-7",
+     "name": "PST/B 7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "0E",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "pst-b-8",
+     "name": "PST/B 8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "0F",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "reserved",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "10",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-11",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "11",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-12",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "12",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-13",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "13",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-14",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "14",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-15",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "15",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-16",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "16",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "reserved-17",
+     "name": "reserved",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "17",
+     "size": 1,
+     "sysex": "",
+     "meaning": "",
+     "kind": "unknown"
+    },
+    {
+     "id": "assignable-pad-panel-1",
+     "name": "ASSIGNABLE PAD Panel 1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "18",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-2",
+     "name": "ASSIGNABLE PAD Panel 2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "19",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-3",
+     "name": "ASSIGNABLE PAD Panel 3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "1A",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-4",
+     "name": "ASSIGNABLE PAD Panel 4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "1B",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-5",
+     "name": "ASSIGNABLE PAD Panel 5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "1C",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-6",
+     "name": "ASSIGNABLE PAD Panel 6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "1D",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-7",
+     "name": "ASSIGNABLE PAD Panel 7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "1E",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-panel-8",
+     "name": "ASSIGNABLE PAD Panel 8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "1F",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-1",
+     "name": "ASSIGNABLE PAD A-1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "20",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-2",
+     "name": "ASSIGNABLE PAD A-2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "21",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-3",
+     "name": "ASSIGNABLE PAD A-3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "22",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-4",
+     "name": "ASSIGNABLE PAD A-4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "23",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-5",
+     "name": "ASSIGNABLE PAD A-5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "24",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-6",
+     "name": "ASSIGNABLE PAD A-6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "25",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-7",
+     "name": "ASSIGNABLE PAD A-7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "26",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-a-8",
+     "name": "ASSIGNABLE PAD A-8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "27",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-1",
+     "name": "ASSIGNABLE PAD B-1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "28",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-2",
+     "name": "ASSIGNABLE PAD B-2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "29",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-3",
+     "name": "ASSIGNABLE PAD B-3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "2A",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-4",
+     "name": "ASSIGNABLE PAD B-4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "2B",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-5",
+     "name": "ASSIGNABLE PAD B-5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "2C",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-6",
+     "name": "ASSIGNABLE PAD B-6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "2D",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-7",
+     "name": "ASSIGNABLE PAD B-7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "2E",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-b-8",
+     "name": "ASSIGNABLE PAD B-8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "2F",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-1",
+     "name": "ASSIGNABLE PAD C-1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "30",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-2",
+     "name": "ASSIGNABLE PAD C-2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "31",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-3",
+     "name": "ASSIGNABLE PAD C-3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "32",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-4",
+     "name": "ASSIGNABLE PAD C-4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "33",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-5",
+     "name": "ASSIGNABLE PAD C-5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "34",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-6",
+     "name": "ASSIGNABLE PAD C-6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "35",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-7",
+     "name": "ASSIGNABLE PAD C-7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "36",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-c-8",
+     "name": "ASSIGNABLE PAD C-8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "37",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-1",
+     "name": "ASSIGNABLE PAD D-1",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "38",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-2",
+     "name": "ASSIGNABLE PAD D-2",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "39",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-3",
+     "name": "ASSIGNABLE PAD D-3",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "3A",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-4",
+     "name": "ASSIGNABLE PAD D-4",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "3B",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-5",
+     "name": "ASSIGNABLE PAD D-5",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "3C",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-6",
+     "name": "ASSIGNABLE PAD D-6",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "3D",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-7",
+     "name": "ASSIGNABLE PAD D-7",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "3E",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    },
+    {
+     "id": "assignable-pad-d-8",
+     "name": "ASSIGNABLE PAD D-8",
+     "a1": "0B",
+     "a2": "04",
+     "a3": "3F",
+     "size": 1,
+     "sysex": "00H-01H",
+     "meaning": "0: take your finger off the switch, 1: press the switch",
+     "kind": "enum",
+     "values": [
+      0,
+      1
+     ],
+     "labels": [
+      "0: take your finger off the switch",
+      "1: press the switch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tally-info-37",
    "title": "TALLY INFO",
    "area": "tally",
    "instances": null,
@@ -10561,7 +12468,7 @@
    ]
   },
   {
-   "id": "tally-auto-send-36",
+   "id": "tally-auto-send-38",
    "title": "TALLY AUTO SEND",
    "area": "tally",
    "instances": null,
@@ -10588,7 +12495,7 @@
    ]
   },
   {
-   "id": "camera-control-37",
+   "id": "camera-control-39",
    "title": "CAMERA CONTROL",
    "area": "name",
    "instances": [

@@ -3845,13 +3845,14 @@
      "sysex": "00H-78H",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-mid-q",
@@ -4189,13 +4190,14 @@
      "sysex": "00H-78H",
      "meaning": "20Hz-20.0kHz",
      "kind": "int",
-     "min": 20.0,
-     "max": 20.0,
+     "min": 0,
+     "max": 120,
      "rawMin": 0,
      "rawMax": 120,
-     "scale": 0.0,
-     "unit": "Hz",
-     "signed": false
+     "scale": 1,
+     "unit": "",
+     "signed": false,
+     "raw": true
     },
     {
      "id": "equalizer-mid-q",

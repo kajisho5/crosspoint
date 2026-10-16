@@ -12,6 +12,7 @@ import { Screen } from '@/components/ui/Screen';
 import { Segmented } from '@/components/ui/Segmented';
 import { OfflineBanner } from '@/components/status/OfflineBanner';
 import { ParamRow } from '@/components/params/ParamRow';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 import { PickerSheet } from '@/components/params/PickerSheet';
 import { PtzPad } from '@/components/params/PtzPad';
 
@@ -71,14 +72,16 @@ export default function MenuGroupScreen() {
 
         {isCamera ? <PtzPad group={group} instance={instance} online={online} /> : null}
 
-        <GroupCard
-          title={instance ? `${group.title} — ${instance.label}` : group.title}
-          footer={group.warning ? `注意：${group.warning}` : 'Remote Control Guide の項目名のまま表示しています。'}
-        >
-          {group.params.map((p) => (
-            <ParamRow key={`${p.id}-${instance?.xx ?? ''}`} p={p} instance={instance} online={online} />
-          ))}
-        </GroupCard>
+        <ErrorBoundary label={`menu/${group.id}`}>
+          <GroupCard
+            title={instance ? `${group.title} — ${instance.label}` : group.title}
+            footer={group.warning ? `注意：${group.warning}` : 'Remote Control Guide の項目名のまま表示しています。生の値（raw）の項目は、資料の換算が線形でないため本体の数値をそのまま編集します。'}
+          >
+            {group.params.map((p) => (
+              <ParamRow key={`${p.id}-${instance?.xx ?? ''}`} p={p} instance={instance} online={online} />
+            ))}
+          </GroupCard>
+        </ErrorBoundary>
       </View>
     </Screen>
   );

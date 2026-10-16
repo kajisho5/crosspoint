@@ -9,6 +9,7 @@ import { controller } from '@/core/controller/DeviceController';
 import { useConnectionStore } from '@/stores/connection';
 import { useSettingsStore } from '@/stores/settings';
 import { color } from '@/theme/tokens';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 
 const KEEP_AWAKE_TAG = 'crosspoint-online';
 
@@ -43,11 +44,13 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: color.bg }}>
       <StatusBar style="auto" />
-      <Stack screenOptions={{ contentStyle: { backgroundColor: color.bg } }}>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="connect" options={{ presentation: 'modal', title: '接続', headerShown: true }} />
-      </Stack>
+      <ErrorBoundary label="root">
+        <Stack screenOptions={{ contentStyle: { backgroundColor: color.bg } }}>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="connect" options={{ presentation: 'modal', title: '接続', headerShown: true }} />
+        </Stack>
+      </ErrorBoundary>
     </GestureHandlerRootView>
   );
 }

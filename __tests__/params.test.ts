@@ -124,3 +124,29 @@ describe('params カタログ', () => {
     expect(r.some((x) => x.addr === addr(0x0a, 0x00, 0x03))).toBe(true); // Loaded Memory Number
   });
 });
+
+describe('数値パラメータの scale（AUDIO INPUT タップでクラッシュした件）', () => {
+  const { decimalsOf, formatInt } = jest.requireActual('@/core/params') as typeof import('@/core/params');
+  const { getCatalog } = jest.requireActual('@/core/params') as typeof import('@/core/params');
+  const { PROFILES } = jest.requireActual('@/core/profiles') as typeof import('@/core/profiles');
+
+  test('全機種のカタログで int の scale は正の有限値', () => {
+    for (const model of Object.keys(PROFILES) as (keyof typeof PROFILES)[]) {
+      for (const g of getCatalog(model).groups) {
+        for (const p of g.params) {
+          if (p.kind !== 'int') continue;
+          expect([model, g.id, p.id, Number.isFinite(p.scale) && p.scale > 0]).toEqual([model, g.id, p.id, true]);
+        }
+      }
+    }
+  });
+
+  test('scale が 0・負・NaN でも formatInt / decimalsOf は例外を出さない', () => {
+    for (const scale of [0, -1.6, Number.NaN, 0.1, 0.01, 1]) {
+      expect(() => decimalsOf(scale)).not.toThrow();
+      expect(() => formatInt({ kind: 'int', scale, unit: 'Hz' } as never, 20)).not.toThrow();
+    }
+    expect(decimalsOf(0)).toBe(0);
+    expect(decimalsOf(0.1)).toBe(1);
+  });
+});
