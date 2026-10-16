@@ -171,11 +171,15 @@ def ensure_review_detail(app_id):
         attrs["contactLastName"] = env["last"]
     if env["phone"]:
         attrs["contactPhone"] = env["phone"]
-    api("PATCH", f"/v1/betaAppReviewDetails/{detail['id']}", {"data": {
-        "type": "betaAppReviewDetails", "id": detail["id"], "attributes": attrs}})
     merged = {**cur, **attrs}
     missing = [k for k in ("contactEmail", "contactFirstName", "contactLastName", "contactPhone") if not merged.get(k)]
-    print("beta app review detail: notes set" + (f"; missing contact fields: {', '.join(missing)}" if missing else ""))
+    if missing:
+        # App Store Connect は連絡先が揃っていない PATCH を 409 で拒否する。欠けていれば触らずに警告だけ出す
+        print(f"beta app review detail: not updated; missing contact fields: {', '.join(missing)}")
+        return missing
+    api("PATCH", f"/v1/betaAppReviewDetails/{detail['id']}", {"data": {
+        "type": "betaAppReviewDetails", "id": detail["id"], "attributes": attrs}})
+    print("beta app review detail: contact + notes set")
     return missing
 
 
