@@ -6,6 +6,12 @@ name: testflight
 # 必要な Secrets（docs/TESTFLIGHT.md）：APPSTORE_ISSUER_ID, APPSTORE_KEY_ID, APPSTORE_P8, APPLE_TEAM_ID
 on:
   workflow_dispatch:
+    inputs:
+      external:
+        description: '外部テスター向けに出す（External グループ・パブリックリンク・Beta App Review 提出）'
+        type: boolean
+        required: false
+        default: false
   push:
     tags: ['v*']
 
@@ -225,6 +231,21 @@ jobs:
           version=$(/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' "$info")
           build=$(/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleVersion' "$info")
           "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_upload.py "$ipa" "$BUNDLE_ID" "$version" "$build" 2>&1 | tee upload.log
+      - name: External testers (public link, Beta App Review)
+        # workflow_dispatch で external=true のときだけ。処理完了を待って External グループに追加・パブリックリンク有効化・審査提出
+        # （.github/scripts/asc_external.py）。連絡先は Repository variables BETA_CONTACT_EMAIL / _FIRST / _LAST / _PHONE
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.external }}
+        env:
+          BETA_CONTACT_EMAIL: ${{ vars.BETA_CONTACT_EMAIL }}
+          BETA_CONTACT_FIRST: ${{ vars.BETA_CONTACT_FIRST }}
+          BETA_CONTACT_LAST: ${{ vars.BETA_CONTACT_LAST }}
+          BETA_CONTACT_PHONE: ${{ vars.BETA_CONTACT_PHONE }}
+        run: |
+          set -o pipefail
+          info="$RUNNER_TEMP/App.xcarchive/Info.plist"
+          version=$(/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleShortVersionString' "$info")
+          build=$(/usr/libexec/PlistBuddy -c 'Print :ApplicationProperties:CFBundleVersion' "$info")
+          "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_external.py "$BUNDLE_ID" "$version" "$build" External 2>&1 | tee external.log
       - name: Show distribution log
         if: failure()
         run: |
@@ -249,4 +270,5 @@ jobs:
             archive.log
             export.log
             upload.log
+            external.log
           if-no-files-found: ignore

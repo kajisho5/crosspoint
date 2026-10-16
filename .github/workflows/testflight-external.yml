@@ -1,0 +1,51 @@
+name: testflight-external
+
+# 既にアップロード済みのビルドを外部テスター向けに出す（External グループ作成・パブリックリンク有効化・Beta App Review 提出）。
+# testflight.yml を external=true で動かしても同じ処理が走る。ここは「後から出す」「連絡先を入れて再実行」用。
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'CFBundleShortVersionString（例 0.1.0）'
+        required: true
+        default: '0.1.0'
+      build:
+        description: 'CFBundleVersion（= testflight の run number）'
+        required: true
+      group:
+        description: 'External グループ名'
+        required: false
+        default: 'External'
+
+env:
+  BUNDLE_ID: com.seventhwell.crospoint
+
+jobs:
+  external:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+      BETA_CONTACT_EMAIL: ${{ vars.BETA_CONTACT_EMAIL }}
+      BETA_CONTACT_FIRST: ${{ vars.BETA_CONTACT_FIRST }}
+      BETA_CONTACT_LAST: ${{ vars.BETA_CONTACT_LAST }}
+      BETA_CONTACT_PHONE: ${{ vars.BETA_CONTACT_PHONE }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write App Store Connect API key
+        env:
+          P8: ${{ secrets.APPSTORE_P8 }}
+        run: |
+          [ -n "$P8" ] && [ -n "$ASC_KEY_ID" ] && [ -n "$ASC_ISSUER_ID" ] || { echo "::error::APPSTORE_* secrets missing (docs/TESTFLIGHT.md)"; exit 1; }
+          mkdir -p "$RUNNER_TEMP/keys"
+          printf '%s\n' "$P8" > "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+          chmod 600 "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+      - name: External testers
+        run: |
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --quiet pyjwt cryptography
+          "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_external.py "$BUNDLE_ID" "${{ inputs.version }}" "${{ inputs.build }}" "${{ inputs.group }}"
+      - name: Remove API key
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/keys"
