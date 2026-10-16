@@ -1,4 +1,6 @@
-# SW CROSSPOINT 実装仕様書（実装担当 Claude Code 向け）v1.2
+# SW CROSSPOINT 実装仕様書（実装担当 Claude Code 向け）v1.3
+
+> **v1.3 変更点（2026-10-16）**：①対応機種を 13 に拡張（§9-4c）— SysEx：VR-6HD / V-1-4K / V-8HD / V-1HD / V-1SDI / VR-4HD / V-02HD MK II、LAN テキストコマンド：V-60HD / V-600UHD / VR-50HD MK II。根拠はすべて proav.roland.com の公開 PDF（§17）②プロファイルの型を一般化（無い要素は null → 画面に出さない。`faderMax` / `transTypes` / `audioLevelCodec` / `version` / `protocol`）③仮想アドレス（`7F xx xx`）と LanTransport テキストモード④V-160HD カタログを eng06（FW 3.30）で再生成（AUX 1–3、HDMI 5–8 TEST PATTERN）⑤F14 にテストパターン⑥クロスポイントの固定幅と `onTint` の修正（§11）。
 
 > **v1.2 変更点（2026-10-15）**：①§0 ルール8 を改訂 — 公式 iPad アプリのパッケージ内平文リソース（Info.plist・nib・Localizable.strings）に基づく **UI 構成の参考**をオーナー判断で可とした（`docs/ANALYSIS-official-app.md`）。通信仕様の根拠は従来どおり公開資料のみ（バイナリは FairPlay 暗号化で読めない）②§14 に v2 候補への参照を追加③M2〜M4 の実装に合わせ §8-2 のファイル名を実態に揃えた（`core/codec/lanParser.ts` / `ump.ts`、`core/transport/socket.ts`）。
 >
@@ -472,6 +474,31 @@ AUDIO INPUT の x（00–14）割当：AUDIO IN 1, 2, 3/4, USB IN, Bluetooth IN,
 | videoAssign | 000008–10 / 000011・24・25 | 1 | HDMI Out 1–3 / SDI Out 1–3 / USB / Stream&Record / LCD の割当（Program, Sub Program, Preview, AUX 1–3, DSK 1-2 Source, Multi-View, …）/ AUX 1–3 Source | F14 / F15 |
 | sdiOut | 00 (11–13) 00 | 1 | 3G-SDI Mapping Level-A/B（SDI OUT 1–3 = 11H–13H） | F14 |
 
+### 9-4c. v1.3 追加機種（公式 Remote Control Guide / Reference Manual の MIDI Implementation・Command Reference 準拠）
+根拠はすべて proav.roland.com の公開 PDF（shell から取得可。`tools/guide/notes/<id>.md` に転記＋根拠行番号）。実機未確認の項目は §13 に列挙。
+
+**SysEx 機種（アドレスマップあり）**
+| 機種 | Model ID | 接続 | PGM / PST | フェーダー | CUT / AUTO | タリー | 特記 |
+|---|---|---|---|---|---|---|---|
+| VR-6HD | `00 00 00 00 2C` | LAN（PW 4 桁、ack 06H）/ USB / **BLE MIDI（仕様に GATT MIDI 明記）** | `000F00` / `000F01`（VIDEO IN 1–6 = 00–05、STILL = 06–15、VP/SRT = 16、INPUT 1–6 = 17–1C） | `000F02` 0–2047 | SysEx 無し → LAN 簡易制御コマンド | `0C0000` 29B | PinP 2（`000C/0D`）、DSK 1（`000E`、FILL = 05）、SPLIT `000B08`、メモリー 32、AUX `00000C`。カタログ `vr6hd.params.json`（1090 項目） |
+| V-1-4K | `01 06 10`（3 バイト） | LAN（**PW 8 文字**、ack `stxACK;`）/ USB | `001200` / `001201`（HDMI 1–5 = 00–04、STILL = 05–06、INPUT 1–8 = 07–0E、BLACK = 0F） | `001202` **0–4095** | `0B001A` / `0B001B` | `0C0000` 15B | INPUT ASSIGN は相対値（00 = その番号の HDMI、01–02 STILL、03 BLACK）→ `assignToSource` / `sourceToAssign`。PinP は専用アドレス無し（非表示）、DSK `0010xx`。メモリー 8。簡易制御コマンド対応だがマクロ・シーケンサーは無し |
+| V-8HD | `00 00 00 68` | USB のみ（REMOTE 端子。USB MIDI クラスは【推測】） | `001200` / `001201`（INPUT 1–8 = 00–07） | `001203` 0–2047 | `0B0018` / `0B0019` | `0C0000` 8B（HDMI IN 1–8 の順） | INPUT n ASSIGN `00 (n−1) 00`（00 = HDMI n、01–08 = STILL）、PinP 2（`000D/0E`）、DSK `000F`、SPLIT/VFX `0010/11`、メモリー 24、マクロ `500504`【事実：Reference Manual】、版 `020000` 3 バイト |
+| V-1HD | `00 00 00 20` | USB MIDI（**MIDI Rx SOURCE = USB** 必須）/ MIDI DIN | `710008` / `710009`（HDMI 1–4 = 00–03、A/B バス） | `#710000` 0–1023 | 無し（[CUT] は種別選択、TRANSFORMER は【不明】） | 無し | トランジション `71000C`（WIPE/MIX/CUT）、時間 `710014`、音声 `7101xx` 1 バイト 0–127（ミュート無し）、メモリー `730100`（現在番号無し）、版 `700000` ASCII 8 文字、Device ID 可変（既定 10H） |
+| V-1SDI | `00 00 00 31` | MIDI IN/OUT（USB MIDI インターフェース経由）/ RS-232 | `710308` / `710309`（INPUT 1–4） | `#710300` 0–1023 | AUTO = CTRL BUTTON `730400` に **13H → 53H**。CUT 専用無し | 無し | DSK `71001F` ON / `710020` SOURCE / `710021` TYPE、音声 `7101xx` 1 バイト、メモリー `730100`（RQ1 で現在番号）、版 `700000` ASCII 9 文字 |
+| VR-4HD | `00 00 00 29` | MIDI IN/OUT（USB MIDI インターフェース経由）/ RS-232 | `000700`（CH 1–4）。**PST・T バー無し**（書くと TRANSITION TYPE `000702` CUT/MIX/WIPE で遷移【推測】） | 無し | 無し | 無し | KEY `000704` ON / `000401` SOURCE / `000400` TYPE、音声 `#01xx03` 3 バイト・MUTE `01xx33`、MAIN `#010B00` / `010B34`、メモリー `030300` / `030301`、版 `030000` ASCII |
+| V-02HD MK II | `00 00 00 00 0A`（5 バイト。概要行の `00 00 00 54` と矛盾【不明】） | USB STREAM のみ | `002500` 背景チャンネル（INPUT 1/2）。PST 無し | `002501` **0–511** | SysEx 無し（CC のみ）→ 非表示 | 無し | トランジション `002504`（MIX/WIPE/PinP/KEY）、時間 `002000`、PinP ON `002213`、KEY ON `002325` / SOURCE `002300` / TYPE `002301`、音声 `01xx01` 3 バイト・MUTE `01xx04`、MASTER `011100` / `011104`、メモリー `0A0000` / `0A0003`（名前無し） |
+
+**LAN テキストコマンド機種（SysEx 無し。`core/profiles/virtual.ts` の仮想アドレス `7F xx xx` ⇄ `core/codec/textCommandMap.ts`）**
+| 機種 | LAN | コマンド | 読出し | 画面 |
+|---|---|---|---|---|
+| V-60HD | TCP 8023、認証記載無し、`stx`（02H）付き、ack 06H | `PGM/PST/AUX:a;`（0–7）、`TRS:a;`（MIX/WIPE1/WIPE2）、`TIM:a;`、`CUT;` `ATO;`、`P1S;` `DSK;` `DVW;`（トグル）、`IAL:a,b;`（a 0–10、b 0.1dB 単位・-801 = -INF）、`OAL:a;`、`MEM:a;`（0–7） | `QPL:7;`（PGM, PST, AUX, PinP, DSK, FADE[, フェーダー]）、`TLY;`（8 値）、`QAL:a;`、`VER;` | PGM/PST・CUT/AUTO・トランジション・PinP 1・DSK・音声（ミュート無し）・メモリー。T バー非表示（読出しのみ） |
+| V-600UHD | TCP 8023、**stx 無し、ack `ACK`+LF**。Ver.3.00 のパスワードは TCP 手順未記載【不明】（プロンプトが来れば V-160HD と同じ手順） | `PGM/PST/AUX:a;`（XPT 1–8）、`TRS:a;`（WIPE1–3/MIX）、`TIM:a;`、`CUT;` `ATO;`、`FDE:a;`、`IAL:a,b;`（a 0–7【推測：並び】）、`OAL:a;`、`MEM:a;`（0–63） | `VER;` のみ | PGM/PST・CUT/AUTO・トランジション・音声・メモリー 64（現在値は本体から読めないので書込値を保持） |
+| VR-50HD MK II | TCP 8023、認証記載無し、`stx` 付き、ack 06H | `PGM:a;`（0–3 INPUT、4 STILL）、`TRS:a;`（CUT/MIX/WIPE）、`TIM:a;`、`LM1–4:a;` `LS1–4:a;` `LMN:a;`（0–127）、`MEM:a;`（0–7）、`AUX:a;` | `QPG;` → `QPG:a;`、`VER;` | PGM のみ（PST・T バー無し）・トランジション・音声（1 バイト）・メモリー |
+
+本体が値を echo しないため、LanTransport はコマンドの ACK を受けた時点で直前の書込値を param 通知して確定扱いにする（§3-6 の楽観更新の戻しを防ぐ）。認証プロンプトを出さない機種では、プロンプト待ち（1.5 秒）後に `VER;` と `stxVER;` の両方を送り、応答した方の形式で続行する。
+
+**対象外**：V-1HD+（RS-232 のみ公開。USB の中身は非公開）、VR-1HD（リモート仕様の公開無し）。
+
 ### 9-5. 機種ごとの機能有無（プロファイルの `capabilities`）
 | 機能 | V-160HD | V-80HD | VR-120HD（v1.2） |
 |---|---|---|---|
@@ -485,6 +512,8 @@ AUDIO INPUT の x（00–14）割当：AUDIO IN 1, 2, 3/4, USB IN, Bluetooth IN,
 | マクロ実行 / シーケンサー（F16） | LAN：`MCREX` / `SEQ*`（FW 3.5+）。USB/BLE：`500504`【Companion】/ `0B004F–52` | LAN：`MCREX` / `SEQ*`（FW 1.3+）。USB/BLE：非表示 | LAN：`MCREX` / `SEQ*`（FW 2.2+）。USB/BLE：非表示 |
 
 - 使えない機能はボタンを置かない（disabled で並べない）。タブ自体は隠さず、内容で理由を説明する（HIG：タブを隠さない・無効にしない）。
+- v1.3 追加機種の有無は §9-4c の表とプロファイル（`core/profiles/<id>.ts`）が正。プロファイルで `pst` / `fader` / `transType` / `inputAssign` / `audioMute` / `masterMute` / `memCurrent` / `memName` / `tallyBlock` が null の要素、`KeyAddrs` の `pvw` / `source` / `time` が null の要素は画面に出さない。
+- テストパターン（F14）：HDMI 入力の TEST PATTERN を持つ機種で、対応する**最後の HDMI 入力**（V-160HD = HDMI IN 8、V-80HD = 4、VR-120HD = 6、VR-6HD = 6、V-8HD = INPUT 8）に入れる。
 
 ---
 
@@ -573,6 +602,15 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - [ ] Preview Label `02 20 00`〜の 8 文字と文字コード、AUDIO INPUT xx=01–18 の対応
 - [ ] USB / BLE：端点が見えるか、RQ1（Model ID 00 00 00 00 25）で版が返るか
 - [ ] F14 一括設定：無信号／モノの HDMI/SDI 入力で MONO=LR MIX が ERR:4 になるか
+**v1.3 追加機種**
+- [ ] VR-6HD：LAN 認証プロンプト・ack 06H、USB STREAM が CoreMIDI に見えるか、BLE MIDI「Roland VR-6HD」のペアリングと RQ1 往復、`CUT;` / `MCREX` の応答
+- [ ] V-1-4K：LAN パスワード 8 文字の送り方（USER NAME の要否【不明】）、ack が `stxACK;` か `ACK;`+LF か、USB STREAM が CoreMIDI に見えるか、CUT `0B001A` の押下/解放、INPUT ASSIGN の相対値
+- [ ] V-8HD / V-02HD MK II：USB 端子が USB MIDI クラスとして iPhone に見えるか。V-02HD MK II の Model ID（`00 00 00 00 0A` か `00 00 00 54` か）
+- [ ] V-1HD：MIDI Rx SOURCE = USB で RQ1 版（`700000`）が返るか、Device ID 既定 10H、A/B モードと PGM/PST モードでの `710008/09` の意味、音声 0–127 と dB の対応（u7ToDb の置き方）
+- [ ] V-1SDI / VR-4HD：USB MIDI インターフェース経由の MIDI IN で DT1/RQ1 が通るか、V-1SDI の CTRL BUTTON 13H→53H で AUTO が走るか、VR-4HD の PGM 書込が TRANSITION TYPE で遷移するか
+- [ ] V-60HD：接続直後に何か文字列が来るか（認証の有無）、`stxVER;` の応答、`QPL:7;` の値数（6 か 7 か）、応答と ACK の順序、`QAL:13;` の値数、`P1S;` が PinP 1 のトグルか
+- [ ] V-600UHD：Ver.3.00 のパスワードを TCP でどう入力するか、`ACK`+LF の実体、`IAL` の a の並び、`MEM:a;` の線形対応（1-1 = 0 … 8-8 = 63）
+- [ ] VR-50HD MK II：`stxVER;` の応答文字列（`VR-50HDMK2` か）、`PGM:a;` でトランジションが走るか、`QPG;` の応答、`AUX:a;` の 4/5/6 の意味
 **V-80HD（先に実機確認できる。M3.5 で実施）**
 - [ ] LAN：認証文字列（`Enter password:` / `Welcome to V-80HD.` か）、PW 8 文字の送り方、`ACK;` の実体（stx 付き文字列か）
 - [ ] LAN：自発通知の有無（本体で PGM を変えたとき `DTH:001500,..` が来るか）
@@ -593,7 +631,8 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - App Review：審査員は実機を持たないため、審査メモに「起動画面の『デモモードで試す』で全機能を確認できる」と記載する（F11）。
 - Bundle ID は `com.seventhwell.crospoint`（2026-10-16 確定。Apple 側の登録時の綴りに合わせた。"s" が 1 つなのは誤りではない）。
 - **F14 一括設定の実機確認項目**：V-160HD ガイドの MONO は「(*3) Stereo audio only」。HDMI/SDI 入力はステレオなので対象【事実：ガイド脚注】だが、信号が無い／モノの入力で ERR:4 が返るかは【不明】（返ってもロールバックされ他の系統には影響しない）。V-160HD ガイドの USB OUTPUT ASSIGN はアドレスが `00 01 10` と記載されている（カタログもそのまま）。前後の行（`00 00 0F`・`00 00 11`）から `00 00 10` の誤植の可能性【推測】。実機で RQH して確定すること。
-- **他機種（VR-120HD 等）対応**：追加する機種ごとに (1) 公式 Remote Control Guide PDF → `tools/guide` でカタログ生成（F13/F14 はそれだけで動く）(2) `core/profiles/` にプロファイル（PGM/PST・タリー・オーディオ・メモリーのアドレス、MIDI Model ID、capabilities）(3) モックサーバーの `--model` 追加。PDF は shell から roland.com を取得できないためオーナーが添付する。
+- **他機種対応**：追加する機種ごとに (1) 公式 Remote Control Guide PDF → `tools/guide/parse_guide.py` でカタログ生成。Reference Manual の付録にしかアドレスマップが無い機種は Markdown に転記（`tools/guide/notes/<id>.md`）→ `tools/guide/notes_to_raw.py` → `normalize.py`（F13/F14 はそれだけで動く）(2) `core/profiles/` にプロファイル（PGM/PST・タリー・オーディオ・メモリーのアドレス、MIDI Model ID、capabilities）(3) `ModelId` / `PROFILES` / `CATALOGS` / `lib/demo.ts` / About に登録（tsc が漏れを指す）。PDF は proav.roland.com の製品サポートページから `static.roland.com/assets/media/pdf/` の直リンクで取得できる（shell から到達可、2026-10-16 確認）。PDF 自体はコミットしない。
+- **V-160HD のカタログ版**：Remote Control Guide eng06（MIDI Implementation 3.30、2025-04-11）で再生成済み（1120 項目）。FW 3.40–3.60 の更新履歴（公式）にアドレスマップの追加記載は無い。`500504`（マクロ実行）と `0B004F–52`（シーケンサー）は eng06 に正式記載【事実】。
 
 ## 15. マイルストーン（各完了条件＝テスト緑＋型チェック緑）
 | M | 内容 | 完了条件 |
@@ -617,7 +656,20 @@ value.ts（§2-1 の例）／SysExCodec（§4-2 全行＋V-80HD 表）／UMP 分
 - Roland V-160HD Remote Control Guide（SysEx・LAN/RS-232 コマンド・アドレスマップ）: https://shop.ccisolutions.com/StoreFront/jsp/pdf/RND-V-160HD_remoteControlGuide.pdf ／ 最新版 Version 1.12（Roland 公式サーバー）: https://static.roland.com/assets/media/pdf/V-160HD_Control_eng02_W.pdf
 - Roland V-80HD Remote Control Guide Version 1.03（§9-4 の根拠）: https://static.roland.com/assets/media/pdf/V-80HD_Control_eng01_W.pdf
 - Roland VR-120HD リモート・コントロール・ガイド 日本語版 04（MIDI インプリメンテーション Ver.2.00、2024-09-04。§9-4b の根拠。オーナー添付の `VR-120HD_Control_jpn04_W.pdf`、proav.roland.com の製品サポートページから入手可）
-- Roland「LAN/RS-232 簡易制御コマンド」Ver.02（2025。V-160HD 3.5+ / V-80HD 1.3+ / VR-120HD 2.2+ / VR-6HD / V-1-4K。§3-8 の根拠。オーナー添付の `LAN_RS-232_Basic_Control_Commands_jpn02_W.pdf`）
+- Roland「LAN/RS-232 簡易制御コマンド」Ver.02（2025。V-160HD 3.5+ / V-80HD 1.3+ / VR-120HD 2.2+ / VR-6HD 2.2+ / V-1-4K 1.0+。§3-8 の根拠）: https://static.roland.com/assets/media/pdf/LAN_RS-232_Basic_Control_Commands_eng02_W.pdf
+- Roland V-160HD Remote Control Guide eng06（MIDI Implementation 3.30、2025-04-11。現行カタログの根拠）: https://static.roland.com/assets/media/pdf/V-160HD_Control_eng06_W.pdf
+- Roland VR-6HD Remote Control Guide eng03 / Remote Connection Guide eng02 / Reference Manual eng05: https://static.roland.com/assets/media/pdf/VR-6HD_Control_eng03_W.pdf ／ VR-6HD_Remote_Connection_eng02_W.pdf ／ VR-6HD_Reference_eng05_W.pdf
+- Roland V-1-4K Remote Control Guide eng01 / Remote Connection Guide eng01 / Reference Manual eng01: https://static.roland.com/assets/media/pdf/V-1-4K_Remote_Control_eng01_W.pdf ／ V-1-4K_Remote_Connection_eng01_W.pdf ／ V-1-4K_Reference_eng01_W.pdf
+- Roland V-8HD Reference Manual v3 eng01（MIDI Implementation 3.00）/ Remote Connection Guide v2: https://static.roland.com/assets/media/pdf/V-8HD_reference_v3_eng01_W.pdf ／ V-8HD_Remote_Connection_v2_eng01_W.pdf
+- Roland V-1HD Remote Control Guide Version 2.0 eng02 / V-1HD Remote 接続ガイド: https://static.roland.com/assets/media/pdf/V-1HD_RC_guide_eng02_W.pdf ／ V-1HD_Remote_e01_W.pdf
+- Roland V-1SDI Reference Manual Ver.1.5 eng02（MIDI Implementation 1.50）: https://static.roland.com/assets/media/pdf/V-1SDI_reference_v15_eng02_W.pdf
+- Roland VR-4HD Reference Manual Ver.2.100 eng01（MIDI Implementation 1.50）: https://static.roland.com/assets/media/pdf/VR-4HD_reference_v21_eng01_W.pdf
+- Roland V-02HD MK II Reference Manual eng03（MIDI Implementation 1.00）/ Remote 接続ガイド: https://static.roland.com/assets/media/pdf/V-02HD_MKII_reference_eng03_W.pdf ／ V-02HD_MKII_Remote_eng01_W_1.pdf
+- Roland V-60HD Reference Manual Version 3.1 eng04（LAN/RS-232 Command Reference p.20–23）: https://static.roland.com/assets/media/pdf/V-60HD_reference_v31_eng04_W.pdf
+- Roland V-600UHD Reference Manual eng07（LAN/RS-232 Command Reference p.57–59）: https://static.roland.com/assets/media/pdf/V-600UHD_reference_eng07_W.pdf
+- Roland VR-50HD MK II Reference Manual Version 2.0 eng02（LAN/RS-232C Command Reference p.60–62）: https://static.roland.com/assets/media/pdf/VR-50HD-MK2_reference_eng02_W.pdf
+- Roland V-1HD+ Reference Manual eng02（RS-232 のみ。対象外の根拠）/ VR-1HD Reference Manual v1.2 eng02（リモート仕様無し）: https://static.roland.com/assets/media/pdf/V-1HD_plus_reference_eng02_W.pdf ／ VR-1HD_reference_v12_eng02_W.pdf
+- Roland V-160HD システムプログラム更新履歴（3.30–3.60）: https://proav.roland.com/global/support/by_product/v-160hd/updates_drivers/be1f578b-46f1-41eb-9642-842a6d54d088/
 - Roland Support「Professional A/V: LAN and RS-232 Control Tips and Documentation」（全リストはサポートへ）: https://support.roland.com/hc/en-us/articles/360025923832
 - Roland V-160HD Remote Connection Guide（USB/Bluetooth/LAN 手順）: https://shop.ccisolutions.com/StoreFront/jsp/pdf/RND-V-160HD_remoteConnectionGuide.pdf
 - Roland Support「V-160HD LAN and RS-232 Control Tips」（CUT、パスワード、LF 終端）: https://support.roland.com/hc/en-us/articles/7816887053083-V-160HD-LAN-and-RS-232-Control-Tips
