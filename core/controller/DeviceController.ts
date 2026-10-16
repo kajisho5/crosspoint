@@ -136,6 +136,14 @@ export class DeviceController {
     }
   }
 
+  /** CoreMIDI の端点の増減を購読する（BLE はピッカーを閉じた後に遅れて端点が現れるため、一覧を自動更新する） */
+  onMidiEndpointsChanged(cb: (endpoints: MidiEndpointInfo[]) => void): () => void {
+    const midi = this.deps.midiModule();
+    if (!midi) return () => undefined;
+    const sub = midi.addListener('onEndpointsChanged', (ev) => cb(ev.endpoints));
+    return () => sub.remove();
+  }
+
   /** CoreMIDI の端点一覧（USB / BLE タブの再検索） */
   async listMidiEndpoints(): Promise<MidiEndpointList> {
     const midi = this.deps.midiModule();

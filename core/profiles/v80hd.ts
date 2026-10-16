@@ -41,7 +41,7 @@ export const v80hd: DeviceProfile = {
   sysexModelId: [0x01, 0x05, 0x14],
   passwordLength: 8,
   lanAck: 'asciiACK',
-  capabilities: { cutAuto: false, tallySubscribe: false, usb: false, ble: false, split: true, macro: false, sequencer: false },
+  capabilities: { cutAuto: false, tallySubscribe: false, usb: true, ble: true, split: true, macro: false, sequencer: false },
 
   inputCount: 16,
   bankSize: 8,

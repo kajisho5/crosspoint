@@ -3,6 +3,7 @@ import { DeviceController } from '@/core/controller/DeviceController';
 import { buildDt1, parseSysEx, toHex } from '@/core/codec/SysExCodec';
 import { addr, addrOffset, encodeU14, type Addr } from '@/core/codec/value';
 import { v160hd } from '@/core/profiles/v160hd';
+import { vr120hd } from '@/core/profiles/vr120hd';
 import { v80hd } from '@/core/profiles/v80hd';
 import { buildDemoState } from '@/core/transport/demoState';
 import { formatVersion, MidiTransport, rankEndpoints } from '@/core/transport/MidiTransport';
@@ -199,8 +200,17 @@ describe('DeviceController × MidiTransport', () => {
     await c.disconnect();
   });
 
-  test('V-80HD は USB/BLE 無効（§9-5）→ ok:false', async () => {
+  test('V-80HD：USB/BLE で接続できる（公式 iPad 接続ガイドに USB・Bluetooth の手順あり）', async () => {
     const fake = new FakeMidi(v80hd);
+    const c = new DeviceController({ lanSocketFactory: async () => { throw new Error('unused'); }, midiModule: () => fake });
+    const res = await c.connect('ble', { name: 'DEMO-SW-B', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
+    expect(res).toEqual({ ok: true });
+    expect(useConnectionStore.getState().model).toBe('V-80HD');
+    await c.disconnect();
+  });
+
+  test('VR-120HD は USB/BLE 無効（§9-5）→ ok:false', async () => {
+    const fake = new FakeMidi(vr120hd);
     const c = new DeviceController({ lanSocketFactory: async () => { throw new Error('unused'); }, midiModule: () => fake });
     const res = await c.connect('ble', { name: 'DEMO-SW-B', midiDestUniqueId: 1001, midiSrcUniqueId: 2001 });
     expect(res.ok).toBe(false);

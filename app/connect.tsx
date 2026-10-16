@@ -302,11 +302,16 @@ function MidiRouteSection({
     void rescan();
   }, [rescan]);
 
+  // 端点の増減（USB 抜き差し・BLE 接続完了）で一覧を自動更新する
+  useEffect(() => controller.onMidiEndpointsChanged((eps) => setEndpoints(rankEndpoints(eps, kind))), [kind]);
+
   const openPicker = async () => {
     const r = await controller.presentBluetoothPicker();
     if (r.ok) {
       setUnavailable(null);
       setEndpoints(rankEndpoints(r.endpoints, 'ble'));
+      // BLE の端点はピッカーを閉じた後に遅れて現れることがあるので、少し待って取り直す
+      for (const ms of [500, 1500, 3000]) setTimeout(() => void rescan(), ms);
     } else {
       onNotice(r.message);
     }
@@ -348,8 +353,8 @@ function MidiRouteSection({
         title={kind === 'usb' ? '検出された端点' : 'ペアリング済みの端点'}
         footer={
           kind === 'usb'
-            ? 'USB-C ケーブル（Lightning 機は USB カメラアダプタ）で本体の USB STREAM 端子と接続してください。V-80HD・VR-120HD は現在 LAN のみ対応です。'
-            : '本体 MENU → SYSTEM → Bluetooth → REC CONTROL を ON。iOS の「設定」の Bluetooth 一覧からはペアリングせず、ここから追加してください。V-80HD・VR-120HD は現在 LAN のみ対応です。'
+            ? 'USB-C ケーブル（Lightning 機は USB カメラアダプタ）で本体の USB STREAM 端子と接続してください。'
+            : '本体 MENU → SYSTEM → Bluetooth を ON（機種により項目名が違います）。iOS の「設定」の Bluetooth 一覧からはペアリングせず、ここから追加してください。追加後に一覧に出るまで数秒かかることがあります。'
         }
       >
         {unavailable ? (

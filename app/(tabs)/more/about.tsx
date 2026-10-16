@@ -18,9 +18,9 @@ export default function AboutScreen() {
           {`バージョン ${version}`}
         </AppText>
       </View>
-      <GroupCard title="対応機種" footer="V-80HD・VR-120HD は現在 LAN 接続のみ対応しています（USB / Bluetooth は実機確認後に有効化）。USB は公開資料に USB MIDI の明記が無い機種が多く、実機で要確認です。確認は「診断」→「レポート」で共有できます。">
+      <GroupCard title="対応機種" footer="VR-120HD は現在 LAN 接続のみ対応しています（USB / Bluetooth は実機確認後に有効化）。USB は公開資料に USB MIDI の明記が無い機種が多く、実機で要確認です。確認は「診断」→「レポート」で共有できます。">
         <ListRow title="V-160HD" subtitle="LAN / USB / Bluetooth" />
-        <ListRow title="V-80HD" subtitle="LAN" />
+        <ListRow title="V-80HD" subtitle="LAN / USB / Bluetooth" />
         <ListRow title="VR-120HD" subtitle="LAN" />
         <ListRow title="VR-6HD" subtitle="LAN / USB / Bluetooth" />
         <ListRow title="V-1-4K" subtitle="LAN / USB" />
