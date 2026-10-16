@@ -162,6 +162,7 @@ final class MidiEngine {
     openDest = MIDIEndpointRef(destObj)
     openDestId = destUniqueId
     sysexBuffer = nil
+    parseQueue.async { [weak self] in self?.rxDiagRemaining = 20 }
     log("debug", "opened dest=\(destUniqueId) src=\(srcUniqueId)")
   }
 
@@ -197,19 +198,26 @@ final class MidiEngine {
   }
 
   private func sendWords(_ words: [UInt32], to dest: MIDIEndpointRef) -> OSStatus {
-    // MIDIEventList は可変長。ワード数分の領域を確保して Init/Add/Send する（1 パケット最大 64 ワード）
-    let byteCount = MemoryLayout<MIDIEventList>.size + MemoryLayout<UInt32>.size * max(words.count, 64)
+    // UMP SysEx7 は 2 ワードで 1 メッセージ。MIDIEventListAdd は「1 回 = 1 メッセージ」なので 2 ワードずつ追加する
+    // （複数メッセージを 1 回で渡すと先頭以外が捨てられることがある）。パケットヘッダ分も含めて余裕を持って確保する
+    let messageCount = (words.count + 1) / 2
+    let byteCount = MemoryLayout<MIDIEventList>.size + messageCount * (MemoryLayout<MIDIEventPacket>.size + 16)
     let raw = UnsafeMutableRawPointer.allocate(byteCount: byteCount, alignment: MemoryLayout<MIDIEventList>.alignment)
     defer { raw.deallocate() }
     let listPtr = raw.bindMemory(to: MIDIEventList.self, capacity: 1)
-    var packet = MIDIEventListInit(listPtr, ._1_0)
+    var packet: UnsafeMutablePointer<MIDIEventPacket>? = MIDIEventListInit(listPtr, ._1_0)
     var index = 0
     while index < words.count {
-      let chunk = Array(words[index..<min(index + 64, words.count)])
-      packet = chunk.withUnsafeBufferPointer { buf in
-        MIDIEventListAdd(listPtr, byteCount, packet, 0, chunk.count, buf.baseAddress!)
+      let message = Array(words[index..<min(index + 2, words.count)])
+      guard let current = packet else { return OSStatus(-1) }
+      packet = message.withUnsafeBufferPointer { buf in
+        MIDIEventListAdd(listPtr, byteCount, current, 0, buf.count, buf.baseAddress!)
       }
-      index += chunk.count
+      if packet == nil {
+        log("error", "MIDIEventListAdd overflow at word \(index)/\(words.count)")
+        return OSStatus(-1)
+      }
+      index += message.count
     }
     return MIDISendEventList(outPort, dest, listPtr)
   }
@@ -235,6 +243,9 @@ final class MidiEngine {
 
   // MARK: - 受信（UMP → SysEx 再結合）
 
+  /// 開いてから受信した UMP の先頭いくつかを診断ログに出す（§13：本体から何か届いているかの確認）
+  private var rxDiagRemaining = 0
+
   private func handleEventList(_ listPtr: UnsafePointer<MIDIEventList>) {
     // CoreMIDI のリアルタイムスレッド。ワードをコピーしてから別キューで処理する
     var words: [UInt32] = []
@@ -247,7 +258,15 @@ final class MidiEngine {
         }
       }
     }
-    parseQueue.async { [weak self] in self?.consume(words) }
+    parseQueue.async { [weak self] in
+      guard let self = self else { return }
+      if self.rxDiagRemaining > 0, !words.isEmpty {
+        self.rxDiagRemaining -= 1
+        let hex = words.prefix(8).map { String(format: "%08X", $0) }.joined(separator: " ")
+        self.log("debug", "rx UMP \(words.count) words: \(hex)\(words.count > 8 ? " …" : "")")
+      }
+      self.consume(words)
+    }
   }
 
   /// UMP のメッセージタイプごとの語数（MIDI 2.0 仕様の表）
