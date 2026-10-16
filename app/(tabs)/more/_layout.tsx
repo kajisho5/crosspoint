@@ -1,11 +1,14 @@
 import { Stack } from 'expo-router';
 import { DemoBadge } from '@/components/status/ScreenHeader';
+import { useConnectionStore } from '@/stores/connection';
 import { color } from '@/theme/tokens';
 
 export default function MoreLayout() {
+  // デモ中だけ右上にバッジ。常に headerRight を渡すと、中身が空でも iOS 26 のヘッダーに空の丸ボタンが出る
+  const demo = useConnectionStore((s) => s.demo);
   return (
-    <Stack screenOptions={{ contentStyle: { backgroundColor: color.bg }, headerRight: () => <DemoBadge /> }}>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+    <Stack screenOptions={{ contentStyle: { backgroundColor: color.bg }, headerBackTitle: 'その他', ...(demo ? { headerRight: () => <DemoBadge /> } : {}) }}>
+      <Stack.Screen name="index" options={{ headerShown: false, title: 'その他' }} />
       <Stack.Screen name="quick" options={{ title: 'クイック操作' }} />
       <Stack.Screen name="aux" options={{ title: 'AUX' }} />
       <Stack.Screen name="macro" options={{ title: 'マクロ・シーケンサー' }} />
