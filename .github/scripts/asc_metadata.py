@@ -178,9 +178,21 @@ def upsert_version_localizations(version_id, metas):
         attrs = {k: m[k] for k in ("description", "keywords", "supportUrl", "marketingUrl", "promotionalText", "whatsNew") if m.get(k)}
         if m["locale"] in existing:
             loc = existing[m["locale"]]
-            api("PATCH", f"/v1/appStoreVersionLocalizations/{loc['id']}", {"data": {
-                "type": "appStoreVersionLocalizations", "id": loc["id"], "attributes": attrs}})
-            print(f"version text ({m['locale']}): updated")
+            status, res = api("PATCH", f"/v1/appStoreVersionLocalizations/{loc['id']}", {"data": {
+                "type": "appStoreVersionLocalizations", "id": loc["id"], "attributes": attrs}}, ok=(200, 409))
+            if status == 409:
+                # 初回バージョンは whatsNew が編集不可（"cannot be edited at this time"）。外して再送
+                details = "; ".join(e.get("detail", "") for e in res.get("errors", []))
+                if "whatsNew" in details and "whatsNew" in attrs:
+                    attrs.pop("whatsNew")
+                    api("PATCH", f"/v1/appStoreVersionLocalizations/{loc['id']}", {"data": {
+                        "type": "appStoreVersionLocalizations", "id": loc["id"], "attributes": attrs}})
+                    print(f"version text ({m['locale']}): updated (whatsNew skipped: first version)")
+                else:
+                    print(json.dumps(res, ensure_ascii=False, indent=2)[:3000])
+                    sys.exit(1)
+            else:
+                print(f"version text ({m['locale']}): updated")
         else:
             _, res = api("POST", "/v1/appStoreVersionLocalizations", {"data": {
                 "type": "appStoreVersionLocalizations", "attributes": {"locale": m["locale"], **attrs},
