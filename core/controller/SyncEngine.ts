@@ -15,7 +15,8 @@ export type VisibleTab = 'switcher' | 'keys' | 'audio' | 'memory' | 'more';
 
 export interface ParamStoreLike {
   getValue(a: Addr): number | undefined;
-  pendingEntries(): { addr: Addr; ts: number }[];
+  /** size は書いたバイト数（確認の読出しに使う。無ければ 1） */
+  pendingEntries(): { addr: Addr; ts: number; size?: number }[];
   rollback(a: Addr): void;
 }
 
@@ -31,6 +32,8 @@ export interface SyncEngineOptions {
 
 export const ROLLBACK_AFTER_MS = 1500;
 export const ROLLBACK_CHECK_MS = 250;
+/** 書込み後この時間で確定しなければ、その番地を読み直して本体の値で確かめる（ポーリング対象外の番地は読み直さないと確定しない） */
+export const VERIFY_AFTER_MS = 400;
 export const HEAVY_EVERY_N_CYCLES = 10;
 export const INITIAL_SYNC_TIMEOUT_MS = 4000;
 export const MIDI_MIN_POLL_MS = 1000;
@@ -164,6 +167,8 @@ export class SyncEngine {
   private rollbackTimer: ReturnType<typeof setInterval> | null = null;
   private cycle = 0;
   private running = false;
+  /** 確認の読出しを出した pending（addr → 書込み時刻） */
+  private verifyRequested = new Map<Addr, number>();
   private readonly now: () => number;
 
   constructor(
@@ -242,8 +247,19 @@ export class SyncEngine {
   /** 楽観更新の期限切れを戻す（テスト用に公開） */
   checkPending(): void {
     const t = this.now();
-    for (const p of this.store.pendingEntries()) {
-      if (t - p.ts >= ROLLBACK_AFTER_MS) {
+    const entries = this.store.pendingEntries();
+    const live = new Set(entries.map((p) => p.addr));
+    for (const a of [...this.verifyRequested.keys()]) if (!live.has(a)) this.verifyRequested.delete(a);
+    for (const p of entries) {
+      const age = t - p.ts;
+      if (age >= VERIFY_AFTER_MS && this.verifyRequested.get(p.addr) !== p.ts) {
+        // ポーリング対象外の番地（クイック操作・メニュー以外の画面からの書込み）は通知が来ないので、読み直して確かめる
+        this.verifyRequested.set(p.addr, p.ts);
+        this.transport.readParam(p.addr, Math.max(1, p.size ?? 1));
+        continue;
+      }
+      if (age >= ROLLBACK_AFTER_MS) {
+        this.verifyRequested.delete(p.addr);
         this.store.rollback(p.addr);
         this.opts.onNotice?.('本体に反映されませんでした');
       }

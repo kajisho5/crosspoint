@@ -6,6 +6,7 @@ import {
   pollRanges,
   ROLLBACK_AFTER_MS,
   SyncEngine,
+  VERIFY_AFTER_MS,
   TALLY_SUBSCRIBE_ADDR,
   type ParamStoreLike,
 } from '@/core/controller/SyncEngine';
@@ -229,6 +230,25 @@ describe('SyncEngine（SPEC §10）', () => {
     e.checkPending();
     expect(store.rolledBack).toEqual([A]);
     expect(notices.length).toBe(1);
+  });
+
+  test('ポーリング対象外の書込み：400ms で読み直し、応答で確定すればロールバックしない（クイック操作の誤通知対策）', () => {
+    let now = 10_000;
+    const store = mem();
+    const notices: string[] = [];
+    const reads: { a: Addr; size: number }[] = [];
+    const st = { ...store, pendingEntries: () => [...store.pending].map(([a, ts]) => ({ addr: a, ts, size: 2 })) };
+    const e = new SyncEngine({ readParam: (a, size) => reads.push({ a, size }), writeParam: () => {} }, v160hd, st, { link: 'midi', pollMs: () => 1000, onNotice: (m) => notices.push(m), now: () => now });
+    store.pending.set(A, now);
+    now += VERIFY_AFTER_MS;
+    e.checkPending();
+    expect(reads).toEqual([{ a: A, size: 2 }]);
+    e.checkPending();
+    expect(reads).toHaveLength(1); // 同じ書込みには 1 回だけ
+    store.pending.delete(A); // 読出し応答で確定
+    now += ROLLBACK_AFTER_MS;
+    e.checkPending();
+    expect(notices).toEqual([]);
   });
 
   test('ERR:4/5 で最も古い pending をロールバック。他のコードは無視', () => {

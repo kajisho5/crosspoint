@@ -292,7 +292,7 @@ export class DeviceController {
       profile,
       {
         getValue: (a) => useParamStore.getState().values[a],
-        pendingEntries: () => Object.entries(useParamStore.getState().pending).map(([k, v]) => ({ addr: Number(k), ts: v.ts })),
+        pendingEntries: () => Object.entries(useParamStore.getState().pending).map(([k, v]) => ({ addr: Number(k), ts: v.ts, size: v.bytes.length })),
         rollback: (a) => useParamStore.getState().rollback(a),
       },
       {
