@@ -1,0 +1,41 @@
+name: store-metadata
+
+# App Store の製品ページ（名前・サブタイトル・説明・キーワード・URL・カテゴリ・年齢制限・スクリーンショット）を
+# store/metadata/*.json と store/screenshots/ から App Store Connect API で書き込む（.github/scripts/asc_metadata.py）。
+# 手動実行のみ。App Privacy（データ収集の申告）と価格は API が無いので App Store Connect で設定する。
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'App Store のバージョン文字列（app.config.ts の version と合わせる）'
+        required: true
+        default: '0.1.0'
+
+env:
+  BUNDLE_ID: com.seventhwell.crospoint
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write App Store Connect API key
+        env:
+          P8: ${{ secrets.APPSTORE_P8 }}
+        run: |
+          [ -n "$P8" ] && [ -n "$ASC_KEY_ID" ] && [ -n "$ASC_ISSUER_ID" ] || { echo "::error::APPSTORE_* secrets missing (docs/TESTFLIGHT.md)"; exit 1; }
+          mkdir -p "$RUNNER_TEMP/keys"
+          printf '%s\n' "$P8" > "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+          chmod 600 "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8"
+      - name: Push product page metadata
+        run: |
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --quiet pyjwt cryptography
+          "$RUNNER_TEMP/venv/bin/python" .github/scripts/asc_metadata.py "$BUNDLE_ID" "${{ inputs.version }}" store/metadata store/screenshots
+      - name: Remove API key
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/keys"

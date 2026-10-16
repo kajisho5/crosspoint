@@ -1,0 +1,12 @@
+{
+  "locale": "ja",
+  "name": "SW CROSSPOINT",
+  "subtitle": "ビデオスイッチャーを iPhone で操作",
+  "privacyPolicyUrl": "https://github.com/kajisho5/crosspoint/blob/main/docs/store/privacy.md",
+  "supportUrl": "https://github.com/kajisho5/crosspoint/blob/main/docs/store/support.md",
+  "marketingUrl": "https://seventh-well.com",
+  "keywords": "スイッチャー,ビデオスイッチャー,ライブ配信,映像,リモコン,タリー,ミキサー,イベント,配信,switcher,video,tally,live",
+  "promotionalText": "実機が無くても「デモモードで試す」で全画面を操作できます。対応機種をお持ちの方は LAN / USB / Bluetooth でそのまま接続。",
+  "description": "SW CROSSPOINT は、ライブ配信・イベント現場のビデオスイッチャーを iPhone から操作するリモートコントローラーです。本体の横にいなくても、PGM / PST の切り替え、CUT / AUTO、キー、オーディオ、メモリー呼び出しまで手元で完結します。\n\n■ 主な機能\n・クロスポイント：PGM / PST を 1 タップで選択。入力ラベルとタリー（赤 / 緑）を表示\n・CUT / AUTO、T バー、トランジション（MIX / WIPE）と時間\n・PinP & KEY / DSK / SPLIT の PGM・PVW ON/OFF\n・オーディオ：各入力とマスターのレベル・ミュート\n・メモリー：名前付き一覧から長押しで呼び出し\n・クイック操作：出力割当の切替、テストパターン出力、入力音声の一括設定\n・AUX / マクロ実行 / シーケンサー（対応機種）\n・全パラメータメニュー：公式リモートコントロールガイドのアドレスマップをそのまま操作\n・操作ロック、ハプティクス、スリープ防止、接続の自動復帰\n・診断：送受信ログ、任意コマンド送信、レポート共有\n\n■ 接続\n・LAN（同一ネットワーク、本体の LAN CONTROL / DIRECT STREAM 端子）\n・USB（USB-C 直結、または Lightning カメラアダプタ）\n・Bluetooth MIDI（対応機種）\n\n■ 対応機種\nV-160HD、V-80HD、VR-120HD、VR-6HD、V-1-4K、V-8HD、V-1HD、V-1SDI、VR-4HD、V-02HD MK II、V-60HD、V-600UHD、VR-50HD MK II\n※ 機種によって使える機能と接続方法が異なります。詳細はアプリ内「対応機種」をご覧ください。\n\n■ デモモード\n実機が無くても、起動画面の「デモモードで試す」で全画面を操作できます。購入前の確認や、本番前の練習にお使いください。\n\n■ 注意\n本アプリは Roland Corporation の公式製品ではなく、同社とは一切関係ありません。各製品名は各社の商標です。通信仕様は各製品の公開資料に基づいています。本番運用の前に必ずお手元の機器でご確認ください。\n\n本アプリはユーザーの情報を収集しません。通信はお使いのスイッチャーとの間でのみ行われます。",
+  "whatsNew": "初回リリース。"
+}

@@ -1,0 +1,12 @@
+{
+  "locale": "en-US",
+  "name": "SW CROSSPOINT",
+  "subtitle": "Video switcher remote control",
+  "privacyPolicyUrl": "https://github.com/kajisho5/crosspoint/blob/main/docs/store/privacy.md",
+  "supportUrl": "https://github.com/kajisho5/crosspoint/blob/main/docs/store/support.md",
+  "marketingUrl": "https://seventh-well.com",
+  "keywords": "video switcher,switcher,live,streaming,tally,remote,production,event,AV,broadcast,mixer",
+  "promotionalText": "No hardware yet? Try every screen in Demo Mode. Own a supported switcher? Connect over LAN, USB or Bluetooth.",
+  "description": "SW CROSSPOINT is a remote controller that puts your video switcher on your iPhone. Switch PGM / PST, fire CUT / AUTO, toggle keys, ride audio and recall memories from anywhere in the room.\n\nFEATURES\n• Crosspoint: one-tap PGM / PST with input labels and red / green tally\n• CUT / AUTO, T-bar, transition type (MIX / WIPE) and time\n• PinP & KEY, DSK and SPLIT on/off for PGM and PVW\n• Audio: level and mute for every input and the master\n• Memories: named list, long-press to recall\n• Quick actions: output assign, test pattern, batch audio setup\n• AUX, macro execution and sequencer on supported models\n• Full parameter menu built from the official remote control guide's address map\n• Control lock, haptics, keep-awake and automatic reconnection\n• Diagnostics: traffic log, raw command sender, shareable report\n\nCONNECTION\n• LAN (same network, via the switcher's LAN CONTROL / DIRECT STREAM port)\n• USB (USB-C, or Lightning camera adapter)\n• Bluetooth MIDI (supported models)\n\nSUPPORTED MODELS\nV-160HD, V-80HD, VR-120HD, VR-6HD, V-1-4K, V-8HD, V-1HD, V-1SDI, VR-4HD, V-02HD MK II, V-60HD, V-600UHD, VR-50HD MK II\nAvailable features and connection types vary by model; see \"Supported models\" in the app.\n\nDEMO MODE\nNo switcher at hand? Tap \"Try demo mode\" on the first screen to use every feature with a simulated switcher.\n\nNOTICE\nThis app is not an official product of Roland Corporation and is not affiliated with or endorsed by it. Product names are trademarks of their respective owners. The communication protocol is implemented from publicly available documentation. Verify with your own equipment before using it in a live production.\n\nThe app collects no user data. It only communicates with your switcher.",
+  "whatsNew": "First release."
+}
