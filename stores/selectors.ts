@@ -84,6 +84,16 @@ export function labelOfSource(p: DeviceProfile, values: Record<number, number>, 
   return sourceName(p, code);
 }
 
+/** ラベル編集用：先頭の空白（中央・右寄せ）を残した生のラベル。未受信・空は空文字 */
+export function rawLabelOfSource(p: DeviceProfile, values: Record<number, number>, code: number): string {
+  const src = p.sources.find((x) => x.code === code);
+  if (src?.labelAddr == null) return '';
+  const bytes = readBytes(values, src.labelAddr, 8);
+  if (!bytes.every((b) => b !== undefined)) return '';
+  const text = decodeAscii8(bytes as number[]);
+  return text.trim().length > 0 ? text : '';
+}
+
 /** INPUT 1..inputCount のラベル */
 export function useInputLabels(p: DeviceProfile): string[] {
   return useParamStore(
