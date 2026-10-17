@@ -50,8 +50,8 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
   const labelEditable = selectedSource?.labelAddr != null;
   const labelValid = ASCII_RE.test(label) && label.length <= LABEL_MAX;
   const originalLabel = code == null ? '' : storedLabel(profile, values, code);
-  // 先頭の空白は位置合わせ（中央・右寄せ）に使うので意味がある。末尾の空白は本体が表示しないので比べない
-  const labelChanged = label.replace(/\s+$/, '') !== originalLabel.replace(/\s+$/, '');
+  // 空白も位置に効く（本体は 8 文字枠の中央に描く）ので、前後の空白も含めて比べる
+  const labelChanged = label !== originalLabel;
   const changed = code !== (currentCode ?? null) || (labelEditable && labelChanged);
   const canSave = n != null && code != null && labelValid && changed;
 
@@ -119,7 +119,7 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
                 style={{ flex: 1, color: labelEditable ? color.label : color.label3, fontSize: 17, paddingVertical: 11, textAlign: 'right', fontFamily: font.mono }}
               />
             </View>
-            {labelEditable ? <LabelCells label={label} onAlign={(a) => setLabel(alignLabel(label, a))} /> : null}
+            {labelEditable ? <LabelCells label={label} /> : null}
             {!labelValid ? (
               <View className="px-4 pb-2">
                 <AppText variant="footnote" tone="pgm">
@@ -136,13 +136,12 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
                   {LABEL_TEMPLATES.map((t) => {
                     const next = applyTemplate(t, otherLabels);
                     const active = label.trim().toUpperCase() === next.toUpperCase();
-                    // テンプレートを選んでも、今の寄せ方（先頭の空白）は保つ
                     return (
                       <Pressable
                         key={t.text}
                         onPress={() => {
                           haptic.select();
-                          setLabel(alignLabel(next, alignmentOf(label)));
+                          setLabel(next);
                         }}
                         accessibilityRole="button"
                         accessibilityLabel={`ラベルを ${next} に`}
@@ -197,32 +196,11 @@ function storedLabel(profile: DeviceProfile, values: Record<number, number>, cod
   return rawLabelOfSource(profile, values, code);
 }
 
-export type LabelAlign = 'left' | 'center' | 'right';
-
-/** 8 文字の枠の中で寄せる（空白で埋める）。マルチビューのラベル枠は 8 文字ぶんの固定幅（V-160HD 実機） */
-export function alignLabel(text: string, align: LabelAlign): string {
-  const t = text.trim().slice(0, LABEL_MAX);
-  const free = LABEL_MAX - t.length;
-  if (align === 'left' || free === 0) return t;
-  if (align === 'right') return ' '.repeat(free) + t;
-  const left = Math.floor(free / 2);
-  return ' '.repeat(left) + t + ' '.repeat(free - left);
-}
-
-/** 今のラベルの寄せ方（先頭・末尾の空白から推定） */
-export function alignmentOf(label: string): LabelAlign {
-  const lead = label.length - label.trimStart().length;
-  if (lead === 0) return 'left';
-  const trail = label.length - label.trimEnd().length;
-  return trail === 0 ? 'right' : 'center';
-}
-
-/** 8 マスのプレビュー（空白は ·）と、左・中央・右寄せボタン */
-function LabelCells({ label, onAlign }: { label: string; onAlign: (a: LabelAlign) => void }) {
+/** 8 マスのプレビュー（空白は ·）。空白はキーボードでそのまま入れられ、そのまま本体に送る */
+function LabelCells({ label }: { label: string }) {
   const cells = Array.from({ length: LABEL_MAX }, (_, i) => label[i] ?? '');
-  const current = alignmentOf(label);
   return (
-    <View className="px-4 pb-3" style={{ gap: 10 }}>
+    <View className="px-4 pb-3" style={{ gap: 8 }}>
       <View className="flex-row" style={{ gap: 4 }} accessible accessibilityLabel={`ラベルの並び：${cells.map((c) => (c === '' || c === ' ' ? '空白' : c)).join('、')}`}>
         {cells.map((c, i) => (
           <View key={i} style={{ flex: 1, height: 36, borderRadius: 6, backgroundColor: color.fill, alignItems: 'center', justifyContent: 'center' }}>
@@ -232,35 +210,8 @@ function LabelCells({ label, onAlign }: { label: string; onAlign: (a: LabelAlign
           </View>
         ))}
       </View>
-      <View className="flex-row" style={{ gap: 8 }}>
-        {(
-          [
-            ['left', '左寄せ'],
-            ['center', '中央'],
-            ['right', '右寄せ'],
-          ] as const
-        ).map(([a, text]) => (
-          <Pressable
-            key={a}
-            onPress={() => {
-              haptic.select();
-              onAlign(a);
-            }}
-            accessibilityRole="button"
-            accessibilityLabel={`ラベルを${text}にする`}
-            accessibilityState={{ selected: current === a && label.trim().length > 0 }}
-            style={({ pressed }) => ({ flex: 1, opacity: pressed ? 0.7 : 1 })}
-          >
-            <View style={{ height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: current === a && label.trim().length > 0 ? color.accent : color.fill }}>
-              <AppText variant="footnote" weight="600" tone={current === a && label.trim().length > 0 ? 'onTint' : 'label'}>
-                {text}
-              </AppText>
-            </View>
-          </Pressable>
-        ))}
-      </View>
       <AppText variant="caption" tone="label2">
-        マルチビューのラベル枠は 8 文字ぶんの幅です。空白（·）で位置を合わせられます。キーボードで空白を直接入れても同じです。
+        空白（·）もそのまま本体に送ります。
       </AppText>
     </View>
   );

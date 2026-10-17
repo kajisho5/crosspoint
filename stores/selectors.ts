@@ -90,7 +90,13 @@ export function rawLabelOfSource(p: DeviceProfile, values: Record<number, number
   if (src?.labelAddr == null) return '';
   const bytes = readBytes(values, src.labelAddr, 8);
   if (!bytes.every((b) => b !== undefined)) return '';
-  const text = decodeAscii8(bytes as number[]);
+  // 00H までが文字。20H（空白）は前後どちらも残す（本体は中央寄せで描くので、空白の位置で見た目が変わる）
+  const chars: string[] = [];
+  for (const b of bytes as number[]) {
+    if (b === 0) break;
+    chars.push(b >= 0x20 && b <= 0x7e ? String.fromCharCode(b) : ' ');
+  }
+  const text = chars.join('');
   return text.trim().length > 0 ? text : '';
 }
 

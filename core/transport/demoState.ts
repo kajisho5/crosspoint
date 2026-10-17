@@ -163,7 +163,7 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
   for (const a of assigns) {
     if (p.addrs.inputAssign != null) put(m, p.addrs.inputAssign(a.n), [p.sourceToAssign(a.n, a.code) ?? 0]);
     const src = p.sources.find((s) => s.code === a.code);
-    if (src?.labelAddr != null) put(m, src.labelAddr, encodeAscii8(a.label));
+    if (src?.labelAddr != null) put(m, src.labelAddr, encodeAscii8(a.label, 0x00));
   }
 
   // PGM = INPUT 1、PST = INPUT 3（ボード S1）
