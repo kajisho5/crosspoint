@@ -98,3 +98,12 @@ describe('アドレス', () => {
     expect(() => hexToAddr('0021')).toThrow(RangeError);
   });
 });
+
+describe('ラベルの 8 文字エンコード', () => {
+  const { encodeAscii8, decodeAscii8 } = require('@/core/codec/value') as typeof import('@/core/codec/value');
+  test('ラベルは 00H 埋め（右に空白を付けない）、既定は 20H 埋め', () => {
+    expect(encodeAscii8('TITLE', 0x00)).toEqual([0x54, 0x49, 0x54, 0x4c, 0x45, 0, 0, 0]);
+    expect(encodeAscii8('TITLE')).toEqual([0x54, 0x49, 0x54, 0x4c, 0x45, 0x20, 0x20, 0x20]);
+    expect(decodeAscii8([0x54, 0x49, 0x54, 0x4c, 0x45, 0, 0, 0])).toBe('TITLE');
+  });
+});

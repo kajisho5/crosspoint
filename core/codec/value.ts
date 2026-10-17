@@ -113,10 +113,19 @@ export function formatDb(db: number | null): string {
 }
 
 /** テキスト：1byte×8、ASCII として扱う【推測】、末尾スペース除去 */
-export function encodeAscii8(text: string): number[] {
+/**
+ * 8 文字の ASCII。文字の後ろは pad で埋める。
+ * ラベル（Preview Label）は 00H で埋める：ガイドの値域は 00H–7FH。20H（スペース）で埋めると本体のマルチビューで
+ * ラベル背景が 8 文字分の幅になり、右に空白が付いて見えた（V-80HD 実機、2026-10-17）
+ */
+export function encodeAscii8(text: string, pad: 0x00 | 0x20 = 0x20): number[] {
   const out: number[] = [];
   for (let i = 0; i < 8; i += 1) {
-    const code = i < text.length ? text.charCodeAt(i) : 0x20;
+    if (i >= text.length) {
+      out.push(pad);
+      continue;
+    }
+    const code = text.charCodeAt(i);
     out.push(code >= 0x20 && code <= 0x7e ? code : 0x20);
   }
   return out;

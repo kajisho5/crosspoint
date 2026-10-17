@@ -66,7 +66,7 @@ export function InputSetupSheet({ profile, n, onClose }: InputSetupSheetProps) {
       if (v != null && profile.addrs.inputAssign != null) controller.write(profile.addrs.inputAssign(n), [v]);
     }
     if (labelEditable && selectedSource?.labelAddr != null && label.trim() !== originalLabel.trim()) {
-      controller.write(selectedSource.labelAddr, encodeAscii8(label));
+      controller.write(selectedSource.labelAddr, encodeAscii8(label.replace(/\s+$/, ''), 0x00));
     }
     haptic.success();
     onClose();
