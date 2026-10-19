@@ -65,9 +65,9 @@ export default function MenuGroupScreen() {
         style={{ flex: 1 }}
         data={group.params}
         keyExtractor={(p) => `${p.id}-${instance?.xx ?? ''}`}
-        initialNumToRender={12}
-        maxToRenderPerBatch={12}
-        windowSize={7}
+        initialNumToRender={8}
+        maxToRenderPerBatch={8}
+        windowSize={3}
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 16 }}
         ListHeaderComponent={
           <View>
