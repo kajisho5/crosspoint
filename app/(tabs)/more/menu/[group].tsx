@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Stack, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { controller } from '@/core/controller/DeviceController';
@@ -30,14 +30,11 @@ export default function MenuGroupScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      controller.readRanges(ranges);
+      if (online) controller.readRanges(ranges);
       controller.setExtraPoll(ranges);
       return () => controller.setExtraPoll(null);
-    }, [ranges]),
+    }, [online, ranges]),
   );
-  useEffect(() => {
-    if (online) controller.readRanges(ranges);
-  }, [online, ranges]);
 
   if (!group) {
     return (
