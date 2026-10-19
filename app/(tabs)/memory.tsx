@@ -10,6 +10,7 @@ import { OfflineBanner } from '@/components/status/OfflineBanner';
 import { ScreenHeader } from '@/components/status/ScreenHeader';
 import { MemoryCell } from '@/components/memory/MemoryCell';
 import { color } from '@/theme/tokens';
+import { encodeAscii8 } from '@/core/codec/value';
 
 const COLS = 5;
 const GAP = 8;
@@ -59,6 +60,30 @@ export default function MemoryScreen() {
     );
   }, [profile, short, target]);
 
+  const editName = useCallback(() => {
+    const address = profile.addrs.memName?.(target);
+    if (address == null) return;
+    Alert.prompt(
+      'メモリー名を編集',
+      `${short} ${String(target).padStart(2, '0')} の名前（半角英数字 8 文字まで）`,
+      [
+        { text: 'キャンセル', style: 'cancel' },
+        {
+          text: '保存',
+          onPress: (value) => {
+            if (value != null && !/^[\\x20-\\x7E]{0,8}$/.test(value)) {
+              Alert.alert('入力できません', '半角英数字などのASCII文字を8文字以内で入力してください。');
+              return;
+            }
+            controller.write(address, encodeAscii8(value ?? '', 0x20));
+          },
+        },
+      ],
+      'plain-text',
+      names[target - 1] ?? '',
+    );
+  }, [names, profile, short, target]);
+
   const rows: number[][] = [];
   for (let i = 1; i <= profile.memoryCount; i += COLS) {
     rows.push(Array.from({ length: COLS }, (_, c) => i + c).filter((n) => n <= profile.memoryCount));
@@ -88,24 +113,38 @@ export default function MemoryScreen() {
           </View>
         </View>
 
-        {profile.addrs.memSave != null && profile.addrs.memInitialize != null ? (
+        {profile.addrs.memSave != null || profile.addrs.memInitialize != null || profile.addrs.memName != null ? (
           <View className="mx-4 mb-3 flex-row" style={{ gap: 8 }}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={`${short} ${String(target).padStart(2, '0')} に現在の設定を保存`}
-              onPress={save}
-              style={{ flex: 1, minHeight: 42, borderRadius: 10, backgroundColor: color.group, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8 }}
-            >
-              <AppText variant="footnote" weight="700">現在の設定を保存</AppText>
-            </Pressable>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={`${short} ${String(target).padStart(2, '0')} を初期化`}
-              onPress={initialize}
-              style={{ minHeight: 42, borderRadius: 10, backgroundColor: color.group, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 }}
-            >
-              <AppText variant="footnote" weight="700" tone="warn">初期化</AppText>
-            </Pressable>
+            {profile.addrs.memSave != null ? (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={`${short} ${String(target).padStart(2, '0')} に現在の設定を保存`}
+                onPress={save}
+                style={{ flex: 1, minHeight: 42, borderRadius: 10, backgroundColor: color.group, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8 }}
+              >
+                <AppText variant="footnote" weight="700">保存</AppText>
+              </Pressable>
+            ) : null}
+            {profile.addrs.memInitialize != null ? (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={`${short} ${String(target).padStart(2, '0')} を初期化`}
+                onPress={initialize}
+                style={{ flex: 1, minHeight: 42, borderRadius: 10, backgroundColor: color.group, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8 }}
+              >
+                <AppText variant="footnote" weight="700" tone="warn">初期化</AppText>
+              </Pressable>
+            ) : null}
+            {profile.addrs.memName != null ? (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={`${short} ${String(target).padStart(2, '0')} の名前を編集`}
+                onPress={editName}
+                style={{ flex: 1, minHeight: 42, borderRadius: 10, backgroundColor: color.group, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8 }}
+              >
+                <AppText variant="footnote" weight="700">名前</AppText>
+              </Pressable>
+            ) : null}
           </View>
         ) : null}
 
