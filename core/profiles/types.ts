@@ -29,7 +29,7 @@ export interface Capabilities {
   usb: boolean;
   ble: boolean;
   split: boolean;
-  /** マクロ実行（`macroTrigger` が分かっている機種だけ真）。V-160HD は Companion の run_macro（50 05 04）【事実：公開 OSS】 */
+  /** マクロ実行（`macroTrigger` が分かっている機種だけ真） */
   macro: boolean;
   /** シーケンサーのパネルスイッチ（ON/AUTO/PREV/NEXT）が分かっている機種だけ真 */
   sequencer: boolean;
