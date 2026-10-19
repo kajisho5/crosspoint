@@ -104,6 +104,7 @@ export const v160hd: DeviceProfile = {
     auto: addr(0x0b, 0x00, 0x1f),
     // Companion roland-v160hd の run_macro（'500504' に macro-1 を書く）【事実：公開 OSS、MIT】。ガイド未記載なので実機で確認（§13）
     macroTrigger: addr(0x50, 0x05, 0x04),
+    macroPreview: addr(0x50, 0x05, 0x05),
     // SPEC §9-2：0B004F–52 SEQUENCER ON/AUTO/PREV/NEXT SW【事実：Companion 定数】
     sequencer: { on: addr(0x0b, 0x00, 0x4f), auto: addr(0x0b, 0x00, 0x50), prev: addr(0x0b, 0x00, 0x51), next: addr(0x0b, 0x00, 0x52) },
   },

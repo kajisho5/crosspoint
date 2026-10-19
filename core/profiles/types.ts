@@ -131,6 +131,8 @@ export interface DeviceProfile {
     autoValues?: { press: number; release: number };
     /** マクロ実行トリガ（値 = マクロ番号 − 1、書込み専用）。不明な機種は null */
     macroTrigger: Addr | null;
+    /** マクロプレビュー選択（値 = マクロ番号 − 1、書込み専用）。対応表に項目がある機種のみ */
+    macroPreview?: Addr | null;
     /** ASSIGNABLE PAD 1–8 のパネルスイッチ（モーメンタリ、01 押下 / 00 解放）。無い・不明な機種は省略 */
     pads?: readonly Addr[];
     /** [SETUP (+PAD) BANK SELECT] ボタン（押したまま PAD でバンク選択）。無い機種は省略 */
