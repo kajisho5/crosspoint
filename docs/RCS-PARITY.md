@@ -19,7 +19,7 @@ This document tracks SW CROSSPOINT against the user-visible V-160HD RCS / V-160H
 | Audio mixer levels and mute | Implemented (spec); hardware coverage unverified | Verify ranges, channel mapping, and feedback against the V-160HD. |
 | Full parameter-address menu and camera-control parameters | Implemented (spec); hardware coverage unverified | Verify catalog entries and camera protocol workflows; UI controls do not prove every operation is safe or accepted by firmware. |
 | AUX source selection and quick actions | Implemented (spec); hardware coverage unverified | Verify output assignment and bulk operations on hardware before claiming parity. |
-| Preset/memory | Partial | Load, save, initialize, and name editing are implemented for V-160HD; current slot/name are displayed. Thumbnail and layout workflows remain missing. |
+| Preset/memory | Partial | Load, save, initialize, and name editing are implemented for V-160HD; current slot/name are displayed. Memory thumbnail previews remain missing. |
 | Macros | Partial | Execution and preview selection are available on models with those controls. Recording/editing/copy/move/swap workflows are missing. |
 | Sequencer | Partial | Basic ON/AUTO/PREV/NEXT/JUMP controls are in scope. Building and editing sequences are missing. |
 | GPO 1–16 | Partial | V-160HD's public parameter catalog exposes the TALLY/GPO template and 16 source assignments in the full parameter menu. Dedicated one-shot/alternate output actions and RCS-style editing remain incomplete. |

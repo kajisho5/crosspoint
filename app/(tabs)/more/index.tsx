@@ -61,6 +61,7 @@ export default function MoreScreen() {
           <ListRow title="AUX" icon="arrow.triangle.branch" chevron onPress={() => router.push('/more/aux')} />
           <ListRow title="マクロ・シーケンサー" icon="play.square.stack" chevron onPress={() => router.push('/more/macro')} />
           <ListRow title="静止画キャプチャ" icon="camera" chevron onPress={() => router.push('/more/still')} />
+          {profile?.model === 'V-160HD' ? <ListRow title="マルチビュー設定" icon="rectangle.split.3x3" chevron onPress={() => router.push('/more/menu/system-24')} /> : null}
           {profile?.model === 'V-160HD' ? <ListRow title="静止画設定" icon="photo" chevron onPress={() => router.push('/more/menu/still-image-27')} /> : null}
           {profile?.model === 'V-160HD' ? <ListRow title="TALLY/GPO設定" icon="dot.radiowaves.left.and.right" chevron onPress={() => router.push('/more/menu/rs-232-tally-gpo-gpi-key-37')} /> : null}
           <ListRow title="クイック操作" icon="bolt.fill" iconTint="warn" chevron onPress={() => router.push('/more/quick')} />
