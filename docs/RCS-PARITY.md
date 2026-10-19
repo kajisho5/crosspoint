@@ -19,7 +19,7 @@ This document tracks SW CROSSPOINT against the user-visible V-160HD RCS / V-160H
 | Audio mixer levels and mute | Implemented (spec); hardware coverage unverified | Verify ranges, channel mapping, and feedback against the V-160HD. |
 | Full parameter-address menu and camera-control parameters | Implemented (spec); hardware coverage unverified | Verify catalog entries and camera protocol workflows; UI controls do not prove every operation is safe or accepted by firmware. |
 | AUX source selection and quick actions | Implemented (spec); hardware coverage unverified | Verify output assignment and bulk operations on hardware before claiming parity. |
-| Preset/memory | Partial | Load, save, and initialize are implemented for V-160HD; names/current slot are displayed. Rename, thumbnail, and layout workflows remain missing. |
+| Preset/memory | Partial | Load, save, initialize, and name editing are implemented for V-160HD; current slot/name are displayed. Thumbnail and layout workflows remain missing. |
 | Macros | Partial | Macro execution is in scope. Recording/editing/copy/move/swap workflows are missing. |
 | Sequencer | Partial | Basic ON/AUTO/PREV/NEXT/JUMP controls are in scope. Building and editing sequences are missing. |
 | GPO 1–16 | Missing / unknown | The repository notes no confirmed public address map; do not infer commands. |
