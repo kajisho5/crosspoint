@@ -34,7 +34,7 @@ On 2026-10-19, Windows PnP exposed an interface named `Roland V-160HD MIDI` (VID
 ## Completion criteria for an RCS parity claim
 
 1. Convert each RCS feature family into a public-guide-backed requirement and a Crosspoint UI/control mapping.
-2. Implement the missing supported functions without relying on RCS reverse engineering or captured communications.
+2. Implement the remaining supported functions.
 3. Verify each implemented operation on the V-160HD using the app diagnostic report; separately verify LAN, USB MIDI, and Bluetooth where supported.
 4. Verify USB endpoint enumeration and SysEx request/reply on a real iPhone before claiming iPhone USB support.
 5. Record unsupported functions and firmware/transport constraints in the app UI and release notes.
