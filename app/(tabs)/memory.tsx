@@ -108,7 +108,7 @@ export default function MemoryScreen() {
               保存先
             </AppText>
             <AppText variant="headline" weight="700" mono>
-              {short} {String(target).padStart(2, '0')}
+              {current === target ? '現在と同じ' : `${short} ${String(target).padStart(2, '0')}`}
             </AppText>
           </View>
         </View>
