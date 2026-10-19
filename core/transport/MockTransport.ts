@@ -157,6 +157,14 @@ export class MockTransport implements Transport {
       if (p.addrs.memCurrent != null) this.setBytes(p.addrs.memCurrent, [bytes[0] ?? 0]);
       return;
     }
+    if (p.addrs.memSave != null && a === p.addrs.memSave) {
+      this.log('info', `デモ：メモリー ${String((bytes[0] ?? 0) + 1).padStart(2, '0')} を保存`);
+      return;
+    }
+    if (p.addrs.memInitialize != null && a === p.addrs.memInitialize) {
+      this.log('info', `デモ：メモリー ${String((bytes[0] ?? 0) + 1).padStart(2, '0')} を初期化`);
+      return;
+    }
     this.setBytes(a, bytes);
     if (a === p.addrs.pgm || a === p.addrs.pst) this.refreshTally();
     // Fader Base を持つ機種（V-80HD / VR-120HD）：Level が最大に達したら遷移完了（PGM/PST 入替、Level 0、Base 反転。実機観測）
