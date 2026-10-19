@@ -22,8 +22,8 @@ This document tracks SW CROSSPOINT against the user-visible V-160HD RCS / V-160H
 | Preset/memory | Partial | Load, save, initialize, and name editing are implemented for V-160HD; current slot/name are displayed. Thumbnail and layout workflows remain missing. |
 | Macros | Partial | Macro execution is in scope. Recording/editing/copy/move/swap workflows are missing. |
 | Sequencer | Partial | Basic ON/AUTO/PREV/NEXT/JUMP controls are in scope. Building and editing sequences are missing. |
-| GPO 1–16 | Missing / unknown | The repository notes no confirmed public address map; do not infer commands. |
-| Still-image capture and still-image management | Missing / unknown | Capture from PGM/PVW/SUB and still-image name/delete workflows are not established in the current scope. |
+| GPO 1–16 | Partial | V-160HD's public parameter catalog exposes the TALLY/GPO template and 16 source assignments in the full parameter menu. Dedicated one-shot/alternate output actions and RCS-style editing remain incomplete. |
+| Still-image capture and still-image management | Partial | A dedicated action now triggers the public `[CAPTURE IMAGE]` panel-button address after confirmation. Image source/slot selection, list/preview, naming, and deletion are not exposed by this action. |
 | USB MONITOR video preview | Missing / unverified | Crosspoint has no documented equivalent of the RCS/Remote USB UVC monitor. iPhone external-camera support and this device path require a dedicated implementation and hardware verification. |
 | RS-232 connection | Missing | Crosspoint's stated transports are LAN, USB MIDI, and Bluetooth MIDI. RS-232 requires a supported iPhone adapter/serial transport and is not part of the current implementation. |
 

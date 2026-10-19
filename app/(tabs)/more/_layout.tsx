@@ -12,6 +12,7 @@ export default function MoreLayout() {
       <Stack.Screen name="quick" options={{ title: 'クイック操作' }} />
       <Stack.Screen name="aux" options={{ title: 'AUX' }} />
       <Stack.Screen name="macro" options={{ title: 'マクロ・シーケンサー' }} />
+      <Stack.Screen name="still" options={{ title: '静止画キャプチャ' }} />
       <Stack.Screen name="menu/index" options={{ title: 'メニュー' }} />
       <Stack.Screen name="menu/[group]" options={{ title: '' }} />
       <Stack.Screen name="diagnostics" options={{ title: '送受信ログ' }} />

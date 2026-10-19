@@ -52,9 +52,10 @@ Roland V-160HD / V-80HD を iPhone から LAN（Wi-Fi）・USB・Bluetooth の3�
 | F14 | **クイック操作**（v1.2）：①HDMI OUT 3 の出力割当を PROGRAM / PREVIEW / MULTI-VIEW の 3 ボタンで切替（VIDEO ASSIGN `00 00 0C`、V-80HD は `00 00 12`）②一括設定「HDMI/SDI 入力音声を −16.8 dB・LR MIX に」（AUDIO INPUT の HDMI IN / SDI IN 全系統：DIGITAL GAIN `01 xx 01` = 7EH 58H、MONO `01 xx 0A` = 03H）③一括設定「SDI OUT をすべて LEVEL-A に」（VIDEO OUTPUT (SDI) `00 xx 00` = 00H）。一括設定は確認ダイアログ後に CommandQueue 経由で順次書込み。定義は `core/params/quick.ts` がカタログから組み立て、該当パラメータが無い機種では出さない（§9-5） |
 | F15 | **AUX**（v1.2）：AUX バスのソースをクロスポイント風ボタンで切替（VIDEO ASSIGN の AUX SOURCE `00 00 11`。V-80HD は Aux 1/2 `00 00 18/19` を Segmented で切替）。HDMI / SDI / STILL / INPUT / その他に分けて 4 列、8 文字ラベルがあれば併記。そのバスを出している出力割当（OUTPUT ASSIGN が AUX のもの）をフッターに表示。`core/params/quick.ts` の `auxBuses()` がカタログから組み立てる |
 | F16 | **マクロ・シーケンサー**（v1.2）：マクロ 1–100 をタップで実行、シーケンサー ON/OFF・Auto Sequence・先頭へ・PREV・NEXT。経路は `lib/features.ts`：LAN（対応 FW）は簡易制御コマンド `MCREX` / `SEQ*`（§3-8、3 機種共通）、V-160HD の USB/BLE は `addrs.macroTrigger` = `50 05 04`（番号−1。**ガイド未記載**、Companion roland-v160hd の `run_macro`【事実：公開 OSS】→ §13）と §9-2 のパネルスイッチ `0B004F–52`（モーメンタリ）。V-80HD / VR-120HD の USB/BLE では出さない。マクロ名の取得手段は公開資料に無いので番号のみ |
+| F17 | **RCS 機能同等性**：RCS / V-160HD Remote の利用者向け機能を最終目標として実装する。公開ガイド等で通信方法が確認できる機能を優先し、未公開の設定形式は推測で送信せず、公開仕様または実機で得たCrosspoint自身の診断結果を根拠にする。iPhone USB の検証・配布は TestFlight ビルド後に行う |
 
 ### v1 非対象
-映像モニター（USB UVC）、マクロ／シーケンサーの**編集**（アドレスが無い。実行は F16）、RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。PTZ と全設定メニューは v1.2 で F13 として対象に入れた。
+RS-232、iPad 専用レイアウト（iPad でも動くが iPhone UI を拡大表示で可）。RCS / Remote のその他の機能（USB UVC モニター、マクロ／シーケンサー編集、静止画管理、サムネイル／レイアウト等）は F17 の完了範囲として扱う。iPhone USB の実機確認だけは TestFlight ビルド後に行う。公開された制御アドレスがない機能は、仕様が確認できるまで送信機能を推測実装しない。
 
 ---
 
