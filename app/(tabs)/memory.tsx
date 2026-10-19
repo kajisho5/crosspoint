@@ -71,7 +71,7 @@ export default function MemoryScreen() {
         {
           text: '保存',
           onPress: (value) => {
-            if (value != null && !/^[\\x20-\\x7E]{0,8}$/.test(value)) {
+            if (value != null && !/^[\x20-\x7E]{0,8}$/.test(value)) {
               Alert.alert('入力できません', '半角英数字などのASCII文字を8文字以内で入力してください。');
               return;
             }
