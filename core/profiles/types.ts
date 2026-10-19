@@ -113,6 +113,10 @@ export interface DeviceProfile {
     masterLevel: Addr;
     masterMute: Addr | null;
     memLoad: Addr;
+    /** Memory save trigger (selected slot, 0-based). Supported only where documented. */
+    memSave?: Addr;
+    /** Memory initialize trigger (selected slot, 0-based). Supported only where documented. */
+    memInitialize?: Addr;
     /** 現在のメモリー番号（読出し）。無い機種は null */
     memCurrent: Addr | null;
     /** メモリー名（8 文字）。無い機種は null */
