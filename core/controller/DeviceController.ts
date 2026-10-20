@@ -179,8 +179,9 @@ export class DeviceController {
     this.sync?.setVisibleTab(tab);
   }
 
-  /** 設定メニューなど、画面が開いている間だけ追加で監視する範囲 */
+  /** 設定メニューなど、画面が開いている間だけ追加で監視する範囲。デモは全状態スナップショットを使う */
   setExtraPoll(ranges: ReadRange[] | null): void {
+    if (this.transport?.kind === 'mock' && ranges != null) return;
     this.extraPoll = ranges;
     this.sync?.setExtraPoll(ranges);
   }
