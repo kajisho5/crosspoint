@@ -1,0 +1,9 @@
+# V-160HD USB Windows PnP observation
+
+- Date/time: 2026-10-19 (Asia/Tokyo)
+- Source: Windows PnP device properties, queried while devices were connected.
+- Query: `Get-PnpDevice -PresentOnly` filtered to `USB\VID_0582*`; Compatible IDs read from `DEVPKEY_Device_CompatibleIds`.
+- Matching V-160HD MIDI interface: friendly name `Roland V-160HD MIDI`; VID/PID `0582:0269`; interface `MI_00`.
+- Reported compatible IDs include `USB\Class_01&SubClass_01` and `USB\Class_01`.
+- The iPhone CoreMIDI endpoint name and `driverOwner` were not observed. This Windows result does not establish iPhone compatibility and does not meet the repository's documented `Class_01&SubClass_03` criterion for USB MIDI class confirmation.
+- Result: Windows exposes a device named as the V-160HD MIDI interface; iPhone USB support remains unverified.

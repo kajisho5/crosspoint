@@ -102,6 +102,7 @@ export const v8hd: DeviceProfile = {
     cut: addr(0x0b, 0x00, 0x18),
     auto: addr(0x0b, 0x00, 0x19),
     macroTrigger: addr(0x50, 0x05, 0x04),
+    macroPreview: addr(0x50, 0x05, 0x05),
     sequencer: null,
   },
   macroCount: 100,

@@ -32,6 +32,7 @@ export default function MacroScreen() {
   const macroRoute = useFeature('macro', profile);
   const seqRoute = useFeature('sequencer', profile);
   const [last, setLast] = useState<number | null>(null);
+  const [previewNumber, setPreviewNumber] = useState(1);
   const seqOn = useSimpleStore((s) => s.seqOn);
   const seqAuto = useSimpleStore((s) => s.seqAuto);
 
@@ -60,6 +61,7 @@ export default function MacroScreen() {
 
   const seqAddrs = profile.addrs.sequencer;
   const macroAddr = profile.addrs.macroTrigger;
+  const macroPreviewAddr = profile.addrs.macroPreview ?? null;
   const rows: number[][] = [];
   for (let n = 1; n <= profile.macroCount; n += COLUMNS) rows.push(Array.from({ length: COLUMNS }, (_, i) => n + i).filter((m) => m <= profile.macroCount));
 
@@ -123,6 +125,16 @@ export default function MacroScreen() {
             }
           >
             <View className="px-4 py-3" style={{ gap: xp.gap }}>
+              {macroPreviewAddr ? (
+                <View style={{ gap: 8 }}>
+                  <AppText variant="footnote" tone="label2">プレビュー対象：マクロ {previewNumber}</AppText>
+                  <View className="flex-row" style={{ gap: 10 }}>
+                    <TapButton label="−" disabled={!online || previewNumber <= 1} width={w4} accessibilityLabel="プレビューするマクロ番号を下げる" onPress={() => setPreviewNumber((n) => Math.max(1, n - 1))} />
+                    <TapButton label="＋" disabled={!online || previewNumber >= profile.macroCount} width={w4} accessibilityLabel="プレビューするマクロ番号を上げる" onPress={() => setPreviewNumber((n) => Math.min(profile.macroCount, n + 1))} />
+                    <TapButton label="PREVIEW" disabled={!online} width={w4} accessibilityLabel={`マクロ ${previewNumber} をプレビュー`} onPress={() => controller.trigger(macroPreviewAddr, [previewNumber - 1])} />
+                  </View>
+                </View>
+              ) : null}
               {rows.map((row) => (
                 <View key={row[0]} className="flex-row" style={{ gap: xp.gap }}>
                   {row.map((n) => (

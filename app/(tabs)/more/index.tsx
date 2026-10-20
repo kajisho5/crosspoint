@@ -57,9 +57,13 @@ export default function MoreScreen() {
           {link !== 'idle' ? <ListRow title="切断" destructive onPress={confirmDisconnect} /> : null}
         </GroupCard>
 
-        <GroupCard title="本体設定" footer="AUX：AUX バスのソースをボタンで切替。マクロ：1–100 をタップで実行、シーケンサーの ON/AUTO/PREV/NEXT。クイック操作：HDMI OUT 3 の出力切替、HDMI/SDI 入力音声の一括設定、SDI OUT の LEVEL-A 一括設定。メニュー：Remote Control Guide に載っている全パラメータ。">
+        <GroupCard title="本体設定" footer="AUX：AUX バスのソースをボタンで切替。マクロ：1–100 をタップで実行、シーケンサーの ON/AUTO/PREV/NEXT。静止画キャプチャ：本体の CAPTURE IMAGE ボタンを実行。クイック操作：HDMI OUT 3 の出力切替、HDMI/SDI 入力音声の一括設定、SDI OUT の LEVEL-A 一括設定。メニュー：Remote Control Guide に載っている全パラメータ。">
           <ListRow title="AUX" icon="arrow.triangle.branch" chevron onPress={() => router.push('/more/aux')} />
           <ListRow title="マクロ・シーケンサー" icon="play.square.stack" chevron onPress={() => router.push('/more/macro')} />
+          <ListRow title="静止画キャプチャ" icon="camera" chevron onPress={() => router.push('/more/still')} />
+          {profile?.model === 'V-160HD' ? <ListRow title="マルチビュー設定" icon="rectangle.split.3x3" chevron onPress={() => router.push('/more/menu/system-24')} /> : null}
+          {profile?.model === 'V-160HD' ? <ListRow title="静止画設定" icon="photo" chevron onPress={() => router.push('/more/menu/still-image-27')} /> : null}
+          {profile?.model === 'V-160HD' ? <ListRow title="TALLY/GPO設定" icon="dot.radiowaves.left.and.right" chevron onPress={() => router.push('/more/menu/rs-232-tally-gpo-gpi-key-37')} /> : null}
           <ListRow title="クイック操作" icon="bolt.fill" iconTint="warn" chevron onPress={() => router.push('/more/quick')} />
           <ListRow title="メニュー（全パラメータ）" icon="slider.horizontal.3" chevron onPress={() => router.push('/more/menu')} />
         </GroupCard>

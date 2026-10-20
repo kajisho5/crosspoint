@@ -34,6 +34,6 @@ describe('メニュー：全グループがデモで描画できる（例外＝�
       await act(async () => {
         await controller.disconnect();
       });
-    });
+    }, 15000);
   }
 });

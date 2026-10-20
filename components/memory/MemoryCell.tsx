@@ -16,14 +16,16 @@ export interface MemoryCellProps {
   n: number;
   name: string | null;
   current: boolean;
+  selected: boolean;
   size: number;
   noun: string;
   onHoldChange: (n: number | null) => void;
+  onSelect: (n: number) => void;
   onCommit: (n: number) => void;
 }
 
 /** メモリー 1 枠（ボード 66×66・r12）。0.6s 長押しで呼出し、途中で離すとキャンセル */
-export const MemoryCell = memo(function MemoryCell({ n, name, current, size, noun, onHoldChange, onCommit }: MemoryCellProps) {
+export const MemoryCell = memo(function MemoryCell({ n, name, current, selected, size, noun, onHoldChange, onSelect, onCommit }: MemoryCellProps) {
   const progress = useSharedValue(0);
   const [holding, setHolding] = useState(false);
   const inset = 1.5;
@@ -66,18 +68,19 @@ export const MemoryCell = memo(function MemoryCell({ n, name, current, size, nou
 
   return (
     <Pressable
+      onPress={() => onSelect(n)}
       onPressIn={begin}
       onPressOut={cancel}
       accessibilityRole="button"
       accessibilityLabel={`${noun} ${n}${name ? `、${name}` : ''}${current ? '、現在' : ''}`}
-      accessibilityHint="長押しで呼び出します"
+      accessibilityHint="タップで保存先を選択、長押しで呼び出します"
       accessibilityActions={[{ name: 'activate', label: '呼び出す' }]}
       onAccessibilityAction={(e) => {
         if (e.nativeEvent.actionName === 'activate') onCommit(n);
       }}
       accessibilityState={{ selected: current }}
     >
-      <View style={{ width: size, height: size, borderRadius: radius.xp, backgroundColor: current ? color.accent : color.fill, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ width: size, height: size, borderRadius: radius.xp, backgroundColor: current ? color.accent : color.fill, borderWidth: selected && !current ? 2 : 0, borderColor: color.accent, alignItems: 'center', justifyContent: 'center' }}>
         <AppText size={20} weight="700" mono tone={current ? 'onTint' : 'label'} maxFontSizeMultiplier={1.1}>
           {num}
         </AppText>

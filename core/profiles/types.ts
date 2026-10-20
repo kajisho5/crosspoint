@@ -29,7 +29,7 @@ export interface Capabilities {
   usb: boolean;
   ble: boolean;
   split: boolean;
-  /** マクロ実行（`macroTrigger` が分かっている機種だけ真）。V-160HD は Companion の run_macro（50 05 04）【事実：公開 OSS】 */
+  /** マクロ実行（`macroTrigger` が分かっている機種だけ真） */
   macro: boolean;
   /** シーケンサーのパネルスイッチ（ON/AUTO/PREV/NEXT）が分かっている機種だけ真 */
   sequencer: boolean;
@@ -113,6 +113,10 @@ export interface DeviceProfile {
     masterLevel: Addr;
     masterMute: Addr | null;
     memLoad: Addr;
+    /** Memory save trigger (selected slot, 0-based). Supported only where documented. */
+    memSave?: Addr;
+    /** Memory initialize trigger (selected slot, 0-based). Supported only where documented. */
+    memInitialize?: Addr;
     /** 現在のメモリー番号（読出し）。無い機種は null */
     memCurrent: Addr | null;
     /** メモリー名（8 文字）。無い機種は null */
@@ -127,6 +131,8 @@ export interface DeviceProfile {
     autoValues?: { press: number; release: number };
     /** マクロ実行トリガ（値 = マクロ番号 − 1、書込み専用）。不明な機種は null */
     macroTrigger: Addr | null;
+    /** マクロプレビュー選択（値 = マクロ番号 − 1、書込み専用）。対応表に項目がある機種のみ */
+    macroPreview?: Addr | null;
     /** ASSIGNABLE PAD 1–8 のパネルスイッチ（モーメンタリ、01 押下 / 00 解放）。無い・不明な機種は省略 */
     pads?: readonly Addr[];
     /** [SETUP (+PAD) BANK SELECT] ボタン（押したまま PAD でバンク選択）。無い機種は省略 */

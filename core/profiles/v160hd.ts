@@ -94,15 +94,19 @@ export const v160hd: DeviceProfile = {
     masterLevel: addr(0x01, 0x21, 0x00),
     masterMute: addr(0x01, 0x21, 0x03),
     memLoad: addr(0x0a, 0x00, 0x00),
+    memSave: addr(0x0a, 0x00, 0x01),
+    memInitialize: addr(0x0a, 0x00, 0x02),
     memCurrent: addr(0x0a, 0x00, 0x03),
     memName: (n) => addr(0x60, n - 1, 0x00),
     tallyBlock: addr(0x0c, 0x00, 0x00),
     tallyBlockSize: 42,
     cut: addr(0x0b, 0x00, 0x1e),
     auto: addr(0x0b, 0x00, 0x1f),
-    // Companion roland-v160hd の run_macro（'500504' に macro-1 を書く）【事実：公開 OSS、MIT】。ガイド未記載なので実機で確認（§13）
+    // V-160HD Remote Control Guide eng06 p.34: EXEC MACRO TRIGGER（値 = マクロ番号 − 1）
     macroTrigger: addr(0x50, 0x05, 0x04),
-    // SPEC §9-2：0B004F–52 SEQUENCER ON/AUTO/PREV/NEXT SW【事実：Companion 定数】
+    // V-160HD Remote Control Guide eng06 p.34: PREVIEW MACRO TRIGGER
+    macroPreview: addr(0x50, 0x05, 0x05),
+    // V-160HD Remote Control Guide eng06 p.32: SEQUENCER [ON/AUTO SEQUENCE/PREVIOUS/NEXT]
     sequencer: { on: addr(0x0b, 0x00, 0x4f), auto: addr(0x0b, 0x00, 0x50), prev: addr(0x0b, 0x00, 0x51), next: addr(0x0b, 0x00, 0x52) },
   },
   macroCount: 100,

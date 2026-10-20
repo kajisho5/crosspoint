@@ -1,6 +1,7 @@
 import { dbToU7, encodeAscii8, encodeLevel, encodeTime, encodeU14, addrOffset, type Addr } from '../codec/value';
 import type { DeviceProfile } from '../profiles/types';
 import { VA } from '../profiles/virtual';
+import { getCatalog, paramAddr } from '../params';
 
 /**
  * デモモード（F11）とモックの初期状態。名称はすべて架空（CLAUDE.md）。
@@ -232,7 +233,25 @@ export function buildDemoState(p: DeviceProfile): ByteMap {
   }
 
   writeTally(m, p);
+  seedCatalogDefaults(m, p);
   return m;
+}
+
+/** Fill catalog parameters that do not have a hand-authored demo value. */
+function seedCatalogDefaults(m: ByteMap, p: DeviceProfile): void {
+  for (const group of getCatalog(p.model).groups) {
+    for (const param of group.params) {
+      if (param.writeOnly || param.exec) continue;
+      const instances = param.a2 === 'xx' ? group.instances ?? [null] : [null];
+      for (const instance of instances) {
+        const base = paramAddr(param, instance);
+        for (let offset = 0; offset < param.size; offset += 1) {
+          const a = addrOffset(base, offset);
+          if (!m.has(a)) m.set(a, 0);
+        }
+      }
+    }
+  }
 }
 
 /** PGM/PST の値からタリーブロックを作り直す（モック用） */

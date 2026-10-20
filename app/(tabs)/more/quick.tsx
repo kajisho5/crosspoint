@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Alert, Pressable, View } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { controller } from '@/core/controller/DeviceController';
@@ -39,14 +39,11 @@ export default function QuickScreen() {
   }, [out3, tp]);
   useFocusEffect(
     useCallback(() => {
-      controller.readRanges(ranges);
+      if (online) controller.readRanges(ranges);
       controller.setExtraPoll(ranges);
       return () => controller.setExtraPoll(null);
-    }, [ranges]),
+    }, [online, ranges]),
   );
-  useEffect(() => {
-    if (online) controller.readRanges(ranges);
-  }, [online, ranges]);
 
   const out3Bytes = useBytes(out3?.addr ?? null, out3?.param.size ?? 1);
   const out3Value = out3 && out3Bytes ? decodeParam(out3.param, out3Bytes) : null;

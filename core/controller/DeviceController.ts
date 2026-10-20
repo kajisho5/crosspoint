@@ -179,15 +179,16 @@ export class DeviceController {
     this.sync?.setVisibleTab(tab);
   }
 
-  /** 設定メニューなど、画面が開いている間だけ追加で監視する範囲 */
+  /** 設定メニューなど、画面が開いている間だけ追加で監視する範囲。デモは全状態スナップショットを使う */
   setExtraPoll(ranges: ReadRange[] | null): void {
+    if (this.transport?.kind === 'mock' && ranges != null) return;
     this.extraPoll = ranges;
     this.sync?.setExtraPoll(ranges);
   }
 
-  /** 任意範囲を今すぐ読む（デモは即時応答、実機はキュー経由） */
+  /** 任意範囲を今すぐ読む。デモは接続時の全状態スナップショットを使う */
   readRanges(ranges: ReadRange[]): void {
-    if (!this.transport || !this.online) return;
+    if (!this.transport || !this.online || this.transport.kind === 'mock') return;
     for (const r of mergeRanges(ranges)) this.transport.readParam(r.addr, r.size);
   }
 

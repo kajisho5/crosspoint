@@ -17,7 +17,7 @@
 
 | 機種 | OS 側で見えたクラス | iPhone の CoreMIDI 端点（名前 / driverOwner） | 結果 | 根拠 | 反映 |
 |---|---|---|---|---|---|
-| V-160HD | — | — | — | — | — |
+| V-160HD | Windows PnP: `Class_01/SubClass_01` (interface named `Roland V-160HD MIDI`) | — (iPhone endpoint unverified) | Windows MIDI-named interface observed; iPhone support not established | `docs/verify/v160hd-20261019-windows-pnp.txt` | — |
 | V-80HD | — | — | — | — | — |
 | VR-120HD | — | — | — | — | — |
 | VR-6HD | — | — | — | — | — |
