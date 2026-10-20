@@ -185,9 +185,9 @@ export class DeviceController {
     this.sync?.setExtraPoll(ranges);
   }
 
-  /** 任意範囲を今すぐ読む（デモは即時応答、実機はキュー経由） */
+  /** 任意範囲を今すぐ読む。デモは接続時の全状態スナップショットを使う */
   readRanges(ranges: ReadRange[]): void {
-    if (!this.transport || !this.online) return;
+    if (!this.transport || !this.online || this.transport.kind === 'mock') return;
     for (const r of mergeRanges(ranges)) this.transport.readParam(r.addr, r.size);
   }
 
